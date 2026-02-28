@@ -64,8 +64,8 @@ export function Header() {
         className={`sticky z-[9999] w-full transition-all duration-200 py-2 lg:py-0 ${!isBelowLg && !scrolled ? "lg:top-5" : "top-0"}`}
         style={{ backgroundColor: headerBg }}
       >
-        {/* mobile: h-44px (px 16 from Container) | tablet: h-65px (px 32 from Container) | desktop: h-20 */}
-        <Container className="h-11 md:h-[65px] lg:h-20 flex items-center justify-between gap-4 lg:gap-6 xl:gap-8">
+        {/* padding-x: 16 / 32 / 60 px (mobile / tablet / desktop); padding-y на header */}
+        <div className="h-11 md:h-[65px] lg:h-20 flex items-center justify-between gap-4 lg:gap-6 xl:gap-8 px-4 md:px-8 lg:px-[60px] w-full">
           {/* Лого ховаємо при відкритому burger menu (тільки на tablet/mobile) */}
           {menuOpen && isBelowLg ? (
             <div className="flex-1 min-w-0" aria-hidden />
@@ -112,7 +112,7 @@ export function Header() {
           >
             <BurgerToCloseIcon open={menuOpen} size={44} />
           </button>
-        </Container>
+        </div>
       </header>
 
       {/* Tablet overlay menu — рендеримо тільки на екранах < lg, щоб не блокувати кліки на desktop */}
