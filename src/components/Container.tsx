@@ -10,11 +10,11 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
       <Component
         ref={ref}
         className={[
-          "w-full mx-auto",
-          /* 288/320=90% | 704/768≈91.67% | 1317/1440≈91.46% */
-          "max-w-[90%] px-4",
-          "min-[768px]:max-w-[91.67%] min-[768px]:px-8",
-          "min-[1440px]:max-w-[91.46%] min-[1440px]:px-12",
+          "w-full",
+          /* єдиний відступ: mobile 16px, tablet 32px, desktop 59px */
+          "px-4",
+          "min-[768px]:px-8",
+          "min-[1440px]:px-[59px]",
           className,
         ]
           .filter(Boolean)
