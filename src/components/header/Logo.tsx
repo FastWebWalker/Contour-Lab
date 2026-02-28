@@ -8,9 +8,9 @@ export function Logo() {
       <img
         src="/logo.svg"
         alt="Contour dental laboratory"
-        width={147}
-        height={58}
-        className="h-12 w-auto object-contain"
+        width={165}
+        height={65}
+        className="w-[103.829px] h-[41.109px] md:w-[164.171px] md:h-[65px] lg:w-[146.491px] lg:h-[58px] object-contain"
       />
     </Link>
   );

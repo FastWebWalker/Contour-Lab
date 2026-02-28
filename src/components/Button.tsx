@@ -18,15 +18,24 @@ export interface ButtonProps
 }
 
 const sizeStyles = {
-  sm: "h-11 px-5 text-[15px] gap-2.5 min-w-[140px]",
-  md: "h-12 px-7 text-[16px] gap-3 min-w-[180px]",
-  lg: "h-14 px-8 text-[17px] gap-3.5 min-w-[220px]",
+  sm: "h-11 text-[15px] gap-[4px] min-w-[140px]",
+  md: "h-12 text-[16px] gap-[4px] min-w-[180px]",
+  lg: "h-14 text-[17px] gap-[4px] min-w-[220px]",
 };
 
-const iconSizes = {
-  sm: 18,
-  md: 20,
-  lg: 22,
+/** Dynamic padding per variant (primary vs outline/outlineLight) */
+const paddingByVariant: Record<ButtonVariant, Record<ButtonSize, string>> = {
+  primary: { sm: "px-[12px]", md: "px-[20px]", lg: "px-[24px]" },
+  secondary: { sm: "px-[16px]", md: "px-[16px]", lg: "px-[16px]" },
+  outline: { sm: "px-[16px]", md: "px-[16px]", lg: "px-[16px]" },
+  outlineLight: { sm: "px-[16px]", md: "px-[16px]", lg: "px-[16px]" },
+};
+
+const iconSizeByVariant: Record<ButtonVariant, number> = {
+  primary: 36,
+  secondary: 30,
+  outline: 30,
+  outlineLight: 30,
 };
 
 const variantStyles = {
@@ -80,12 +89,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           "disabled:opacity-50 disabled:cursor-not-allowed",
           variantStyles[variant],
           sizeStyles[size],
+          paddingByVariant[variant][size],
           fullWidth && "w-full min-w-0",
           className,
         ]
           .filter(Boolean)
           .join(" ")}
-        style={{ fontFamily: "var(--font-sans)" }}
+        style={{ fontFamily: "var(--font-inter)" }}
         {...props}
       >
         {leftIcon}
@@ -111,7 +121,7 @@ export function PrimaryButton({
       variant="primary"
       size={size}
       rightIcon={
-        <ArrowRightIcon className="shrink-0" size={iconSizes[size]} />
+        <ArrowRightIcon className="shrink-0" size={iconSizeByVariant.primary} />
       }
       {...props}
     >
@@ -123,7 +133,7 @@ export function PrimaryButton({
 /** Outline light - white bg, red border - for header */
 export function OutlineLightButton({
   size = "md",
-  children = "Get in Touch",
+  children = "Зв’язатися",
   ...props
 }: Omit<ButtonProps, "variant" | "leftIcon" | "children"> & {
   children?: React.ReactNode;
@@ -133,7 +143,7 @@ export function OutlineLightButton({
       variant="outlineLight"
       size={size}
       leftIcon={
-        <ExternalLinkIcon className="shrink-0" size={iconSizes[size]} />
+        <ExternalLinkIcon className="shrink-0 " size={iconSizeByVariant.outlineLight} />
       }
       {...props}
     >
@@ -155,7 +165,7 @@ export function OutlineButton({
       variant="outline"
       size={size}
       leftIcon={
-        <ExternalLinkIcon className="shrink-0" size={iconSizes[size]} />
+        <ExternalLinkIcon className="shrink-0" size={iconSizeByVariant.outline} />
       }
       {...props}
     >
@@ -177,7 +187,7 @@ export function SecondaryButton({
       variant="secondary"
       size={size}
       leftIcon={
-        <ExternalLinkIcon className="shrink-0" size={iconSizes[size]} />
+        <ExternalLinkIcon className="shrink-0" size={iconSizeByVariant.secondary} />
       }
       {...props}
     >
