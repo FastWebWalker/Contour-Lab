@@ -72,3 +72,13 @@ body {
   color: var(--foreground);
   font-family: "Gilroy", ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Infinite carousel: move by one set width so loop is seamless */
+@keyframes icons-carousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
