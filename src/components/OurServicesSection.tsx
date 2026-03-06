@@ -55,6 +55,17 @@ const SERVICES: { title: string; items: string[] }[] = [
       "Вініри/фрезерований дисилікат літію",
     ],
   },
+  {
+    title: "Інші типи робіт в лабораторії",
+    items: [
+      "Тимчасові конструкції All on 4/6",
+      "Тимчасові реставрації",
+      "Центрофікс",
+      "Ваксап",
+      "Пресування",
+      "Лазерне спікання"
+    ],
+  },
 ];
 
 export interface OurServicesSectionProps
@@ -63,9 +74,10 @@ export interface OurServicesSectionProps
 }
 
 const CARD_WIDTH = 424;
-const GAP = 10;
+// ВАЖЛИВО: має збігатися з gap-[24px] у контейнері слайдера
+const GAP = 24;
 const CARD_STEP = CARD_WIDTH + GAP;
-const SETS_COUNT = 3; // три копії для безкінечного скролу
+const SETS_COUNT = 1; // один набір карток, цикл за індексом
 
 function ServiceCard({
   title,
@@ -73,21 +85,22 @@ function ServiceCard({
 }: { title: string; items: string[] }) {
   return (
     <article
-      className="flex w-[424px] shrink-0 flex-col items-start gap-2.5 rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8"
+      className="flex max-[400px]:max-w-[257px] shrink-0 flex-col items-start gap-2.5 rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8"
     >
       <h3
-        className="text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
+        className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
         style={{
           fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
         }}
       >
         {title}
       </h3>
+      <span className="h-[0.5px] w-full bg-[var(--color-grey)] my-[16px] sm:my-[24px]"></span>
       <ul className="flex flex-col gap-2.5">
         {items.map((item) => (
           <li
             key={item}
-            className="flex gap-2 text-[20px] font-normal leading-normal text-[#000]"
+            className="flex items-start gap-[16px] max-w-[341px] text-[16px] font-normal leading-normal text-[#000]"
             style={{
               fontFamily: "var(--font-inter), Inter, sans-serif",
             }}
@@ -107,48 +120,18 @@ export function OurServicesSection({
   ...props
 }: OurServicesSectionProps) {
   const scrollRef = React.useRef<HTMLDivElement>(null);
-  const setWidth = SERVICES.length * CARD_STEP;
-  const isScrollingRef = React.useRef(false);
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
-  const clampScroll = React.useCallback(() => {
-    const el = scrollRef.current;
-    if (!el || isScrollingRef.current) return;
-    const { scrollLeft, scrollWidth } = el;
-    const oneSet = setWidth;
-    const maxScroll = oneSet * (SETS_COUNT - 1);
-    if (scrollLeft >= oneSet * 2 - 20) {
-      isScrollingRef.current = true;
-      el.scrollLeft = oneSet;
-      requestAnimationFrame(() => {
-        isScrollingRef.current = false;
-      });
-    } else if (scrollLeft <= 20) {
-      isScrollingRef.current = true;
-      el.scrollLeft = oneSet * 2 - el.clientWidth;
-      requestAnimationFrame(() => {
-        isScrollingRef.current = false;
-      });
-    }
-  }, [setWidth]);
-
+  // Позиціонуємо вікно так, щоб зліва завжди була ціла активна картка.
   React.useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollLeft = setWidth;
-  }, [setWidth]);
-
-  React.useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const handleScroll = () => clampScroll();
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [clampScroll]);
+    const target = activeIndex * CARD_STEP;
+    el.scrollTo({ left: target, behavior: "smooth" });
+  }, [activeIndex]);
 
   const handleArrowClick = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: CARD_STEP, behavior: "smooth" });
-    }
+    setActiveIndex((prev) => (prev + 1) % SERVICES.length);
   };
 
   return (
@@ -157,13 +140,16 @@ export function OurServicesSection({
       className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <Container className="flex flex-col gap-6 md:gap-8">
-        <div className="flex flex-col items-stretch justify-between gap-4 min-[768px]:flex-row min-[768px]:items-start min-[768px]:gap-8">
-          <Title as="h2" className="min-w-0 shrink-0">
+      <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
+        <div className="flex flex-col items-stretch justify-between gap-4 min-[768px]:flex-row flex-col-reverse max-[500px]:flex-col max-[400px]:items-center min-[768px]:items-start min-[768px]:gap-8 min-[1440px]:flex-row">
+          <Title
+            as="h2"
+            className="min-w-0 shrink-0 min-[400px]:text-[36px] min-[400px]:leading-[36px]"
+          >
             Наші послуги
           </Title>
           <p
-            className="min-w-0 max-w-[60ch] text-[20px] font-normal leading-normal"
+            className="min-w-0 max-w-[60ch] text-[16px] sm:text-[20px] font-normal leading-normal"
             style={{
               color: "rgba(20, 20, 20, 0.85)",
               fontFamily: "var(--font-inter), Inter, sans-serif",
@@ -181,7 +167,7 @@ export function OurServicesSection({
       >
         <div
           ref={scrollRef}
-          className="flex w-full gap-[10px] overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
+          className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {Array.from({ length: SETS_COUNT }, (_, setIndex) =>
@@ -198,9 +184,9 @@ export function OurServicesSection({
         <button
           type="button"
           onClick={handleArrowClick}
-          className="absolute right-[57px] bottom-2 flex h-[119px] w-[119px] shrink-0 items-center justify-center rounded-[59.5px] border-[0.5px] border-[var(--color-red-purple)] bg-white p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2"
+          className="absolute right-[57px] bottom-[-50px] hidden h-[119px] w-[119px] shrink-0 items-center justify-center rounded-[59.5px] border-[0.5px] border-[var(--color-red-purple)] bg-transparent cursor-pointer p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 min-[768px]:flex"
           aria-label="Наступний слайд"
-          style={{ transform: "rotate(-90deg)" }}
+         
         >
           <Image
             src="/ourServices/arrow-right.svg"
