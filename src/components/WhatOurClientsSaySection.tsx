@@ -13,28 +13,28 @@ const TESTIMONIALS: {
   quote: string;
   avatar: string;
 }[] = [
-  {
-    name: "Анатолій В.",
-    role: "Стоматолог",
-    quote:
-      "Я дуже задоволений якістю роботи Contour Laboratory! Робота завжди точна, естетична та виконана вчасно. Рекомендую її своїм колегам!",
-    avatar: "/ourTeam/1305dad7f27e9190b33821e2cdc3d5e7d86dc645.jpg",
-  },
-  {
-    name: "Наталія Х.",
-    role: "Стоматолог",
-    quote:
-      'Привіт! Команда "Smile Energy" оперативна, мобільна, професійна… Бажаю Вам процвітання, розвитку, креативності, творчості!',
-    avatar: "/ourTeam/1879ab55150dbe6bb5f3b324c17efc7655ea858c.jpg",
-  },
-  {
-    name: "Іван В.",
-    role: "Стоматолог",
-    quote:
-      "Відмінна якість! Чудова посадка, якісні матеріали. Щиро дякую! Пацієнти дуже задоволені результатами!",
-    avatar: "/ourTeam/c9bd719131852d95e6b674a244d2f79fe7b3ae9f.jpg",
-  },
-];
+    {
+      name: "Анатолій В.",
+      role: "Стоматолог",
+      quote:
+        "Я дуже задоволений якістю роботи Contour Laboratory! Робота завжди точна, естетична та виконана вчасно. Рекомендую її своїм колегам!",
+      avatar: "/ourTeam/1305dad7f27e9190b33821e2cdc3d5e7d86dc645.jpg",
+    },
+    {
+      name: "Наталія Х.",
+      role: "Стоматолог",
+      quote:
+        'Привіт! Команда "Smile Energy" оперативна, мобільна, професійна… Бажаю Вам процвітання, розвитку, креативності, творчості!',
+      avatar: "/ourTeam/1879ab55150dbe6bb5f3b324c17efc7655ea858c.jpg",
+    },
+    {
+      name: "Іван В.",
+      role: "Стоматолог",
+      quote:
+        "Відмінна якість! Чудова посадка, якісні матеріали. Щиро дякую! Пацієнти дуже задоволені результатами!",
+      avatar: "/ourTeam/c9bd719131852d95e6b674a244d2f79fe7b3ae9f.jpg",
+    },
+  ];
 
 /** Розміри крапок пагінації зліва направо: 14 → 12 → 9 px */
 const DOT_SIZES_PX = [14, 12, 9] as const;
@@ -148,10 +148,10 @@ export function WhatOurClientsSaySection({
     >
       {/* Шапка (title + стрілки), слайдер і точки — на всю ширину секції (без max-width) */}
       <div className="mx-auto flex w-full min-w-0 flex-col items-stretch gap-10 px-4 pb-0 pt-12 min-[768px]:px-8 min-[768px]:pt-16 min-[1440px]:px-[60px] min-[1440px]:pt-[80px]">
-        <div className="flex w-full min-w-0 flex-col gap-4 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <div className="flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <Title
             as="h2"
-            className="w-full min-w-0 text-center sm:flex-1 sm:text-left"
+            className="w-full min-w-0 text-left sm:flex-1"
           >
             Що кажуть Наші Клієнти
           </Title>
@@ -160,7 +160,7 @@ export function WhatOurClientsSaySection({
             canGoNext={canGoNext}
             onPrev={goPrev}
             onNext={goNext}
-            className="shrink-0 self-center sm:self-auto"
+            className="shrink-0 self-start sm:self-auto"
           />
         </div>
 
