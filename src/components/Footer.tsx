@@ -16,13 +16,14 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer
-      className="mt-auto overflow-hidden"
-      style={{
-        background: "var(--footer-gradient)",
-        borderRadius: 50,
-      }}
-    >
+    <div className="m-5 mt-auto">
+      <footer
+        className="overflow-hidden"
+        style={{
+          background: "var(--footer-gradient)",
+          borderRadius: 50,
+        }}
+      >
       <Container className="py-14 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Left: Logo, tagline, socials */}
@@ -108,5 +109,6 @@ export function Footer() {
         </div>
       </Container>
     </footer>
+    </div>
   );
 }
