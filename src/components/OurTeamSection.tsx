@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
+import { SliderNavButtons } from "./SliderNavButtons";
 import { Title } from "./Title";
 
 const CARD_WIDTH = 424;
@@ -21,9 +22,6 @@ const socialLinks = [
   { href: "https://facebook.com", src: "/hero/Social Icons.svg", label: "Facebook" },
   { href: "https://instagram.com", src: "/hero/Social Icons2.svg", label: "Instagram" },
 ];
-
-const arrowButtonClass =
-  "flex h-[104px] w-[105px] shrink-0 items-center justify-center gap-2.5 rounded-[59.5px] border-[0.5px] p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 disabled:opacity-60";
 
 function TeamCard({ name, role, photo }: { name: string; role: string; photo: string }) {
   return (
@@ -105,48 +103,12 @@ export function OurTeamSection({
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:items-center lg:mb-[40px] md:mb-[32px] mb-[16px] sm:justify-between">
           <Title className="text-center sm:self-center" as="h2" style={{ alignSelf: "center" }}>Наша команда</Title>
 
-          <div className="flex gap-2.5" aria-label="Навігація слайдера">
-            <button
-              type="button"
-              className={`${arrowButtonClass} border-[var(--color-grey-hard)] bg-transparent`}
-              style={{
-                borderColor: "var(--color-grey-hard, #555)",
-                transform: "rotate(-90deg)",
-              }}
-              aria-label="Попередній"
-              disabled={!canGoPrev}
-              onClick={goPrev}
-            >
-              <Image
-                src="/ourTeam/arrow-prev.svg"
-                alt=""
-                width={54}
-                height={54}
-                className="h-[54px] w-[54px] shrink-0"
-                style={{ transform: "rotate(90deg)" }}
-              />
-            </button>
-            <button
-              type="button"
-              className={`${arrowButtonClass} border-[var(--color-red-purple)] bg-transparent`}
-              style={{
-                borderColor: "var(--color-red-purple, #B81B3A)",
-                transform: "rotate(-90deg)",
-              }}
-              aria-label="Наступний"
-              disabled={!canGoNext}
-              onClick={goNext}
-            >
-              <Image
-                src="/ourTeam/arrow-next.svg"
-                alt=""
-                width={54}
-                height={54}
-                className="h-[54px] w-[54px] shrink-0"
-                style={{ transform: "rotate(90deg)" }}
-              />
-            </button>
-          </div>
+          <SliderNavButtons
+            canGoPrev={canGoPrev}
+            canGoNext={canGoNext}
+            onPrev={goPrev}
+            onNext={goNext}
+          />
         </div>
 
         {children}

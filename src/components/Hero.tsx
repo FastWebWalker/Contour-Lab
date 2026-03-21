@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Description } from "./Description";
 import { Container } from "./Container";
 import { PrimaryButton } from "./Button";
 import { ArrowRightIcon } from "./icons/ArrowRight";
@@ -47,16 +48,10 @@ export function Hero() {
           {/* Один ряд: лівий блок (description + кнопки), правий — social icons, space-between */}
           <div className="flex w-[100%] flex-row flex-wrap justify-between items-start gap-4">
             <div className="flex flex-col gap-3">
-              <p
-                className="text-[16px] leading-normal lg:text-[20px] lg:max-w-[444px]"
-                style={{
-                  color: "rgba(20, 20, 20, 0.85)",
-                  fontFamily: "var(--font-inter)",
-                }}
-              >
+              <Description className="min-[1024px]:max-w-[444px]">
                 Зробіть своє перше замовлення та отримайте тимчасову конструкцію на
                 спеціальних умовах!
-              </p>
+              </Description>
               <div className="flex flex-wrap gap-3">
                 <PrimaryButton size="lg">
                   Зробити замовлення
