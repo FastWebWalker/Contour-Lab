@@ -22,7 +22,7 @@ export default function Home() {
       <PrecisionQualitySection />
       <WhatOurClientsSaySection />
       <QuestionMapFormSection />
-      <main id="content" className="min-h-[50vh]" />
+      <main id="content" />
     </>
   );
 }
