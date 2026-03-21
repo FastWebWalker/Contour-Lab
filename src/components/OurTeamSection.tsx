@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
 import { Title } from "./Title";
 
@@ -26,7 +27,7 @@ const arrowButtonClass =
 
 function TeamCard({ name, role, photo }: { name: string; role: string; photo: string }) {
   return (
-    <article className="flex w-[424px] shrink-0 flex-col items-start gap-2.5 rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8">
+    <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
       <div className="flex h-[669px] flex-[1_0_0] flex-col items-start gap-6 self-stretch">
         <h3
           className="text-[36px] font-normal leading-[36px] text-[var(--color-black,#141414)]"
@@ -67,7 +68,7 @@ function TeamCard({ name, role, photo }: { name: string; role: string; photo: st
           />
         </div>
       </div>
-    </article>
+    </CardWrapper>
   );
 }
 

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
 import { Title } from "./Title";
 
@@ -84,8 +85,10 @@ function ServiceCard({
   items,
 }: { title: string; items: string[] }) {
   return (
-    <article
-      className="flex max-[400px]:max-w-[257px] shrink-0 flex-col items-start gap-2.5 rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8"
+    <CardWrapper
+      as="article"
+      className="max-[400px]:max-w-[257px]"
+      widthClassName="w-[424px] max-w-full shrink-0 max-[400px]:max-w-[257px]"
     >
       <h3
         className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
@@ -110,7 +113,7 @@ function ServiceCard({
           </li>
         ))}
       </ul>
-    </article>
+    </CardWrapper>
   );
 }
 

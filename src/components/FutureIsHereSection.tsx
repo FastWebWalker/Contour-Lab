@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
 import { Title } from "./Title";
 
@@ -54,9 +55,11 @@ export function FutureIsHereSection({
             <div className="flex w-full min-[1024px]:max-w-[624px] flex-col gap-2.5 rounded-[30px] p-0">
               <div className="flex w-full flex-col items-stretch gap-[10px] self-stretch">
                 {CARDS.map(({ icon, text }) => (
-                  <div
+                  <CardWrapper
                     key={icon}
-                    className="flex flex-col items-start gap-6 self-stretch rounded-[30px] w-full bg-[var(--Grey-Light,#F6F6F6)] p-8"
+                    paddingClassName="p-8"
+                    widthClassName="w-full"
+                    className="gap-6"
                   >
                     <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center">
                       <Image src={icon} alt="" width={32} height={32} />
@@ -69,7 +72,7 @@ export function FutureIsHereSection({
                     >
                       {text}
                     </p>
-                  </div>
+                  </CardWrapper>
                 ))}
               </div>
             </div>
