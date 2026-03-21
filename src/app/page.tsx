@@ -7,6 +7,7 @@ import { FutureIsHereSection } from "@/components/FutureIsHereSection";
 import { PrecisionQualitySection } from "@/components/PrecisionQualitySection";
 import { WhatOurClientsSaySection } from "@/components/WhatOurClientsSaySection";
 import { WhyChooseSection } from "@/components/WhyChooseSection";
+import { QuestionMapFormSection } from "@/components/QuestionMapFormSection";
 import {
   homeHeroTitle,
   homeHeroSubtitle,
@@ -39,7 +40,8 @@ export default function Home() {
       <FutureIsHereSection />
       <PrecisionQualitySection />
       <WhatOurClientsSaySection />
-      <main id="content" className="min-h-[50vh]" />
+      <QuestionMapFormSection />
+      <main id="content" />
     </>
   );
 }
