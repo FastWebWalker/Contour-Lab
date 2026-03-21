@@ -51,12 +51,12 @@ const ADVANTAGES: Advantage[] = [
 
 function AdvantageCard({ advantage }: { advantage: Advantage }) {
     return (
-        <div className="flex flex-col items-start gap-[10px] p-[20px] bg-[#F6F6F6] rounded-[30px] flex-1 min-h-[280px]">
+        <div className="flex flex-col items-start gap-[10px] p-[20px] bg-[#F6F6F6] rounded-[16px] md:rounded-[30px] w-[240px] md:w-[340px] lg:w-full shrink-0 snap-center">
             <div className="w-[32px] h-[32px] relative shrink-0">
                 <Image src={advantage.icon} alt="" fill className="object-contain" />
             </div>
             <h3
-                className="text-[28px] md:text-[36px] font-normal leading-none text-[#141414] self-stretch mt-2"
+                className="text-[24px] md:text-[36px] font-normal leading-none text-[#141414] self-stretch mt-2"
                 style={{ fontFamily: "var(--font-gilroy, Gilroy, sans-serif)" }}
             >
                 {advantage.title}
@@ -90,10 +90,12 @@ export function AdvantagesSection() {
                     перевагами!
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
-                    {ADVANTAGES.map((advantage) => (
-                        <AdvantageCard key={advantage.title} advantage={advantage} />
-                    ))}
+                <div id="advantages-carousel" className="overflow-x-auto lg:overflow-x-visible scrollbar-hide -mx-5 px-5 lg:mx-0 lg:px-0 overflow-y-hidden">
+                    <div className="flex lg:grid lg:grid-cols-3 gap-6 snap-x snap-mandatory">
+                        {ADVANTAGES.map((advantage) => (
+                            <AdvantageCard key={advantage.title} advantage={advantage} />
+                        ))}
+                    </div>
                 </div>
             </Container>
         </section>
