@@ -19,7 +19,7 @@ export function HeroText({ children }: HeroTextProps) {
         fontFamily: "var(--font-sans)",
         color: "var(--color-black)",
         fontSize: "clamp(40px, 6.25vw + 20px, 110px)",
-        lineHeight: "1.2",
+        lineHeight: "0.91",
       }}
     >
       {children}

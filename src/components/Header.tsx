@@ -10,8 +10,8 @@ import { OutlineLightButton } from "./Button";
 import { BurgerToCloseIcon } from "./icons/BurgerToClose";
 
 const navLinks = [
-  { href: "#general", label: "Головна" },
-  { href: "#services", label: "Послуги" },
+  { href: "/", label: "Головна" },
+  { href: "/services", label: "Послуги" },
   { href: "#vacancies", label: "Вакансії" },
   { href: "#contacts", label: "Контакти" },
   { href: "#gallery", label: "Галерея" },
@@ -117,86 +117,86 @@ export function Header() {
 
       {/* Tablet overlay menu — рендеримо тільки на екранах < lg, щоб не блокувати кліки на desktop */}
       {isBelowLg && (
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-label="Меню"
-        className="fixed inset-0 z-[80] overflow-hidden"
-        style={{ pointerEvents: menuOpen ? "auto" : "none" }}
-      >
-        {/* Sliding container: 100%×100%, top -100% when closed, top 0 when open */}
         <div
-          className="absolute left-0 w-full h-full flex flex-col transition-[top] duration-300 ease-out z-10"
-          style={{
-            top: menuOpen ? 0 : "-100%",
-            backgroundColor: "#F8F8F8",
-          }}
-          onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Меню"
+          className="fixed inset-0 z-[80] overflow-hidden"
+          style={{ pointerEvents: menuOpen ? "auto" : "none" }}
         >
-          {/* Backdrop full screen */}
+          {/* Sliding container: 100%×100%, top -100% when closed, top 0 when open */}
           <div
-            className="absolute inset-0 "
-            onClick={closeMenu}
-            aria-hidden
-          />
-          {/* Panel content (same layer, full size) */}
-          <div className="absolute inset-0 flex flex-col overflow-hidden">
-            {/* Left logo: mobile 117×207, tablet+ 179.831×415. Mobile позиція: left-[…] top-[…]; tablet+: md:left-[-3%] md:top-1/2 */}
+            className="absolute left-0 w-full h-full flex flex-col transition-[top] duration-300 ease-out z-10"
+            style={{
+              top: menuOpen ? 0 : "-100%",
+              backgroundColor: "#F8F8F8",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Backdrop full screen */}
             <div
-              className="absolute pointer-events-none flex items-center justify-center -translate-y-1/2 w-[117.001px] h-[207px] md:w-[179.831px] md:h-[415px] left-[-3%] top-1/2 md:left-[-3%] md:top-1/2"
-            >
-              <Image
-                src="/hero/LogoMenu.svg"
-                alt=""
-                width={180}
-                height={415}
-                className="w-full h-full object-contain object-center"
-                aria-hidden
-              />
-            </div>
-            {/* Right logo: mobile 145×58, tablet+ 204×204. Mobile позиція: left-[…] top-[…]; tablet+: md:left-[80%] md:top-[70%] */}
-            <div
-              className="absolute pointer-events-none w-[145px] h-[58px] md:w-[204px] md:h-[204px] left-[80%] top-[70%] md:left-[80%] md:top-[70%]"
-            >
-              <Image
-                src="/hero/Group.svg"
-                alt=""
-                width={204}
-                height={205}
-                className="w-full h-full object-contain object-right object-bottom"
-                aria-hidden
-              />
-            </div>
-
-            {/* Контейнер для контенту меню: 40px відступ зверху щоб не заходив під хрестик */}
-            <Container className="relative flex flex-1 flex-col items-center justify-center min-h-0 overflow-hidden pt-6 pb-8 mt-10">
-              {/* LanguageSelector, nav, button — max 89% висоти, по центру, space-between між блоками */}
-              <div className="flex flex-col justify-between items-center w-full h-[89%] max-h-[89%] min-h-0">
-                <div className="flex justify-center">
-                  <LanguageSelector />
-                </div>
-                <nav className="flex flex-col gap-4 items-center">
-                  {navLinks.map(({ href, label }) => (
-                    <NavLink
-                      key={href}
-                      href={href}
-                      className="w-full text-center min-h-11 py-3 px-5 text-[15px] border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5]"
-                      onClick={closeMenu}
-                    >
-                      {label}
-                    </NavLink>
-                  ))}
-                </nav>
-                <div className="flex justify-center">
-                  <OutlineLightButton size="md" onClick={closeMenu}>
-                    Зв&apos;язатися
-                  </OutlineLightButton>
-                </div>
+              className="absolute inset-0 "
+              onClick={closeMenu}
+              aria-hidden
+            />
+            {/* Panel content (same layer, full size) */}
+            <div className="absolute inset-0 flex flex-col overflow-hidden">
+              {/* Left logo: mobile 117×207, tablet+ 179.831×415. Mobile позиція: left-[…] top-[…]; tablet+: md:left-[-3%] md:top-1/2 */}
+              <div
+                className="absolute pointer-events-none flex items-center justify-center -translate-y-1/2 w-[117.001px] h-[207px] md:w-[179.831px] md:h-[415px] left-[-3%] top-1/2 md:left-[-3%] md:top-1/2"
+              >
+                <Image
+                  src="/hero/LogoMenu.svg"
+                  alt=""
+                  width={180}
+                  height={415}
+                  className="w-full h-full object-contain object-center"
+                  aria-hidden
+                />
               </div>
-            </Container>
+              {/* Right logo: mobile 145×58, tablet+ 204×204. Mobile позиція: left-[…] top-[…]; tablet+: md:left-[80%] md:top-[70%] */}
+              <div
+                className="absolute pointer-events-none w-[145px] h-[58px] md:w-[204px] md:h-[204px] left-[80%] top-[70%] md:left-[80%] md:top-[70%]"
+              >
+                <Image
+                  src="/hero/Group.svg"
+                  alt=""
+                  width={204}
+                  height={205}
+                  className="w-full h-full object-contain object-right object-bottom"
+                  aria-hidden
+                />
+              </div>
+
+              {/* Контейнер для контенту меню: 40px відступ зверху щоб не заходив під хрестик */}
+              <Container className="relative flex flex-1 flex-col items-center justify-center min-h-0 overflow-hidden pt-6 pb-8 mt-10">
+                {/* LanguageSelector, nav, button — max 89% висоти, по центру, space-between між блоками */}
+                <div className="flex flex-col justify-between items-center w-full h-[89%] max-h-[89%] min-h-0">
+                  <div className="flex justify-center">
+                    <LanguageSelector />
+                  </div>
+                  <nav className="flex flex-col gap-4 items-center">
+                    {navLinks.map(({ href, label }) => (
+                      <NavLink
+                        key={href}
+                        href={href}
+                        className="w-full text-center min-h-11 py-3 px-5 text-[15px] border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5]"
+                        onClick={closeMenu}
+                      >
+                        {label}
+                      </NavLink>
+                    ))}
+                  </nav>
+                  <div className="flex justify-center">
+                    <OutlineLightButton size="md" onClick={closeMenu}>
+                      Зв&apos;язатися
+                    </OutlineLightButton>
+                  </div>
+                </div>
+              </Container>
+            </div>
           </div>
         </div>
-      </div>
       )}
     </>
   );

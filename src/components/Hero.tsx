@@ -68,27 +68,27 @@ export function Hero({
   return (
     <div className="m-5">
       <section
-        className="relative min-h-[90vh] flex flex-col pt-[32px] pb-[32px] md:pt-[40px] md:pb-[40px] lg:pt-[146px]"
+        className="relative min-h-[90vh] flex flex-col pt-[32px] md:pt-[40px] lg:pt-[146px]"
         style={{ backgroundColor: "var(--color-hero-bg)", borderRadius: "50px" }}
       >
 
-        {/* Content + image */}
-        <div className="relative flex-1 flex flex-col overflow-hidden min-h-0">
-          {/* 3D dental image — right bottom; mobile 296×327, tablet 478×424, desktop 784×572 */}
-          <div
-            className="absolute right-0 bottom-0 w-full aspect-[86/95] md:w-[478px] md:h-[424px] md:aspect-auto lg:w-[784px] lg:h-[572px] z-10 pointer-events-none select-none"
-            aria-hidden
-          >
-            <Image
-              src={heroImage}
-              alt=""
-              fill
-              className="object-contain object-right object-bottom mix-blend-lighten opacity-95"
-              sizes="(max-width: 768px) 296px, (max-width: 1024px) 478px, 784px"
-              priority
-            />
-          </div>
+        {/* 3D dental image — right bottom; mobile full-width, tablet 640×580, desktop 1100×800 */}
+        <div
+          className="absolute right-0 bottom-0 w-full aspect-[86/95] md:w-[640px] md:h-[580px] md:aspect-auto lg:w-[1100px] lg:h-[800px] z-10 pointer-events-none select-none"
+          aria-hidden
+        >
+          <Image
+            src={heroImage}
+            alt=""
+            fill
+            className="object-contain object-right object-bottom mix-blend-lighten opacity-95"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
+            priority
+          />
+        </div>
 
+        {/* Content */}
+        <div className="relative flex-1 flex flex-col overflow-hidden min-h-0 pb-[32px] md:pb-[40px]">
           <div className="px-[8px] md:px-[16px] lg:px-[40px] z-[10]">
             {/* <Container className="relative z-10 flex-1 flex flex-col gap-10 lg:gap-8"> */}
             <HeroText>{titleContent}</HeroText>
