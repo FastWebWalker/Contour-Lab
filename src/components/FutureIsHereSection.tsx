@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
+import { Description } from "./Description";
 import { Title } from "./Title";
 
 const FUTURE_IMAGE = "/futureIsHere/1f0ee63fef39f6163a53b9f10627c496f2d7fdac.png";
@@ -43,21 +44,15 @@ export function FutureIsHereSection({
           {/* Left block: 50/50 з правим на 1024–1199px; далі flex-1 поруч із фіксованим правим */}
           <div className="flex min-w-0 w-full flex-1 flex-col items-stretch gap-6 min-[1024px]:min-w-0">
             <Title as="h2">Майбутнє вже тут!</Title>
-            <p
-              className="w-full min-[1024px]:max-w-[624px] text-[20px] font-normal leading-normal"
-              style={{
-                color: "rgba(20, 20, 20, 0.85)",
-                fontFamily: "var(--font-inter), Inter, sans-serif",
-              }}
-            >
+            <Description className="w-full min-[1024px]:max-w-[624px]">
               {DESCRIPTION}
-            </p>
+            </Description>
             <div className="flex w-full min-[1024px]:max-w-[624px] flex-col gap-2.5 rounded-[30px] p-0">
               <div className="flex w-full flex-col items-stretch gap-[10px] self-stretch">
                 {CARDS.map(({ icon, text }) => (
                   <CardWrapper
                     key={icon}
-                    paddingClassName="p-8"
+                    paddingClassName="p-4 min-[768px]:p-8"
                     widthClassName="w-full"
                     className="gap-6"
                   >
@@ -65,7 +60,7 @@ export function FutureIsHereSection({
                       <Image src={icon} alt="" width={32} height={32} />
                     </div>
                     <p
-                      className="text-[24px] font-normal leading-normal text-[var(--color-black,#141414)]"
+                      className="text-[18px] font-normal leading-normal text-[var(--Black,#141414)] min-[768px]:text-[24px]"
                       style={{
                         fontFamily: "Gilroy-Regular, Gilroy, ui-sans-serif, system-ui, sans-serif",
                       }}

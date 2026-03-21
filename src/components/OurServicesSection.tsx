@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
+import { Description } from "./Description";
 import { Title } from "./Title";
 
 const DESCRIPTION =
@@ -151,15 +152,9 @@ export function OurServicesSection({
           >
             Наші послуги
           </Title>
-          <p
-            className="min-w-0 max-w-[60ch] text-[16px] sm:text-[20px] font-normal leading-normal"
-            style={{
-              color: "rgba(20, 20, 20, 0.85)",
-              fontFamily: "var(--font-inter), Inter, sans-serif",
-            }}
-          >
+          <Description className="min-w-0 max-w-[60ch]">
             {DESCRIPTION}
-          </p>
+          </Description>
         </div>
         {children}
       </Container>
