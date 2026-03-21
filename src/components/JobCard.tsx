@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { CardWrapper } from "./CardWrapper";
 import { Button } from "./Button";
 import { ArrowRightIcon } from "./icons/ArrowRight";
@@ -49,7 +50,7 @@ export function JobCard({
       widthClassName="w-full max-w-full"
       paddingClassName="p-4 md:p-8"
       className={[
-        "!grid !grid-cols-1 !gap-8 !items-stretch lg:!grid-cols-[minmax(0,3fr)_minmax(0,2fr)]",
+        "!grid !grid-cols-1 !gap-8 !items-stretch min-[1281px]:!grid-cols-[minmax(0,3fr)_minmax(0,2fr)]",
         className,
       ]
         .filter(Boolean)
@@ -118,18 +119,17 @@ export function JobCard({
       </div>
 
       <div
-        className="relative min-h-[220px] w-full max-w-[455px] shrink-0 overflow-hidden rounded-[30px] bg-[lightgray] min-w-0 lg:max-w-none lg:self-stretch"
-        style={
-          {
-            backgroundColor: "lightgray",
-            backgroundImage: `url(${imageSrc})`,
-            backgroundPosition: "0px -222.28px",
-            backgroundSize: "100% 184.069%",
-            backgroundRepeat: "no-repeat",
-          } as React.CSSProperties
-        }
+        className="relative w-full max-w-none shrink-0 overflow-hidden rounded-[30px] bg-[lightgray] min-w-0 max-[1280px]:h-[clamp(200px,50vw,640px)] max-[1280px]:min-h-0 min-[1281px]:h-full min-[1281px]:min-h-0 min-[1281px]:self-stretch"
         aria-hidden
-      />
+      >
+        <Image
+          src={imageSrc}
+          alt=""
+          fill
+          className="object-cover"
+          sizes="(max-width: 1280px) 100vw, 40vw"
+        />
+      </div>
     </CardWrapper>
   );
 }

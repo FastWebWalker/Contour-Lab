@@ -1,3 +1,4 @@
+import { CVFormSection } from "@/components/CVFormSection";
 import { Hero } from "@/components/Hero";
 import { VacanciesJobsSection } from "@/components/VacanciesJobsSection";
 import {
@@ -19,6 +20,7 @@ export default function VacanciesPage() {
       />
       <main id="content" className="w-full">
         <VacanciesJobsSection />
+        <CVFormSection />
       </main>
     </>
   );
