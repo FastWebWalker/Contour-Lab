@@ -2,7 +2,7 @@
 
 import { Hero } from "@/components/Hero";
 import { IconsSection } from "@/components/IconsSection";
-import { OurServicesSection } from "@/components/OurServicesSection";
+import { ServicesListSection } from "@/components/ServicesListSection";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 
 const servicesHeroTitle = (
@@ -31,7 +31,7 @@ export default function ServicesPage() {
                 socialLinks={homeHeroSocialLinks}
             />
             <IconsSection />
-            <OurServicesSection />
+            <ServicesListSection />
         </>
     );
 }
