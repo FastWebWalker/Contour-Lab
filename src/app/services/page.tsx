@@ -3,7 +3,10 @@
 import { Hero } from "@/components/Hero";
 import { IconsSection } from "@/components/IconsSection";
 import { ServicesListSection } from "@/components/ServicesListSection";
+import { AdvantagesSection } from "@/components/AdvantagesSection";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
+import { WhatOurClientsSaySection } from "@/components/WhatOurClientsSaySection";
+import { QuestionMapFormSection } from "@/components/QuestionMapFormSection";
 
 const servicesHeroTitle = (
     <>
@@ -32,6 +35,9 @@ export default function ServicesPage() {
             />
             <IconsSection />
             <ServicesListSection />
+            <AdvantagesSection />
+            <WhatOurClientsSaySection />
+            <QuestionMapFormSection />
         </>
     );
 }

@@ -4,7 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 
 const arrowButtonClass =
-  "flex h-[104px] w-[105px] shrink-0 items-center justify-center gap-2.5 rounded-[59.5px] border-[0.5px] p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 disabled:opacity-60";
+  "flex h-[44px] w-[44px] sm:h-[104px] sm:w-[105px] shrink-0 items-center justify-center rounded-full border-[0.5px] p-2 sm:p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 disabled:opacity-60";
 
 export interface SliderNavButtonsProps extends React.HTMLAttributes<HTMLDivElement> {
   canGoPrev: boolean;
@@ -16,7 +16,7 @@ export interface SliderNavButtonsProps extends React.HTMLAttributes<HTMLDivEleme
 }
 
 /**
- * Круглі стрілки prev/next (як у Our Team). Використовує `/ourTeam/arrow-prev.svg` та `arrow-next.svg`.
+ * Круглі стріarrows prev/next. На мобілці 44px, на десктопі 104px.
  */
 export function SliderNavButtons({
   canGoPrev,
@@ -45,14 +45,15 @@ export function SliderNavButtons({
         disabled={!canGoPrev}
         onClick={onPrev}
       >
-        <Image
-          src="/ourTeam/arrow-prev.svg"
-          alt=""
-          width={54}
-          height={54}
-          className="h-[54px] w-[54px] shrink-0"
-          style={{ transform: "rotate(90deg)" }}
-        />
+        <div className="relative h-[20px] w-[20px] sm:h-[54px] sm:w-[54px]">
+          <Image
+            src="/ourTeam/arrow-prev.svg"
+            alt=""
+            fill
+            className="shrink-0"
+            style={{ transform: "rotate(90deg)" }}
+          />
+        </div>
       </button>
       <button
         type="button"
@@ -65,14 +66,15 @@ export function SliderNavButtons({
         disabled={!canGoNext}
         onClick={onNext}
       >
-        <Image
-          src="/ourTeam/arrow-next.svg"
-          alt=""
-          width={54}
-          height={54}
-          className="h-[54px] w-[54px] shrink-0"
-          style={{ transform: "rotate(90deg)" }}
-        />
+        <div className="relative h-[20px] w-[20px] sm:h-[54px] sm:w-[54px]">
+          <Image
+            src="/ourTeam/arrow-next.svg"
+            alt=""
+            fill
+            className="shrink-0"
+            style={{ transform: "rotate(90deg)" }}
+          />
+        </div>
       </button>
     </div>
   );

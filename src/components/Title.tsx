@@ -14,7 +14,7 @@ const h2BaseStyle: React.CSSProperties = {
  * Mobile (<768px): 32px, bold. Tablet+: 52px / 55px, font-weight 400.
  */
 const h2ClassName =
-  "text-[32px] font-[500] leading-normal min-[768px]:text-[52px] min-[768px]:font-normal min-[768px]:leading-[55px]";
+  "text-[32px] font-normal leading-normal min-[768px]:text-[52px] min-[768px]:font-normal min-[768px]:leading-[55px]";
 
 export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
