@@ -3,6 +3,7 @@
 import { Hero } from "@/components/Hero";
 import { IconsSection } from "@/components/IconsSection";
 import { ServicesListSection } from "@/components/ServicesListSection";
+import { AdvantagesSection } from "@/components/AdvantagesSection";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 
 const servicesHeroTitle = (
@@ -32,6 +33,7 @@ export default function ServicesPage() {
             />
             <IconsSection />
             <ServicesListSection />
+            <AdvantagesSection />
         </>
     );
 }
