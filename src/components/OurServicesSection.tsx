@@ -2,7 +2,9 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
+import { Description } from "./Description";
 import { Title } from "./Title";
 
 const DESCRIPTION =
@@ -84,8 +86,10 @@ function ServiceCard({
   items,
 }: { title: string; items: string[] }) {
   return (
-    <article
-      className="flex max-[400px]:max-w-[257px] shrink-0 flex-col items-start gap-2.5 rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8"
+    <CardWrapper
+      as="article"
+      className="max-[400px]:max-w-[257px]"
+      widthClassName="w-[424px] max-w-full shrink-0 max-[400px]:max-w-[257px]"
     >
       <h3
         className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
@@ -110,7 +114,7 @@ function ServiceCard({
           </li>
         ))}
       </ul>
-    </article>
+    </CardWrapper>
   );
 }
 
@@ -148,15 +152,9 @@ export function OurServicesSection({
           >
             Наші послуги
           </Title>
-          <p
-            className="min-w-0 max-w-[60ch] text-[16px] sm:text-[20px] font-normal leading-normal"
-            style={{
-              color: "rgba(20, 20, 20, 0.85)",
-              fontFamily: "var(--font-inter), Inter, sans-serif",
-            }}
-          >
+          <Description className="min-w-0 max-w-[60ch]">
             {DESCRIPTION}
-          </p>
+          </Description>
         </div>
         {children}
       </Container>

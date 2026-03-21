@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Description } from "./Description";
 import { Container } from "./Container";
 import { PrimaryButton } from "./Button";
 import { ArrowRightIcon } from "./icons/ArrowRight";

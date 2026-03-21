@@ -3,6 +3,9 @@ import { IconsSection } from "@/components/IconsSection";
 import { OurServicesSection } from "@/components/OurServicesSection";
 import { OurGallerySection } from "@/components/OurGallerySection";
 import { OurTeamSection } from "@/components/OurTeamSection";
+import { FutureIsHereSection } from "@/components/FutureIsHereSection";
+import { PrecisionQualitySection } from "@/components/PrecisionQualitySection";
+import { WhatOurClientsSaySection } from "@/components/WhatOurClientsSaySection";
 import { WhyChooseSection } from "@/components/WhyChooseSection";
 import {
   homeHeroTitle,
@@ -33,6 +36,9 @@ export default function Home() {
       <OurServicesSection />
       <OurGallerySection />
       <OurTeamSection />
+      <FutureIsHereSection />
+      <PrecisionQualitySection />
+      <WhatOurClientsSaySection />
       <main id="content" className="min-h-[50vh]" />
     </>
   );
