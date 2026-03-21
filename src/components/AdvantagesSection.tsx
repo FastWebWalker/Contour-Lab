@@ -77,7 +77,6 @@ export function AdvantagesSection() {
             className="py-[60px] md:py-[80px]"
             style={{
                 background: "linear-gradient(297deg, #AD1B24 31.8%, #EA9F9F 49.67%, #8E030B 71.59%)",
-                margin: "50px 0",
             }}
         >
             <Container className="flex flex-col gap-[40px]">
