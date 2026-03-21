@@ -2,33 +2,9 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { CardWrapper } from "./CardWrapper";
 import { Container } from "./Container";
 import { Title } from "./Title";
-
-const wrapperClassName =
-  "flex flex-col items-start gap-2.5 rounded-[30px] py-5 px-4 min-w-0";
-const wrapperStyle = { background: "var(--Grey-Light, #F6F6F6)" };
-
-export interface WhyChooseWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-}
-
-/** Обгортка для блоку місії та карток (border-radius 30px, фон Grey-Light, flex column, padding 20px 16px, gap 10px). */
-export function WhyChooseWrapper({
-  children,
-  className = "",
-  ...props
-}: WhyChooseWrapperProps) {
-  return (
-    <div
-      className={[wrapperClassName, className].filter(Boolean).join(" ")}
-      style={wrapperStyle}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
 
 /* Блок з основним зображенням та мініатюрами (Figma 139-999, 139-1002) */
 const MAIN_IMAGE_SRC = "/whyChoose/main.png";
@@ -108,7 +84,7 @@ export function WhyChooseSection({
         <div className="flex min-w-0 flex-col gap-6 md:gap-8">
           <Title as="h2">Чому варто обрати CONTOUR?</Title>
 
-          <WhyChooseWrapper>
+          <CardWrapper paddingClassName="py-5 px-4" widthClassName="w-full min-w-0">
             <span
               className="self-stretch text-sm font-normal capitalize leading-normal"
               style={{
@@ -146,11 +122,11 @@ export function WhyChooseSection({
             >
               —CEO, Сергій Грибовський
             </p>
-          </WhyChooseWrapper>
+          </CardWrapper>
 
           <div className="grid gap-4 grid-cols-2">
             {cards.map(({ icon, text }) => (
-              <WhyChooseWrapper key={text}>
+              <CardWrapper key={text} paddingClassName="py-5 px-4" widthClassName="w-full min-w-0">
                 <Image
                   src={icon}
                   alt=""
@@ -161,7 +137,7 @@ export function WhyChooseSection({
                 <span className="text-[18px] lg:text-[24px] leading-[var(--font-display-3-line)] text-[var(--color-black)] min-[768px]:text-[length:var(--font-display-3)]">
                   {text}
                 </span>
-              </WhyChooseWrapper>
+              </CardWrapper>
             ))}
           </div>
 
