@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 import { Logo } from "./header/Logo";
 import { NavLink } from "./header/NavLink";
@@ -12,7 +13,7 @@ import { BurgerToCloseIcon } from "./icons/BurgerToClose";
 const navLinks = [
   { href: "/", label: "Головна" },
   { href: "/services", label: "Послуги" },
-  { href: "#vacancies", label: "Вакансії" },
+  { href: "/vacancies", label: "Вакансії" },
   { href: "#contacts", label: "Контакти" },
   { href: "#gallery", label: "Галерея" },
 ];
@@ -22,6 +23,7 @@ const SCROLL_THRESHOLD = 1;
 const LG_BREAKPOINT = 1024;
 
 export function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isBelowLg, setIsBelowLg] = useState(true);
@@ -75,19 +77,25 @@ export function Header() {
 
           {/* Tablet (lg) + Desktop: nav with adaptive gap; transparent bg at scroll 0 */}
           <nav className="hidden lg:flex items-center gap-2 xl:gap-[20px]">
-            {navLinks.map(({ href, label }) => (
-              <NavLink
-                key={href}
-                href={href}
-                className={
-                  !scrolled
-                    ? "!bg-transparent !border-black/10 hover:!border-black/20 hover:!bg-black/5"
-                    : undefined
-                }
-              >
-                {label}
-              </NavLink>
-            ))}
+            {navLinks.map(({ href, label }) => {
+              const active = !href.startsWith("#") && pathname === href;
+              return (
+                <NavLink
+                  key={href}
+                  href={href}
+                  className={[
+                    !scrolled
+                      ? "!bg-transparent !border-black/10 hover:!border-black/20 hover:!bg-black/5"
+                      : "",
+                    active ? "!bg-[#ebebeb] !border-[#d0d0d0]" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  {label}
+                </NavLink>
+              );
+            })}
           </nav>
 
           <div className="hidden lg:flex items-center gap-2 xl:gap-4">
@@ -176,16 +184,24 @@ export function Header() {
                     <LanguageSelector />
                   </div>
                   <nav className="flex flex-col gap-4 items-center">
-                    {navLinks.map(({ href, label }) => (
-                      <NavLink
-                        key={href}
-                        href={href}
-                        className="w-full text-center min-h-11 py-3 px-5 text-[15px] border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5]"
-                        onClick={closeMenu}
-                      >
-                        {label}
-                      </NavLink>
-                    ))}
+                    {navLinks.map(({ href, label }) => {
+                      const active = !href.startsWith("#") && pathname === href;
+                      return (
+                        <NavLink
+                          key={href}
+                          href={href}
+                          className={[
+                            "w-full text-center min-h-11 py-3 px-5 text-[15px] border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5]",
+                            active ? "!ring-2 !ring-[var(--color-red-main)]/30" : "",
+                          ]
+                            .filter(Boolean)
+                            .join(" ")}
+                          onClick={closeMenu}
+                        >
+                          {label}
+                        </NavLink>
+                      );
+                    })}
                   </nav>
                   <div className="flex justify-center">
                     <OutlineLightButton size="md" onClick={closeMenu}>
