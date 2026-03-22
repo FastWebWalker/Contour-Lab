@@ -90,12 +90,10 @@ function BlogCard({ title, description, image, href }: BlogPost) {
             <div className="flex flex-1 flex-col justify-between gap-4 self-stretch pt-2">
                 <div className="flex flex-col gap-3">
                     <h3
-                        className="line-clamp-3 text-[24px] font-medium leading-normal min-[768px]:text-[28px]"
+                        className="line-clamp-3 text-[24px] font-medium leading-normal min-[768px]:text-[28px] min-h-[34px] lg:min-h-[102px]"
                         style={{
                             color: "var(--Black, #141414)",
                             fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
-                            // Strictly as requested: height 102px
-                            minHeight: "102px",
                         }}
                     >
                         {title}
@@ -129,7 +127,7 @@ export function BlogCardsSection() {
     return (
         <section className="py-10 md:py-[60px]">
             <Container>
-                <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
+                <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
                     {BLOG_POSTS.map((post) => (
                         <BlogCard key={post.id} {...post} />
                     ))}
