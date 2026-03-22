@@ -1,4 +1,4 @@
-import type { JobCardProps } from "./JobCard";
+import type { JobCardProps } from "./cards/JobCard";
 
 export const VACANCIES_JOBS: JobCardProps[] = [
   {

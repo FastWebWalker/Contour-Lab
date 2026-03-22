@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { JobCard } from "./JobCard";
+import { JobCard } from "./cards/JobCard";
 import { VACANCIES_JOBS } from "./vacanciesJobsData";
 
 export interface VacanciesJobsSectionProps extends React.HTMLAttributes<HTMLElement> {

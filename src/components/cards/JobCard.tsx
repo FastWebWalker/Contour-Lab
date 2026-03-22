@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { CardWrapper } from "./ui/CardWrapper";
-import { Button } from "./ui/Button";
-import { ArrowRightIcon } from "./icons/ArrowRight";
+import { CardWrapper } from "../ui/CardWrapper";
+import { Button } from "../ui/Button";
+import { ArrowRightIcon } from "../icons/ArrowRight";
 
 const RED_DOT = (
   <svg

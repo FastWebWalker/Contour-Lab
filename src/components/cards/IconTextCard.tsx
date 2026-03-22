@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CardWrapper } from "./ui/CardWrapper";
+import { CardWrapper } from "../ui/CardWrapper";
 
 export interface IconTextCardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Шлях до SVG/іконки у `public/` */

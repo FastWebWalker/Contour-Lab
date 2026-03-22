@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Container } from "./ui/Container";
 import { Description } from "./ui/Description";
-import { IconTextCard } from "./IconTextCard";
+import { IconTextCard } from "./cards/IconTextCard";
 import { Title } from "./ui/Title";
 
 const HERO_IMAGE = "/precisionQuality/6c36403f29cc1121686fe876472a122deef845c3.png";

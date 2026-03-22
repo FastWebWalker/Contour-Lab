@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { Container } from "./ui/Container";
-import { IconTextCard } from "./IconTextCard";
+import { IconTextCard } from "./cards/IconTextCard";
 import { Description } from "./ui/Description";
 import { Title } from "./ui/Title";
 
