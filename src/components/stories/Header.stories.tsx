@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Header } from "../Header";
-import { Logo } from "../header/Logo";
-import { NavLink } from "../header/NavLink";
-import { LanguageSelector } from "../header/LanguageSelector";
+import { Logo } from "../layout/header/Logo";
+import { NavLink } from "../layout/header/NavLink";
+import { LanguageSelector } from "../layout/header/LanguageSelector";
 import { OutlineLightButton } from "../ui/Button";
 
 const meta = {
