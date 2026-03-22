@@ -7,11 +7,11 @@ import { FacebookIcon } from "../icons/Facebook";
 import { InstagramIcon } from "../icons/Instagram";
 
 const footerLinks = [
-  { href: "#about", label: "Про Нас" },
-  { href: "#services", label: "Послуги" },
+  { href: "/#about", label: "Про Нас" },
+  { href: "/services", label: "Послуги" },
   { href: "/vacancies", label: "Вакансії" },
-  { href: "#gallery", label: "Галерея" },
-  { href: "#blog", label: "Блог" },
+  { href: "/#gallery", label: "Галерея" },
+  { href: "/blog", label: "Блог" },
 ];
 
 export function Footer() {
