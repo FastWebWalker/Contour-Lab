@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { Hero } from "./Hero";
+import { Hero } from "../Hero";
 import {
   homeHeroTitle,
   homeHeroSubtitle,
@@ -7,7 +7,7 @@ import {
   homeHeroButtons,
   homeHeroStats,
   homeHeroSocialLinks,
-} from "./hero/homeHeroData";
+} from "../hero/homeHeroData";
 
 const meta = {
   title: "Sections/Hero",

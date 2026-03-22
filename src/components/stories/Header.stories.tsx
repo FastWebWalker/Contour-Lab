@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { Header } from "./Header";
-import { Logo } from "./header/Logo";
-import { NavLink } from "./header/NavLink";
-import { LanguageSelector } from "./header/LanguageSelector";
-import { OutlineLightButton } from "./Button";
+import { Header } from "../Header";
+import { Logo } from "../header/Logo";
+import { NavLink } from "../header/NavLink";
+import { LanguageSelector } from "../header/LanguageSelector";
+import { OutlineLightButton } from "../Button";
 
 const meta = {
   title: "Design System/Header",
