@@ -19,7 +19,7 @@ const BLOG_POSTS: BlogPost[] = [
         title: "Натхнення для дітей зі Smile Energy Group",
         description:
             "Як ми робимо візити до стоматолога святом. Соціальні ініціативи та турбота про здорове майбутнє наших маленьких пацієнтів.",
-        image: "/blogSection/0a1296d8b962b29022950cd04446a9a73ee1e261.jpg",
+        image: "/blogSection/a29dac667cdbc3ae81cc046832a688ae7efe4469.png",
         href: "/blog/1",
     },
     {
@@ -27,7 +27,7 @@ const BLOG_POSTS: BlogPost[] = [
         title: "CAD/CAM: як цифрові технології змінюють усмішки",
         description:
             "Відмовтеся від ручного моделювання на користь бездоганної точності. Огляд передового обладнання для сучасних клінік та лабораторій.",
-        image: "/blogSection/124712ea29f5db0b4d0128959f6f63d64d9d8627.jpg",
+        image: "/blogSection/9f044ae8a901d8b238c5d8a7b2f6eed5b971329a.png",
         href: "/blog/2",
     },
     {
@@ -35,7 +35,7 @@ const BLOG_POSTS: BlogPost[] = [
         title: "Цифровий протокол: чому за 5–10 років аналогові методи зникнуть",
         description:
             "Дізнайтеся, як перехід на «цифру» прискорює лікування у 3 рази та гарантує ідеальну посадку конструкцій.",
-        image: "/blogSection/607cafae74dde3fa8921f38515225041e4619746.jpg",
+        image: "/blogSection/124712ea29f5db0b4d0128959f6f63d64d9d8627.jpg",
         href: "/blog/3",
     },
     {
@@ -43,7 +43,7 @@ const BLOG_POSTS: BlogPost[] = [
         title: "Чому варто обрати циркон, а не металокераміку",
         description:
             "Порівняння міцності, естетики та біосумісності. Пояснюємо, чому діоксид цирконію став «золотим стандартом» протезування.",
-        image: "/blogSection/9f044ae8a901d8b238c5d8a7b2f6eed5b971329a.png",
+        image: "/blogSection/607cafae74dde3fa8921f38515225041e4619746.jpg",
         href: "/blog/4",
     },
     {
@@ -51,7 +51,7 @@ const BLOG_POSTS: BlogPost[] = [
         title: "Топ-5 матеріалів, з якими працює сучасна зуботехнічна лабораторія",
         description:
             "Від склокераміки до гібридних композитів: детальний розбір характеристик матеріалів, що забезпечують природний вигляд зубів.",
-        image: "/blogSection/a29dac667cdbc3ae81cc046832a688ae7efe4469.png",
+        image: "/blogSection/a09fe16c369229f1c819664e0d93976c56fb644c.jpg",
         href: "/blog/5",
     },
     {
@@ -59,7 +59,7 @@ const BLOG_POSTS: BlogPost[] = [
         title: "Чому співпраця лікаря і лабораторії критично важлива",
         description:
             "Синергія, що мінімізує помилки. Як налагоджена комунікація між кабінетом та майстернею впливає на фінальний результат.",
-        image: "/blogSection/a09fe16c369229f1c819664e0d93976c56fb644c.jpg",
+        image: "/blogSection/0a1296d8b962b29022950cd04446a9a73ee1e261.jpg",
         href: "/blog/6",
     },
 ];
