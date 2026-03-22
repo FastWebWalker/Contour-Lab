@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Container } from "./Container";
+import { Container } from "./ui/Container";
 
 interface Advantage {
     title: string;

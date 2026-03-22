@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { SliderNavButtons } from "./SliderNavButtons";
-import { Title } from "./Title";
+import { SliderNavButtons } from "./ui/SliderNavButtons";
+import { Title } from "./ui/Title";
 
 const GAP_PX = 24;
 

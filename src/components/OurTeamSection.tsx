@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CardWrapper } from "./CardWrapper";
-import { Container } from "./Container";
-import { SliderNavButtons } from "./SliderNavButtons";
-import { Title } from "./Title";
+import { CardWrapper } from "./ui/CardWrapper";
+import { Container } from "./ui/Container";
+import { SliderNavButtons } from "./ui/SliderNavButtons";
+import { Title } from "./ui/Title";
 
 const CARD_WIDTH = 424;
 const GAP = 24;

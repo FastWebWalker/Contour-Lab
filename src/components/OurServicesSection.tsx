@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CardWrapper } from "./CardWrapper";
-import { Container } from "./Container";
-import { Description } from "./Description";
-import { Title } from "./Title";
+import { CardWrapper } from "./ui/CardWrapper";
+import { Container } from "./ui/Container";
+import { Description } from "./ui/Description";
+import { Title } from "./ui/Title";
 
 const DESCRIPTION =
   "Ми є вашим надійним партнером у виготовленні стоматологічних виробів. Ми створюємо функціональні та естетичні зубні протези, поєднуючи досвід, передові технології та індивідуальний підхід.";
@@ -184,7 +184,7 @@ export function OurServicesSection({
           onClick={handleArrowClick}
           className="absolute right-[57px] bottom-[-50px] hidden h-[119px] w-[119px] shrink-0 items-center justify-center rounded-[59.5px] border-[0.5px] border-[var(--color-red-purple)] bg-transparent cursor-pointer p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 min-[768px]:flex"
           aria-label="Наступний слайд"
-         
+
         >
           <Image
             src="/ourServices/arrow-right.svg"

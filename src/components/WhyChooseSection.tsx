@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CardWrapper } from "./CardWrapper";
-import { Container } from "./Container";
-import { Title } from "./Title";
+import { CardWrapper } from "./ui/CardWrapper";
+import { Container } from "./ui/Container";
+import { Title } from "./ui/Title";
 
 /* Блок з основним зображенням та мініатюрами (Figma 139-999, 139-1002) */
 const MAIN_IMAGE_SRC = "/whyChoose/main.png";

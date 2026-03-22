@@ -3,9 +3,9 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Description } from "./Description";
-import { Container } from "./Container";
-import { PrimaryButton } from "./Button";
+import { Description } from "./ui/Description";
+import { Container } from "./ui/Container";
+import { PrimaryButton } from "./ui/Button";
 import { ArrowRightIcon } from "./icons/ArrowRight";
 import { HeroText } from "./hero/HeroText";
 

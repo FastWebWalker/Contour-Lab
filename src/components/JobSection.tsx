@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Container } from "./Container";
+import { Container } from "./ui/Container";
 import { JobCard } from "./JobCard";
 import type { JobCardProps } from "./JobCard";
 

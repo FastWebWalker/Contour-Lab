@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { ArrowRightIcon } from "./icons/ArrowRight";
-import { ExternalLinkIcon } from "./icons/ExternalLink";
+import { ArrowRightIcon } from "../icons/ArrowRight";
+import { ExternalLinkIcon } from "../icons/ExternalLink";
 
 export type ButtonVariant = "primary" | "secondary" | "outline" | "outlineLight";
 export type ButtonSize = "sm" | "md" | "lg";

@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Container } from "./Container";
-import { Title } from "./Title";
-import { Button } from "./Button";
+import { Container } from "./ui/Container";
+import { Title } from "./ui/Title";
+import { Button } from "./ui/Button";
 
 const GALLERY_IMAGE = "/ourGallery/9005740cff7caa1d778c6ce31b0f337954155580.png";
 

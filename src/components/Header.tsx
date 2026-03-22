@@ -3,11 +3,11 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Container } from "./Container";
+import { Container } from "./ui/Container";
 import { Logo } from "./header/Logo";
 import { NavLink } from "./header/NavLink";
 import { LanguageSelector } from "./header/LanguageSelector";
-import { OutlineLightButton } from "./Button";
+import { OutlineLightButton } from "./ui/Button";
 import { BurgerToCloseIcon } from "./icons/BurgerToClose";
 
 const navLinks = [
