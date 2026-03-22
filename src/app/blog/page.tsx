@@ -3,11 +3,12 @@
 import { Hero } from "@/components/sections/Hero";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
+import { BlogCardsSection } from "@/components/sections/BlogCardsSection";
 
 const blogHeroTitle = (
     <>
         Наш
-        <span style={{ color: "var(--color-red-main)" }}> Блог</span>
+        <span style={{ color: "var(--color-red-main)" }}>Блог</span>
     </>
 );
 
@@ -28,6 +29,7 @@ export default function BlogPage() {
                 showSocialLinks={true}
                 socialLinks={homeHeroSocialLinks}
             />
+            <BlogCardsSection />
             <QuestionMapFormSection />
         </>
     );
