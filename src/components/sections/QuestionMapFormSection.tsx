@@ -18,8 +18,8 @@ const TITLE = "Виникли запитання до нас?";
 const DESC =
   "Залиште свої дані, і ми обов'язково зв'яжемося з вами!";
 
-/** Статичний фон карти (≤1200px); додай `public/questionMap/map-bg.png` за потреби */
-const MAP_BG_PATH = "/questionMap/map-bg.png";
+/** Статичний фон карти (≤1200px); додайте файл `public/questionMap/map-bg.png`, якщо хочете використовувати заглушку */
+const MAP_BG_PATH = "";
 
 export interface QuestionMapFormSectionProps
   extends React.HTMLAttributes<HTMLElement> {
