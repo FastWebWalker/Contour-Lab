@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { Container } from "./ui/Container";
-import { JobCard } from "./cards/JobCard";
-import type { JobCardProps } from "./cards/JobCard";
+import { Container } from "../ui/Container";
+import { JobCard } from "../cards/JobCard";
+import type { JobCardProps } from "../cards/JobCard";
 
 export interface JobSectionProps extends React.HTMLAttributes<HTMLElement> {
   title?: string;
@@ -63,4 +63,4 @@ export function JobSection({
   );
 }
 
-export { JobCard } from "./cards/JobCard";
+export { JobCard } from "../cards/JobCard";

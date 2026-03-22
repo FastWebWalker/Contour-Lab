@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { JobCard } from "./cards/JobCard";
-import { VACANCIES_JOBS } from "./vacanciesJobsData";
+import { JobCard } from "../cards/JobCard";
+import { VACANCIES_JOBS } from "../data/vacanciesJobsData";
+
 
 export interface VacanciesJobsSectionProps extends React.HTMLAttributes<HTMLElement> {
   jobs?: typeof VACANCIES_JOBS;

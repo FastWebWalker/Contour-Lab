@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Container } from "./ui/Container";
+import { Container } from "../ui/Container";
 
 const iconBox =
   "relative flex h-[60px] w-[98px] shrink-0 items-center justify-center md:h-[95px] md:w-[153px]";

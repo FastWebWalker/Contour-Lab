@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Container } from "./ui/Container";
-import { SecondaryButton } from "./ui/Button";
-import { FacebookIcon } from "./icons/Facebook";
-import { InstagramIcon } from "./icons/Instagram";
+import { Container } from "../ui/Container";
+import { SecondaryButton } from "../ui/Button";
+import { FacebookIcon } from "../icons/Facebook";
+import { InstagramIcon } from "../icons/Instagram";
 
 const footerLinks = [
   { href: "#about", label: "Про Нас" },

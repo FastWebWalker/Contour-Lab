@@ -1,13 +1,13 @@
 import { Hero } from "@/components/Hero";
-import { IconsSection } from "@/components/IconsSection";
-import { OurServicesSection } from "@/components/OurServicesSection";
-import { OurGallerySection } from "@/components/OurGallerySection";
-import { OurTeamSection } from "@/components/OurTeamSection";
-import { FutureIsHereSection } from "@/components/FutureIsHereSection";
-import { PrecisionQualitySection } from "@/components/PrecisionQualitySection";
-import { WhatOurClientsSaySection } from "@/components/WhatOurClientsSaySection";
-import { WhyChooseSection } from "@/components/WhyChooseSection";
-import { QuestionMapFormSection } from "@/components/QuestionMapFormSection";
+import { IconsSection } from "@/components/sections/IconsSection";
+import { OurServicesSection } from "@/components/sections/OurServicesSection";
+import { OurGallerySection } from "@/components/sections/OurGallerySection";
+import { OurTeamSection } from "@/components/sections/OurTeamSection";
+import { FutureIsHereSection } from "@/components/sections/FutureIsHereSection";
+import { PrecisionQualitySection } from "@/components/sections/PrecisionQualitySection";
+import { WhatOurClientsSaySection } from "@/components/sections/WhatOurClientsSaySection";
+import { WhyChooseSection } from "@/components/sections/WhyChooseSection";
+import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 import {
   homeHeroTitle,
   homeHeroSubtitle,

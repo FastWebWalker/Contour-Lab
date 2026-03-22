@@ -2,9 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import { Container } from "./ui/Container";
-import { Title } from "./ui/Title";
-import { Description } from "./ui/Description";
+import { Container } from "../ui/Container";
+import { Title } from "../ui/Title";
+import { Description } from "../ui/Description";
 
 const DESCRIPTION =
     "Ми є вашим надійним партнером у виробництві стоматологічних виробів. Ми створюємо функціональні та естетичні зубні протези, поєднуючи досвід, передові технології та індивідуальний підхід.";

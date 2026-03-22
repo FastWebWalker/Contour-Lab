@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CardWrapper } from "./ui/CardWrapper";
-import { Container } from "./ui/Container";
-import { Description } from "./ui/Description";
-import { Title } from "./ui/Title";
+import { CardWrapper } from "../ui/CardWrapper";
+import { Container } from "../ui/Container";
+import { Description } from "../ui/Description";
+import { Title } from "../ui/Title";
 
 const DESCRIPTION =
   "Ми є вашим надійним партнером у виготовленні стоматологічних виробів. Ми створюємо функціональні та естетичні зубні протези, поєднуючи досвід, передові технології та індивідуальний підхід.";

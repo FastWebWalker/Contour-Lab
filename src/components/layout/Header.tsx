@@ -3,12 +3,12 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Container } from "./ui/Container";
-import { Logo } from "./layout/header/Logo";
-import { NavLink } from "./layout/header/NavLink";
-import { LanguageSelector } from "./layout/header/LanguageSelector";
-import { OutlineLightButton } from "./ui/Button";
-import { BurgerToCloseIcon } from "./icons/BurgerToClose";
+import { Container } from "../ui/Container";
+import { Logo } from "../layout/header/Logo";
+import { NavLink } from "../layout/header/NavLink";
+import { LanguageSelector } from "../layout/header/LanguageSelector";
+import { OutlineLightButton } from "../ui/Button";
+import { BurgerToCloseIcon } from "../icons/BurgerToClose";
 
 const navLinks = [
   { href: "/", label: "Головна" },

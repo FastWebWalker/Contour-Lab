@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { Header } from "../Header";
+import { Header } from "../layout/Header";
 import { Logo } from "../layout/header/Logo";
 import { NavLink } from "../layout/header/NavLink";
 import { LanguageSelector } from "../layout/header/LanguageSelector";
