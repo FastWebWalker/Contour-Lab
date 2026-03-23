@@ -42,12 +42,12 @@ export default function BlogPostPage() {
 
     return (
         <main className="min-h-screen bg-white">
-            <section className="mt-[30px] min-[1024px]:mt-[100px] py-[60px]">
+            <section className="min-[1024px]:mt-[100px] pt-7 pb-[60px] min-[1024px]:py-[60px]">
                 <Container>
                     <div className="grid grid-cols-1 min-[1024px]:grid-cols-[1fr_774px_1fr] gap-6 md:gap-8 relative overflow-visible">
 
-                        {/* Share & Copy Buttons: Top/Mobile or Sticky Left/Desktop */}
-                        <aside className="h-fit flex min-[1024px]:flex-col gap-3 items-center min-[1024px]:justify-self-start min-[1024px]:sticky min-[1024px]:top-[120px]">
+                        {/* Share & Copy Buttons: Top/Mobile (above card) or Sticky Left/Desktop */}
+                        <aside className="w-full max-w-[774px] mx-auto h-fit flex flex-row min-[1024px]:flex-col gap-3 items-center min-[1024px]:justify-self-start min-[1024px]:sticky min-[1024px]:top-[100px] min-[1024px]:mb-0">
                             <button
                                 className="flex h-[33px] w-[33px] items-center justify-center rounded-full border border-[#E0E0E0] p-[5px] transition-all hover:bg-gray-100 hover:scale-105 active:scale-95"
                                 aria-label="Share"
@@ -74,7 +74,7 @@ export default function BlogPostPage() {
                         {/* Central Article Card */}
                         <article
                             id="article"
-                            className="w-full max-w-[774px] justify-self-center shrink-0 rounded-[30px] bg-[#F6F6F6] p-4 md:p-8 shadow-sm"
+                            className="w-full max-w-[774px] justify-self-center mx-auto shrink-0 rounded-[30px] bg-[#F6F6F6] p-4 md:p-8 shadow-sm"
                         >
                             <div className="flex flex-col gap-8">
                                 {/* Feature Image */}
