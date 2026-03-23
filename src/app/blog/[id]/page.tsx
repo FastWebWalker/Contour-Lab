@@ -11,9 +11,21 @@ import { BlogCardsSection } from "@/components/sections/BlogCardsSection";
 export default function BlogPostPage() {
     const params = useParams();
     const id = Number(params.id);
-    const [activeSection, setActiveSection] = React.useState("article");
-
     const post = BLOG_POSTS.find((p) => p.id === id);
+    const [activeSection, setActiveSection] = React.useState("article");
+    const [showToast, setShowToast] = React.useState(false);
+
+    React.useEffect(() => {
+        if (showToast) {
+            const timer = setTimeout(() => setShowToast(false), 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [showToast]);
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(window.location.href);
+        setShowToast(true);
+    };
 
     React.useEffect(() => {
         const observer = new IntersectionObserver(
@@ -62,10 +74,7 @@ export default function BlogPostPage() {
                             <button
                                 className="flex h-[33px] w-[33px] items-center justify-center rounded-full border border-[#E0E0E0] p-[5px] transition-all hover:bg-gray-100 hover:scale-105 active:scale-95"
                                 aria-label="Copy Link"
-                                onClick={() => {
-                                    navigator.clipboard.writeText(window.location.href);
-                                    alert("Link copied!");
-                                }}
+                                onClick={copyToClipboard}
                             >
                                 <Image src="/icons/blog/copy.svg" alt="Copy" width={16} height={16} />
                             </button>
@@ -113,10 +122,7 @@ export default function BlogPostPage() {
                                         <Image src="/icons/blog/share.svg" alt="Share" width={16} height={16} /> <span>Поширити</span>
                                     </button>
                                     <button
-                                        onClick={() => {
-                                            navigator.clipboard.writeText(window.location.href);
-                                            alert("Link copied!");
-                                        }}
+                                        onClick={copyToClipboard}
                                         className="flex items-center gap-2 text-[14px] text-[#555] hover:text-[#7B0E23] transition-all font-medium"
                                     >
                                         <Image src="/icons/blog/copy.svg" alt="Copy" width={16} height={16} /> <span>Скопіювати</span>
@@ -190,6 +196,20 @@ export default function BlogPostPage() {
                     <BlogCardsSection limit={3} excludeId={post.id} isGridOnly={true} />
                 </Container>
             </section>
+
+            {/* Custom Toast Notification: Branded Style */}
+            <div 
+                className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out ${showToast ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"}`}
+            >
+                <div className="bg-white text-[#141414] px-6 py-2.5 rounded-full shadow-2xl flex items-center gap-3 border border-[#7B0E23]/10">
+                    <div className="bg-[#7B0E23] rounded-full w-[24px] h-[24px] flex items-center justify-center">
+                        <Image src="/icons/blog/copy.svg" alt="Copy" width={11} height={11} className="brightness-0 invert" />
+                    </div>
+                    <span className="text-[14px] font-medium leading-none" style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}>
+                        Посилання скопійовано!
+                    </span>
+                </div>
+            </div>
         </main>
     );
 }
