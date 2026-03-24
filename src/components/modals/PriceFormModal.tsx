@@ -8,7 +8,6 @@ import {
   FORM_INPUT_CLASSNAME,
   FORM_INPUT_STYLE,
 } from "@/components/form/formInputStyles";
-import { CV_FORM_DECOR_IMAGE_PATH } from "@/components/CVFormSection";
 
 const labelStyle: React.CSSProperties = {
   color: "rgba(25, 25, 25, 0.9)",
@@ -125,20 +124,20 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
             aria-hidden
           >
             <Image
-              src={CV_FORM_DECOR_IMAGE_PATH}
+              src="/form/logo.svg"
               alt=""
-              width={480}
-              height={600}
-              className="absolute bottom-[7px] left-0 h-[min(60vh,637px)] w-[min(222px,40vw)] select-none object-cover object-left"
+              width={222}
+              height={637}
+              className="absolute bottom-[7px] left-0 hidden h-auto w-[222px] select-none min-[1024px]:block"
             />
             <Image
-              src="/ourGallery/gallery-dots.svg"
+              src="/form/Group.svg"
               alt=""
-              width={314}
-              height={110}
-              className="absolute h-auto w-[314px] opacity-40 select-none"
+              width={260}
+              height={135}
+              className="absolute hidden h-auto w-[260px] select-none min-[1024px]:block"
               style={{
-                right: "-125.68px",
+                right: "0px",
                 bottom: "85.481px",
               }}
             />
