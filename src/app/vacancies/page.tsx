@@ -1,3 +1,5 @@
+import { Hero } from "@/components/sections/Hero";
+import { VacanciesJobsSection } from "@/components/sections/VacanciesJobsSection";
 import { CVFormSection } from "@/components/CVFormSection";
 
 import {
@@ -6,8 +8,6 @@ import {
   vacanciesHeroImage,
 } from "@/components/hero/vacanciesHeroData";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
-import { VacanciesJobsSection } from "@/components/sections/VacanciesJobsSection";
-import { Hero } from "@/components/sections/Hero";
 
 export default function VacanciesPage() {
   return (

@@ -14,7 +14,7 @@ const navLinks = [
   { href: "/", label: "Головна" },
   { href: "/services", label: "Послуги" },
   { href: "/vacancies", label: "Вакансії" },
-  { href: "#contacts", label: "Контакти" },
+  { href: "/contacts", label: "Контакти" },
   { href: "/gallery", label: "Галерея" },
 ];
 
