@@ -43,8 +43,8 @@ export function ContactsInfoGridSection({
       className={["w-full", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <div className="mx-auto w-full max-w-[1440px] px-4 pb-10 pt-12 min-[768px]:px-8 min-[1440px]:px-[60px] min-[1440px]:pb-[60px] min-[1440px]:pt-[80px]">
-        <div className="grid grid-cols-1 gap-9 min-[768px]:grid-cols-2 min-[1440px]:grid-cols-4">
+      <div className="mx-auto w-full px-4 pb-10 pt-12 min-[768px]:px-8 min-[1440px]:px-[60px] min-[1440px]:pb-[60px] min-[1440px]:pt-[80px]">
+        <div className="grid grid-cols-1 gap-y-[80px] min-[768px]:grid-cols-2 min-[768px]:gap-[80px] min-[1440px]:grid-cols-[repeat(4,auto)] min-[1440px]:justify-between min-[1440px]:gap-y-[80px] min-[1440px]:gap-x-0">
           {/* Колонка 1: адреса та пошта */}
           <div className="flex min-w-0 flex-col gap-6">
             <img
@@ -87,7 +87,7 @@ export function ContactsInfoGridSection({
           {/* Колонка 2: телефони */}
           <div className="flex min-w-0 flex-col gap-6">
             <img
-              src="/contacts/social-phone.svg"
+              src="/contacts/phone.svg"
               alt=""
               width={32}
               height={48}
@@ -114,11 +114,11 @@ export function ContactsInfoGridSection({
           {/* Колонка 3: Вайбер */}
           <div className="flex min-w-0 flex-col gap-6">
             <img
-              src="/contacts/social-phone.svg"
+              src="/contacts/viber-only.svg"
               alt=""
-              width={32}
+              width={48}
               height={48}
-              className="h-12 w-8 shrink-0"
+              className="h-12 w-12 shrink-0"
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
@@ -133,7 +133,7 @@ export function ContactsInfoGridSection({
           {/* Колонка 4: соцмережі */}
           <div className="flex min-w-0 flex-col gap-6">
             <img
-              src="/contacts/social-instagram.svg"
+              src="/contacts/social.svg"
               alt=""
               width={48}
               height={48}
