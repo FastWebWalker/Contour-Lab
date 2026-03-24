@@ -1,12 +1,12 @@
 "use client";
 
-import { Hero } from "@/components/Hero";
-import { IconsSection } from "@/components/IconsSection";
-import { ServicesListSection } from "@/components/ServicesListSection";
-import { AdvantagesSection } from "@/components/AdvantagesSection";
+import { Hero } from "@/components/sections/Hero";
+import { IconsSection } from "@/components/sections/IconsSection";
+import { ServicesListSection } from "@/components/sections/ServicesListSection";
+import { AdvantagesSection } from "@/components/sections/AdvantagesSection";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
-import { WhatOurClientsSaySection } from "@/components/WhatOurClientsSaySection";
-import { QuestionMapFormSection } from "@/components/QuestionMapFormSection";
+import { WhatOurClientsSaySection } from "@/components/sections/WhatOurClientsSaySection";
+import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 
 const servicesHeroTitle = (
     <>

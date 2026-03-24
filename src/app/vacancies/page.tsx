@@ -1,5 +1,5 @@
-import { Hero } from "@/components/Hero";
-import { VacanciesJobsSection } from "@/components/VacanciesJobsSection";
+import { Hero } from "@/components/sections/Hero";
+import { VacanciesJobsSection } from "@/components/sections/VacanciesJobsSection";
 import {
   vacanciesHeroTitle,
   vacanciesHeroSubtitle,
