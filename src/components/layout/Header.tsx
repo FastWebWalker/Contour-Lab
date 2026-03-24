@@ -14,8 +14,8 @@ const navLinks = [
   { href: "/", label: "Головна" },
   { href: "/services", label: "Послуги" },
   { href: "/vacancies", label: "Вакансії" },
-  { href: "#contacts", label: "Контакти" },
-  { href: "#gallery", label: "Галерея" },
+  { href: "/contacts", label: "Контакти" },
+  { href: "/gallery", label: "Галерея" },
 ];
 
 const SCROLL_THRESHOLD = 1;
