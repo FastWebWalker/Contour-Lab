@@ -2,6 +2,7 @@
 
 import { Hero } from "@/components/sections/Hero";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
+import { ContactsInfoGridSection } from "@/components/sections/ContactsInfoGridSection";
 import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 
 const contactsHeroTitle = (
@@ -28,6 +29,7 @@ export default function ContactsPage() {
                 showSocialLinks={true}
                 socialLinks={homeHeroSocialLinks}
             />
+            <ContactsInfoGridSection />
             <QuestionMapFormSection />
         </>
     );
