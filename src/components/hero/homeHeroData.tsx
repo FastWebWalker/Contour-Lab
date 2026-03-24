@@ -1,4 +1,4 @@
-import type { HeroButton, StatItem, SocialLink } from "../Hero";
+import type { HeroButton, StatItem, SocialLink } from "../sections/Hero";
 
 export const homeHeroTitle = (
     <>

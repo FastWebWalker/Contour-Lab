@@ -1,0 +1,200 @@
+"use client";
+
+import * as React from "react";
+import Image from "next/image";
+import { CardWrapper } from "../ui/CardWrapper";
+import { Container } from "../ui/Container";
+import { Description } from "../ui/Description";
+import { Title } from "../ui/Title";
+
+const DESCRIPTION =
+  "Ми є вашим надійним партнером у виготовленні стоматологічних виробів. Ми створюємо функціональні та естетичні зубні протези, поєднуючи досвід, передові технології та індивідуальний підхід.";
+
+const RED_DOT = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="9"
+    height="9"
+    viewBox="0 0 9 9"
+    fill="none"
+    className="shrink-0 mt-[0.4em]"
+    aria-hidden
+  >
+    <circle cx="4.5" cy="4.5" r="4.5" fill="var(--color-red-main, #B9040F)" />
+  </svg>
+);
+
+const SERVICES: { title: string; items: string[] }[] = [
+  {
+    title: "Конструкції на гвинтовій фіксації",
+    items: [
+      "Постійна конструкція All on 4/6",
+      "Цирконій на фрезерованій титановій балці (від рівня імплантатів, мультиблоків)",
+      "Повноанатомічний цирконій",
+      "Фрезерований титан (від рівня імплантатів, мультиюнітів) з композитним покриттям і зубами",
+      "CoCr з керамічним покриттям",
+      "Титанові, металеві Co-Cr та гібридні абатменти",
+    ],
+  },
+  {
+    title: "Безметалеві конструкції",
+    items: [
+      "Повна анатомічна реставрація All on 4/6",
+      "Повна анатомічна реставрація (на імплантаті)",
+      "Цирконій з керамічним покриттям",
+      "Реставрація з використанням імплантатів",
+      "Гібридна керамічна (композитна) реставрація",
+      "Фрезерований дисилікат літію",
+      "Індивідуальна робота ART",
+    ],
+  },
+  {
+    title: "CAD Моделювання і 3D Принтування",
+    items: [
+      "Моделюємо конструкції будь-якої складності",
+      "Моделювання кукс та конструкцій на імплантатах",
+      "Моделювання 3D-моделей, віск для вицвітання, тимчасові вироби, штучні ясна, бази, ковпачки/шаблони",
+      "Вініри/фрезерований дисилікат літію",
+    ],
+  },
+  {
+    title: "Інші типи робіт в лабораторії",
+    items: [
+      "Тимчасові конструкції All on 4/6",
+      "Тимчасові реставрації",
+      "Центрофікс",
+      "Ваксап",
+      "Пресування",
+      "Лазерне спікання"
+    ],
+  },
+];
+
+export interface OurServicesSectionProps
+  extends React.HTMLAttributes<HTMLElement> {
+  children?: React.ReactNode;
+}
+
+const CARD_WIDTH = 424;
+// ВАЖЛИВО: має збігатися з gap-[24px] у контейнері слайдера
+const GAP = 24;
+const CARD_STEP = CARD_WIDTH + GAP;
+const SETS_COUNT = 1; // один набір карток, цикл за індексом
+
+function ServiceCard({
+  title,
+  items,
+}: { title: string; items: string[] }) {
+  return (
+    <CardWrapper
+      as="article"
+      className="max-[400px]:max-w-[257px]"
+      widthClassName="w-[424px] max-w-full shrink-0 max-[400px]:max-w-[257px]"
+    >
+      <h3
+        className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
+        style={{
+          fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
+        }}
+      >
+        {title}
+      </h3>
+      <span className="h-[0.5px] w-full bg-[var(--color-grey)] my-[16px] sm:my-[24px]"></span>
+      <ul className="flex flex-col gap-2.5">
+        {items.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-[16px] max-w-[341px] text-[16px] font-normal leading-normal text-[#000]"
+            style={{
+              fontFamily: "var(--font-inter), Inter, sans-serif",
+            }}
+          >
+            {RED_DOT}
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </CardWrapper>
+  );
+}
+
+export function OurServicesSection({
+  children,
+  className = "",
+  ...props
+}: OurServicesSectionProps) {
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  // Позиціонуємо вікно так, щоб зліва завжди була ціла активна картка.
+  React.useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const target = activeIndex * CARD_STEP;
+    el.scrollTo({ left: target, behavior: "smooth" });
+  }, [activeIndex]);
+
+  const handleArrowClick = () => {
+    setActiveIndex((prev) => (prev + 1) % SERVICES.length);
+  };
+
+  return (
+    <section
+      aria-label="Наші послуги"
+      className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
+      {...props}
+    >
+      <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
+        <div className="flex flex-col items-stretch justify-between gap-4 min-[768px]:flex-row flex-col-reverse max-[500px]:flex-col max-[400px]:items-center min-[768px]:items-start min-[768px]:gap-8 min-[1440px]:flex-row">
+          <Title
+            as="h2"
+            className="min-w-0 shrink-0 min-[400px]:text-[36px] min-[400px]:leading-[36px]"
+          >
+            Наші послуги
+          </Title>
+          <Description className="min-w-0 max-w-[60ch]">
+            {DESCRIPTION}
+          </Description>
+        </div>
+        {children}
+      </Container>
+
+      {/* Слайдер без контейнера: від лівого margin до кінця екрану справа */}
+      <div
+        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[60px] min-[1440px]:w-[calc(100vw-60px)]"
+      >
+        <div
+          ref={scrollRef}
+          className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {Array.from({ length: SETS_COUNT }, (_, setIndex) =>
+            SERVICES.map(({ title, items }) => (
+              <ServiceCard
+                key={`${title}-${setIndex}`}
+                title={title}
+                items={items}
+              />
+            ))
+          )}
+        </div>
+
+        <button
+          type="button"
+          onClick={handleArrowClick}
+          className="absolute right-[57px] bottom-[-50px] hidden h-[119px] w-[119px] shrink-0 items-center justify-center rounded-[59.5px] border-[0.5px] border-[var(--color-red-purple)] bg-transparent cursor-pointer p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 min-[768px]:flex"
+          aria-label="Наступний слайд"
+
+        >
+          <Image
+            src="/ourServices/arrow-right.svg"
+            alt=""
+            width={54}
+            height={54}
+            className="h-[54px] w-[54px]"
+          />
+        </button>
+      </div>
+    </section>
+  );
+}
