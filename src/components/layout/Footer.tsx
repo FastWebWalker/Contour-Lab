@@ -10,7 +10,7 @@ const footerLinks = [
   { href: "/#about", label: "Про Нас" },
   { href: "/services", label: "Послуги" },
   { href: "/vacancies", label: "Вакансії" },
-  { href: "/#gallery", label: "Галерея" },
+  { href: "/gallery", label: "Галерея" },
   { href: "/blog", label: "Блог" },
 ];
 
