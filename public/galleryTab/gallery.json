@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "tabs": [
+    { "id": "all", "label": "Всі Фото" },
+    { "id": "veneers", "label": "Вініри" },
+    { "id": "bridges", "label": "Містки" },
+    { "id": "anatomy", "label": "Повна Анатомія" },
+    { "id": "allon", "label": "Все на 4/6" }
+  ],
+  "imagesByTab": {
+    "veneers": [
+      "/galleryTab/Вініри/image 147.jpg",
+      "/galleryTab/Вініри/image 146.jpg",
+      "/galleryTab/Вініри/123.jpg",
+      "/galleryTab/Вініри/IMG_2975 (3) 1.jpg",
+      "/galleryTab/Вініри/image 380 1.jpg",
+      "/galleryTab/Вініри/Frame 27 1.jpg",
+      "/galleryTab/Вініри/image 208.jpg",
+      "/galleryTab/Вініри/image 210.jpg",
+      "/galleryTab/Вініри/image 204.jpg"
+    ],
+    "bridges": [
+      "/galleryTab/Коронки/photo_2025-04-07_16-49-44 (1) 2.jpg",
+      "/galleryTab/Коронки/IMG_2981 (3) 1.jpg",
+      "/galleryTab/Коронки/image 381.jpg",
+      "/galleryTab/Коронки/image 380 1.jpg",
+      "/galleryTab/Коронки/image 145.jpg"
+    ],
+    "anatomy": [
+      "/galleryTab/Повна анатомія/image 150.jpg",
+      "/galleryTab/Повна анатомія/IMG_0537 (2) 1.jpg",
+      "/galleryTab/Повна анатомія/image 149.jpg",
+      "/galleryTab/Повна анатомія/IMG_1836 (3) 1.jpg",
+      "/galleryTab/Повна анатомія/photo_2024-11-18_12-22-35 1.jpg",
+      "/galleryTab/Повна анатомія/IMG_2674 1.jpg",
+      "/galleryTab/Повна анатомія/DSC_5149 (2) 1.jpg",
+      "/galleryTab/Повна анатомія/IMG_1836 (3) 1 1.jpg",
+      "/galleryTab/Повна анатомія/IMG_1837 (3) 1.jpg",
+      "/galleryTab/Повна анатомія/IMG_1021 (2) 3.jpg",
+      "/galleryTab/Повна анатомія/DSC_5320 (2) 1.jpg",
+      "/galleryTab/Повна анатомія/DSC_5752 (2) 1.jpg",
+      "/galleryTab/Повна анатомія/DSC_5503 1.jpg",
+      "/galleryTab/Повна анатомія/DSC_5516 1.jpg",
+      "/galleryTab/Повна анатомія/DSC_5803 (2) 1.jpg",
+      "/galleryTab/Повна анатомія/IMG_1421 1.jpg"
+    ],
+    "allon": [
+      "/galleryTab/All in 4:6/DSC_0724 (2) 1.jpg",
+      "/galleryTab/All in 4:6/IMG_1021 (2) 3.jpg",
+      "/galleryTab/All in 4:6/image 149.jpg",
+      "/galleryTab/All in 4:6/405.jpg",
+      "/galleryTab/All in 4:6/111.jpg",
+      "/galleryTab/All in 4:6/IMG_1016 (3) 1.jpg",
+      "/galleryTab/All in 4:6/DSC_5506 1.jpg"
+    ]
+  }
+}

@@ -1,5 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { VacanciesJobsSection } from "@/components/sections/VacanciesJobsSection";
+import { CVFormSection } from "@/components/CVFormSection";
+
 import {
   vacanciesHeroTitle,
   vacanciesHeroSubtitle,
@@ -19,6 +21,7 @@ export default function VacanciesPage() {
       />
       <main id="content" className="w-full">
         <VacanciesJobsSection />
+        <CVFormSection />
       </main>
     </>
   );

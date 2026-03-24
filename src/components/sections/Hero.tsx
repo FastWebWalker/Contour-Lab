@@ -49,6 +49,10 @@ export interface HeroProps {
   showSocialLinks?: boolean;
   /** Social links list (required when showSocialLinks is true) */
   socialLinks?: SocialLink[];
+  /** Клік по головній CTA (наприклад, відкрити модалку прайсу) */
+  onPrimaryCtaClick?: () => void;
+  /** Клік по outline CTA (наприклад, завантажити прайс) */
+  onOutlineCtaClick?: () => void;
 }
 
 /* ------------------------------------------------------------------ */
@@ -65,6 +69,8 @@ export function Hero({
   stats = [],
   showSocialLinks = false,
   socialLinks = [],
+  onPrimaryCtaClick,
+  onOutlineCtaClick,
 }: HeroProps) {
   return (
     <div className="m-5">
@@ -112,9 +118,25 @@ export function Hero({
                     <div className="flex flex-wrap gap-3">
                       {buttons.map((btn) =>
                         btn.variant === "primary" ? (
-                          <PrimaryButton key={btn.label} size="lg">
+                          <PrimaryButton
+                            key={btn.label}
+                            type="button"
+                            size="lg"
+                            onClick={onPrimaryCtaClick}
+                          >
                             {btn.label}
                           </PrimaryButton>
+                        ) : onOutlineCtaClick ? (
+                          <button
+                            key={btn.label}
+                            type="button"
+                            onClick={onOutlineCtaClick}
+                            className="inline-flex items-center justify-center font-medium rounded-full h-14 px-8 text-[17px] gap-3.5 bg-white text-[var(--color-red-main)] border border-[var(--color-red-main)] hover:bg-[var(--color-red-main)] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2"
+                            style={{ fontFamily: "var(--font-inter)" }}
+                          >
+                            {btn.label}
+                            <ArrowRightIcon className="shrink-0" size={22} />
+                          </button>
                         ) : (
                           <Link
                             key={btn.label}

@@ -5,14 +5,11 @@ import { PrimaryButton } from "../ui/Button";
 import { ContourGoogleMap } from "../maps/ContourGoogleMap";
 import { Description } from "../ui/Description";
 import { Title } from "../ui/Title";
-
-const inputClassName =
-  "flex w-full min-w-0 flex-1 items-center gap-2.5 rounded-[40px] border border-[#D0D0D0] bg-white p-4 text-[16px] font-normal leading-normal outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(20,20,20,0.45)] focus:border-[var(--color-red-main)] focus:ring-1 focus:ring-[var(--color-red-main)] md:px-5 md:py-[22px] md:text-[20px]";
-
-const inputStyle: React.CSSProperties = {
-  color: "rgba(20, 20, 20, 0.85)",
-  fontFamily: "var(--font-inter), Inter, sans-serif",
-};
+import { FormCardDotsDecoration } from "../FormCardDotsDecoration";
+import {
+  FORM_INPUT_CLASSNAME as inputClassName,
+  FORM_INPUT_STYLE as inputStyle,
+} from "../form/formInputStyles";
 
 const TITLE = "Виникли запитання до нас?";
 const DESC =
@@ -60,11 +57,11 @@ export function QuestionMapFormSection({
   return (
     <section
       aria-label="Форма запитань та карта"
-      className={["w-full", className].filter(Boolean).join(" ")}
+      className={["w-full overflow-hidden", className].filter(Boolean).join(" ")}
       {...props}
     >
       <div className="mx-auto w-full px-4 py-8 min-[768px]:px-8 min-[1024px]:py-12 min-[1440px]:px-[59px]">
-        <div className="flex w-full flex-col items-stretch gap-8 rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8 min-[1201px]:flex-row min-[1201px]:items-center min-[1201px]:justify-between min-[1201px]:gap-8 min-[1201px]:p-[35px]">
+        <div className="relative flex w-full flex-col items-stretch gap-8 overflow-hidden rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8 min-[1201px]:flex-row min-[1201px]:items-center min-[1201px]:justify-between min-[1201px]:gap-8 min-[1201px]:p-[35px]">
           {/* Left: на desktop текст (title + опис) max 549px; форма на всю ширину колонки */}
           <div className="relative flex w-full min-w-0 flex-1 flex-col">
             <div className="flex w-full flex-col gap-6 min-[1201px]:max-w-[549px]">
@@ -154,6 +151,8 @@ export function QuestionMapFormSection({
               </div>
             </div>
           </div>
+
+          <FormCardDotsDecoration className="hidden min-[1201px]:block" />
         </div>
         {children}
       </div>
