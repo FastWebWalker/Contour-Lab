@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const arrowButtonClass =
   "flex h-[44px] w-[44px] sm:h-[104px] sm:w-[105px] shrink-0 items-center justify-center rounded-full border-[0.5px] p-2 sm:p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 disabled:opacity-60";
@@ -23,10 +24,12 @@ export function SliderNavButtons({
   canGoNext,
   onPrev,
   onNext,
-  navAriaLabel = "Навігація слайдера",
+  navAriaLabel: navAriaLabelProp,
   className = "",
   ...props
 }: SliderNavButtonsProps) {
+  const t = useTranslations("common");
+  const navAriaLabel = navAriaLabelProp ?? t("sliderNav");
   return (
     <div
       className={["flex gap-2.5", className].filter(Boolean).join(" ")}
@@ -41,7 +44,7 @@ export function SliderNavButtons({
           borderColor: "var(--color-grey-hard, #555)",
           transform: "rotate(-90deg)",
         }}
-        aria-label="Попередній"
+        aria-label={t("prev")}
         disabled={!canGoPrev}
         onClick={onPrev}
       >
@@ -62,7 +65,7 @@ export function SliderNavButtons({
           borderColor: "var(--color-red-purple, #B81B3A)",
           transform: "rotate(-90deg)",
         }}
-        aria-label="Наступний"
+        aria-label={t("next")}
         disabled={!canGoNext}
         onClick={onNext}
       >

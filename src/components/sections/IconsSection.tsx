@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "../ui/Container";
 
 const iconBox =
@@ -87,10 +88,11 @@ const iconSet = (
 );
 
 export function IconsSection() {
+  const t = useTranslations("iconsSection");
   return (
     <section
       className="flex w-full items-center self-stretch overflow-hidden py-2 md:py-4 lg:py-8"
-      aria-label="Партнери та технології"
+      aria-label={t("aria")}
     >
       <Container className="overflow-hidden">
         <div

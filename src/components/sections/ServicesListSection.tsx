@@ -2,61 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "../ui/Container";
 import { Title } from "../ui/Title";
 import { Description } from "../ui/Description";
-
-const DESCRIPTION =
-    "Ми є вашим надійним партнером у виробництві стоматологічних виробів. Ми створюємо функціональні та естетичні зубні протези, поєднуючи досвід, передові технології та індивідуальний підхід.";
-
-const SERVICES = [
-    {
-        title: "Конструкції на гвинтовій фіксації",
-        items: [
-            "Постійна конструкція All on 4/6",
-            "Повноанатомічний цирконій",
-            "Цирконій на фрезерованій титановій балці (від рівня імплантатів, мультиблоків)",
-            "CoCr з керамічним покриттям",
-            "Титанові, металеві Co-Cr та гібридні абатменти",
-        ],
-        image: "/ourServices/2e4825940834fa7ebc3566f2e5cf5d316dc69ed4.jpg",
-    },
-    {
-        title: "Безметалеві конструкції",
-        items: [
-            "Повна анатомічна реставрація All on 4/6 або на імплантатах",
-            "Реставрація з використанням імплантатів",
-            "Гібридна керамічна (композитна) реставрація",
-            "Фрезерований дисилікат літію",
-            "Індивідуальна робота ART",
-            "Цирконій з керамічним покриттям",
-        ],
-        image: "/ourServices/6f9df25b7aa784775d92e31ea80b8421d7db98e4.png",
-    },
-    {
-        title: "CAD Моделювання і 3D Принтування",
-        items: [
-            "Моделюємо конструкції",
-            "Вініри/фрезерований дисилікат літію",
-            "Тимчасові вироби, штучні ясна, бази, ковпачки/шаблони",
-            "Моделювання кукс та конструкцій на імплантатах",
-            "Моделювання 3D-моделей, віск для вицвітання",
-        ],
-        image: "/ourServices/7c93d4e891eae89e2641a4d88dd16a63affc8abf.png",
-    },
-    {
-        title: "Інші типи робіт в лабораторії",
-        items: [
-            "Тимчасові конструкції All on 4/6",
-            "Тимчасові реставрації",
-            "Центрофікс",
-            "Ваксап",
-            "Пресування",
-            "Лазерне спікання",
-        ],
-        image: "/ourServices/ad8374d49bed8a3a749198f55a6d011f30cba89f.png",
-    },
-];
 
 const RED_DOT = (
     <svg
@@ -161,6 +110,13 @@ function ServiceCard({
 }
 
 export function ServicesListSection() {
+    const t = useTranslations("servicesList");
+    const services = t.raw("services") as {
+        title: string;
+        items: string[];
+        image: string;
+    }[];
+
     return (
         <section className="py-8 md:py-12 lg:py-16">
             <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
@@ -169,15 +125,15 @@ export function ServicesListSection() {
                         as="h2"
                         className="min-w-0 shrink-0 text-[32px] md:text-[36px] leading-tight"
                     >
-                        Наші послуги
+                        {t("titleHeading")}
                     </Title>
                     <Description className="min-w-0 max-w-[60ch]">
-                        {DESCRIPTION}
+                        {t("description")}
                     </Description>
                 </div>
 
                 <div className="flex flex-col gap-6 lg:gap-8">
-                    {SERVICES.map((service, idx) => (
+                    {services.map((service, idx) => (
                         <ServiceCard
                             key={service.title}
                             index={idx + 1}

@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { CardWrapper } from "@/components/ui/CardWrapper";
 import { NotFoundHomeButton } from "@/components/not-found/NotFoundHomeButton";
 
@@ -38,6 +41,7 @@ function SvgZero() {
 }
 
 export default function NotFound() {
+  const t = useTranslations("notFound");
   return (
     <div className="flex w-full flex-1 flex-col items-stretch justify-center p-[20px]">
       <CardWrapper
@@ -54,7 +58,7 @@ export default function NotFound() {
               "Gilroy, var(--font-sans), ui-sans-serif, system-ui, sans-serif",
           }}
         >
-          Упс! Щось пішло не так...
+          {t("title")}
         </h1>
 
         <div
@@ -73,7 +77,7 @@ export default function NotFound() {
             fontFamily: "var(--font-inter), Inter, sans-serif",
           }}
         >
-          Перейдіть на головну сторінку, щоб знайти потрібну інформацію!
+          {t("description")}
         </p>
 
         <NotFoundHomeButton />

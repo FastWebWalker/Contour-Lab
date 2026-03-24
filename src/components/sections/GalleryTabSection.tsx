@@ -2,9 +2,18 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "../ui/Container";
 import { getImagesForTab } from "../gallery/galleryTabData";
 import type { GalleryManifest, GalleryTabId } from "../gallery/galleryTypes";
+
+const TAB_MSG_KEY: Record<GalleryTabId, "tabs.all" | "tabs.veneers" | "tabs.bridges" | "tabs.anatomy" | "tabs.allon"> = {
+  all: "tabs.all",
+  veneers: "tabs.veneers",
+  bridges: "tabs.bridges",
+  anatomy: "tabs.anatomy",
+  allon: "tabs.allon",
+};
 
 const tabBaseClass =
   "inline-flex h-[54px] shrink-0 items-center justify-center gap-2.5 rounded-[30px] px-4 py-3 text-[20px] font-normal leading-normal not-italic transition-all duration-200";
@@ -19,6 +28,7 @@ export interface GalleryTabSectionProps {
 }
 
 export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
+  const t = useTranslations("galleryTab");
   const [active, setActive] = React.useState<GalleryTabId>("all");
   const images = React.useMemo(
     () => getImagesForTab(manifest, active),
@@ -27,7 +37,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
 
   return (
     <section
-      aria-label="Галерея робіт за категоріями"
+      aria-label={t("sectionAria")}
       className="w-full bg-transparent pt-16 pb-4 min-[1024px]:pt-20"
     >
       <Container>
@@ -35,10 +45,11 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
         <div
           className="mb-8 flex min-[1024px]:mb-10 flex-nowrap items-center justify-center gap-2.5 overflow-x-auto pb-px scrollbar-hide min-[480px]:gap-6 min-[1024px]:gap-[44px]"
           role="tablist"
-          aria-label="Категорії галереї"
+          aria-label={t("tabsAria")}
         >
-          {manifest.tabs.map(({ id, label }) => {
+          {manifest.tabs.map(({ id }) => {
             const isActive = active === id;
+            const label = t(TAB_MSG_KEY[id]);
             return (
               <button
                 key={id}

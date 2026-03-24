@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { CardWrapper } from "./ui/CardWrapper";
 import { Description } from "./ui/Description";
 import { PrimaryButton } from "./ui/Button";
@@ -19,10 +20,6 @@ const inputStyle: React.CSSProperties = {
 
 const CV_IMAGE_PATH =
   "/CVForm/9125c525f973226c4abe1da21d473b7982aa2681.png";
-
-const TITLE = "Подайте ваше CV!";
-const DESC =
-  "Залиште свої дані, і ми обов'язково зв'яжемося з вами!";
 
 /** Upload «Завантажити CV»: 16px текст, py 12px px 16px, border 1px Red-Dark, radius 40px */
 const fileUploadLabelClass =
@@ -45,6 +42,7 @@ export function CVFormSection({
   onSubmitForm,
   ...props
 }: CVFormSectionProps) {
+  const t = useTranslations("cvForm");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -64,7 +62,7 @@ export function CVFormSection({
 
   return (
     <section
-      aria-label="Форма надсилання CV"
+      aria-label={t("sectionAria")}
       className={["w-full overflow-hidden", className].filter(Boolean).join(" ")}
       {...props}
     >
@@ -78,8 +76,8 @@ export function CVFormSection({
           {/* Left: текст + форма; на desktop лише max-width 549px */}
           <div className="relative flex min-w-0 w-full max-w-full flex-1 flex-col min-[1024px]:max-w-[549px]">
             <div className="flex w-full flex-col gap-6">
-              <Title as="h2">{TITLE}</Title>
-              <Description className="w-full max-w-none">{DESC}</Description>
+              <Title as="h2">{t("title")}</Title>
+              <Description className="w-full max-w-none">{t("description")}</Description>
             </div>
 
             <form
@@ -91,7 +89,7 @@ export function CVFormSection({
                   type="text"
                   name="firstName"
                   autoComplete="given-name"
-                  placeholder="Ваше Ім'я"
+                  placeholder={t("firstName")}
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   className={inputClassName}
@@ -101,7 +99,7 @@ export function CVFormSection({
                   type="text"
                   name="lastName"
                   autoComplete="family-name"
-                  placeholder="Ваше Прізвище"
+                  placeholder={t("lastName")}
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className={inputClassName}
@@ -112,7 +110,7 @@ export function CVFormSection({
                 type="email"
                 name="email"
                 autoComplete="email"
-                placeholder="Ел. Пошта"
+                placeholder={t("email")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={inputClassName}
@@ -122,7 +120,7 @@ export function CVFormSection({
                 type="tel"
                 name="phone"
                 autoComplete="tel"
-                placeholder="Телефон"
+                placeholder={t("phone")}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className={inputClassName}
@@ -145,7 +143,7 @@ export function CVFormSection({
                   htmlFor="cv-file-input"
                   className={`${fileUploadLabelClass} shrink-0`}
                 >
-                  Завантажити CV
+                  {t("upload")}
                 </label>
                 <p
                   className="min-w-0 text-[20px] font-normal leading-normal not-italic md:text-[24px] md:flex-1"
@@ -155,7 +153,7 @@ export function CVFormSection({
                       "Gilroy-Regular, Gilroy, ui-sans-serif, system-ui, sans-serif",
                   }}
                 >
-                  Будь ласка, додайте своє резюме!
+                  {t("resumeHint")}
                   {cvFile ? (
                     <span className="ml-2" style={{ color: "inherit" }}>
                       ({cvFile.name})
@@ -166,7 +164,7 @@ export function CVFormSection({
 
               <div>
                 <PrimaryButton type="submit" size="lg">
-                  Надіслати
+                  {t("submit")}
                 </PrimaryButton>
               </div>
             </form>

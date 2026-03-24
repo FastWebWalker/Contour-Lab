@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Description } from "../ui/Description";
 import { Container } from "../ui/Container";
 import { PrimaryButton } from "../ui/Button";
@@ -72,6 +73,7 @@ export function Hero({
   onPrimaryCtaClick,
   onOutlineCtaClick,
 }: HeroProps) {
+  const t = useTranslations("hero");
   return (
     <div className="m-5">
       <section
@@ -222,7 +224,7 @@ export function Hero({
           <a
             href="#content"
             className="flex w-[119px] h-[119px] shrink-0 items-center justify-center rounded-[59.5px] border-[0.5px] border-[var(--color-grey)] p-8 transition-opacity hover:opacity-90"
-            aria-label="Прокрутити вниз"
+            aria-label={t("scrollDown")}
           >
             <svg
               width={54}

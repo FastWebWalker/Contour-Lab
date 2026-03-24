@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import { Container } from "../ui/Container";
 import { JobCard } from "../cards/JobCard";
 import type { JobCardProps } from "../cards/JobCard";
@@ -16,29 +17,33 @@ export interface JobSectionProps extends React.HTMLAttributes<HTMLElement> {
   imageSrc?: string;
 }
 
-const defaultBullets = [
-  "Робота з високоестетичними безметалевими реставраціями",
-  "Висока заробітна плата",
-  "Співпраця з найкращими клініками країни",
-  "Навчання в Україні та за кордоном",
-  "Сучасне робоче місце та обладнання",
-];
-
 const JOB_IMAGE_DEFAULT =
   "/jobSection/be9e6b62e99cebce95a2f7a1e5ee9d68a2b70e82.png";
 
 export function JobSection({
-  title = "Кераміст",
-  dateText = "Сер 29, 2025",
-  salaryText = "$1000–1500 в місяць",
-  locationType = "Офіс",
-  description = "Бажаєте працювати в команді сучасної цифрової лабораторії Contour? Ми шукаємо техніка-кераміста в нашу команду!",
-  bullets = defaultBullets,
-  applyLabel = "Відгукнутись",
+  title: titleProp,
+  dateText: dateTextProp,
+  salaryText: salaryTextProp,
+  locationType: locationTypeProp,
+  description: descriptionProp,
+  bullets: bulletsProp,
+  applyLabel: applyLabelProp,
   imageSrc = JOB_IMAGE_DEFAULT,
   className = "",
   ...props
 }: JobSectionProps) {
+  const t = useTranslations("jobSection");
+  const tApply = useTranslations("jobCard");
+  const defaultBullets = t.raw("bullets") as string[];
+
+  const title = titleProp ?? t("title");
+  const dateText = dateTextProp ?? t("dateText");
+  const salaryText = salaryTextProp ?? t("salaryText");
+  const locationType = locationTypeProp ?? t("locationType");
+  const description = descriptionProp ?? t("description");
+  const bullets = bulletsProp ?? defaultBullets;
+  const applyLabel = applyLabelProp ?? tApply("apply");
+
   return (
     <section
       aria-label={title}
