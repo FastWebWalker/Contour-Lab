@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CardWrapper } from "./CardWrapper";
-import { Description } from "./Description";
-import { PrimaryButton } from "./Button";
-import { Title } from "./Title";
+import { CardWrapper } from "./ui/CardWrapper";
+import { Description } from "./ui/Description";
+import { PrimaryButton } from "./ui/Button";
+import { Title } from "./ui/Title";
 import { FormCardDotsDecoration } from "./FormCardDotsDecoration";
 
 /** Як у QuestionMapFormSection */
