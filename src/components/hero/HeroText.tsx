@@ -14,7 +14,7 @@ interface HeroTextProps {
 export function HeroText({ children }: HeroTextProps) {
   return (
     <h1
-      className="font-normal text-left w-full mb-[32px] md:mb-[32px] lg:mb-[56px]"
+      className="font-medium text-left w-full mb-[32px] md:mb-[32px] lg:mb-[56px]"
       style={{
         fontFamily: "var(--font-sans)",
         color: "var(--color-black)",

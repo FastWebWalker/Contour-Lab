@@ -17,8 +17,10 @@ const inputStyle: React.CSSProperties = {
   fontFamily: "var(--font-inter), Inter, sans-serif",
 };
 
-const CV_IMAGE_PATH =
+export const CV_FORM_DECOR_IMAGE_PATH =
   "/CVForm/9125c525f973226c4abe1da21d473b7982aa2681.png";
+
+const CV_IMAGE_PATH = CV_FORM_DECOR_IMAGE_PATH;
 
 const TITLE = "Подайте ваше CV!";
 const DESC =
