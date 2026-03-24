@@ -6,6 +6,7 @@ import { CardWrapper } from "./CardWrapper";
 import { Description } from "./Description";
 import { PrimaryButton } from "./Button";
 import { Title } from "./Title";
+import { FormCardDotsDecoration } from "./FormCardDotsDecoration";
 
 /** Як у QuestionMapFormSection */
 const inputClassName =
@@ -23,9 +24,9 @@ const TITLE = "Подайте ваше CV!";
 const DESC =
   "Залиште свої дані, і ми обов'язково зв'яжемося з вами!";
 
-/** Upload «Завантажити CV»: padding 12px 16px, border 1px Red-Dark, radius 40px */
+/** Upload «Завантажити CV»: 16px текст, py 12px px 16px, border 1px Red-Dark, radius 40px */
 const fileUploadLabelClass =
-  "inline-flex w-fit max-w-full cursor-pointer items-center justify-center gap-1 rounded-[40px] border border-[var(--color-red-dark)] bg-white px-4 py-3 text-[15px] font-medium text-[var(--color-red-dark)] transition-colors hover:bg-[var(--color-red-dark)]/5 focus-within:outline-none focus-within:ring-2 focus-within:ring-[var(--color-red-main)] focus-within:ring-offset-2";
+  "inline-flex w-fit max-w-full cursor-pointer items-center justify-center gap-1 rounded-[40px] border border-[var(--color-red-dark)] bg-white px-[16px] py-[12px] text-[16px] font-medium text-[var(--color-red-dark)] transition-colors hover:bg-[var(--color-red-dark)]/5 focus-within:outline-none focus-within:ring-2 focus-within:ring-[var(--color-red-main)] focus-within:ring-offset-2";
 
 export interface CVFormSectionProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
@@ -64,7 +65,7 @@ export function CVFormSection({
   return (
     <section
       aria-label="Форма надсилання CV"
-      className={["w-full", className].filter(Boolean).join(" ")}
+      className={["w-full overflow-hidden", className].filter(Boolean).join(" ")}
       {...props}
     >
       <div className="mx-auto w-full px-4 py-8 min-[768px]:px-8 min-[1024px]:py-12 min-[1440px]:px-[59px]">
@@ -72,7 +73,7 @@ export function CVFormSection({
           as="article"
           widthClassName="w-full max-w-full"
           paddingClassName="py-8 px-4 min-[1024px]:p-[35px]"
-          className="!flex !flex-col !items-stretch !justify-between gap-8 self-stretch min-[1024px]:!flex-row min-[1024px]:!items-center min-[1024px]:!justify-between min-[1024px]:!gap-8"
+          className="relative overflow-hidden !flex !flex-col !items-stretch !justify-between gap-8 self-stretch min-[1024px]:!flex-row min-[1024px]:!items-center min-[1024px]:!justify-between min-[1024px]:!gap-8"
         >
           {/* Left: текст + форма; на desktop лише max-width 549px */}
           <div className="relative flex min-w-0 w-full max-w-full flex-1 flex-col min-[1024px]:max-w-[549px]">
@@ -128,7 +129,7 @@ export function CVFormSection({
                 style={inputStyle}
               />
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-row items-center gap-2 md:flex-row-reverse md:gap-4">
                 <input
                   id="cv-file-input"
                   type="file"
@@ -140,16 +141,23 @@ export function CVFormSection({
                     setCvFile(f ?? null);
                   }}
                 />
-                <label htmlFor="cv-file-input" className={fileUploadLabelClass}>
+                <label
+                  htmlFor="cv-file-input"
+                  className={`${fileUploadLabelClass} shrink-0`}
+                >
                   Завантажити CV
                 </label>
                 <p
-                  className="text-[15px] font-normal leading-normal text-[var(--color-grey-hard)]"
-                  style={{ fontFamily: "var(--font-inter), Inter, sans-serif" }}
+                  className="min-w-0 text-[20px] font-normal leading-normal not-italic md:text-[24px] md:flex-1"
+                  style={{
+                    color: "var(--Black, #141414)",
+                    fontFamily:
+                      "Gilroy-Regular, Gilroy, ui-sans-serif, system-ui, sans-serif",
+                  }}
                 >
                   Будь ласка, додайте своє резюме!
                   {cvFile ? (
-                    <span className="ml-2 text-[var(--color-black)]">
+                    <span className="ml-2" style={{ color: "inherit" }}>
                       ({cvFile.name})
                     </span>
                   ) : null}
@@ -176,6 +184,8 @@ export function CVFormSection({
               sizes="(max-width: 1023px) 100vw, (max-width: 1440px) 42vw, 480px"
             />
           </div>
+
+          <FormCardDotsDecoration className="hidden min-[1024px]:block" />
         </CardWrapper>
         {children}
       </div>
