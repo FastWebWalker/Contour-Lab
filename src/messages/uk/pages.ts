@@ -38,6 +38,14 @@ export const vacanciesPage = {
     "Перегляньте актуальні вакансії на нашому сайті та надішліть своє резюме! Можливо, це ваш шанс!",
 };
 
+export const contactsPage = {
+  titleLine1: "Залишайтеся",
+  titleLine2: "на зв'язку",
+  titleAccent: "з нами",
+  subtitle:
+    "У вас є питання? Ми готові відповісти на них і допомогти вам з будь-яким запитом!",
+};
+
 export const notFound = {
   title: "Упс! Щось пішло не так...",
   description:

@@ -38,6 +38,14 @@ export const vacanciesPage = {
     "Browse open positions on our site and send your CV — this could be your chance!",
 };
 
+export const contactsPage = {
+  titleLine1: "Stay",
+  titleLine2: "in touch",
+  titleAccent: "with us",
+  subtitle:
+    "Have questions? We are ready to answer and help with any request!",
+};
+
 export const notFound = {
   title: "Oops! Something went wrong...",
   description: "Go to the home page to find what you need!",
