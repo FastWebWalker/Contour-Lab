@@ -59,7 +59,7 @@ export default function BlogPostPage() {
                     <div className="grid grid-cols-1 min-[1024px]:grid-cols-[1fr_774px_1fr] gap-6 md:gap-8 relative overflow-visible">
 
                         {/* Share & Copy Buttons: Top/Mobile (above card) or Sticky Left/Desktop */}
-                        <aside className="w-full max-w-[774px] mx-auto h-fit flex flex-row min-[1024px]:flex-col gap-3 items-center min-[1024px]:justify-self-start min-[1024px]:sticky min-[1024px]:top-[100px] min-[1024px]:mb-0">
+                        <aside className="w-full max-w-[774px] mx-auto h-fit flex flex-row min-[1024px]:flex-col gap-3 min-[1024px]:justify-self-start min-[1024px]:sticky min-[1024px]:top-[100px] min-[1024px]:mb-0">
                             <button
                                 className="flex h-[33px] w-[33px] items-center justify-center rounded-full border border-[#E0E0E0] p-[5px] transition-all hover:bg-gray-100 hover:scale-105 active:scale-95"
                                 aria-label="Share"
@@ -114,7 +114,7 @@ export default function BlogPostPage() {
                                 </div>
 
                                 {/* Bottom Share links */}
-                                <div id="share-area" className="flex gap-6 mt-4 border-t border-gray-200 pt-6">
+                                <div id="share-area" className="flex gap-6">
                                     <button
                                         onClick={() => navigator.share?.({ title: post.title, url: window.location.href })}
                                         className="flex items-center gap-2 text-[14px] text-[#555] hover:text-[#7B0E23] transition-all font-medium"
@@ -198,7 +198,7 @@ export default function BlogPostPage() {
             </section>
 
             {/* Custom Toast Notification: Branded Style */}
-            <div 
+            <div
                 className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out ${showToast ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"}`}
             >
                 <div className="bg-white text-[#141414] px-6 py-2.5 rounded-full shadow-2xl flex items-center gap-3 border border-[#7B0E23]/10">
