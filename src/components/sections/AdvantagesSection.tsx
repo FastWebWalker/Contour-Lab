@@ -67,9 +67,9 @@ export function AdvantagesSection() {
 
         <div
           id="advantages-carousel"
-          className="overflow-x-auto lg:overflow-x-visible scrollbar-hide -mx-5 px-5 lg:mx-0 lg:px-0 overflow-y-hidden"
+          className="overflow-x-auto lg:overflow-x-visible scrollbar-hide -mx-4 min-[768px]:-mx-8 lg:mx-0 overflow-y-hidden"
         >
-          <div className="flex lg:grid lg:grid-cols-3 gap-6 snap-x snap-mandatory">
+          <div className="flex lg:grid lg:grid-cols-3 gap-6 snap-x snap-mandatory pl-4 min-[768px]:pl-8 lg:pl-0">
             {items.map((item, i) => {
               const icon = ADV_ICONS[i];
               return (
@@ -81,6 +81,10 @@ export function AdvantagesSection() {
                 />
               );
             })}
+            <div
+              aria-hidden
+              className="w-4 min-[768px]:w-8 lg:w-0 shrink-0"
+            />
           </div>
         </div>
       </Container>
