@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 
 const headingStyle: React.CSSProperties = {
   alignSelf: "stretch",
@@ -37,9 +38,14 @@ export function ContactsInfoGridSection({
   className = "",
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
+  const t = useTranslations("contactsInfo");
+
+  const addresses = [t("addressLine1"), t("addressLine2")];
+  const emails = ["lab.contour@gmail.com", "kyivcontour@gmail.com"];
+
   return (
     <section
-      aria-label="Контактна інформація"
+      aria-label={t("aria")}
       className={["w-full", className].filter(Boolean).join(" ")}
       {...props}
     >
@@ -56,30 +62,30 @@ export function ContactsInfoGridSection({
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
-                Адреса:
+                {t("addressTitle")}
               </h2>
               <div className="flex flex-col gap-1" style={bodyStyle}>
-                <p className="m-0">Україна, Львів, вул. Пасічна 43</p>
-                <p className="m-0">Україна, Київ, вул. Калнишевського 7</p>
+                {addresses.map((address) => (
+                  <p key={address} className="m-0">
+                    {address}
+                  </p>
+                ))}
               </div>
             </div>
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
-                Ел. Пошта:
+                {t("emailTitle")}
               </h2>
               <div className="flex flex-col gap-1" style={bodyStyle}>
-                <a
-                  className="m-0 text-inherit underline-offset-2 hover:underline"
-                  href="mailto:lab.contour@gmail.com"
-                >
-                  lab.contour@gmail.com
-                </a>
-                <a
-                  className="m-0 text-inherit underline-offset-2 hover:underline"
-                  href="mailto:kyivcontour@gmail.com"
-                >
-                  kyivcontour@gmail.com
-                </a>
+                {emails.map((email) => (
+                  <a
+                    key={email}
+                    className="m-0 text-inherit underline-offset-2 hover:underline"
+                    href={`mailto:${email}`}
+                  >
+                    {email}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -95,7 +101,7 @@ export function ContactsInfoGridSection({
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
-                Адміністратор:
+                {t("administratorTitle")}
               </h2>
               <a href="tel:+380675634655" className="m-0 w-fit" style={bodyStyle}>
                 +38 067 563 46 55
@@ -103,7 +109,7 @@ export function ContactsInfoGridSection({
             </div>
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
-                Клієнт Менеджер:
+                {t("clientManagerTitle")}
               </h2>
               <a href="tel:+380985894109" className="m-0 w-fit" style={bodyStyle}>
                 +380 (98) 589 41 09
@@ -122,7 +128,7 @@ export function ContactsInfoGridSection({
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
-                Лише Вайбер:
+                {t("viberOnlyTitle")}
               </h2>
               <a href="viber://chat?number=380633556550" className="m-0 w-fit" style={bodyStyle}>
                 +38 063 355 65 50
@@ -141,7 +147,7 @@ export function ContactsInfoGridSection({
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
-                Соцмережі:
+                {t("socialTitle")}
               </h2>
               <div className="grid w-fit grid-cols-3 gap-2">
                 {CONTACT_SOCIAL_LINKS.map(({ href, src, label }) => {

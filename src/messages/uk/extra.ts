@@ -131,6 +131,18 @@ export const vacanciesPageSection = {
   aria: "Відкриті вакансії",
 };
 
+export const contactsInfo = {
+  aria: "Контактна інформація",
+  addressTitle: "Адреса:",
+  addressLine1: "Україна, Львів, вул. Пасічна 43",
+  addressLine2: "Україна, Київ, вул. Калнишевського 7",
+  emailTitle: "Ел. Пошта:",
+  administratorTitle: "Адміністратор:",
+  clientManagerTitle: "Клієнт Менеджер:",
+  viberOnlyTitle: "Лише Вайбер:",
+  socialTitle: "Соцмережі:",
+};
+
 export const vacanciesJobs = {
   jobs: [
     {

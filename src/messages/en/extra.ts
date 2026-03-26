@@ -131,6 +131,18 @@ export const vacanciesPageSection = {
   aria: "Open positions",
 };
 
+export const contactsInfo = {
+  aria: "Contact information",
+  addressTitle: "Address:",
+  addressLine1: "Ukraine, Lviv, Pasichna St. 43",
+  addressLine2: "Ukraine, Kyiv, Kalnyshevskoho St. 7",
+  emailTitle: "Email:",
+  administratorTitle: "Administrator:",
+  clientManagerTitle: "Client Manager:",
+  viberOnlyTitle: "Viber only:",
+  socialTitle: "Social media:",
+};
+
 export const vacanciesJobs = {
   jobs: [
     {
