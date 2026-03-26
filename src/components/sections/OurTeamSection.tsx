@@ -110,7 +110,7 @@ export function OurTeamSection({
     >
       <Container className="flex flex-col gap-8">
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:items-center lg:mb-[40px] md:mb-[32px] mb-[16px] sm:justify-between">
-          <Title className="text-center sm:self-center" as="h2" style={{ alignSelf: "center" }}>
+          <Title as="h2" style={{ alignSelf: "center" }}>
             {t("title")}
           </Title>
 

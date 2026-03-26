@@ -102,7 +102,6 @@ export function OurServicesSection({
         <div className="flex flex-col items-stretch justify-between gap-4 min-[768px]:flex-row flex-col-reverse max-[500px]:flex-col max-[400px]:items-center min-[768px]:items-start min-[768px]:gap-8 min-[1440px]:flex-row">
           <Title
             as="h2"
-            className="min-w-0 shrink-0 min-[400px]:text-[36px] min-[400px]:leading-[36px]"
           >
             {t("titleHeading")}
           </Title>

@@ -48,7 +48,6 @@ export function OurGallerySection({
             <div className="flex flex-col items-start gap-[8px] md:gap-[16px] lg:gap-[40px] md:max-w-[420px] lg:max-w-[480px]">
               <Title
                 as="h2"
-                className="text-white"
                 style={{
                   color: "#ffffff",
                   fontFamily:
