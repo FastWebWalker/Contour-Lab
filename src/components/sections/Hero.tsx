@@ -3,6 +3,9 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Description } from "../ui/Description";
+import { Container } from "../ui/Container";
 import { PrimaryButton } from "../ui/Button";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { HeroText } from "../hero/HeroText";
@@ -70,6 +73,7 @@ export function Hero({
   onPrimaryCtaClick,
   onOutlineCtaClick,
 }: HeroProps) {
+  const t = useTranslations("hero");
   return (
     <div className="relative m-5">
       <section

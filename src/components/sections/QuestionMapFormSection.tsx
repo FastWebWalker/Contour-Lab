@@ -1,6 +1,8 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
+
 import { PrimaryButton } from "../ui/Button";
 import { ContourGoogleMap } from "../maps/ContourGoogleMap";
 import { Description } from "../ui/Description";
@@ -10,10 +12,6 @@ import {
   FORM_INPUT_CLASSNAME as inputClassName,
   FORM_INPUT_STYLE as inputStyle,
 } from "../form/formInputStyles";
-
-const TITLE = "Виникли запитання до нас?";
-const DESC =
-  "Залиште свої дані, і ми обов'язково зв'яжемося з вами!";
 
 /** Статичний фон карти (≤1200px); додайте файл `public/questionMap/map-bg.png`, якщо хочете використовувати заглушку */
 const MAP_BG_PATH = "";
@@ -37,6 +35,7 @@ export function QuestionMapFormSection({
   onSubmitForm,
   ...props
 }: QuestionMapFormSectionProps) {
+  const t = useTranslations("questionMap");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -56,7 +55,7 @@ export function QuestionMapFormSection({
 
   return (
     <section
-      aria-label="Форма запитань та карта"
+      aria-label={t("sectionAria")}
       className={["w-full overflow-hidden", className].filter(Boolean).join(" ")}
       {...props}
     >
@@ -65,8 +64,8 @@ export function QuestionMapFormSection({
           {/* Left: на desktop текст (title + опис) max 549px; форма на всю ширину колонки */}
           <div className="relative flex w-full min-w-0 flex-1 flex-col">
             <div className="flex w-full flex-col gap-6 min-[1201px]:max-w-[549px]">
-              <Title as="h2">{TITLE}</Title>
-              <Description className="w-full max-w-none">{DESC}</Description>
+              <Title as="h2">{t("title")}</Title>
+              <Description className="w-full max-w-none">{t("description")}</Description>
             </div>
 
             <form
@@ -78,7 +77,7 @@ export function QuestionMapFormSection({
                   type="text"
                   name="firstName"
                   autoComplete="given-name"
-                  placeholder="Ваше Ім'я"
+                  placeholder={t("firstName")}
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   className={inputClassName}
@@ -88,7 +87,7 @@ export function QuestionMapFormSection({
                   type="text"
                   name="lastName"
                   autoComplete="family-name"
-                  placeholder="Ваше Прізвище"
+                  placeholder={t("lastName")}
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className={inputClassName}
@@ -99,7 +98,7 @@ export function QuestionMapFormSection({
                 type="email"
                 name="email"
                 autoComplete="email"
-                placeholder="Ел. Пошта"
+                placeholder={t("email")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={inputClassName}
@@ -109,7 +108,7 @@ export function QuestionMapFormSection({
                 type="tel"
                 name="phone"
                 autoComplete="tel"
-                placeholder="Телефон"
+                placeholder={t("phone")}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className={inputClassName}
@@ -118,7 +117,7 @@ export function QuestionMapFormSection({
               <textarea
                 name="message"
                 rows={5}
-                placeholder="Текст"
+                placeholder={t("message")}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className={`${inputClassName} min-h-[140px] resize-y`}
@@ -126,7 +125,7 @@ export function QuestionMapFormSection({
               />
               <div>
                 <PrimaryButton type="submit" size="lg">
-                  Відправити
+                  {t("submit")}
                 </PrimaryButton>
               </div>
             </form>

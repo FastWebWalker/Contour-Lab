@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Container } from "../ui/Container";
 import { Title } from "../ui/Title";
-import { Button } from "../ui/Button";
 
 const GALLERY_IMAGE = "/ourGallery/9005740cff7caa1d778c6ce31b0f337954155580.png";
 
@@ -18,9 +19,11 @@ export function OurGallerySection({
   className = "",
   ...props
 }: OurGallerySectionProps) {
+  const t = useTranslations("ourGallery");
+
   return (
     <section
-      aria-label="Наша галерея"
+      aria-label={t("aria")}
       className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
       {...props}
     >
@@ -45,14 +48,13 @@ export function OurGallerySection({
             <div className="flex flex-col items-start gap-[8px] md:gap-[16px] lg:gap-[40px] md:max-w-[420px] lg:max-w-[480px]">
               <Title
                 as="h2"
-                className="text-white"
                 style={{
                   color: "#ffffff",
                   fontFamily:
                     "Gilroy-Medium, Gilroy, ui-sans-serif, system-ui, sans-serif",
                 }}
               >
-                Галерея
+                {t("title")}
               </Title>
               <p
                 className="text-[20px] w-full font-normal leading-normal"
@@ -61,32 +63,27 @@ export function OurGallerySection({
                   fontFamily: "var(--font-inter), Inter, sans-serif",
                 }}
               >
-                Дізнайтеся більше про нашу роботу та візуальне сприйняття,
-                переглянувши нашу галерею робіт.
+                {t("description")}
               </p>
             </div>
 
-            <Button
-              variant="secondary"
-              size="md"
-              className="mt-auto h-auto rounded-[40px] border-none bg-white px-6 py-3 gap-[6px] text-[18px] font-normal text-[var(--color-black)]"
-              rightIcon={
-                <Image
-                  src="/ourServices/arrow-right.svg"
-                  alt=""
-                  width={36}
-                  height={36}
-                  className="h-[36px] w-[36px] text-[var(--color-black)]"
-                />
-              }
+            <Link
+              href="/gallery"
+              className="mt-auto inline-flex h-auto items-center justify-center gap-[6px] rounded-[40px] border border-[#e8e8e8] bg-white px-6 py-3 text-[18px] font-normal text-[var(--color-black)] shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-colors hover:border-[#d0d0d0] hover:bg-[#fafafa] active:bg-[#f5f5f5]"
             >
-              Переглянути галерею
-            </Button>
+              {t("cta")}
+              <Image
+                src="/ourServices/arrow-right.svg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-[36px] w-[36px] text-[var(--color-black)]"
+              />
+            </Link>
 
             {children}
           </div>
 
-          {/* Декоративні крапки: mobile/tablet — left/top, desktop — right/bottom */}
           <Image
             src="/ourGallery/gallery-dots.svg"
             alt=""
@@ -99,4 +96,3 @@ export function OurGallerySection({
     </section>
   );
 }
-

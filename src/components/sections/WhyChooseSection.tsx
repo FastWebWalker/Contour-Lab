@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { CardWrapper } from "../ui/CardWrapper";
 import { Container } from "../ui/Container";
 import { Title } from "../ui/Title";
@@ -9,6 +10,13 @@ import { Title } from "../ui/Title";
 /* Блок з основним зображенням та мініатюрами (Figma 139-999, 139-1002) */
 const MAIN_IMAGE_SRC = "/whyChoose/main.png";
 const SMALL_IMAGES_SRC = ["/whyChoose/1.png", "/whyChoose/2.png", "/whyChoose/3.png"];
+
+const CARD_ICONS = [
+  "/whyChoose/File_Edit.svg",
+  "/whyChoose/Shield_Check.svg",
+  "/whyChoose/Users.svg",
+  "/whyChoose/Map_Pin.svg",
+] as const;
 
 export function WhyChooseImageBlock() {
   return (
@@ -43,25 +51,6 @@ export function WhyChooseImageBlock() {
   );
 }
 
-const cards: { icon: string; text: string }[] = [
-  {
-    icon: "/whyChoose/File_Edit.svg",
-    text: "Досвід роботи зі складними випадками",
-  },
-  {
-    icon: "/whyChoose/Shield_Check.svg",
-    text: "3 роки гарантії на роботу",
-  },
-  {
-    icon: "/whyChoose/Users.svg",
-    text: "Визначення помилок в процесі витрат",
-  },
-  {
-    icon: "/whyChoose/Map_Pin.svg",
-    text: "Працюємо по всій Україні та ЄС",
-  },
-];
-
 export interface WhyChooseSectionProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
 }
@@ -71,9 +60,12 @@ export function WhyChooseSection({
   className = "",
   ...props
 }: WhyChooseSectionProps) {
+  const t = useTranslations("whyChoose");
+  const cards = t.raw("cards") as string[];
+
   return (
     <section
-      aria-label="Чому варто обрати CONTOUR"
+      aria-label={t("aria")}
       className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
       {...props}
     >
@@ -82,7 +74,7 @@ export function WhyChooseSection({
       >
         {/* Лівий блок: контент */}
         <div className="flex min-w-0 flex-col gap-6 md:gap-8">
-          <Title as="h2">Чому варто обрати CONTOUR?</Title>
+          <Title as="h2">{t("title")}</Title>
 
           <CardWrapper paddingClassName="py-5 px-4" widthClassName="w-full min-w-0">
             <span
@@ -92,25 +84,25 @@ export function WhyChooseSection({
                 fontFamily: "var(--font-inter), Inter, sans-serif",
               }}
             >
-              Наша Місія
+              {t("missionLabel")}
             </span>
             <p
               className="self-stretch font-normal text-[var(--color-black)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
               style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
             >
-              Ми лікуємо багатьох пацієнтів протягом{" "}
+              {t("missionBefore")}{" "}
               <strong
                 className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
                 style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
               >
-                усього
+                {t("missionStrong1")}
               </strong>{" "}
-              їхнього життя. Ми надаємо поради, рекомендації, консультації та{" "}
+              {t("missionMiddle")}{" "}
               <strong
                 className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
                 style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
               >
-                допомогу
+                {t("missionStrong2")}
               </strong>
               .
             </p>
@@ -120,25 +112,32 @@ export function WhyChooseSection({
                 fontFamily: "var(--font-inter), Inter, sans-serif",
               }}
             >
-              —CEO, Сергій Грибовський
+              {t("ceo")}
             </p>
           </CardWrapper>
 
           <div className="grid gap-4 grid-cols-2">
-            {cards.map(({ icon, text }) => (
-              <CardWrapper key={text} paddingClassName="py-5 px-4" widthClassName="w-full min-w-0">
-                <Image
-                  src={icon}
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="h-6 w-6 shrink-0 min-[768px]:h-8 min-[768px]:w-8"
-                />
-                <span className="text-[18px] lg:text-[24px] leading-[var(--font-display-3-line)] text-[var(--color-black)] min-[768px]:text-[length:var(--font-display-3)]">
-                  {text}
-                </span>
-              </CardWrapper>
-            ))}
+            {cards.map((text, i) => {
+              const icon = CARD_ICONS[i];
+              return (
+                <CardWrapper
+                  key={icon}
+                  paddingClassName="py-5 px-4"
+                  widthClassName="w-full min-w-0"
+                >
+                  <Image
+                    src={icon}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="h-6 w-6 shrink-0 min-[768px]:h-8 min-[768px]:w-8"
+                  />
+                  <span className="text-[18px] lg:text-[24px] leading-[var(--font-display-3-line)] text-[var(--color-black)] min-[768px]:text-[length:var(--font-display-3)]">
+                    {text}
+                  </span>
+                </CardWrapper>
+              );
+            })}
           </div>
 
           {children}

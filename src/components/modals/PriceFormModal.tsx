@@ -3,6 +3,7 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { PrimaryButton } from "@/components/ui/Button";
 import {
   FORM_INPUT_CLASSNAME,
@@ -17,13 +18,7 @@ const labelStyle: React.CSSProperties = {
   lineHeight: "normal",
 };
 
-const RADIO_OPTIONS = [
-  { value: "consult", label: "Отримати консультацію" },
-  { value: "coop", label: "Цікавить співпраця" },
-  { value: "contact", label: "Зв'яжіться зі мною" },
-] as const;
-
-type RadioValue = (typeof RADIO_OPTIONS)[number]["value"];
+type RadioValue = "consult" | "coop" | "contact";
 
 function RadioCheckIcon() {
   return (
@@ -53,6 +48,12 @@ export interface PriceFormModalProps {
 }
 
 export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
+  const t = useTranslations("priceModal");
+  const radioOptions = [
+    { value: "consult" as const, label: t("reasonConsult") },
+    { value: "coop" as const, label: t("reasonCoop") },
+    { value: "contact" as const, label: t("reasonContact") },
+  ] as const;
   const [mounted, setMounted] = React.useState(false);
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -106,7 +107,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
           type="button"
           onClick={onClose}
           className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full text-[var(--color-black)] transition-colors hover:bg-black/5"
-          aria-label="Закрити"
+          aria-label={t("close")}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
             <path
@@ -158,17 +159,17 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
                   "Gilroy-Medium, Gilroy, var(--font-sans), ui-sans-serif, system-ui, sans-serif",
               }}
             >
-              Ви стоматолог і Вас цікавить співпраця?
+              {t("title")}
             </h2>
 
-            <p style={labelStyle}>Тоді заповніть форму нижче!</p>
+            <p style={labelStyle}>{t("subtitle")}</p>
 
             <div className="flex w-full min-w-0 flex-col gap-4 min-[480px]:flex-row min-[480px]:gap-4">
               <input
                 type="text"
                 name="firstName"
                 autoComplete="given-name"
-                placeholder="Ваше ім'я"
+                placeholder={t("firstName")}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 className={FORM_INPUT_CLASSNAME}
@@ -178,7 +179,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
                 type="text"
                 name="lastName"
                 autoComplete="family-name"
-                placeholder="Ваше Прізвище"
+                placeholder={t("lastName")}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 className={FORM_INPUT_CLASSNAME}
@@ -190,7 +191,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
               type="tel"
               name="phone"
               autoComplete="tel"
-              placeholder="Ваш Телефон"
+              placeholder={t("phone")}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className={FORM_INPUT_CLASSNAME}
@@ -198,9 +199,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
             />
 
             <div className="flex flex-col gap-3">
-              <span style={labelStyle}>
-                Яким методом вам надіслати прайс?
-              </span>
+              <span style={labelStyle}>{t("methodLabel")}</span>
               <select
                 name="method"
                 value={method}
@@ -214,14 +213,18 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
                   backgroundSize: "1.25rem",
                 }}
               >
-                <option value="telegram">Telegram</option>
-                <option value="viber">Viber</option>
-                <option value="email">Email</option>
+                <option value="telegram">{t("methodTelegram")}</option>
+                <option value="viber">{t("methodViber")}</option>
+                <option value="email">{t("methodEmail")}</option>
               </select>
             </div>
 
-            <div className="flex flex-col gap-4" role="radiogroup" aria-label="Мета звернення">
-              {RADIO_OPTIONS.map(({ value, label }) => {
+            <div
+              className="flex flex-col gap-4"
+              role="radiogroup"
+              aria-label={t("reasonGroup")}
+            >
+              {radioOptions.map(({ value, label }) => {
                 const active = reason === value;
                 return (
                   <div
@@ -255,7 +258,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
 
             <div className="pt-2">
               <PrimaryButton type="submit" size="lg" fullWidth>
-                Отримати прайс
+                {t("submit")}
               </PrimaryButton>
             </div>
             </form>

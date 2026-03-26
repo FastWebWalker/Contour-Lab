@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "../ui/Container";
 
 const iconBox =
@@ -9,15 +10,14 @@ const iconBox =
 const iconSet = (
   <>
     <div
-      className="flex shrink-0 items-center justify-center pt-[14.5px] pr-[3.5px] pb-[14.5px] pl-[4px] md:pt-[23px] md:pr-[5.444px] md:pb-[23px] md:pl-[6px] h-[60px] w-[98px] md:h-[95px] md:w-[153px]"
+      className="flex shrink-0 items-center justify-center p-[2px] md:p-[4px] h-[60px] w-[98px] md:h-[95px] md:w-[153px]"
     >
       <Image
         src="/icons/smile-line.png"
         alt=""
-        width={180}
-        height={62}
-        className="h-[40px] w-[115px] shrink-0 object-contain object-center md:h-[62px] md:w-[180px]"
-        style={{ aspectRatio: "26/9" }}
+        width={149}
+        height={87}
+        className="h-[56px] w-[94px] shrink-0 object-contain object-center md:h-[87px] md:w-[149px]"
       />
     </div>
     <div
@@ -87,10 +87,11 @@ const iconSet = (
 );
 
 export function IconsSection() {
+  const t = useTranslations("iconsSection");
   return (
     <section
       className="flex w-full items-center self-stretch overflow-hidden py-2 md:py-4 lg:py-8"
-      aria-label="Партнери та технології"
+      aria-label={t("aria")}
     >
       <Container className="overflow-hidden">
         <div

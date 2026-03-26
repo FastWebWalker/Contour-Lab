@@ -1,20 +1,24 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Container } from "../ui/Container";
 import { SecondaryButton } from "../ui/Button";
 import { FacebookIcon } from "../icons/Facebook";
 import { InstagramIcon } from "../icons/Instagram";
 
-const footerLinks = [
-  { href: "/#about", label: "Про Нас" },
-  { href: "/services", label: "Послуги" },
-  { href: "/vacancies", label: "Вакансії" },
-  { href: "/gallery", label: "Галерея" },
-  { href: "/blog", label: "Блог" },
-];
+const FOOTER_LINKS = [
+  { href: "/#about", key: "about" as const },
+  { href: "/services", key: "services" as const },
+  { href: "/vacancies", key: "vacancies" as const },
+  { href: "/gallery", key: "gallery" as const },
+  { href: "/blog", key: "blog" as const },
+] as const;
 
 export function Footer() {
+  const tNav = useTranslations("nav");
+  const tFooter = useTranslations("footer");
+
   return (
     <div className="m-5 mt-auto">
       <footer
@@ -44,7 +48,7 @@ export function Footer() {
                   fontFamily: "var(--font-sans)",
                 }}
               >
-                Контроль над функцією та естетикою.
+                {tFooter("tagline")}
               </p>
               <div className="flex gap-3">
                 <a
@@ -71,14 +75,14 @@ export function Footer() {
             {/* Right: Nav, CTA text, button */}
             <div className="lg:col-span-7 flex flex-col gap-5 lg:items-end">
               <nav className="flex flex-wrap gap-2">
-                {footerLinks.map(({ href, label }) => (
+                {FOOTER_LINKS.map(({ href, key }) => (
                   <Link
                     key={href}
                     href={href}
                     className="px-4 py-2.5 rounded-full text-[15px] font-medium border border-white text-white bg-transparent hover:bg-white/10 transition-colors"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
-                    {label}
+                    {tNav(key)}
                   </Link>
                 ))}
               </nav>
@@ -89,12 +93,9 @@ export function Footer() {
                   fontFamily: "var(--font-sans)",
                 }}
               >
-                Ми раді, коли ви задоволені, і завжди хочемо почути, якщо щось
-                пішло не так, як очікувалося.
+                {tFooter("ctaText")}
               </p>
-              <SecondaryButton size="md">
-                Зв&apos;язатися
-              </SecondaryButton>
+              <SecondaryButton size="md">{tFooter("contact")}</SecondaryButton>
             </div>
           </div>
 
@@ -105,7 +106,7 @@ export function Footer() {
               fontFamily: "var(--font-sans)",
             }}
           >
-            © Contour Lab 2025. All Times Reserved
+            {tFooter("copyright")}
           </div>
         </Container>
       </footer>

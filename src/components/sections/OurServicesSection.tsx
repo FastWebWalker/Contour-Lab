@@ -2,13 +2,11 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { CardWrapper } from "../ui/CardWrapper";
 import { Container } from "../ui/Container";
 import { Description } from "../ui/Description";
 import { Title } from "../ui/Title";
-
-const DESCRIPTION =
-  "Ми є вашим надійним партнером у виготовленні стоматологічних виробів. Ми створюємо функціональні та естетичні зубні протези, поєднуючи досвід, передові технології та індивідуальний підхід.";
 
 const RED_DOT = (
   <svg
@@ -23,52 +21,6 @@ const RED_DOT = (
     <circle cx="4.5" cy="4.5" r="4.5" fill="var(--color-red-main, #B9040F)" />
   </svg>
 );
-
-const SERVICES: { title: string; items: string[] }[] = [
-  {
-    title: "Конструкції на гвинтовій фіксації",
-    items: [
-      "Постійна конструкція All on 4/6",
-      "Цирконій на фрезерованій титановій балці (від рівня імплантатів, мультиблоків)",
-      "Повноанатомічний цирконій",
-      "Фрезерований титан (від рівня імплантатів, мультиюнітів) з композитним покриттям і зубами",
-      "CoCr з керамічним покриттям",
-      "Титанові, металеві Co-Cr та гібридні абатменти",
-    ],
-  },
-  {
-    title: "Безметалеві конструкції",
-    items: [
-      "Повна анатомічна реставрація All on 4/6",
-      "Повна анатомічна реставрація (на імплантаті)",
-      "Цирконій з керамічним покриттям",
-      "Реставрація з використанням імплантатів",
-      "Гібридна керамічна (композитна) реставрація",
-      "Фрезерований дисилікат літію",
-      "Індивідуальна робота ART",
-    ],
-  },
-  {
-    title: "CAD Моделювання і 3D Принтування",
-    items: [
-      "Моделюємо конструкції будь-якої складності",
-      "Моделювання кукс та конструкцій на імплантатах",
-      "Моделювання 3D-моделей, віск для вицвітання, тимчасові вироби, штучні ясна, бази, ковпачки/шаблони",
-      "Вініри/фрезерований дисилікат літію",
-    ],
-  },
-  {
-    title: "Інші типи робіт в лабораторії",
-    items: [
-      "Тимчасові конструкції All on 4/6",
-      "Тимчасові реставрації",
-      "Центрофікс",
-      "Ваксап",
-      "Пресування",
-      "Лазерне спікання"
-    ],
-  },
-];
 
 export interface OurServicesSectionProps
   extends React.HTMLAttributes<HTMLElement> {
@@ -123,6 +75,8 @@ export function OurServicesSection({
   className = "",
   ...props
 }: OurServicesSectionProps) {
+  const t = useTranslations("ourServices");
+  const services = t.raw("services") as { title: string; items: string[] }[];
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
@@ -135,12 +89,12 @@ export function OurServicesSection({
   }, [activeIndex]);
 
   const handleArrowClick = () => {
-    setActiveIndex((prev) => (prev + 1) % SERVICES.length);
+    setActiveIndex((prev) => (prev + 1) % services.length);
   };
 
   return (
     <section
-      aria-label="Наші послуги"
+      aria-label={t("titleHeading")}
       className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
       {...props}
     >
@@ -148,12 +102,11 @@ export function OurServicesSection({
         <div className="flex flex-col items-stretch justify-between gap-4 min-[768px]:flex-row flex-col-reverse max-[500px]:flex-col max-[400px]:items-center min-[768px]:items-start min-[768px]:gap-8 min-[1440px]:flex-row">
           <Title
             as="h2"
-            className="min-w-0 shrink-0 min-[400px]:text-[36px] min-[400px]:leading-[36px]"
           >
-            Наші послуги
+            {t("titleHeading")}
           </Title>
           <Description className="min-w-0 max-w-[60ch]">
-            {DESCRIPTION}
+            {t("description")}
           </Description>
         </div>
         {children}
@@ -169,7 +122,7 @@ export function OurServicesSection({
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {Array.from({ length: SETS_COUNT }, (_, setIndex) =>
-            SERVICES.map(({ title, items }) => (
+            services.map(({ title, items }) => (
               <ServiceCard
                 key={`${title}-${setIndex}`}
                 title={title}
@@ -183,8 +136,7 @@ export function OurServicesSection({
           type="button"
           onClick={handleArrowClick}
           className="absolute right-[57px] bottom-[-50px] hidden h-[119px] w-[119px] shrink-0 items-center justify-center rounded-[59.5px] border-[0.5px] border-[var(--color-red-purple)] bg-transparent cursor-pointer p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 min-[768px]:flex"
-          aria-label="Наступний слайд"
-
+          aria-label={t("nextSlide")}
         >
           <Image
             src="/ourServices/arrow-right.svg"

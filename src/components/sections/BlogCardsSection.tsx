@@ -1,12 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "../ui/Container";
 import { PrimaryButton } from "../ui/Button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { BLOG_POSTS, type BlogPost } from "../data/blogData";
 
-function BlogCard({ title, description, image, href }: BlogPost) {
+function BlogCard({
+  title,
+  description,
+  image,
+  href,
+  readMoreLabel,
+}: BlogPost & { readMoreLabel: string }) {
     return (
         <article
             className="flex flex-col items-start gap-2.5 rounded-[30px] p-4 transition-shadow hover:shadow-md"
@@ -58,7 +65,7 @@ function BlogCard({ title, description, image, href }: BlogPost) {
                             size="md"
                             className="!px-6 !py-3 !text-[16px] min-w-0"
                         >
-                            Читати Більше
+                            {readMoreLabel}
                         </PrimaryButton>
                     </Link>
                 </div>
@@ -74,6 +81,8 @@ export interface BlogCardsSectionProps {
 }
 
 export function BlogCardsSection({ limit, excludeId, isGridOnly }: BlogCardsSectionProps) {
+    const t = useTranslations("blogCards");
+    const readMoreLabel = t("readMore");
     let posts = BLOG_POSTS;
 
     if (excludeId !== undefined) {
@@ -87,7 +96,7 @@ export function BlogCardsSection({ limit, excludeId, isGridOnly }: BlogCardsSect
     const grid = (
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
             {posts.map((post) => (
-                <BlogCard key={post.id} {...post} />
+                <BlogCard key={post.id} {...post} readMoreLabel={readMoreLabel} />
             ))}
         </div>
     );

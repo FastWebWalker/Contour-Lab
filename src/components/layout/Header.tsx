@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { usePathname } from "@/i18n/navigation";
 import { Container } from "../ui/Container";
 import { Logo } from "../layout/header/Logo";
 import { NavLink } from "../layout/header/NavLink";
@@ -10,19 +11,21 @@ import { LanguageSelector } from "../layout/header/LanguageSelector";
 import { OutlineLightButton } from "../ui/Button";
 import { BurgerToCloseIcon } from "../icons/BurgerToClose";
 
-const navLinks = [
-  { href: "/", label: "Головна" },
-  { href: "/services", label: "Послуги" },
-  { href: "/vacancies", label: "Вакансії" },
-  { href: "/contacts", label: "Контакти" },
-  { href: "/gallery", label: "Галерея" },
-];
+const NAV_LINKS = [
+  { href: "/", key: "home" as const },
+  { href: "/services", key: "services" as const },
+  { href: "/vacancies", key: "vacancies" as const },
+  { href: "/contacts", key: "contacts" as const },
+  { href: "/gallery", key: "gallery" as const },
+] as const;
 
 const SCROLL_THRESHOLD = 1;
 
 const LG_BREAKPOINT = 1024;
 
 export function Header() {
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -77,8 +80,8 @@ export function Header() {
 
           {/* Tablet (lg) + Desktop: nav with adaptive gap; transparent bg at scroll 0 */}
           <nav className="hidden lg:flex items-center gap-2 xl:gap-[20px]">
-            {navLinks.map(({ href, label }) => {
-              const active = !href.startsWith("#") && pathname === href;
+            {NAV_LINKS.map(({ href, key }) => {
+              const active = !href.includes("#") && pathname === href;
               return (
                 <NavLink
                   key={href}
@@ -92,7 +95,7 @@ export function Header() {
                     .filter(Boolean)
                     .join(" ")}
                 >
-                  {label}
+                  {tNav(key)}
                 </NavLink>
               );
             })}
@@ -107,7 +110,9 @@ export function Header() {
                   ? "!bg-transparent !border-[var(--color-red-main)] hover:!bg-black/5"
                   : undefined
               }
-            />
+            >
+              {tCommon("contact")}
+            </OutlineLightButton>
           </div>
 
           {/* Tablet: burger ↔ close with morph animation (below lg) */}
@@ -115,7 +120,7 @@ export function Header() {
             type="button"
             onClick={() => setMenuOpen((prev) => !prev)}
             className="lg:hidden p-2 -m-2 rounded-full text-[var(--color-black)] hover:bg-black/5 transition-colors flex items-center justify-center"
-            aria-label={menuOpen ? "Закрити меню" : "Відкрити меню"}
+            aria-label={menuOpen ? tCommon("closeMenu") : tCommon("openMenu")}
             aria-expanded={menuOpen}
           >
             <BurgerToCloseIcon open={menuOpen} size={44} />
@@ -128,7 +133,7 @@ export function Header() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Меню"
+          aria-label={tCommon("menu")}
           className="fixed inset-0 z-[80] overflow-hidden"
           style={{ pointerEvents: menuOpen ? "auto" : "none" }}
         >
@@ -184,8 +189,8 @@ export function Header() {
                     <LanguageSelector />
                   </div>
                   <nav className="flex flex-col gap-4 items-center">
-                    {navLinks.map(({ href, label }) => {
-                      const active = !href.startsWith("#") && pathname === href;
+                    {NAV_LINKS.map(({ href, key }) => {
+                      const active = !href.includes("#") && pathname === href;
                       return (
                         <NavLink
                           key={href}
@@ -198,14 +203,14 @@ export function Header() {
                             .join(" ")}
                           onClick={closeMenu}
                         >
-                          {label}
+                          {tNav(key)}
                         </NavLink>
                       );
                     })}
                   </nav>
                   <div className="flex justify-center">
                     <OutlineLightButton size="md" onClick={closeMenu}>
-                      Зв&apos;язатися
+                      {tCommon("contact")}
                     </OutlineLightButton>
                   </div>
                 </div>
