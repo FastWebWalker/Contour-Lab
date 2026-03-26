@@ -2,19 +2,19 @@
 
 import * as React from "react";
 
-/** Базові стилі H2: колір, align-self, Gilroy-Medium (вага задається класами) */
+/** Базові стилі H2: колір, align-self, normal style */
 const h2BaseStyle: React.CSSProperties = {
   alignSelf: "stretch",
   color: "var(--Black, #141414)",
   fontStyle: "normal",
-  fontFamily: "Gilroy-Medium, Gilroy, ui-sans-serif, system-ui, sans-serif",
 };
 
 /**
- * Mobile (<768px): 32px, bold. Tablet+: 52px / 55px, font-weight 400.
+ * Mobile (<768px): 32px / normal line-height / Gilroy-Medium.
+ * Tablet+ (>=768px): 52px / 55px / Gilroy.
  */
 const h2ClassName =
-  "text-[32px] font-normal leading-normal min-[768px]:text-[52px] min-[768px]:font-normal min-[768px]:leading-[55px]";
+  "font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] text-[32px] font-normal leading-normal min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[52px] min-[768px]:font-normal min-[768px]:leading-[55px]";
 
 export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

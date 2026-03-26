@@ -121,10 +121,7 @@ export function ServicesListSection() {
         <section className="py-8 md:py-12 lg:py-16">
             <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
                 <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 items-start">
-                    <Title
-                        as="h2"
-                        className="min-w-0 shrink-0 text-[32px] md:text-[36px] leading-tight"
-                    >
+                    <Title as="h2">
                         {t("titleHeading")}
                     </Title>
                     <Description className="min-w-0 max-w-[60ch]">
