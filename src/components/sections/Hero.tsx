@@ -83,7 +83,7 @@ export function Hero({
   return (
     <div className="relative m-5">
       <section
-        className="relative h-[85svh] md:h-auto md:min-h-[90vh] flex flex-col pt-[32px] md:pt-[40px] lg:pt-[146px] rounded-[24px] md:rounded-[30px] lg:rounded-[50px] overflow-hidden"
+        className="relative h-auto min-h-0 pb-8 md:pb-0 md:min-h-[90vh] flex flex-col pt-[32px] md:pt-[40px] lg:pt-[146px] rounded-[24px] md:rounded-[30px] lg:rounded-[50px] overflow-hidden"
         style={{ backgroundColor: "var(--color-hero-bg)" }}
       >
 
@@ -118,7 +118,7 @@ export function Hero({
         </motion.div>
 
         {/* Content */}
-        <div className="relative flex-1 flex flex-col overflow-hidden min-h-0 pb-0 md:pb-[40px]">
+        <div className="relative flex flex-col overflow-hidden min-h-0 pb-0 md:flex-1 md:pb-[40px]">
           <div className="px-[8px] md:px-[16px] lg:px-[40px] z-[10]">
             {/* <Container className="relative z-10 flex-1 flex flex-col gap-10 lg:gap-8"> */}
             <HeroText>{titleContent}</HeroText>
@@ -275,7 +275,7 @@ export function Hero({
 
           {/* Statistics - притиснуто до низу секції */}
           {showStats && stats.length > 0 && (
-            <div className="mt-auto px-[8px] md:px-[16px] lg:px-[40px] z-[10]">
+            <div className="mt-6 md:mt-auto px-[8px] md:px-[16px] lg:px-[40px] z-[10]">
               <div className="flex w-full flex-row flex-wrap justify-between items-center gap-2">
                 {stats.map((stat, i) => (
                   <motion.div
