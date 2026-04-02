@@ -4,13 +4,22 @@ import React from "react";
 import Image from "next/image";
 import { useParams, notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { BLOG_POSTS } from "@/components/data/blogData";
 import { BlogCardsSection } from "@/components/sections/BlogCardsSection";
+import {
+  fadeUpVariants,
+  sectionViewport,
+  sectionTransition,
+  motionConfig,
+  MOTION_EASE,
+} from "@/lib/motion";
 
 export default function BlogPostPage() {
   const params = useParams<{ locale: string; id: string }>();
   const t = useTranslations("blogPost");
+  const reduced = useReducedMotion() ?? false;
   const id = Number(params.id);
   const post = BLOG_POSTS.find((p) => p.id === id);
   const [activeSection, setActiveSection] = React.useState("article");
@@ -59,7 +68,13 @@ export default function BlogPostPage() {
         <Container>
           <div className="grid grid-cols-1 min-[1024px]:grid-cols-[1fr_774px_1fr] gap-6 md:gap-8 relative overflow-visible">
 
-            <aside className="w-full max-w-[774px] mx-auto h-fit flex flex-row min-[1024px]:flex-col gap-3 min-[1024px]:justify-self-start min-[1024px]:sticky min-[1024px]:top-[100px] min-[1024px]:mb-0">
+            {/* Left sidebar — fade in */}
+            <motion.aside
+              className="w-full max-w-[774px] mx-auto h-fit flex flex-row min-[1024px]:flex-col gap-3 min-[1024px]:justify-self-start min-[1024px]:sticky min-[1024px]:top-[100px] min-[1024px]:mb-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={sectionTransition({ reduced, duration: motionConfig.duration.fast, delay: 0.3 })}
+            >
               <button
                 className="flex h-[33px] w-[33px] items-center justify-center rounded-full border border-[#E0E0E0] p-[5px] transition-all hover:bg-gray-100 hover:scale-105 active:scale-95"
                 aria-label={t("share")}
@@ -80,11 +95,15 @@ export default function BlogPostPage() {
               >
                 <Image src="/icons/blog/copy.svg" alt="" width={16} height={16} />
               </button>
-            </aside>
+            </motion.aside>
 
-            <article
+            {/* Article — fade up on mount */}
+            <motion.article
               id="article"
               className="w-full max-w-[774px] justify-self-center mx-auto shrink-0 rounded-[30px] bg-[#F6F6F6] p-4 md:p-8 shadow-sm"
+              initial={{ opacity: 0, y: motionConfig.offset.fadeUp }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={sectionTransition({ reduced, duration: motionConfig.duration.base })}
             >
               <div className="flex flex-col gap-8">
                 <div className="relative aspect-[710/400] w-full overflow-hidden rounded-[20px]">
@@ -131,9 +150,15 @@ export default function BlogPostPage() {
                   </button>
                 </div>
               </div>
-            </article>
+            </motion.article>
 
-            <aside className="sticky top-[120px] h-fit hidden min-[1024px]:flex flex-col gap-3 w-fit justify-self-end">
+            {/* Right sidebar nav — fade in */}
+            <motion.aside
+              className="sticky top-[120px] h-fit hidden min-[1024px]:flex flex-col gap-3 w-fit justify-self-end"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={sectionTransition({ reduced, duration: motionConfig.duration.fast, delay: 0.3 })}
+            >
               <nav className="flex flex-col gap-3 w-fit">
                 <a href="#article" className="flex items-center gap-3 group">
                   <Image
@@ -178,21 +203,28 @@ export default function BlogPostPage() {
                   </span>
                 </a>
               </nav>
-            </aside>
+            </motion.aside>
           </div>
         </Container>
       </section>
 
+      {/* Other articles — heading fades up on scroll */}
       <section id="other-articles" className="bg-white py-12 md:py-20 border-t border-gray-100 mt-10">
         <Container>
-          <div className="mb-10">
+          <motion.div
+            className="mb-10"
+            variants={fadeUpVariants(reduced)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport({ amount: 0.3 })}
+          >
             <h2
               className="text-[32px] font-medium text-[var(--Black,#141414)] md:text-[52px]"
               style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
             >
               {t("otherArticles")}
             </h2>
-          </div>
+          </motion.div>
           <BlogCardsSection limit={3} excludeId={post.id} isGridOnly={true} />
         </Container>
       </section>
@@ -212,3 +244,4 @@ export default function BlogPostPage() {
     </main>
   );
 }
+

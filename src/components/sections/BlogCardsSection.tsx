@@ -2,10 +2,16 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { PrimaryButton } from "../ui/Button";
 import { Link } from "@/i18n/navigation";
 import { BLOG_POSTS, type BlogPost } from "../data/blogData";
+import {
+    sectionViewport,
+    MOTION_EASE,
+    motionConfig,
+} from "@/lib/motion";
 
 function BlogCard({
   title,
@@ -19,8 +25,6 @@ function BlogCard({
             className="flex flex-col items-start gap-2.5 rounded-[30px] p-4 transition-shadow hover:shadow-md"
             style={{
                 background: "var(--Grey-Light, #F6F6F6)",
-                // Removed fixed height to allow content to breathe, but user requested 570px.
-                // I'll set min-height or height if strict, but flex-col with space-between is better.
                 minHeight: "570px",
             }}
         >
@@ -82,6 +86,7 @@ export interface BlogCardsSectionProps {
 
 export function BlogCardsSection({ limit, excludeId, isGridOnly }: BlogCardsSectionProps) {
     const t = useTranslations("blogCards");
+    const reduced = useReducedMotion() ?? false;
     const readMoreLabel = t("readMore");
     let posts = BLOG_POSTS;
 
@@ -95,8 +100,20 @@ export function BlogCardsSection({ limit, excludeId, isGridOnly }: BlogCardsSect
 
     const grid = (
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
-            {posts.map((post) => (
-                <BlogCard key={post.id} {...post} readMoreLabel={readMoreLabel} />
+            {posts.map((post, index) => (
+                <motion.div
+                    key={post.id}
+                    initial={{ opacity: 0, y: motionConfig.offset.card }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={sectionViewport({ amount: 0.15 })}
+                    transition={{
+                        duration: reduced ? 0 : motionConfig.duration.sectionCard,
+                        delay: reduced ? 0 : index * 0.12,
+                        ease: MOTION_EASE,
+                    }}
+                >
+                    <BlogCard {...post} readMoreLabel={readMoreLabel} />
+                </motion.div>
             ))}
         </div>
     );
