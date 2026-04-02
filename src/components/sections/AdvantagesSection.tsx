@@ -3,8 +3,16 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
+import {
+  fadeUpVariants,
+  fadeUpCardVariants,
+  staggerGridVariants,
+  sectionViewport,
+  sectionTransition,
+  motionConfig,
+} from "@/lib/motion";
 
 const ADV_ICONS = [
   "/icons/advantages/quality.svg",
@@ -15,38 +23,34 @@ const ADV_ICONS = [
   "/icons/advantages/approach.svg",
 ] as const;
 
-const fadeSlideUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const cardVariant = {
-  hidden: { opacity: 0, scale: 0.95, y: 30 },
-  visible: { opacity: 1, scale: 1, y: 0 },
-};
-
-const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 function AdvantageCard({
   title,
   description,
   icon,
+  reduced,
 }: {
   title: string;
   description: string;
   icon: string;
+  reduced: boolean;
 }) {
+  const variants = fadeUpCardVariants(reduced);
+  // Add scale to the card hidden state for a subtle pop-in effect
+  const cardVariants = {
+    hidden: { ...variants.hidden, scale: 0.95 },
+    visible: {
+      ...variants.visible,
+      scale: 1,
+      transition: sectionTransition({
+        reduced,
+        duration: motionConfig.duration.sectionCard,
+      }),
+    },
+  };
+
   return (
     <motion.div
-      variants={cardVariant}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      variants={cardVariants}
       className="flex flex-col items-start gap-[10px] p-[20px] bg-[#F6F6F6] rounded-[16px] md:rounded-[30px] w-[240px] md:w-[340px] lg:w-full shrink-0 snap-center"
     >
       <div className="w-[32px] h-[32px] relative shrink-0">
@@ -70,6 +74,7 @@ function AdvantageCard({
 
 export function AdvantagesSection() {
   const t = useTranslations("advantages");
+  const reduced = useReducedMotion() ?? false;
   const items = t.raw("items") as { title: string; description: string }[];
 
   return (
@@ -83,11 +88,10 @@ export function AdvantagesSection() {
         <motion.h2
           className="text-[36px] md:text-[52px] font-normal leading-[1.05] text-white"
           style={{ fontFamily: "var(--font-gilroy, Gilroy, sans-serif)" }}
-          variants={fadeSlideUp}
+          variants={fadeUpVariants(reduced)}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={sectionViewport()}
         >
           {t("titleLine1")}
           <br />
@@ -100,10 +104,10 @@ export function AdvantagesSection() {
         >
           <motion.div
             className="flex lg:grid lg:grid-cols-3 gap-6 snap-x snap-mandatory pl-4 min-[768px]:pl-8 lg:pl-0"
-            variants={staggerContainer}
+            variants={staggerGridVariants(reduced)}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={sectionViewport()}
           >
             {items.map((item, i) => {
               const icon = ADV_ICONS[i];
@@ -113,6 +117,7 @@ export function AdvantagesSection() {
                   title={item.title}
                   description={item.description}
                   icon={icon}
+                  reduced={reduced}
                 />
               );
             })}
@@ -126,4 +131,3 @@ export function AdvantagesSection() {
     </section>
   );
 }
-

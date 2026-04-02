@@ -3,10 +3,17 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { Title } from "../ui/Title";
 import { Description } from "../ui/Description";
+import {
+    fadeUpVariants,
+    fadeUpCardVariants,
+    sectionTransition,
+    sectionViewport,
+    motionConfig,
+} from "@/lib/motion";
 
 const RED_DOT = (
     <svg
@@ -22,31 +29,25 @@ const RED_DOT = (
     </svg>
 );
 
-const fadeSlideUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0 },
-};
-
-
-
 function ServiceCard({
     index,
     title,
     items,
     image,
+    reduced,
 }: {
     index: number;
     title: string;
     items: string[];
     image: string;
+    reduced: boolean;
 }) {
     return (
         <motion.article
-            variants={fadeSlideUp}
+            variants={fadeUpCardVariants(reduced)}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={sectionViewport({ amount: motionConfig.viewport.thumb })}
             className="flex flex-col min-[1201px]:flex-row min-[1201px]:items-start min-[1201px]:justify-between gap-6 min-[1201px]:gap-8 rounded-[30px] bg-[#F6F6F6] p-8 min-[1201px]:min-h-[240px] w-full"
         >
             <div className="flex flex-col min-[1201px]:flex-row min-[1201px]:justify-between min-[1201px]:items-start gap-6 flex-1 w-full relative">
@@ -124,6 +125,7 @@ function ServiceCard({
 
 export function ServicesListSection() {
     const t = useTranslations("servicesList");
+    const reduced = useReducedMotion() ?? false;
     const services = t.raw("services") as {
         title: string;
         items: string[];
@@ -135,11 +137,10 @@ export function ServicesListSection() {
             <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
                 <motion.div
                     className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 items-start"
-                    variants={fadeSlideUp}
+                    variants={fadeUpVariants(reduced)}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={sectionViewport()}
                 >
                     <Title as="h2">
                         {t("titleHeading")}
@@ -157,6 +158,7 @@ export function ServicesListSection() {
                             title={service.title}
                             items={service.items}
                             image={service.image}
+                            reduced={reduced}
                         />
                     ))}
                 </div>
