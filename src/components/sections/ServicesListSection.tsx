@@ -140,7 +140,7 @@ export function ServicesListSection() {
                     variants={fadeUpVariants(reduced)}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={sectionViewport()}
+                    viewport={sectionViewport({ amount: 0.3 })}
                 >
                     <Title as="h2">
                         {t("titleHeading")}

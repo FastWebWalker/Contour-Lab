@@ -7,11 +7,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
 import {
   fadeUpVariants,
-  fadeUpCardVariants,
-  staggerGridVariants,
   sectionViewport,
   sectionTransition,
-  motionConfig,
+  MOTION_EASE,
 } from "@/lib/motion";
 
 const ADV_ICONS = [
@@ -27,30 +25,25 @@ function AdvantageCard({
   title,
   description,
   icon,
+  index,
   reduced,
 }: {
   title: string;
   description: string;
   icon: string;
+  index: number;
   reduced: boolean;
 }) {
-  const variants = fadeUpCardVariants(reduced);
-  // Add scale to the card hidden state for a subtle pop-in effect
-  const cardVariants = {
-    hidden: { ...variants.hidden, scale: 0.95 },
-    visible: {
-      ...variants.visible,
-      scale: 1,
-      transition: sectionTransition({
-        reduced,
-        duration: motionConfig.duration.sectionCard,
-      }),
-    },
-  };
-
   return (
     <motion.div
-      variants={cardVariants}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={sectionViewport({ amount: 0.2 })}
+      transition={{
+        duration: reduced ? 0 : 0.6,
+        delay: reduced ? 0 : index * 0.15,
+        ease: MOTION_EASE,
+      }}
       className="flex flex-col items-start gap-[10px] p-[20px] bg-[#F6F6F6] rounded-[16px] md:rounded-[30px] w-[240px] md:w-[340px] lg:w-full shrink-0 snap-center"
     >
       <div className="w-[32px] h-[32px] relative shrink-0">
@@ -91,7 +84,7 @@ export function AdvantagesSection() {
           variants={fadeUpVariants(reduced)}
           initial="hidden"
           whileInView="visible"
-          viewport={sectionViewport()}
+          viewport={sectionViewport({ amount: 0.3 })}
         >
           {t("titleLine1")}
           <br />
@@ -102,13 +95,7 @@ export function AdvantagesSection() {
           id="advantages-carousel"
           className="overflow-x-auto lg:overflow-x-visible scrollbar-hide -mx-4 min-[768px]:-mx-8 lg:mx-0 overflow-y-hidden"
         >
-          <motion.div
-            className="flex lg:grid lg:grid-cols-3 gap-6 snap-x snap-mandatory pl-4 min-[768px]:pl-8 lg:pl-0"
-            variants={staggerGridVariants(reduced)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={sectionViewport()}
-          >
+          <div className="flex lg:grid lg:grid-cols-3 gap-6 snap-x snap-mandatory pl-4 min-[768px]:pl-8 lg:pl-0">
             {items.map((item, i) => {
               const icon = ADV_ICONS[i];
               return (
@@ -117,6 +104,7 @@ export function AdvantagesSection() {
                   title={item.title}
                   description={item.description}
                   icon={icon}
+                  index={i}
                   reduced={reduced}
                 />
               );
@@ -125,7 +113,7 @@ export function AdvantagesSection() {
               aria-hidden
               className="w-4 min-[768px]:w-8 lg:w-0 shrink-0"
             />
-          </motion.div>
+          </div>
         </div>
       </Container>
     </section>

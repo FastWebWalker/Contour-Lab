@@ -83,13 +83,14 @@ export const motionConfig = {
   },
 } as const;
 
-/** whileInView — типові значення; можна підмінити `amount` для конкретної секції */
+/** whileInView — типові значення; можна підмінити `amount` / `margin` для конкретної секції */
 export function sectionViewport(
-  overrides?: Partial<{ once: boolean; amount: number }>
+  overrides?: Partial<{ once: boolean; amount: number; margin: string }>
 ) {
   return {
     once: overrides?.once ?? motionConfig.viewport.once,
     amount: overrides?.amount ?? motionConfig.viewport.section,
+    margin: overrides?.margin ?? "0px 0px -100px 0px",
   };
 }
 
