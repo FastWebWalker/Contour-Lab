@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { Title } from "../ui/Title";
 import { Description } from "../ui/Description";
@@ -21,6 +22,20 @@ const RED_DOT = (
     </svg>
 );
 
+const fadeSlideUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.15,
+        },
+    },
+};
+
 function ServiceCard({
     index,
     title,
@@ -33,7 +48,9 @@ function ServiceCard({
     image: string;
 }) {
     return (
-        <article
+        <motion.article
+            variants={fadeSlideUp}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col min-[1201px]:flex-row min-[1201px]:items-start min-[1201px]:justify-between gap-6 min-[1201px]:gap-8 rounded-[30px] bg-[#F6F6F6] p-8 min-[1201px]:min-h-[240px] w-full"
         >
             <div className="flex flex-col min-[1201px]:flex-row min-[1201px]:justify-between min-[1201px]:items-start gap-6 flex-1 w-full relative">
@@ -105,7 +122,7 @@ function ServiceCard({
                     className="object-cover"
                 />
             </div>
-        </article>
+        </motion.article>
     );
 }
 
@@ -120,16 +137,29 @@ export function ServicesListSection() {
     return (
         <section className="py-8 md:py-12 lg:py-16">
             <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
-                <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 items-start">
+                <motion.div
+                    className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 items-start"
+                    variants={fadeSlideUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
                     <Title as="h2">
                         {t("titleHeading")}
                     </Title>
                     <Description className="min-w-0 max-w-[60ch]">
                         {t("description")}
                     </Description>
-                </div>
+                </motion.div>
 
-                <div className="flex flex-col gap-6 lg:gap-8">
+                <motion.div
+                    className="flex flex-col gap-6 lg:gap-8"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                >
                     {services.map((service, idx) => (
                         <ServiceCard
                             key={service.title}
@@ -139,7 +169,7 @@ export function ServicesListSection() {
                             image={service.image}
                         />
                     ))}
-                </div>
+                </motion.div>
             </Container>
         </section>
     );
