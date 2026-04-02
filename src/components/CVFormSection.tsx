@@ -3,11 +3,17 @@
 import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { CardWrapper } from "./ui/CardWrapper";
 import { Description } from "./ui/Description";
 import { PrimaryButton } from "./ui/Button";
 import { Title } from "./ui/Title";
 import { FormCardDotsDecoration } from "./FormCardDotsDecoration";
+import {
+  fadeUpVariants,
+  staggerContainerVariants,
+  sectionViewport,
+} from "@/lib/motion";
 
 /** Як у QuestionMapFormSection */
 const inputClassName =
@@ -43,6 +49,7 @@ export function CVFormSection({
   ...props
 }: CVFormSectionProps) {
   const t = useTranslations("cvForm");
+  const reduced = useReducedMotion() ?? false;
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -74,7 +81,13 @@ export function CVFormSection({
           className="relative overflow-hidden !flex !flex-col !items-stretch !justify-between gap-8 self-stretch min-[1024px]:!flex-row min-[1024px]:!items-center min-[1024px]:!justify-between min-[1024px]:!gap-8"
         >
           {/* Left: текст + форма; на desktop лише max-width 549px */}
-          <div className="relative flex min-w-0 w-full max-w-full flex-1 flex-col min-[1024px]:max-w-[549px]">
+          <motion.div
+            variants={fadeUpVariants(reduced)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport({ amount: 0.2 })}
+            className="relative flex min-w-0 w-full max-w-full flex-1 flex-col min-[1024px]:max-w-[549px]"
+          >
             <div className="flex w-full flex-col gap-6">
               <Title as="h2">{t("title")}</Title>
               <Description className="w-full max-w-none">{t("description")}</Description>
@@ -168,10 +181,14 @@ export function CVFormSection({
                 </PrimaryButton>
               </div>
             </form>
-          </div>
+          </motion.div>
 
           {/* Right: зображення; на desktop ширина/пропорції адаптуються до в’юпорта */}
-          <div
+          <motion.div
+            variants={fadeUpVariants(reduced)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport({ amount: 0.2 })}
             className="relative h-[clamp(220px,50vw,640px)] w-full min-w-0 shrink-0 overflow-hidden rounded-[30px] bg-[lightgray] min-[1024px]:h-auto min-[1024px]:max-h-[640px] min-[1024px]:w-[min(480px,42vw)] min-[1024px]:min-w-[min(260px,32vw)] min-[1024px]:max-w-[min(480px,48%)] min-[1024px]:shrink min-[1024px]:aspect-[4/5]"
           >
             <Image
@@ -181,7 +198,7 @@ export function CVFormSection({
               className="object-cover"
               sizes="(max-width: 1023px) 100vw, (max-width: 1440px) 42vw, 480px"
             />
-          </div>
+          </motion.div>
 
           <FormCardDotsDecoration className="hidden min-[1024px]:block" />
         </CardWrapper>
