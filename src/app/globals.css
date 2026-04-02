@@ -86,6 +86,28 @@ body {
   }
 }
 
+/* Hero: subtle vertical drift on scroll-down control */
+@keyframes hero-scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+.hero-scroll-hint {
+  animation: hero-scroll-hint 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-hint {
+    animation: none;
+  }
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .scrollbar-hide::-webkit-scrollbar,
 #advantages-carousel::-webkit-scrollbar {
