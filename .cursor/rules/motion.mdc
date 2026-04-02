@@ -1,0 +1,37 @@
+---
+description: Framer Motion — використовувати спільний конфіг анімацій з @/lib/motion
+globs: "src/components/**/*.{tsx,ts},src/lib/motion.ts"
+alwaysApply: false
+---
+
+# Анімації (Framer Motion)
+
+Усі нові та змінені анімації UI (entrance, stagger, `whileInView`) мають спиратися на **`src/lib/motion.ts`**, а не на «магічні» числа в компонентах.
+
+## Імпорт
+
+```ts
+import {
+  motionConfig,
+  sectionTransition,
+  sectionViewport,
+  staggerContainerVariants,
+  staggerGridVariants,
+  fadeUpVariants,
+  fadeUpCardVariants,
+} from "@/lib/motion";
+```
+
+`heroTransition` — те саме, що `sectionTransition` (зворотна сумісність). Реекспорт з `components/hero/heroMotion.ts` дозволений для старого коду.
+
+## Правила
+
+- **Тривалості, затримки, stagger, зміщення, viewport** — брати з **`motionConfig`** (або з фабрик нижче), а не дублювати літерали `0.55`, `0.08` тощо.
+- **Transition** — через **`sectionTransition({ reduced, duration: motionConfig.duration.*, delay: … })`**. Завжди передавати **`reduced`** з **`useReducedMotion() ?? false`** у клієнтських компонентах.
+- **Секції з появою при скролі** — типові `variants`: `staggerContainerVariants`, `staggerGridVariants`, `fadeUpVariants`, `fadeUpCardVariants`; **`viewport`** — `sectionViewport({ amount: … })` або поля з **`motionConfig.viewport`**.
+- **Локальні винятки** — дозволені: передавати **`overrides`** у фабрики (`fadeUpVariants(reduced, { duration: 0.6, y: 18 })`) або робити копію токенів: `const d = { ...motionConfig.duration, base: 0.6 }`.
+- **Безкінечні CSS-анімації** (наприклад, легкий bounce іконки) можуть лишатися в **`globals.css`** з **`@media (prefers-reduced-motion: reduce)`**, якщо це не Framer Motion.
+
+## Не робити
+
+- Не задавати довгі ланцюги `duration` / `delay` / `ease` лише в JSX без прив’язки до `motionConfig` або явного `override` поруч з коментарем «чому не з дефолту».
