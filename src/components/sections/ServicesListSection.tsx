@@ -27,14 +27,7 @@ const fadeSlideUp = {
     visible: { opacity: 1, y: 0 },
 };
 
-const staggerContainer = {
-    hidden: {},
-    visible: {
-        transition: {
-            staggerChildren: 0.15,
-        },
-    },
-};
+
 
 function ServiceCard({
     index,
@@ -50,6 +43,9 @@ function ServiceCard({
     return (
         <motion.article
             variants={fadeSlideUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col min-[1201px]:flex-row min-[1201px]:items-start min-[1201px]:justify-between gap-6 min-[1201px]:gap-8 rounded-[30px] bg-[#F6F6F6] p-8 min-[1201px]:min-h-[240px] w-full"
         >
@@ -153,13 +149,7 @@ export function ServicesListSection() {
                     </Description>
                 </motion.div>
 
-                <motion.div
-                    className="flex flex-col gap-6 lg:gap-8"
-                    variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                >
+                <div className="flex flex-col gap-6 lg:gap-8">
                     {services.map((service, idx) => (
                         <ServiceCard
                             key={service.title}
@@ -169,7 +159,7 @@ export function ServicesListSection() {
                             image={service.image}
                         />
                     ))}
-                </motion.div>
+                </div>
             </Container>
         </section>
     );
