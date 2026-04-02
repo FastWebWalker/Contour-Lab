@@ -2,9 +2,18 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  fadeUpCardVariants,
+  fadeUpVariants,
+  heroTransition,
+  motionConfig,
+  sectionViewport,
+  staggerContainerVariants,
+} from "@/lib/motion";
+import { IconTextCard } from "../cards/IconTextCard";
 import { Container } from "../ui/Container";
 import { Description } from "../ui/Description";
-import { IconTextCard } from "../cards/IconTextCard";
 import { Title } from "../ui/Title";
 
 const HERO_IMAGE = "/precisionQuality/6c36403f29cc1121686fe876472a122deef845c3.png";
@@ -21,6 +30,16 @@ export function PrecisionQualitySection({
   ...props
 }: PrecisionQualitySectionProps) {
   const t = useTranslations("precisionQuality");
+  const reduced = useReducedMotion() ?? false;
+
+  const textStagger = staggerContainerVariants(reduced);
+  const lineVariants = fadeUpVariants(reduced);
+  const cardVariants = fadeUpCardVariants(reduced);
+  const s = motionConfig.stagger;
+  const d = motionConfig.duration;
+  const imageDelay = reduced
+    ? 0
+    : s.delayChildrenSection + 2 * s.sectionChildren + d.sectionCard * 0.35;
 
   return (
     <section
@@ -30,26 +49,46 @@ export function PrecisionQualitySection({
     >
       <Container>
         <div className="flex flex-col gap-4 min-[768px]:gap-8 min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-[50px]">
-          <div className="order-1 flex w-full min-w-0 flex-col items-start gap-6 min-[1024px]:order-2 min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink">
-            <Title as="h2">{t("title")}</Title>
-            <Description className="w-full">{t("p1")}</Description>
-            <IconTextCard
-              iconSrc={CARD_ICON}
-              paddingClassName="p-8"
-              widthClassName="w-full"
-            >
-              {t("p2")}
-            </IconTextCard>
-          </div>
+          <motion.div
+            className="order-1 flex w-full min-w-0 flex-col items-start gap-6 min-[1024px]:order-2 min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink"
+            initial={reduced ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={sectionViewport()}
+            variants={textStagger}
+          >
+            <motion.div variants={lineVariants}>
+              <Title as="h2">{t("title")}</Title>
+            </motion.div>
+            <motion.div variants={lineVariants}>
+              <Description className="w-full">{t("p1")}</Description>
+            </motion.div>
+            <motion.div variants={cardVariants} className="w-full">
+              <IconTextCard
+                iconSrc={CARD_ICON}
+                paddingClassName="p-8"
+                widthClassName="w-full"
+              >
+                {t("p2")}
+              </IconTextCard>
+            </motion.div>
+          </motion.div>
 
-          <div
-            className="order-2 flex w-full min-h-[280px] min-w-0 flex-col items-start justify-end gap-2.5 rounded-[30px] bg-[lightgray] p-8 aspect-[635/507] min-[1024px]:order-1 min-[1024px]:min-h-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink"
+          <motion.div
+            className="order-2 flex w-full min-h-[280px] min-w-0 flex-col items-start justify-end gap-2.5 overflow-hidden rounded-[30px] bg-[lightgray] p-8 aspect-[635/507] min-[1024px]:order-1 min-[1024px]:min-h-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink"
             style={{
               backgroundImage: `url(${HERO_IMAGE})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "50% 50%",
               backgroundSize: "cover",
             }}
+            initial={reduced ? false : { opacity: 0, scale: 1.05 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={sectionViewport()}
+            transition={heroTransition({
+              reduced,
+              duration: 0.2,
+              delay: imageDelay,
+            })}
           />
         </div>
         {children}
