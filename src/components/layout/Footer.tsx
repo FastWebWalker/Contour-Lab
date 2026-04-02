@@ -1,11 +1,17 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { Container } from "../ui/Container";
 import { SecondaryButton } from "../ui/Button";
 import { FacebookIcon } from "../icons/Facebook";
 import { InstagramIcon } from "../icons/Instagram";
+import {
+  fadeUpVariants,
+  staggerContainerVariants,
+  sectionViewport,
+} from "@/lib/motion";
 
 const FOOTER_LINKS = [
   { href: "/#about", key: "about" as const },
@@ -18,6 +24,7 @@ const FOOTER_LINKS = [
 export function Footer() {
   const tNav = useTranslations("nav");
   const tFooter = useTranslations("footer");
+  const reduced = useReducedMotion() ?? false;
 
   return (
     <div className="m-5 mt-auto">
@@ -29,9 +36,15 @@ export function Footer() {
         }}
       >
         <Container className="py-14 lg:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12"
+            variants={staggerContainerVariants(reduced)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport({ amount: 0.3 })}
+          >
             {/* Left: Logo, tagline, socials */}
-            <div className="lg:col-span-5 flex flex-col gap-5">
+            <motion.div variants={fadeUpVariants(reduced)} className="lg:col-span-5 flex flex-col gap-5">
               <Link href="/" className="w-fit">
                 <img
                   src="/logo-light.svg"
@@ -70,10 +83,10 @@ export function Footer() {
                   <InstagramIcon size={18} />
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right: Nav, CTA text, button */}
-            <div className="lg:col-span-7 flex flex-col gap-5 lg:items-end">
+            <motion.div variants={fadeUpVariants(reduced)} className="lg:col-span-7 flex flex-col gap-5 lg:items-end">
               <nav className="flex flex-wrap gap-2">
                 {FOOTER_LINKS.map(({ href, key }) => (
                   <Link
@@ -96,18 +109,22 @@ export function Footer() {
                 {tFooter("ctaText")}
               </p>
               <SecondaryButton size="md">{tFooter("contact")}</SecondaryButton>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div
+          <motion.div
             className=" pt-6 text-center text-[13px]"
             style={{
               color: "rgba(255,255,255,0.95)",
               fontFamily: "var(--font-sans)",
             }}
+            variants={fadeUpVariants(reduced)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport({ amount: 0.3 })}
           >
             {tFooter("copyright")}
-          </div>
+          </motion.div>
         </Container>
       </footer>
     </div>

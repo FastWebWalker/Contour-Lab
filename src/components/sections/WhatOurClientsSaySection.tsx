@@ -3,8 +3,15 @@
 import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { SliderNavButtons } from "../ui/SliderNavButtons";
 import { Title } from "../ui/Title";
+import {
+  fadeUpVariants,
+  fadeUpCardVariants,
+  staggerGridVariants,
+  sectionViewport,
+} from "@/lib/motion";
 
 const GAP_PX = 24;
 
@@ -22,14 +29,17 @@ function TestimonialCard({
   role,
   quote,
   avatar,
+  reduced,
 }: {
   name: string;
   role: string;
   quote: string;
   avatar: string;
+  reduced: boolean;
 }) {
   return (
-    <article
+    <motion.article
+      variants={fadeUpCardVariants(reduced)}
       className="flex w-[min(520px,calc(100vw-2rem))] max-w-full shrink-0 flex-col items-start gap-2.5 self-stretch rounded-[30px] bg-[#F2F2F2] py-8 px-4 min-[1440px]:w-[min(640px,calc((100vw-120px-24px)/2))]"
     >
       <div className="flex w-full flex-col items-start gap-6 self-stretch">
@@ -72,7 +82,7 @@ function TestimonialCard({
           {quote}
         </p>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -88,6 +98,7 @@ export function WhatOurClientsSaySection({
 }: WhatOurClientsSaySectionProps) {
   const t = useTranslations("whatClientsSay");
   const tCommon = useTranslations("common");
+  const reduced = useReducedMotion() ?? false;
   const rawTestimonials = t.raw("testimonials") as {
     name: string;
     role: string;
@@ -142,7 +153,13 @@ export function WhatOurClientsSaySection({
       {...props}
     >
       <div className="mx-auto flex w-full min-w-0 flex-col items-stretch gap-10 px-4 pb-0 pt-12 min-[768px]:px-8 min-[768px]:pt-16 min-[1440px]:px-[60px] min-[1440px]:pt-[80px]">
-        <div className="flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <motion.div
+          className="flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+          variants={fadeUpVariants(reduced)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport({ amount: 0.3 })}
+        >
           <Title
             as="h2"
           >
@@ -156,26 +173,34 @@ export function WhatOurClientsSaySection({
             navAriaLabel={tCommon("sliderNav")}
             className="shrink-0 self-start sm:self-auto"
           />
-        </div>
+        </motion.div>
 
         {children}
 
         <div className="relative w-full min-w-0">
-          <div
+          <motion.div
             ref={scrollRef}
             className="flex w-full min-w-0 gap-6 self-stretch overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            variants={staggerGridVariants(reduced)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport({ amount: 0.3 })}
           >
             {testimonials.map((item) => (
-              <TestimonialCard key={item.name} {...item} />
+              <TestimonialCard key={item.name} {...item} reduced={reduced} />
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        <div
+        <motion.div
           className="flex items-center justify-center gap-3 pb-12 min-[768px]:pb-16 min-[1440px]:pb-[80px]"
           role="group"
           aria-label={t("slidesAria")}
+          variants={fadeUpVariants(reduced)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport({ amount: 0.3 })}
         >
           {testimonials.map((_, i) => {
             const size = DOT_SIZES_PX[i] ?? 10;
@@ -199,7 +224,7 @@ export function WhatOurClientsSaySection({
               />
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
