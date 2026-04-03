@@ -29,17 +29,12 @@ function TeamCard({ name, role, photo }: { name: string; role: string; photo: st
     <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
       <div className="flex h-[669px] flex-[1_0_0] flex-col items-start gap-6 self-stretch">
         <h3
-          className="text-[36px] font-normal leading-[36px] text-[var(--color-black,#141414)]"
-          style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
+          className="text-[28px] font-normal leading-normal text-[var(--Black,#141414)] font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[36px] min-[768px]:leading-[36px] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
         >
           {name}
         </h3>
         <p
-          className="text-[24px] font-normal leading-normal"
-          style={{
-            color: "rgba(20, 20, 20, 0.85)",
-            fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
-          }}
+          className="text-[16px] font-normal leading-normal text-[var(--color-grey-hard,#555)] [font-family:var(--font-inter),Inter,sans-serif] min-[768px]:text-[24px] min-[768px]:text-[rgba(20,20,20,0.85)] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
         >
           {role}
         </p>
@@ -109,10 +104,8 @@ export function OurTeamSection({
       {...props}
     >
       <Container className="flex flex-col gap-8">
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:items-center lg:mb-[40px] md:mb-[32px] mb-[16px] sm:justify-between">
-          <Title as="h2" style={{ alignSelf: "center" }}>
-            {t("title")}
-          </Title>
+        <div className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]">
+          <Title as="h2">{t("title")}</Title>
 
           <SliderNavButtons
             canGoPrev={canGoPrev}
@@ -120,6 +113,7 @@ export function OurTeamSection({
             onPrev={goPrev}
             onNext={goNext}
             navAriaLabel={tCommon("sliderNav")}
+            className="shrink-0 self-start sm:self-auto"
           />
         </div>
 

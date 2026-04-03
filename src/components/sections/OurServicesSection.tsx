@@ -40,8 +40,7 @@ function ServiceCard({
   return (
     <CardWrapper
       as="article"
-      className="max-[400px]:max-w-[257px]"
-      widthClassName="w-[424px] max-w-full shrink-0 max-[400px]:max-w-[257px]"
+      widthClassName="shrink-0 max-[767px]:max-w-none max-[767px]:w-[calc((100%-24px)/1.1)] min-[768px]:w-[424px] min-[768px]:max-w-full"
     >
       <h3
         className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
@@ -118,7 +117,7 @@ export function OurServicesSection({
       >
         <div
           ref={scrollRef}
-          className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
+          className="flex w-full gap-6 overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:gap-[24px] md:pb-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {Array.from({ length: SETS_COUNT }, (_, setIndex) =>

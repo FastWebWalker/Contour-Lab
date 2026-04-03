@@ -3,8 +3,17 @@
 import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Container } from "../ui/Container";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  fadeUpCardVariants,
+  fadeUpVariants,
+  heroTransition,
+  sectionViewport,
+  staggerContainerVariants,
+  staggerGridVariants,
+} from "@/lib/motion";
 import { IconTextCard } from "../cards/IconTextCard";
+import { Container } from "../ui/Container";
 import { Description } from "../ui/Description";
 import { Title } from "../ui/Title";
 
@@ -24,6 +33,12 @@ export function FutureIsHereSection({
 }: FutureIsHereSectionProps) {
   const t = useTranslations("futureIsHere");
   const cardTexts = t.raw("cards") as string[];
+  const reduced = useReducedMotion() ?? false;
+
+  const leftColumnVariants = staggerContainerVariants(reduced);
+  const lineVariants = fadeUpVariants(reduced);
+  const gridVariants = staggerGridVariants(reduced);
+  const cardItemVariants = fadeUpCardVariants(reduced);
 
   return (
     <section
@@ -34,34 +49,57 @@ export function FutureIsHereSection({
       <Container>
         <div className="flex flex-col gap-[24px] min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-12">
           {/* Left block */}
-          <div className="flex min-w-0 w-full flex-1 flex-col items-stretch gap-6 min-[1024px]:min-w-0 min-[1024px]:basis-0">
-            <Title as="h2">{t("title")}</Title>
-            <Description className="w-full min-[1024px]:max-w-[624px]">
-              {t("description")}
-            </Description>
-            <div className="flex w-full min-[1024px]:max-w-[624px] flex-col gap-2.5 rounded-[30px] p-0">
+          <motion.div
+            className="flex min-w-0 w-full flex-1 flex-col items-stretch gap-6 min-[1024px]:min-w-0 min-[1024px]:basis-0"
+            initial={reduced ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={sectionViewport()}
+            variants={leftColumnVariants}
+          >
+            <motion.div variants={lineVariants}>
+              <Title as="h2">{t("title")}</Title>
+            </motion.div>
+            <motion.div variants={lineVariants}>
+              <Description className="w-full min-[1024px]:max-w-[624px]">
+                {t("description")}
+              </Description>
+            </motion.div>
+            <motion.div
+              className="flex w-full min-[1024px]:max-w-[624px] flex-col gap-2.5 rounded-[30px] p-0"
+              variants={gridVariants}
+            >
               <div className="flex w-full flex-col items-stretch gap-[10px] self-stretch">
                 {cardTexts.map((text, i) => {
                   const icon = CARD_ICONS[i];
                   return (
-                    <IconTextCard
-                      key={icon}
-                      iconSrc={icon}
-                      paddingClassName="p-4 min-[768px]:p-8"
-                      widthClassName="w-full"
-                    >
-                      {text}
-                    </IconTextCard>
+                    <motion.div key={icon} variants={cardItemVariants}>
+                      <IconTextCard
+                        iconSrc={icon}
+                        paddingClassName="p-4 min-[768px]:p-8"
+                        widthClassName="w-full"
+                      >
+                        {text}
+                      </IconTextCard>
+                    </motion.div>
                   );
                 })}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Right block */}
+          {/* Right block: сіра рамка одразу, фото з’являється окремо при скролі */}
           <div className="flex w-full min-w-0 justify-center min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink">
             <div className="flex w-full max-w-full flex-col items-center justify-center rounded-[30px] bg-[#F6F6F6] pt-[63.138px]">
-              <div className="relative w-full aspect-[381/272]">
+              <motion.div
+                className="relative w-full aspect-[381/272] overflow-hidden"
+                initial={reduced ? false : { opacity: 0, scale: 1.05 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={sectionViewport()}
+                transition={heroTransition({
+                  reduced,
+                  duration: 0.2,
+                })}
+              >
                 <Image
                   src={FUTURE_IMAGE}
                   alt=""
@@ -69,7 +107,7 @@ export function FutureIsHereSection({
                   className="object-cover object-center"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1920px) 45vw, 900px"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
