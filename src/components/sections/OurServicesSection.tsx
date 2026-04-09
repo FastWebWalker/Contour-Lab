@@ -3,10 +3,17 @@
 import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { CardWrapper } from "../ui/CardWrapper";
 import { Container } from "../ui/Container";
 import { Description } from "../ui/Description";
 import { Title } from "../ui/Title";
+import {
+  fadeUpVariants,
+  sectionViewport,
+  motionConfig,
+  MOTION_EASE,
+} from "@/lib/motion";
 
 const RED_DOT = (
   <svg
@@ -76,6 +83,7 @@ export function OurServicesSection({
   ...props
 }: OurServicesSectionProps) {
   const t = useTranslations("ourServices");
+  const reduced = useReducedMotion() ?? false;
   const services = t.raw("services") as { title: string; items: string[] }[];
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -99,7 +107,13 @@ export function OurServicesSection({
       {...props}
     >
       <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
-        <div className="flex flex-col items-stretch justify-between gap-4 min-[768px]:flex-row flex-col-reverse max-[500px]:flex-col max-[400px]:items-center min-[768px]:items-start min-[768px]:gap-8 min-[1440px]:flex-row">
+        <motion.div
+          className="flex flex-col items-stretch justify-between gap-4 min-[768px]:flex-row flex-col-reverse max-[500px]:flex-col max-[400px]:items-center min-[768px]:items-start min-[768px]:gap-8 min-[1440px]:flex-row"
+          variants={fadeUpVariants(reduced)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport({ amount: 0.3 })}
+        >
           <Title
             as="h2"
           >
@@ -108,13 +122,20 @@ export function OurServicesSection({
           <Description className="min-w-0 max-w-[60ch]">
             {t("description")}
           </Description>
-        </div>
+        </motion.div>
         {children}
       </Container>
 
       {/* Слайдер без контейнера: від лівого margin до кінця екрану справа */}
-      <div
+      <motion.div
         className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[60px] min-[1440px]:w-[calc(100vw-60px)]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={sectionViewport({ amount: 0.1 })}
+        transition={{
+          duration: reduced ? 0 : motionConfig.duration.base,
+          ease: MOTION_EASE,
+        }}
       >
         <div
           ref={scrollRef}
@@ -132,11 +153,19 @@ export function OurServicesSection({
           )}
         </div>
 
-        <button
+        <motion.button
           type="button"
           onClick={handleArrowClick}
           className="absolute right-[57px] bottom-[-50px] hidden h-[119px] w-[119px] shrink-0 items-center justify-center rounded-[59.5px] border-[0.5px] border-[var(--color-red-purple)] bg-transparent cursor-pointer p-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 min-[768px]:flex"
           aria-label={t("nextSlide")}
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={sectionViewport({ amount: 0.5 })}
+          transition={{
+            duration: reduced ? 0 : motionConfig.duration.medium,
+            delay: reduced ? 0 : 0.3,
+            ease: MOTION_EASE,
+          }}
         >
           <Image
             src="/ourServices/arrow-right.svg"
@@ -145,8 +174,8 @@ export function OurServicesSection({
             height={54}
             className="h-[54px] w-[54px]"
           />
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
     </section>
   );
 }
