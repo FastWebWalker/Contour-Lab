@@ -22,7 +22,7 @@ export function HeroText({ children }: HeroTextProps) {
       style={{
         fontFamily: "var(--font-sans)",
         color: "var(--color-black)",
-        fontSize: "clamp(40px, 6.25vw + 20px, 110px)",
+        fontSize: "clamp(40px, 6.25vw + 20px, 85px)",
         lineHeight: "0.91",
       }}
       initial={

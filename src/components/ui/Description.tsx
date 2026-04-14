@@ -11,7 +11,7 @@ const baseStyle: React.CSSProperties = {
 };
 
 const descriptionClassName =
-  "text-[16px] font-normal leading-normal min-[768px]:text-[20px]";
+  "text-[16px] font-normal leading-normal min-[768px]:text-[18px]";
 
 export interface DescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
   as?: "p" | "span" | "div";
