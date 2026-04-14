@@ -95,10 +95,10 @@ export function Hero({
             reduced
               ? false
               : {
-                  opacity: 0,
-                  scale: motionConfig.offset.heroImageScale,
-                  y: motionConfig.offset.heroImageY,
-                }
+                opacity: 0,
+                scale: motionConfig.offset.heroImageScale,
+                y: motionConfig.offset.heroImageY,
+              }
           }
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={heroTransition({

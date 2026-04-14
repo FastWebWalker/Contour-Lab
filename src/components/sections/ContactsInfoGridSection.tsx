@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
+import { sectionViewport, MOTION_EASE } from "@/lib/motion";
 
 const headingStyle: React.CSSProperties = {
   alignSelf: "stretch",
@@ -39,6 +41,7 @@ export function ContactsInfoGridSection({
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const t = useTranslations("contactsInfo");
+  const reduced = useReducedMotion() ?? false;
 
   const addresses = [t("addressLine1"), t("addressLine2")];
   const emails = ["lab.contour@gmail.com", "kyivcontour@gmail.com"];
@@ -52,7 +55,13 @@ export function ContactsInfoGridSection({
       <div className="mx-auto w-full px-4 pb-10 pt-12 min-[768px]:px-8 min-[1440px]:px-[60px] min-[1440px]:pb-[60px] min-[1440px]:pt-[80px]">
         <div className="grid grid-cols-1 gap-y-[80px] min-[768px]:grid-cols-2 min-[768px]:gap-[80px] min-[1440px]:grid-cols-[repeat(4,auto)] min-[1440px]:justify-between min-[1440px]:gap-y-[80px] min-[1440px]:gap-x-0">
           {/* Колонка 1: адреса та пошта */}
-          <div className="flex min-w-0 flex-col gap-6">
+          <motion.div
+            className="flex min-w-0 flex-col gap-6"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={sectionViewport({ amount: 0.3 })}
+            transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0, ease: MOTION_EASE }}
+          >
             <img
               src="/contacts/address.svg"
               alt=""
@@ -88,10 +97,16 @@ export function ContactsInfoGridSection({
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Колонка 2: телефони */}
-          <div className="flex min-w-0 flex-col gap-6">
+          <motion.div
+            className="flex min-w-0 flex-col gap-6"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={sectionViewport({ amount: 0.3 })}
+            transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.15, ease: MOTION_EASE }}
+          >
             <img
               src="/contacts/phone.svg"
               alt=""
@@ -115,10 +130,16 @@ export function ContactsInfoGridSection({
                 +380 (98) 589 41 09
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Колонка 3: Вайбер */}
-          <div className="flex min-w-0 flex-col gap-6">
+          <motion.div
+            className="flex min-w-0 flex-col gap-6"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={sectionViewport({ amount: 0.3 })}
+            transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.3, ease: MOTION_EASE }}
+          >
             <img
               src="/contacts/viber-only.svg"
               alt=""
@@ -134,10 +155,16 @@ export function ContactsInfoGridSection({
                 +38 063 355 65 50
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Колонка 4: соцмережі */}
-          <div className="flex min-w-0 flex-col gap-6">
+          <motion.div
+            className="flex min-w-0 flex-col gap-6"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={sectionViewport({ amount: 0.3 })}
+            transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.45, ease: MOTION_EASE }}
+          >
             <img
               src="/contacts/social.svg"
               alt=""
@@ -175,7 +202,7 @@ export function ContactsInfoGridSection({
                 })}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

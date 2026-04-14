@@ -4,6 +4,10 @@ import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
+import { Container } from "../ui/Container";
+import { IconTextCard } from "../cards/IconTextCard";
+import { Description } from "../ui/Description";
+import { Title } from "../ui/Title";
 import {
   fadeUpCardVariants,
   fadeUpVariants,
@@ -12,10 +16,6 @@ import {
   staggerContainerVariants,
   staggerGridVariants,
 } from "@/lib/motion";
-import { IconTextCard } from "../cards/IconTextCard";
-import { Container } from "../ui/Container";
-import { Description } from "../ui/Description";
-import { Title } from "../ui/Title";
 
 const FUTURE_IMAGE = "/futureIsHere/1f0ee63fef39f6163a53b9f10627c496f2d7fdac.png";
 
@@ -32,8 +32,8 @@ export function FutureIsHereSection({
   ...props
 }: FutureIsHereSectionProps) {
   const t = useTranslations("futureIsHere");
-  const cardTexts = t.raw("cards") as string[];
   const reduced = useReducedMotion() ?? false;
+  const cardTexts = t.raw("cards") as string[];
 
   const leftColumnVariants = staggerContainerVariants(reduced);
   const lineVariants = fadeUpVariants(reduced);
@@ -64,6 +64,7 @@ export function FutureIsHereSection({
                 {t("description")}
               </Description>
             </motion.div>
+
             <motion.div
               className="flex w-full min-[1024px]:max-w-[624px] flex-col gap-2.5 rounded-[30px] p-0"
               variants={gridVariants}
@@ -87,7 +88,7 @@ export function FutureIsHereSection({
             </motion.div>
           </motion.div>
 
-          {/* Right block: сіра рамка одразу, фото з’являється окремо при скролі */}
+          {/* Right block: сіра рамка одразу, фото з'являється окремо при скролі */}
           <div className="flex w-full min-w-0 justify-center min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink">
             <div className="flex w-full max-w-full flex-col items-center justify-center rounded-[30px] bg-[#F6F6F6] pt-[63.138px]">
               <motion.div

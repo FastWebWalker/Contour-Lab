@@ -3,10 +3,17 @@
 import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { CardWrapper } from "../ui/CardWrapper";
 import { Container } from "../ui/Container";
 import { SliderNavButtons } from "../ui/SliderNavButtons";
 import { Title } from "../ui/Title";
+import {
+  fadeUpVariants,
+  sectionViewport,
+  motionConfig,
+  MOTION_EASE,
+} from "@/lib/motion";
 
 const CARD_WIDTH = 424;
 const GAP = 24;
@@ -77,6 +84,7 @@ export function OurTeamSection({
 }: OurTeamSectionProps) {
   const t = useTranslations("ourTeam");
   const tCommon = useTranslations("common");
+  const reduced = useReducedMotion() ?? false;
   const rawMembers = t.raw("members") as { name: string; role: string }[];
   const team = rawMembers.map((m, i) => ({
     ...m,
@@ -104,7 +112,13 @@ export function OurTeamSection({
       {...props}
     >
       <Container className="flex flex-col gap-8">
-        <div className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]">
+        <motion.div
+          className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]"
+          variants={fadeUpVariants(reduced)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport({ amount: 0.3 })}
+        >
           <Title as="h2">{t("title")}</Title>
 
           <SliderNavButtons
@@ -115,12 +129,21 @@ export function OurTeamSection({
             navAriaLabel={tCommon("sliderNav")}
             className="shrink-0 self-start sm:self-auto"
           />
-        </div>
+        </motion.div>
 
         {children}
       </Container>
 
-      <div className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[60px] min-[1440px]:w-[calc(100vw-60px)]">
+      <motion.div
+        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[60px] min-[1440px]:w-[calc(100vw-60px)]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={sectionViewport({ amount: 0.1 })}
+        transition={{
+          duration: reduced ? 0 : motionConfig.duration.base,
+          ease: MOTION_EASE,
+        }}
+      >
         <div
           ref={scrollRef}
           className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
@@ -135,7 +158,7 @@ export function OurTeamSection({
             />
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -2,9 +2,11 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { JobCard } from "../cards/JobCard";
 import type { JobCardProps } from "../cards/JobCard";
 import { VACANCIES_JOB_IMAGES } from "../data/vacanciesJobsData";
+import { sectionViewport, MOTION_EASE } from "@/lib/motion";
 
 export interface VacanciesJobsSectionProps extends React.HTMLAttributes<HTMLElement> {
   /** Повні дані карток (наприклад, для Storybook); інакше береться з перекладів + зображень */
@@ -22,6 +24,7 @@ export function VacanciesJobsSection({
   const t = useTranslations("vacanciesJobs");
   const tApply = useTranslations("jobCard");
   const tAria = useTranslations("vacanciesPageSection");
+  const reduced = useReducedMotion() ?? false;
 
   const jobs = React.useMemo(() => {
     if (jobsOverride?.length) return jobsOverride;
@@ -42,8 +45,21 @@ export function VacanciesJobsSection({
       <div
         className="mx-auto flex w-full max-w-[1440px] flex-col items-start justify-center gap-10 px-4 py-12 min-[768px]:px-8 min-[768px]:py-16 min-[1440px]:px-[60px] min-[1440px]:py-[80px]"
       >
-        {jobs.map((job) => (
-          <JobCard key={job.title} {...job} />
+        {jobs.map((job, i) => (
+          <motion.div
+            key={job.title}
+            className="w-full"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={sectionViewport({ amount: 0.15 })}
+            transition={{
+              duration: reduced ? 0 : 0.6,
+              delay: reduced ? 0 : i * 0.15,
+              ease: MOTION_EASE,
+            }}
+          >
+            <JobCard {...job} />
+          </motion.div>
         ))}
       </div>
     </section>

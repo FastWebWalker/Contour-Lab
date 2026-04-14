@@ -3,7 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
+import {
+  fadeUpVariants,
+  sectionViewport,
+  sectionTransition,
+  MOTION_EASE,
+} from "@/lib/motion";
 
 const ADV_ICONS = [
   "/icons/advantages/quality.svg",
@@ -18,13 +25,27 @@ function AdvantageCard({
   title,
   description,
   icon,
+  index,
+  reduced,
 }: {
   title: string;
   description: string;
   icon: string;
+  index: number;
+  reduced: boolean;
 }) {
   return (
-    <div className="flex flex-col items-start gap-[10px] p-[20px] bg-[#F6F6F6] rounded-[16px] md:rounded-[30px] w-[240px] md:w-[340px] lg:w-full shrink-0 snap-center">
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={sectionViewport({ amount: 0.2 })}
+      transition={{
+        duration: reduced ? 0 : 0.6,
+        delay: reduced ? 0 : index * 0.15,
+        ease: MOTION_EASE,
+      }}
+      className="flex flex-col items-start gap-[10px] p-[20px] bg-[#F6F6F6] rounded-[16px] md:rounded-[30px] w-[240px] md:w-[340px] lg:w-full shrink-0 snap-center"
+    >
       <div className="w-[32px] h-[32px] relative shrink-0">
         <Image src={icon} alt="" fill className="object-contain" />
       </div>
@@ -40,12 +61,13 @@ function AdvantageCard({
       >
         {description}
       </p>
-    </div>
+    </motion.div>
   );
 }
 
 export function AdvantagesSection() {
   const t = useTranslations("advantages");
+  const reduced = useReducedMotion() ?? false;
   const items = t.raw("items") as { title: string; description: string }[];
 
   return (
@@ -56,14 +78,18 @@ export function AdvantagesSection() {
       }}
     >
       <Container className="flex flex-col gap-[40px]">
-        <h2
+        <motion.h2
           className="text-[36px] md:text-[52px] font-normal leading-[1.05] text-white"
           style={{ fontFamily: "var(--font-gilroy, Gilroy, sans-serif)" }}
+          variants={fadeUpVariants(reduced)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport({ amount: 0.3 })}
         >
           {t("titleLine1")}
           <br />
           {t("titleLine2")}
-        </h2>
+        </motion.h2>
 
         <div
           id="advantages-carousel"
@@ -78,6 +104,8 @@ export function AdvantagesSection() {
                   title={item.title}
                   description={item.description}
                   icon={icon}
+                  index={i}
+                  reduced={reduced}
                 />
               );
             })}

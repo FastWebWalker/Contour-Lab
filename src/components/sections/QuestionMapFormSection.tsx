@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { PrimaryButton } from "../ui/Button";
 import { ContourGoogleMap } from "../maps/ContourGoogleMap";
@@ -12,6 +13,11 @@ import {
   FORM_INPUT_CLASSNAME as inputClassName,
   FORM_INPUT_STYLE as inputStyle,
 } from "../form/formInputStyles";
+import {
+  fadeUpVariants,
+  staggerContainerVariants,
+  sectionViewport,
+} from "@/lib/motion";
 
 /** Статичний фон карти (≤1200px); додайте файл `public/questionMap/map-bg.png`, якщо хочете використовувати заглушку */
 const MAP_BG_PATH = "";
@@ -36,6 +42,7 @@ export function QuestionMapFormSection({
   ...props
 }: QuestionMapFormSectionProps) {
   const t = useTranslations("questionMap");
+  const reduced = useReducedMotion() ?? false;
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -60,9 +67,15 @@ export function QuestionMapFormSection({
       {...props}
     >
       <div className="mx-auto w-full px-4 py-8 min-[768px]:px-8 min-[1024px]:py-12 min-[1440px]:px-[59px]">
-        <div className="relative flex w-full flex-col items-stretch gap-8 overflow-hidden rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8 min-[1201px]:flex-row min-[1201px]:items-center min-[1201px]:justify-between min-[1201px]:gap-8 min-[1201px]:p-[35px]">
+        <motion.div
+          className="relative flex w-full flex-col items-stretch gap-8 overflow-hidden rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8 min-[1201px]:flex-row min-[1201px]:items-center min-[1201px]:justify-between min-[1201px]:gap-8 min-[1201px]:p-[35px]"
+          variants={staggerContainerVariants(reduced)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionViewport({ amount: 0.3 })}
+        >
           {/* Left: на desktop текст (title + опис) max 549px; форма на всю ширину колонки */}
-          <div className="relative flex w-full min-w-0 flex-1 flex-col">
+          <motion.div variants={fadeUpVariants(reduced)} className="relative flex w-full min-w-0 flex-1 flex-col">
             <div className="flex w-full flex-col gap-6 min-[1201px]:max-w-[549px]">
               <Title as="h2">{t("title")}</Title>
               <Description className="w-full max-w-none">{t("description")}</Description>
@@ -129,10 +142,11 @@ export function QuestionMapFormSection({
                 </PrimaryButton>
               </div>
             </form>
-          </div>
+          </motion.div>
 
           {/* Карта: прихована на mobile (<768px); tablet+ як раніше (≤1200 column / ≥1201 row) */}
-          <div
+          <motion.div
+            variants={fadeUpVariants(reduced)}
             className="relative hidden w-full min-w-0 shrink-0 self-stretch md:block max-[1200px]:h-[546.532px] max-[1200px]:overflow-hidden max-[1200px]:rounded-[29px] min-[1201px]:h-auto min-[1201px]:max-w-[576px] min-[1201px]:flex-[0_0_auto] min-[1201px]:rounded-[30px]"
             style={
               {
@@ -149,10 +163,10 @@ export function QuestionMapFormSection({
                 <ContourGoogleMap className="h-full w-full" />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           <FormCardDotsDecoration className="hidden min-[1201px]:block" />
-        </div>
+        </motion.div>
         {children}
       </div>
     </section>

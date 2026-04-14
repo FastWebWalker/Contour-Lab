@@ -3,9 +3,17 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { Title } from "../ui/Title";
 import { Description } from "../ui/Description";
+import {
+    fadeUpVariants,
+    fadeUpCardVariants,
+    sectionTransition,
+    sectionViewport,
+    motionConfig,
+} from "@/lib/motion";
 
 const RED_DOT = (
     <svg
@@ -26,14 +34,20 @@ function ServiceCard({
     title,
     items,
     image,
+    reduced,
 }: {
     index: number;
     title: string;
     items: string[];
     image: string;
+    reduced: boolean;
 }) {
     return (
-        <article
+        <motion.article
+            variants={fadeUpCardVariants(reduced)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport({ amount: motionConfig.viewport.thumb })}
             className="flex flex-col min-[1201px]:flex-row min-[1201px]:items-start min-[1201px]:justify-between gap-6 min-[1201px]:gap-8 rounded-[30px] bg-[#F6F6F6] p-8 min-[1201px]:min-h-[240px] w-full"
         >
             <div className="flex flex-col min-[1201px]:flex-row min-[1201px]:justify-between min-[1201px]:items-start gap-6 flex-1 w-full relative">
@@ -105,12 +119,13 @@ function ServiceCard({
                     className="object-cover"
                 />
             </div>
-        </article>
+        </motion.article>
     );
 }
 
 export function ServicesListSection() {
     const t = useTranslations("servicesList");
+    const reduced = useReducedMotion() ?? false;
     const services = t.raw("services") as {
         title: string;
         items: string[];
@@ -120,14 +135,20 @@ export function ServicesListSection() {
     return (
         <section className="py-8 md:py-12 lg:py-16">
             <Container className="flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
-                <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 items-start">
+                <motion.div
+                    className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 items-start"
+                    variants={fadeUpVariants(reduced)}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={sectionViewport({ amount: 0.3 })}
+                >
                     <Title as="h2">
                         {t("titleHeading")}
                     </Title>
                     <Description className="min-w-0 max-w-[60ch]">
                         {t("description")}
                     </Description>
-                </div>
+                </motion.div>
 
                 <div className="flex flex-col gap-6 lg:gap-8">
                     {services.map((service, idx) => (
@@ -137,6 +158,7 @@ export function ServicesListSection() {
                             title={service.title}
                             items={service.items}
                             image={service.image}
+                            reduced={reduced}
                         />
                     ))}
                 </div>
