@@ -31,73 +31,45 @@ const socialLinks = [
   { href: "https://instagram.com", src: "/hero/Social Icons2.svg", label: "Instagram" },
 ];
 
-function TeamCard({
-  name,
-  role,
-  photo,
-  index,
-  reduced,
-}: {
-  name: string;
-  role: string;
-  photo: string;
-  index: number;
-  reduced: boolean;
-}) {
+function TeamCard({ name, role, photo }: { name: string; role: string; photo: string }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={sectionViewport({ amount: 0.12 })}
-      transition={{
-        duration: reduced ? 0 : motionConfig.duration.sectionCard,
-        delay: reduced ? 0 : index * 0.12,
-        ease: MOTION_EASE,
-      }}
-    >
-      <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
-        <div className="flex h-[669px] flex-[1_0_0] flex-col items-start gap-6 self-stretch">
-          <h3
-            className="text-[36px] font-normal leading-[36px] text-[var(--color-black,#141414)]"
-            style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
-          >
-            {name}
-          </h3>
-          <p
-            className="text-[24px] font-normal leading-normal"
-            style={{
-              color: "rgba(20, 20, 20, 0.85)",
-              fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
-            }}
-          >
-            {role}
-          </p>
-          <div className="flex gap-2.5">
-            {socialLinks.map(({ href, src, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] bg-white p-3 transition-opacity hover:opacity-90"
-                aria-label={label}
-              >
-                <Image src={src} alt="" width={24} height={24} className="shrink-0" />
-              </a>
-            ))}
-          </div>
-          <div className="relative self-stretch shrink-0 w-full h-[252.819px] aspect-[69/89] min-[768px]:h-[500px] min-[768px]:aspect-auto rounded-[16px] overflow-hidden bg-[lightgray]">
-            <Image
-              src={photo}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="424px"
-            />
-          </div>
+    <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
+      <div className="flex h-[669px] flex-[1_0_0] flex-col items-start gap-6 self-stretch">
+        <h3
+          className="text-[28px] font-normal leading-normal text-[var(--Black,#141414)] font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[36px] min-[768px]:leading-[36px] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
+        >
+          {name}
+        </h3>
+        <p
+          className="text-[16px] font-normal leading-normal text-[var(--color-grey-hard,#555)] [font-family:var(--font-inter),Inter,sans-serif] min-[768px]:text-[24px] min-[768px]:text-[rgba(20,20,20,0.85)] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
+        >
+          {role}
+        </p>
+        <div className="flex gap-2.5">
+          {socialLinks.map(({ href, src, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] bg-white p-3 transition-opacity hover:opacity-90"
+              aria-label={label}
+            >
+              <Image src={src} alt="" width={24} height={24} className="shrink-0" />
+            </a>
+          ))}
         </div>
-      </CardWrapper>
-    </motion.div>
+        <div className="relative self-stretch shrink-0 w-full h-[252.819px] aspect-[69/89] min-[768px]:h-[500px] min-[768px]:aspect-auto rounded-[16px] overflow-hidden bg-[lightgray]">
+          <Image
+            src={photo}
+            alt=""
+            fill
+            className="object-cover"
+            sizes="424px"
+          />
+        </div>
+      </div>
+    </CardWrapper>
   );
 }
 
@@ -141,15 +113,13 @@ export function OurTeamSection({
     >
       <Container className="flex flex-col gap-8">
         <motion.div
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:items-center lg:mb-[40px] md:mb-[32px] mb-[16px] sm:justify-between"
+          className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]"
           variants={fadeUpVariants(reduced)}
           initial="hidden"
           whileInView="visible"
           viewport={sectionViewport({ amount: 0.3 })}
         >
-          <Title as="h2" style={{ alignSelf: "center" }}>
-            {t("title")}
-          </Title>
+          <Title as="h2">{t("title")}</Title>
 
           <SliderNavButtons
             canGoPrev={canGoPrev}
@@ -157,6 +127,7 @@ export function OurTeamSection({
             onPrev={goPrev}
             onNext={goNext}
             navAriaLabel={tCommon("sliderNav")}
+            className="shrink-0 self-start sm:self-auto"
           />
         </motion.div>
 
@@ -178,14 +149,12 @@ export function OurTeamSection({
           className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {team.map((member, i) => (
+          {team.map((member) => (
             <TeamCard
               key={member.photo}
               name={member.name}
               role={member.role}
               photo={member.photo}
-              index={i}
-              reduced={reduced}
             />
           ))}
         </div>

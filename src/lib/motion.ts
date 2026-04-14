@@ -57,6 +57,8 @@ export const motionConfig = {
     heroStats: 0.48,
     heroScroll: 0.85,
     thumbBase: 0.14,
+    /** Кнопка «наступний слайд» після карток */
+    servicesCarouselButton: 0.22,
   },
   /** whileInView: скільки елемента має бути видно */
   viewport: {
@@ -64,6 +66,8 @@ export const motionConfig = {
     section: 0.18,
     media: 0.2,
     thumb: 0.35,
+    /** Горизонтальна стрічка карток (послуги) */
+    carousel: 0.12,
   },
   /** Початкові зміщення (px) для fade / slide */
   offset: {
@@ -80,6 +84,8 @@ export const motionConfig = {
     /** 3D-зображення в hero */
     heroImageY: 24,
     heroImageScale: 1.06,
+    /** Кнопка стрілки каруселі послуг */
+    carouselButtonX: 14,
   },
 } as const;
 
