@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { ArrowRightIcon } from "../icons/ArrowRight";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import { CardWrapper } from "../ui/CardWrapper";
@@ -161,13 +162,7 @@ export function OurServicesSection({
             ease: MOTION_EASE,
           }}
         >
-          <Image
-            src="/ourServices/arrow-right.svg"
-            alt=""
-            width={54}
-            height={54}
-            className="h-[54px] w-[54px]"
-          />
+          <ArrowRightIcon className="h-[54px] w-[54px] shrink-0" size={54} />
         </motion.button>
       </motion.div>
     </section>

@@ -33,9 +33,9 @@ const paddingByVariant: Record<ButtonVariant, Record<ButtonSize, string>> = {
 
 const iconSizeByVariant: Record<ButtonVariant, number> = {
   primary: 36,
-  secondary: 30,
-  outline: 30,
-  outlineLight: 30,
+  secondary: 24,
+  outline: 24,
+  outlineLight: 24,
 };
 
 const variantStyles = {

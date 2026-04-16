@@ -62,12 +62,13 @@ function ServiceCard({
 
                 <div className="flex flex-col gap-4 min-[1201px]:gap-4 flex-1 w-full">
                     {/* Title - stacks on mobile */}
-                    <h3
-                        className="text-[32px] min-[1201px]:text-[32px] font-normal leading-[1.1] text-[#141414]"
-                        style={{ fontFamily: "var(--font-gilroy, Gilroy, sans-serif)" }}
+                    <Title
+                        as="h3"
+                        variant="h3"
+                        className="leading-[1.1] text-[#141414]"
                     >
                         {title}
-                    </h3>
+                    </Title>
 
                     {/* Divider Line - visible only on mobile/md */}
                     <div className="min-[1201px]:hidden h-[0.5px] bg-[#555] w-full" />
