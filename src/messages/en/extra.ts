@@ -77,8 +77,10 @@ export const ourTeam = {
   members: [
     { name: "Mariia Bondar", role: "Company CEO" },
     { name: "Iryna Dziubenko", role: "Senior ceramist" },
-    { name: "Katia Mykytiuk", role: "CAD designer" },
-    { name: "Team member name", role: "Role and short description" },
+    { name: "Kate Mykytiuk", role: "Middle CAD Designer" },
+    { name: "Volodymyr Lozynskyi", role: "Senior Ceramist" },
+    { name: "Mariyan Mykytiuk", role: "Removable prosthesis technician" },
+    { name: "Vitaliy Kotyk", role: "Middle Plasterer" },
   ],
 };
 

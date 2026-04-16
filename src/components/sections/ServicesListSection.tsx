@@ -63,7 +63,7 @@ function ServiceCard({
                 <div className="flex flex-col gap-4 min-[1201px]:gap-4 flex-1 w-full">
                     {/* Title - stacks on mobile */}
                     <h3
-                        className="text-[32px] min-[1201px]:text-[32px] font-normal leading-[1.1] text-[#141414]"
+                        className="text-[36px] min-[1201px]:text-[36px] font-normal leading-[1.1] text-[#141414]"
                         style={{ fontFamily: "var(--font-gilroy, Gilroy, sans-serif)" }}
                     >
                         {title}

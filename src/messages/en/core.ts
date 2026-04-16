@@ -19,7 +19,7 @@ export const footer = {
   ctaText:
     "We are glad when you are satisfied and always want to hear if something did not go as expected.",
   contact: "Contact us",
-  copyright: "© Contour Lab 2026. All rights reserved",
+  copyright: "© Contour Lab 2025. All rights reserved",
 };
 
 export const common = {

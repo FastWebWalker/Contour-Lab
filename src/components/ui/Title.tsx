@@ -11,10 +11,10 @@ const h2BaseStyle: React.CSSProperties = {
 
 /**
  * Mobile (<768px): 32px / normal line-height / Gilroy-Medium.
- * Tablet+ (>=768px): 48px / 50px / Gilroy.
+ * Tablet+ (>=768px): 52px / 55px / Gilroy.
  */
 const h2ClassName =
-  "font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] text-[32px] font-normal leading-normal min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[48px] min-[768px]:font-normal min-[768px]:leading-[50px]";
+  "font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] text-[32px] font-normal leading-normal min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[52px] min-[768px]:font-normal min-[768px]:leading-[55px]";
 
 export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

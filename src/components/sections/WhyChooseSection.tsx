@@ -110,7 +110,7 @@ export function WhyChooseSection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-10", className].filter(Boolean).join(" ")}
       {...props}
     >
       <Container
@@ -143,19 +143,19 @@ export function WhyChooseSection({
               {t("missionLabel")}
             </span>
             <p
-              className="self-stretch font-normal text-[var(--color-black)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
+              className="self-stretch font-normal text-[var(--color-black)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
               style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
             >
               {t("missionBefore")}{" "}
               <strong
-                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
+                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
                 style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
               >
                 {t("missionStrong1")}
               </strong>{" "}
               {t("missionMiddle")}{" "}
               <strong
-                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
+                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
                 style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
               >
                 {t("missionStrong2")}

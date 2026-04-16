@@ -20,10 +20,12 @@ const GAP = 24;
 const CARD_STEP = CARD_WIDTH + GAP;
 
 const TEAM_PHOTOS = [
-  "/ourTeam/1305dad7f27e9190b33821e2cdc3d5e7d86dc645.jpg",
-  "/ourTeam/1879ab55150dbe6bb5f3b324c17efc7655ea858c.jpg",
   "/ourTeam/c9bd719131852d95e6b674a244d2f79fe7b3ae9f.jpg",
+  "/ourTeam/1879ab55150dbe6bb5f3b324c17efc7655ea858c.jpg",
+  "/ourTeam/1305dad7f27e9190b33821e2cdc3d5e7d86dc645.jpg",
   "/ourTeam/e920e345c84d78805f1fd565c021743da782891c.jpg",
+  "/ourTeam/1 (38) 1.png",
+  "/ourTeam/1 (9) 1.png",
 ] as const;
 
 const socialLinks = [
@@ -36,7 +38,7 @@ function TeamCard({ name, role, photo }: { name: string; role: string; photo: st
     <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
       <div className="flex h-[669px] flex-[1_0_0] flex-col items-start gap-6 self-stretch">
         <h3
-          className="text-[28px] font-normal leading-normal text-[var(--Black,#141414)] font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[32px] min-[768px]:leading-[32px] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
+          className="text-[28px] font-normal leading-normal text-[var(--Black,#141414)] font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[36px] min-[768px]:leading-[36px] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
         >
           {name}
         </h3>
@@ -64,7 +66,7 @@ function TeamCard({ name, role, photo }: { name: string; role: string; photo: st
             src={photo}
             alt=""
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes="424px"
           />
         </div>
@@ -135,7 +137,7 @@ export function OurTeamSection({
       </Container>
 
       <motion.div
-        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[60px] min-[1440px]:w-[calc(100vw-60px)]"
+        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[80px] min-[1440px]:w-[calc(100vw-80px)]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={sectionViewport({ amount: 0.1 })}

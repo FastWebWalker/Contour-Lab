@@ -50,13 +50,13 @@ function AdvantageCard({
         <Image src={icon} alt="" fill className="object-contain" />
       </div>
       <h3
-        className="text-[24px] md:text-[32px] font-normal leading-none text-[#141414] self-stretch mt-2"
+        className="text-[24px] md:text-[36px] font-normal leading-none text-[#141414] self-stretch mt-2"
         style={{ fontFamily: "var(--font-gilroy, Gilroy, sans-serif)" }}
       >
         {title}
       </h3>
       <p
-        className="text-[16px] md:text-[18px] font-normal leading-normal text-[#141414]/85 self-stretch"
+        className="text-[16px] md:text-[20px] font-normal leading-normal text-[#141414]/85 self-stretch"
         style={{ fontFamily: "var(--font-inter, Inter, sans-serif)" }}
       >
         {description}
@@ -79,7 +79,7 @@ export function AdvantagesSection() {
     >
       <Container className="flex flex-col gap-[40px]">
         <motion.h2
-          className="text-[32px] md:text-[48px] font-normal leading-[1.05] text-white"
+          className="text-[36px] md:text-[52px] font-normal leading-[1.05] text-white"
           style={{ fontFamily: "var(--font-gilroy, Gilroy, sans-serif)" }}
           variants={fadeUpVariants(reduced)}
           initial="hidden"

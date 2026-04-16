@@ -50,7 +50,7 @@ function ServiceCard({
       widthClassName="shrink-0 max-[767px]:max-w-none max-[767px]:w-[calc((100%-24px)/1.1)] min-[768px]:w-[424px] min-[768px]:max-w-full"
     >
       <h3
-        className="text-[24px] max-w-[337px] sm:text-[32px] font-normal leading-[32px] text-[var(--color-black)]"
+        className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
         style={{
           fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
         }}
@@ -127,7 +127,7 @@ export function OurServicesSection({
 
       {/* Слайдер без контейнера: від лівого margin до кінця екрану справа */}
       <motion.div
-        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[60px] min-[1440px]:w-[calc(100vw-60px)]"
+        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[80px] min-[1440px]:w-[calc(100vw-80px)]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={sectionViewport({ amount: 0.1 })}

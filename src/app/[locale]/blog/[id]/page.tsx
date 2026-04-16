@@ -118,7 +118,7 @@ export default function BlogPostPage() {
 
                 <div className="flex flex-col gap-6">
                   <h1
-                    className="text-[28px] font-medium leading-tight text-[#141414] md:text-[32px]"
+                    className="text-[28px] font-medium leading-tight text-[#141414] md:text-[36px]"
                     style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
                   >
                     {post.title}
@@ -219,7 +219,7 @@ export default function BlogPostPage() {
             viewport={sectionViewport({ amount: 0.3 })}
           >
             <h2
-              className="text-[32px] font-medium text-[var(--Black,#141414)] md:text-[48px]"
+              className="text-[32px] font-medium text-[var(--Black,#141414)] md:text-[52px]"
               style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
             >
               {t("otherArticles")}

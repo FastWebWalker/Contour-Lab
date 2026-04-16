@@ -129,7 +129,7 @@ export function Hero({
               <div className="flex w-[100%] flex-col lg:flex-row lg:flex-wrap lg:justify-between items-start gap-4">
                 <div className="flex flex-col gap-3">
                   <motion.p
-                    className="text-[16px] leading-normal lg:text-[18px] lg:max-w-[444px]"
+                    className="text-[16px] leading-normal lg:text-[20px] lg:max-w-[444px]"
                     style={{
                       color: "rgba(20, 20, 20, 0.85)",
                       fontFamily: "var(--font-inter)",
@@ -335,9 +335,9 @@ export function Hero({
 
       </section>
 
-      {/* Scroll indicator - за межами hero (нижня половина кола виходить за секцію), стрілка вниз */}
+      {/* Scroll indicator — трохи вище низу, на одному рівні з блоком цифр */}
       <motion.div
-        className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[35%] z-20 hidden lg:block"
+        className="absolute left-1/2 bottom-0 -translate-x-1/2 -translate-y-[10%] z-20 hidden lg:block"
         initial={
           reduced ? false : { opacity: 0, y: motionConfig.offset.scrollHintY }
         }

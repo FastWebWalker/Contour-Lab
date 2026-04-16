@@ -152,7 +152,7 @@ export function WhatOurClientsSaySection({
       className={["w-full", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <div className="mx-auto flex w-full min-w-0 flex-col items-stretch gap-10 px-4 pb-0 pt-12 min-[768px]:px-8 min-[768px]:pt-16 min-[1440px]:px-[60px] min-[1440px]:pt-[80px]">
+      <div className="mx-auto flex w-full min-w-0 flex-col items-stretch gap-10 px-4 pb-0 pt-12 min-[768px]:px-8 min-[768px]:pt-16 min-[1440px]:px-[80px] min-[1440px]:pt-[80px]">
         <motion.div
           className="flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6"
           variants={fadeUpVariants(reduced)}
