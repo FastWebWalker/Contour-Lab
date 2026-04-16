@@ -54,14 +54,9 @@ function TestimonialCard({
             />
           </div>
           <div className="flex min-w-0 flex-1 flex-col items-start gap-0.5">
-            <h3
-              className="text-[28px] font-normal leading-normal text-[var(--Black,#141414)]"
-              style={{
-                fontFamily: "Gilroy-Medium, Gilroy, ui-sans-serif, system-ui, sans-serif",
-              }}
-            >
+            <Title as="h3" variant="h3">
               {name}
-            </h3>
+            </Title>
             <p
               className="text-[16px] font-normal leading-normal"
               style={{

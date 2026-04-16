@@ -49,14 +49,9 @@ function ServiceCard({
       as="article"
       widthClassName="shrink-0 max-[767px]:max-w-none max-[767px]:w-[calc((100%-24px)/1.1)] min-[768px]:w-[424px] min-[768px]:max-w-full"
     >
-      <h3
-        className="text-[24px] max-w-[337px] sm:text-[32px] font-normal leading-[32px] text-[var(--color-black)]"
-        style={{
-          fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
-        }}
-      >
+      <Title as="h3" variant="h3" className="max-w-[337px]">
         {title}
-      </h3>
+      </Title>
       <span className="h-[0.5px] w-full bg-[var(--color-grey)] my-[16px] sm:my-[24px]"></span>
       <ul className="flex flex-col gap-2.5">
         {items.map((item) => (

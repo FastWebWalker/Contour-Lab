@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
+import { Title } from "../ui/Title";
 import { PrimaryButton } from "../ui/Button";
 import { Link } from "@/i18n/navigation";
 import { BLOG_POSTS, type BlogPost } from "../data/blogData";
@@ -42,15 +43,13 @@ function BlogCard({
             {/* Content Area */}
             <div className="flex flex-1 flex-col justify-between gap-4 self-stretch pt-2">
                 <div className="flex flex-col gap-3">
-                    <h3
-                        className="line-clamp-3 text-[24px] font-medium leading-normal min-[768px]:text-[28px] min-h-[34px] lg:min-h-[102px]"
-                        style={{
-                            color: "var(--Black, #141414)",
-                            fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
-                        }}
+                    <Title
+                        as="h3"
+                        variant="h3"
+                        className="line-clamp-3 min-h-[34px] lg:min-h-[102px]"
                     >
                         {title}
-                    </h3>
+                    </Title>
                     <p
                         className="line-clamp-4 text-[18px] font-normal leading-normal min-[768px]:text-[20px]"
                         style={{
