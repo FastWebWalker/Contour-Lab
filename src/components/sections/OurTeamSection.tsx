@@ -147,7 +147,7 @@ export function OurTeamSection({
       </div>
 
       <motion.div
-        className="relative w-full min-w-0"
+        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[80px] min-[1440px]:w-[calc(100vw-80px)]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={sectionViewport({ amount: 0.1 })}

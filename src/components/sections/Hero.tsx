@@ -335,9 +335,9 @@ export function Hero({
 
       </section>
 
-      {/* Scroll indicator - за межами hero (нижня половина кола виходить за секцію), стрілка вниз */}
+      {/* Scroll indicator — трохи вище низу, на одному рівні з блоком цифр */}
       <motion.div
-        className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[35%] z-20 hidden lg:block"
+        className="absolute left-1/2 bottom-0 -translate-x-1/2 -translate-y-[10%] z-20 hidden lg:block"
         initial={
           reduced ? false : { opacity: 0, y: motionConfig.offset.scrollHintY }
         }
