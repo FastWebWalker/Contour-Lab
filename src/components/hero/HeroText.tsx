@@ -18,12 +18,11 @@ export function HeroText({ children }: HeroTextProps) {
 
   return (
     <motion.h1
-      className="font-medium text-left w-full mb-[32px] md:mb-[32px] lg:mb-[56px]"
+      className="font-medium text-left w-full mb-[32px] md:mb-[32px] lg:mb-[56px] leading-[1] md:leading-[0.91]"
       style={{
         fontFamily: "var(--font-sans)",
         color: "var(--color-black)",
         fontSize: "clamp(40px, 6.25vw + 20px, 110px)",
-        lineHeight: "0.91",
       }}
       initial={
         reduced ? false : { opacity: 0, y: motionConfig.offset.heroTitle }
