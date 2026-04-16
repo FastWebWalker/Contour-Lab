@@ -48,7 +48,7 @@ export function SliderNavButtons({
         disabled={!canGoPrev}
         onClick={onPrev}
       >
-        <ArrowRightIcon className="shrink-0 rotate-180" size={54} />
+        <ArrowRightIcon className="shrink-0 rotate-180 text-[var(--color-grey-hard)]" size={54} />
       </button>
       <button
         type="button"
@@ -60,7 +60,7 @@ export function SliderNavButtons({
         disabled={!canGoNext}
         onClick={onNext}
       >
-        <ArrowRightIcon className="shrink-0" size={54} />
+        <ArrowRightIcon className="shrink-0 text-[var(--color-red-main)]" size={54} />
       </button>
     </div>
   );

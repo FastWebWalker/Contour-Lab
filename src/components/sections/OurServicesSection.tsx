@@ -162,7 +162,7 @@ export function OurServicesSection({
             ease: MOTION_EASE,
           }}
         >
-          <ArrowRightIcon className="h-[54px] w-[54px] shrink-0" size={54} />
+          <ArrowRightIcon className="h-[54px] w-[54px] shrink-0 text-[var(--color-red-main)]" size={54} />
         </motion.button>
       </motion.div>
     </section>
