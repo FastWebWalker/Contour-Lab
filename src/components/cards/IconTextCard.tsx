@@ -28,8 +28,8 @@ export function IconTextCard({
   children,
   paddingClassName = "p-4 min-[768px]:p-8",
   widthClassName = "w-full",
-  /** 24px між іконкою та текстом (перебиває gap CardWrapper) */
-  contentGapClassName = "!gap-6",
+  /** 16px між іконкою та текстом (перебиває gap CardWrapper) */
+  contentGapClassName = "!gap-4",
   className = "",
   ...props
 }: IconTextCardProps) {
