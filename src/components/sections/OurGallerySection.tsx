@@ -54,7 +54,7 @@ export function OurGallerySection({
         >
           {/* Left: image block */}
           <motion.div
-            className="w-full aspect-[665/499] rounded-[24px] md:rounded-[30px] md:basis-[56%]"
+            className="order-4 w-full aspect-[665/499] rounded-[24px] md:order-none md:rounded-[30px] md:basis-[56%]"
             style={{
               backgroundImage: `url(${GALLERY_IMAGE})`,
               backgroundRepeat: "no-repeat",
@@ -77,7 +77,7 @@ export function OurGallerySection({
 
           {/* Right: text + button */}
           <motion.div
-            className="flex flex-1 flex-col items-start gap-8 md:gap-10 self-stretch"
+            className="order-1 flex flex-1 flex-col items-start gap-8 self-stretch md:order-none md:gap-10"
             initial={reduced ? "visible" : "hidden"}
             whileInView="visible"
             viewport={sectionViewport()}
@@ -128,7 +128,7 @@ export function OurGallerySection({
           </motion.div>
 
           <motion.div
-            className="pointer-events-none select-none absolute z-10 left-[193.996px] top-[152px] h-[33.338px] w-[101.004px] min-[768px]:left-[486px] min-[768px]:top-[166px] min-[768px]:h-[67.6px] min-[768px]:w-[194px] min-[768px]:right-auto min-[768px]:bottom-auto min-[1024px]:left-auto min-[1024px]:top-auto min-[1024px]:right-[-100px] min-[1024px]:bottom-[85px] min-[1024px]:h-[158px] min-[1024px]:w-[453px]"
+            className="pointer-events-none select-none absolute z-10 left-[193.996px] top-[152px] h-[33.338px] w-[101.004px] min-[768px]:left-[486px] min-[768px]:top-[166px] min-[768px]:h-[67.6px] min-[768px]:w-[194px] min-[768px]:right-auto min-[768px]:bottom-auto min-[1024px]:left-auto min-[1024px]:top-auto min-[1024px]:right-[-80px] min-[1024px]:bottom-[100px] min-[1024px]:h-[111px] min-[1024px]:w-[318px]"
             aria-hidden
             initial={reduced ? false : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -158,8 +158,8 @@ export function OurGallerySection({
               <Image
                 src="/ourGallery/gallery-dots.svg"
                 alt=""
-                width={194}
-                height={68}
+                width={318}
+                height={111}
                 className="h-full w-full object-contain object-right-bottom min-[1024px]:object-right-bottom"
               />
             </motion.div>

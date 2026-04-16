@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-/** Display 1 / Display 4: Inter, rgba(20,20,20,0.85). Mobile 16px, tablet+ 20px. */
+/** Display 1 / Display 4: Inter, rgba(20,20,20,0.85). Mobile 16px, tablet+ 18px. */
 const baseStyle: React.CSSProperties = {
   color: "rgba(20, 20, 20, 0.85)",
   fontFamily: "var(--font-inter), Inter, sans-serif",

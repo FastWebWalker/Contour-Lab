@@ -67,7 +67,7 @@ export function QuestionMapFormSection({
       className={["w-full overflow-hidden", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <div className="mx-auto w-full px-4 py-8 min-[768px]:px-8 min-[1024px]:py-12 min-[1440px]:px-[59px]">
+      <div className="mx-auto w-full px-4 py-8 min-[768px]:px-8 min-[1024px]:py-12 min-[1440px]:px-[80px]">
         <motion.div
           className="relative flex w-full flex-col items-stretch gap-8 overflow-hidden rounded-[30px] bg-[var(--Grey-Light,#F6F6F6)] p-8 min-[1201px]:flex-row min-[1201px]:items-center min-[1201px]:justify-between min-[1201px]:gap-8 min-[1201px]:p-[35px]"
           variants={staggerContainerVariants(reduced)}

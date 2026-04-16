@@ -77,8 +77,10 @@ export const ourTeam = {
   members: [
     { name: "Марія Бондар", role: "СЕО компанії" },
     { name: "Ірина Дзюбенко", role: "Старший Кераміст" },
-    { name: "Катя Микитюк", role: "CAD Дизайнер" },
-    { name: "Volodymyr Lozynskiy", role: "Senior Ceramist" },
+    { name: "Катя Микитюк", role: "Middle CAD Designer" },
+    { name: "Володимир Лозинський", role: "Старший Кераміст" },
+    { name: "Мар'ян Микитюк", role: "Технік знімного протезування" },
+    { name: "Віталій Котик", role: "Middle Plasterer" },
   ],
 };
 
