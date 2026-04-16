@@ -32,6 +32,11 @@ export function Header() {
   const [isBelowLg, setIsBelowLg] = useState(true);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
+  const scrollToContact = useCallback(() => {
+    const el = document.getElementById("contact-form");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY >= SCROLL_THRESHOLD);
     onScroll(); // init
@@ -105,11 +110,7 @@ export function Header() {
             <LanguageSelector transparent={!scrolled} />
             <OutlineLightButton
               size="sm"
-              className={
-                !scrolled
-                  ? "!bg-transparent !border-[var(--color-red-main)] hover:!bg-black/5"
-                  : undefined
-              }
+              onClick={scrollToContact}
             >
               {tCommon("contact")}
             </OutlineLightButton>
@@ -209,7 +210,10 @@ export function Header() {
                     })}
                   </nav>
                   <div className="flex justify-center">
-                    <OutlineLightButton size="md" onClick={closeMenu}>
+                    <OutlineLightButton size="md" onClick={() => {
+                      closeMenu();
+                      setTimeout(scrollToContact, 350);
+                    }}>
                       {tCommon("contact")}
                     </OutlineLightButton>
                   </div>

@@ -62,6 +62,7 @@ export function QuestionMapFormSection({
 
   return (
     <section
+      id="contact-form"
       aria-label={t("sectionAria")}
       className={["w-full overflow-hidden", className].filter(Boolean).join(" ")}
       {...props}
