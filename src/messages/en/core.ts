@@ -23,7 +23,7 @@ export const footer = {
 };
 
 export const common = {
-  contact: "Contact us",
+  contact: "Get in Touch",
   close: "Close",
   openMenu: "Open menu",
   closeMenu: "Close menu",
