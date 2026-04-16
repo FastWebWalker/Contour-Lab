@@ -36,6 +36,12 @@ export function VacanciesJobsSection({
     }));
   }, [jobsOverride, t, tApply]);
 
+  const scrollToApplyForm = React.useCallback(() => {
+    const form = document.getElementById("apply-job-form");
+    if (!form) return;
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
     <section
       aria-label={tAria("aria")}
@@ -58,7 +64,7 @@ export function VacanciesJobsSection({
               ease: MOTION_EASE,
             }}
           >
-            <JobCard {...job} />
+            <JobCard {...job} onApplyClick={scrollToApplyForm} />
           </motion.div>
         ))}
       </div>

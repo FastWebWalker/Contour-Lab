@@ -30,6 +30,7 @@ export interface JobCardProps {
   applyLabel?: string;
   imageSrc: string;
   className?: string;
+  onApplyClick?: () => void;
 }
 
 export function JobCard({
@@ -42,6 +43,7 @@ export function JobCard({
   applyLabel = "Відгукнутись",
   imageSrc,
   className = "",
+  onApplyClick,
 }: JobCardProps) {
   return (
     <CardWrapper
@@ -113,6 +115,7 @@ export function JobCard({
           size="md"
           rightIcon={<ArrowRightIcon className="shrink-0 text-white" size={22} />}
           className="!h-auto !min-h-0 !min-w-0 self-start rounded-[40px] px-6 py-3 !text-[17px] gap-1.5"
+          onClick={onApplyClick}
         >
           {applyLabel}
         </Button>
