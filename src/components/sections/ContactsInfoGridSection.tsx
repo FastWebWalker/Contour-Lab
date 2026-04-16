@@ -68,6 +68,8 @@ export function ContactsInfoGridSection({
               width={48}
               height={48}
               className="h-12 w-12 shrink-0"
+              loading="lazy"
+              decoding="async"
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
@@ -113,6 +115,8 @@ export function ContactsInfoGridSection({
               width={32}
               height={48}
               className="h-12 w-8 shrink-0"
+              loading="lazy"
+              decoding="async"
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
@@ -146,6 +150,8 @@ export function ContactsInfoGridSection({
               width={48}
               height={48}
               className="h-12 w-12 shrink-0"
+              loading="lazy"
+              decoding="async"
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
@@ -171,6 +177,8 @@ export function ContactsInfoGridSection({
               width={48}
               height={48}
               className="h-12 w-12 shrink-0"
+              loading="lazy"
+              decoding="async"
             />
             <div className="flex flex-col gap-4">
               <h2 className="m-0" style={headingStyle}>
@@ -195,6 +203,7 @@ export function ContactsInfoGridSection({
                         width={24}
                         height={24}
                         className="h-6 w-6 shrink-0 object-contain"
+                        loading="lazy"
                         decoding="async"
                       />
                     </a>

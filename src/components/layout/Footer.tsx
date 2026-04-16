@@ -52,6 +52,8 @@ export function Footer() {
                   width={174}
                   height={69}
                   className="h-12 lg:h-14 w-auto object-contain"
+                  loading="lazy"
+                  decoding="async"
                 />
               </Link>
               <p

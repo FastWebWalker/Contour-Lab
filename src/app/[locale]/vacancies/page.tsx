@@ -32,7 +32,7 @@ export default async function VacanciesPage({
       />
       <main id="content" className="w-full">
         <VacanciesJobsSection />
-        <CVFormSection />
+        <CVFormSection id="apply-job-form" />
       </main>
     </>
   );
