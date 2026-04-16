@@ -18,7 +18,7 @@ export function ArrowRightIcon({
       <path
         d="M5 12H19M19 12L14 7M19 12L14 17"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1.2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
