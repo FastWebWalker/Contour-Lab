@@ -54,7 +54,7 @@ export function OurGallerySection({
         >
           {/* Left: image block */}
           <motion.div
-            className="w-full aspect-[665/499] rounded-[24px] md:rounded-[30px] md:basis-[56%]"
+            className="order-4 w-full aspect-[665/499] rounded-[24px] md:order-none md:rounded-[30px] md:basis-[56%]"
             style={{
               backgroundImage: `url(${GALLERY_IMAGE})`,
               backgroundRepeat: "no-repeat",
@@ -77,7 +77,7 @@ export function OurGallerySection({
 
           {/* Right: text + button */}
           <motion.div
-            className="flex flex-1 flex-col items-start gap-8 md:gap-10 self-stretch"
+            className="order-1 flex flex-1 flex-col items-start gap-8 self-stretch md:order-none md:gap-10"
             initial={reduced ? "visible" : "hidden"}
             whileInView="visible"
             viewport={sectionViewport()}
