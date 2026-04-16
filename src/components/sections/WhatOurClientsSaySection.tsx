@@ -152,9 +152,9 @@ export function WhatOurClientsSaySection({
       className={["w-full", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <div className="mx-auto flex w-full min-w-0 flex-col items-stretch gap-10 px-4 pb-0 pt-12 min-[768px]:px-8 min-[768px]:pt-16 min-[1440px]:px-[60px] min-[1440px]:pt-[80px]">
+      <div className="mx-auto flex w-full min-w-0 flex-col items-stretch gap-10 pb-0 pt-12 min-[768px]:pt-16 min-[1440px]:pt-[80px]">
         <motion.div
-          className="flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+          className="flex w-full min-w-0 flex-col gap-6 self-stretch px-4 min-[768px]:px-8 min-[1440px]:px-[60px] sm:flex-row sm:items-center sm:justify-between sm:gap-6"
           variants={fadeUpVariants(reduced)}
           initial="hidden"
           whileInView="visible"
@@ -180,7 +180,7 @@ export function WhatOurClientsSaySection({
         <div className="relative w-full min-w-0">
           <motion.div
             ref={scrollRef}
-            className="flex w-full min-w-0 gap-6 self-stretch overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
+            className="flex w-full min-w-0 gap-6 self-stretch overflow-x-auto overflow-y-hidden px-4 pb-4 scroll-smooth min-[768px]:px-8 min-[1440px]:px-[60px] md:pb-0"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             variants={staggerGridVariants(reduced)}
             initial="hidden"
@@ -194,7 +194,7 @@ export function WhatOurClientsSaySection({
         </div>
 
         <motion.div
-          className="flex items-center justify-center gap-3 pb-12 min-[768px]:pb-16 min-[1440px]:pb-[80px]"
+          className="flex items-center justify-center gap-3 px-4 pb-12 min-[768px]:px-8 min-[768px]:pb-16 min-[1440px]:px-[60px] min-[1440px]:pb-[80px]"
           role="group"
           aria-label={t("slidesAria")}
           variants={fadeUpVariants(reduced)}

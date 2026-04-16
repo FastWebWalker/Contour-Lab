@@ -111,9 +111,9 @@ export function OurTeamSection({
       className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
       {...props}
     >
-      <Container className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8">
         <motion.div
-          className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]"
+          className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch px-4 min-[768px]:px-8 min-[1440px]:px-[60px] sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]"
           variants={fadeUpVariants(reduced)}
           initial="hidden"
           whileInView="visible"
@@ -132,10 +132,10 @@ export function OurTeamSection({
         </motion.div>
 
         {children}
-      </Container>
+      </div>
 
       <motion.div
-        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[60px] min-[1440px]:w-[calc(100vw-60px)]"
+        className="relative w-full min-w-0"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={sectionViewport({ amount: 0.1 })}
@@ -146,7 +146,7 @@ export function OurTeamSection({
       >
         <div
           ref={scrollRef}
-          className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:pb-0"
+          className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden px-4 pb-4 scroll-smooth min-[768px]:px-8 min-[1440px]:px-[60px] md:pb-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {team.map((member) => (
