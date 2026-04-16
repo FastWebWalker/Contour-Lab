@@ -27,7 +27,7 @@ export function Footer() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <div className="m-5 mt-auto">
+    <div className="mx-5 mb-5 mt-4">
       <footer
         className="overflow-hidden"
         style={{
@@ -35,16 +35,16 @@ export function Footer() {
           borderRadius: 50,
         }}
       >
-        <Container className="py-14 lg:py-16">
+        <Container className="pt-4 pb-14 lg:pb-16">
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-8 lg:gap-y-10"
             variants={staggerContainerVariants(reduced)}
             initial="hidden"
             whileInView="visible"
             viewport={sectionViewport({ amount: 0.3 })}
           >
-            {/* Left: Logo, tagline, socials */}
-            <motion.div variants={fadeUpVariants(reduced)} className="lg:col-span-5 flex flex-col gap-5">
+            {/* Row 1, Col 1: Logo + Tagline */}
+            <motion.div variants={fadeUpVariants(reduced)} className="flex flex-col gap-5">
               <Link href="/" className="w-fit">
                 <img
                   src="/logo-light.svg"
@@ -57,7 +57,7 @@ export function Footer() {
                 />
               </Link>
               <p
-                className="text-base lg:text-lg leading-relaxed max-w-xs"
+                className="text-2xl leading-normal font-normal max-w-xs"
                 style={{
                   color: "white",
                   fontFamily: "var(--font-sans)",
@@ -65,6 +65,26 @@ export function Footer() {
               >
                 {tFooter("tagline")}
               </p>
+            </motion.div>
+
+            {/* Row 1, Col 2: Nav links */}
+            <motion.div variants={fadeUpVariants(reduced)} className="flex items-center lg:justify-end">
+              <nav className="flex flex-wrap gap-2">
+                {FOOTER_LINKS.map(({ href, key }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="px-4 py-2.5 rounded-full text-[15px] font-medium border border-white text-white bg-transparent hover:bg-white/10 transition-colors"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    {tNav(key)}
+                  </Link>
+                ))}
+              </nav>
+            </motion.div>
+
+            {/* Row 2, Col 1: Social icons */}
+            <motion.div variants={fadeUpVariants(reduced)} className="flex items-center">
               <div className="flex gap-3">
                 <a
                   href="https://facebook.com"
@@ -87,22 +107,10 @@ export function Footer() {
               </div>
             </motion.div>
 
-            {/* Right: Nav, CTA text, button */}
-            <motion.div variants={fadeUpVariants(reduced)} className="lg:col-span-7 flex flex-col gap-5 lg:items-end">
-              <nav className="flex flex-wrap gap-2">
-                {FOOTER_LINKS.map(({ href, key }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="px-4 py-2.5 rounded-full text-[15px] font-medium border border-white text-white bg-transparent hover:bg-white/10 transition-colors"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    {tNav(key)}
-                  </Link>
-                ))}
-              </nav>
+            {/* Row 2, Col 2: CTA text + button */}
+            <motion.div variants={fadeUpVariants(reduced)} className="flex flex-col gap-5 lg:items-end">
               <p
-                className="text-[15px] leading-relaxed max-w-lg lg:text-right"
+                className="text-2xl leading-normal font-normal max-w-2xl lg:text-right"
                 style={{
                   color: "white",
                   fontFamily: "var(--font-sans)",
@@ -113,21 +121,18 @@ export function Footer() {
               <SecondaryButton size="md">{tFooter("contact")}</SecondaryButton>
             </motion.div>
           </motion.div>
-
-          <motion.div
-            className=" pt-6 text-center text-[13px]"
-            style={{
-              color: "rgba(255,255,255,0.95)",
-              fontFamily: "var(--font-sans)",
-            }}
-            variants={fadeUpVariants(reduced)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={sectionViewport({ amount: 0.3 })}
-          >
-            {tFooter("copyright")}
-          </motion.div>
         </Container>
+
+        {/* Copyright — bottom center */}
+        <div
+          className="pb-4 text-center text-sm font-light"
+          style={{
+            color: "#FFF",
+            fontFamily: "var(--font-inter)",
+          }}
+        >
+          {tFooter("copyright")}
+        </div>
       </footer>
     </div>
   );

@@ -5,7 +5,7 @@ export const homeHero = {
   subtitle:
     "Place your first order and get a temporary restoration on special terms!",
   order: "Place an order",
-  price: "Download price list",
+  price: "Get a Price",
   statClients: "happy clients",
   statCases: "successfully completed cases",
 };
@@ -32,8 +32,8 @@ export const galleryPage = {
 };
 
 export const vacanciesPage = {
-  titleBefore: "Join",
-  titleAccent: "us!",
+  titleBefore: "Join our",
+  titleAccent: "team!",
   subtitle:
     "Browse open positions on our site and send your CV — this could be your chance!",
 };

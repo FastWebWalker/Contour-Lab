@@ -69,6 +69,7 @@ export function CVFormSection({
 
   return (
     <section
+      id="cv-form"
       aria-label={t("sectionAria")}
       className={["w-full overflow-hidden", className].filter(Boolean).join(" ")}
       {...props}

@@ -30,7 +30,7 @@ export const questionMap = {
 
 export const cvForm = {
   sectionAria: "CV submission form",
-  title: "Submit your CV!",
+  title: "Apply for a Job!",
   description: "Leave your details and we will get back to you!",
   firstName: "First name",
   lastName: "Last name",
@@ -38,5 +38,5 @@ export const cvForm = {
   phone: "Phone",
   upload: "Upload CV",
   resumeHint: "Please attach your resume!",
-  submit: "Submit",
+  submit: "Send message",
 };

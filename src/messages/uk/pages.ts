@@ -5,7 +5,7 @@ export const homeHero = {
   subtitle:
     "Зробіть своє перше замовлення та отримайте тимчасову конструкцію на спеціальних умовах!",
   order: "Зробити замовлення",
-  price: "Завантажити Прайс",
+  price: "Отримати прайс",
   statClients: "дуже задоволених клієнтів",
   statCases: "успішно завершених кейсів",
 };
@@ -32,8 +32,8 @@ export const galleryPage = {
 };
 
 export const vacanciesPage = {
-  titleBefore: "Приєднуйся",
-  titleAccent: "до нас!",
+  titleBefore: "Join our",
+  titleAccent: "team!",
   subtitle:
     "Перегляньте актуальні вакансії на нашому сайті та надішліть своє резюме! Можливо, це ваш шанс!",
 };

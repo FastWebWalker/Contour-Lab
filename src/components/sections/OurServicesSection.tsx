@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { ArrowRightIcon } from "../icons/ArrowRight";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import { CardWrapper } from "../ui/CardWrapper";
@@ -49,14 +50,9 @@ function ServiceCard({
       as="article"
       widthClassName="shrink-0 max-[767px]:max-w-none max-[767px]:w-[calc((100%-24px)/1.1)] min-[768px]:w-[424px] min-[768px]:max-w-full"
     >
-      <h3
-        className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
-        style={{
-          fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
-        }}
-      >
+      <Title as="h3" variant="h3" className="max-w-[337px]">
         {title}
-      </h3>
+      </Title>
       <span className="h-[0.5px] w-full bg-[var(--color-grey)] my-[16px] sm:my-[24px]"></span>
       <ul className="flex flex-col gap-2.5">
         {items.map((item) => (
@@ -127,7 +123,7 @@ export function OurServicesSection({
 
       {/* Слайдер без контейнера: від лівого margin до кінця екрану справа */}
       <motion.div
-        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[80px] min-[1440px]:w-[calc(100vw-80px)]"
+        className="relative w-full overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={sectionViewport({ amount: 0.1 })}
@@ -138,7 +134,7 @@ export function OurServicesSection({
       >
         <div
           ref={scrollRef}
-          className="flex w-full gap-6 overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:gap-[24px] md:pb-0"
+          className="flex gap-6 overflow-x-auto overflow-y-hidden px-4 pb-4 scroll-smooth min-[768px]:px-8 min-[1440px]:px-[80px] md:gap-[24px] md:pb-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {Array.from({ length: SETS_COUNT }, (_, setIndex) =>
@@ -166,13 +162,7 @@ export function OurServicesSection({
             ease: MOTION_EASE,
           }}
         >
-          <Image
-            src="/ourServices/arrow-right.svg"
-            alt=""
-            width={54}
-            height={54}
-            className="h-[54px] w-[54px]"
-          />
+          <ArrowRightIcon className="h-[54px] w-[54px] shrink-0 text-[var(--color-red-main)]" size={54} />
         </motion.button>
       </motion.div>
     </section>

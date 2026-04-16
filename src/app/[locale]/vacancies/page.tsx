@@ -16,7 +16,7 @@ export default async function VacanciesPage({
 
   const vacanciesHeroTitle = (
     <>
-      {t("titleBefore")}{" "}
+      {t("titleBefore")} <br />
       <span style={{ color: "var(--color-red-main)" }}>{t("titleAccent")}</span>
     </>
   );

@@ -38,10 +38,47 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
   const t = useTranslations("galleryTab");
   const reduced = useReducedMotion() ?? false;
   const [active, setActive] = React.useState<GalleryTabId>("all");
+  const [selectedIdx, setSelectedIdx] = React.useState<number | null>(null);
+
   const images = React.useMemo(
     () => getImagesForTab(manifest, active),
     [manifest, active]
   );
+
+  const openLightbox = (idx: number) => setSelectedIdx(idx);
+  const closeLightbox = () => setSelectedIdx(null);
+  const nextImage = () => {
+    if (selectedIdx === null) return;
+    setSelectedIdx((selectedIdx + 1) % images.length);
+  };
+  const prevImage = () => {
+    if (selectedIdx === null) return;
+    setSelectedIdx((selectedIdx - 1 + images.length) % images.length);
+  };
+
+  // Lock scroll when lightbox is open
+  React.useEffect(() => {
+    if (selectedIdx !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedIdx]);
+
+  // Keyboard support
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIdx === null) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIdx, images.length]);
 
   return (
     <section
@@ -105,7 +142,8 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
             {images.map((src, index) => (
               <motion.figure
                 key={`${active}-${index}-${src}`}
-                className="group relative aspect-[26/17] w-full min-h-0 min-w-0 overflow-hidden rounded-2xl bg-[var(--color-light-grey)] shadow-[0_1px_3px_rgba(0,0,0,0.06)] ring-1 ring-[rgba(20,20,20,0.06)] transition-[box-shadow,transform] duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:ring-2 hover:ring-[var(--color-red-main)]/15"
+                onClick={() => openLightbox(index)}
+                className="group relative aspect-[26/17] w-full min-h-0 min-w-0 cursor-zoom-in overflow-hidden rounded-2xl bg-[var(--color-light-grey)] shadow-[0_1px_3px_rgba(0,0,0,0.06)] ring-1 ring-[rgba(20,20,20,0.06)] transition-[box-shadow,transform] duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:ring-2 hover:ring-[var(--color-red-main)]/15"
                 initial={{ opacity: 0, y: motionConfig.offset.card }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -124,6 +162,73 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
               </motion.figure>
             ))}
           </motion.div>
+        </AnimatePresence>
+
+        {/* Lightbox Overlay */}
+        <AnimatePresence>
+          {selectedIdx !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 transition-colors"
+              onClick={closeLightbox}
+            >
+              <motion.div
+                key={images[selectedIdx]}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="relative flex h-full w-full max-w-7xl items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative h-[85vh] w-full overflow-hidden rounded-lg">
+                  <Image
+                    src={images[selectedIdx]}
+                    alt=""
+                    fill
+                    className="object-contain"
+                    priority
+                    sizes="100vw"
+                  />
+                </div>
+
+                {/* Lightbox Controls */}
+                <button
+                  type="button"
+                  onClick={closeLightbox}
+                  className="absolute top-0 right-0 p-4 text-white hover:text-white/70 transition-colors"
+                  aria-label="Close"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={prevImage}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 p-4 text-white hover:text-white/70 transition-colors hidden md:block"
+                  aria-label="Previous"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={nextImage}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 p-4 text-white hover:text-white/70 transition-colors hidden md:block"
+                  aria-label="Next"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+
+                {/* Counter */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pb-4 text-white/50 font-['Inter'] text-sm">
+                  {selectedIdx + 1} / {images.length}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
         </AnimatePresence>
       </Container>
     </section>
