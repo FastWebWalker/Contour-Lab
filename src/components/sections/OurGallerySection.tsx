@@ -98,7 +98,7 @@ export function OurGallerySection({
                 {t("title")}
               </Title>
               <p
-                className="text-[20px] w-full font-normal leading-normal"
+                className="text-[18px] w-full font-normal leading-normal"
                 style={{
                   color: "rgba(255, 255, 255, 0.85)",
                   fontFamily: "var(--font-inter), Inter, sans-serif",

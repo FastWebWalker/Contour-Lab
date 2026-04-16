@@ -50,7 +50,7 @@ function ServiceCard({
       widthClassName="shrink-0 max-[767px]:max-w-none max-[767px]:w-[calc((100%-24px)/1.1)] min-[768px]:w-[424px] min-[768px]:max-w-full"
     >
       <h3
-        className="text-[24px] max-w-[337px] sm:text-[36px] font-normal leading-[36px] text-[var(--color-black)]"
+        className="text-[24px] max-w-[337px] sm:text-[32px] font-normal leading-[32px] text-[var(--color-black)]"
         style={{
           fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif",
         }}

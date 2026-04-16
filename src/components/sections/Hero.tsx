@@ -129,7 +129,7 @@ export function Hero({
               <div className="flex w-[100%] flex-col lg:flex-row lg:flex-wrap lg:justify-between items-start gap-4">
                 <div className="flex flex-col gap-3">
                   <motion.p
-                    className="text-[16px] leading-normal lg:text-[20px] lg:max-w-[444px]"
+                    className="text-[16px] leading-normal lg:text-[18px] lg:max-w-[444px]"
                     style={{
                       color: "rgba(20, 20, 20, 0.85)",
                       fontFamily: "var(--font-inter)",

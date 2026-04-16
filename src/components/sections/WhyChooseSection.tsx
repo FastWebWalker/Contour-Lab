@@ -143,19 +143,19 @@ export function WhyChooseSection({
               {t("missionLabel")}
             </span>
             <p
-              className="self-stretch font-normal text-[var(--color-black)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
+              className="self-stretch font-normal text-[var(--color-black)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
               style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
             >
               {t("missionBefore")}{" "}
               <strong
-                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
+                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
                 style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
               >
                 {t("missionStrong1")}
               </strong>{" "}
               {t("missionMiddle")}{" "}
               <strong
-                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[36px] min-[768px]:leading-[36px]"
+                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
                 style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
               >
                 {t("missionStrong2")}

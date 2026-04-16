@@ -19,7 +19,7 @@ export const footer = {
   ctaText:
     "Ми раді, коли ви задоволені, і завжди хочемо почути, якщо щось пішло не так, як очікувалося.",
   contact: "Зв'язатися",
-  copyright: "© Contour Lab 2025. All Times Reserved",
+  copyright: "© Contour Lab 2026. All Times Reserved",
 };
 
 export const common = {
