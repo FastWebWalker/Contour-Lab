@@ -4,7 +4,6 @@ import * as React from "react";
 
 /** Базові стилі H2: колір, align-self, normal style */
 const h2BaseStyle: React.CSSProperties = {
-  alignSelf: "stretch",
   color: "var(--Black, #141414)",
   fontStyle: "normal",
 };

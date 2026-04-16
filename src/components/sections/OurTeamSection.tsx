@@ -127,7 +127,7 @@ export function OurTeamSection({
             onPrev={goPrev}
             onNext={goNext}
             navAriaLabel={tCommon("sliderNav")}
-            className="shrink-0 self-start sm:self-auto"
+            className="shrink-0"
           />
         </motion.div>
 
