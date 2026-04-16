@@ -179,7 +179,7 @@ export const vacanciesJobs = {
 };
 
 export const jobCard = {
-  apply: "Apply",
+  apply: "Apply for a job",
 };
 
 export const jobSection = {

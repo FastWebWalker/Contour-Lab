@@ -34,7 +34,7 @@ const socialLinks = [
 function TeamCard({ name, role, photo, photoMobile }: { name: string; role: string; photo: string; photoMobile: string }) {
   return (
     <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
-      <div className="flex h-[669px] flex-[1_0_0] flex-col items-start gap-6 self-stretch">
+      <div className="flex h-[669px] flex-[1_0_0] flex-col items-start min-[1024px]:gap-6 self-stretch">
         <h3
           className="text-[28px] font-normal leading-normal text-[var(--Black,#141414)] font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[32px] min-[768px]:leading-[32px] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
         >
@@ -45,7 +45,7 @@ function TeamCard({ name, role, photo, photoMobile }: { name: string; role: stri
         >
           {role}
         </p>
-        <div className="flex gap-2.5">
+        <div className="flex gap-2.5 max-[1024px]:my-4">
           {socialLinks.map(({ href, src, label }) => (
             <a
               key={label}
