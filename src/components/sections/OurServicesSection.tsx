@@ -123,7 +123,7 @@ export function OurServicesSection({
 
       {/* Слайдер без контейнера: від лівого margin до кінця екрану справа */}
       <motion.div
-        className="relative ml-4 w-[calc(100vw-16px)] min-[768px]:ml-8 min-[768px]:w-[calc(100vw-32px)] min-[1440px]:ml-[80px] min-[1440px]:w-[calc(100vw-80px)]"
+        className="relative w-full overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={sectionViewport({ amount: 0.1 })}
@@ -134,7 +134,7 @@ export function OurServicesSection({
       >
         <div
           ref={scrollRef}
-          className="flex w-full gap-6 overflow-x-auto overflow-y-hidden pb-4 scroll-smooth md:gap-[24px] md:pb-0"
+          className="flex gap-6 overflow-x-auto overflow-y-hidden px-4 pb-4 scroll-smooth min-[768px]:px-8 min-[1440px]:px-[80px] md:gap-[24px] md:pb-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {Array.from({ length: SETS_COUNT }, (_, setIndex) =>
