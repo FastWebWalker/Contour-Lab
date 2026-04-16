@@ -78,7 +78,7 @@ export const ourTeam = {
     { name: "Mariia Bondar", role: "Company CEO" },
     { name: "Iryna Dziubenko", role: "Senior ceramist" },
     { name: "Katia Mykytiuk", role: "CAD designer" },
-    { name: "Team member name", role: "Role and short description" },
+    { name: "Volodymyr Lozynskiy", role: "Senior Ceramist" },
   ],
 };
 

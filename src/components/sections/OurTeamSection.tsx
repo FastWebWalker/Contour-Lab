@@ -20,10 +20,10 @@ const GAP = 24;
 const CARD_STEP = CARD_WIDTH + GAP;
 
 const TEAM_PHOTOS = [
-  "/ourTeam/1305dad7f27e9190b33821e2cdc3d5e7d86dc645.jpg",
-  "/ourTeam/1879ab55150dbe6bb5f3b324c17efc7655ea858c.jpg",
-  "/ourTeam/c9bd719131852d95e6b674a244d2f79fe7b3ae9f.jpg",
-  "/ourTeam/e920e345c84d78805f1fd565c021743da782891c.jpg",
+  { desktop: "/ourTeam/Maria.jpg", mobile: "/ourTeam/Maria_mobile.jpeg" },
+  { desktop: "/ourTeam/Iryna.jpg", mobile: "/ourTeam/Iryna.jpg" },
+  { desktop: "/ourTeam/Katerina.jpg", mobile: "/ourTeam/Kateruna_mobile.jpeg" },
+  { desktop: "/ourTeam/Volodymir.jpg", mobile: "/ourTeam/Volodymir_mobile.jpeg" },
 ] as const;
 
 const socialLinks = [
@@ -31,7 +31,7 @@ const socialLinks = [
   { href: "https://instagram.com", src: "/hero/Social Icons2.svg", label: "Instagram" },
 ];
 
-function TeamCard({ name, role, photo }: { name: string; role: string; photo: string }) {
+function TeamCard({ name, role, photo, photoMobile }: { name: string; role: string; photo: string; photoMobile: string }) {
   return (
     <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
       <div className="flex h-[669px] flex-[1_0_0] flex-col items-start gap-6 self-stretch">
@@ -60,13 +60,26 @@ function TeamCard({ name, role, photo }: { name: string; role: string; photo: st
           ))}
         </div>
         <div className="relative self-stretch shrink-0 w-full h-[252.819px] aspect-[69/89] min-[768px]:h-[500px] min-[768px]:aspect-auto rounded-[16px] overflow-hidden bg-[lightgray]">
-          <Image
-            src={photo}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="424px"
-          />
+          {/* Desktop image */}
+          <div className="hidden md:block absolute inset-0">
+            <Image
+              src={photo}
+              alt=""
+              fill
+              className="object-cover object-top"
+              sizes="424px"
+            />
+          </div>
+          {/* Mobile image */}
+          <div className="block md:hidden absolute inset-0">
+            <Image
+              src={photoMobile}
+              alt=""
+              fill
+              className="object-cover object-top"
+              sizes="424px"
+            />
+          </div>
         </div>
       </div>
     </CardWrapper>
@@ -88,7 +101,8 @@ export function OurTeamSection({
   const rawMembers = t.raw("members") as { name: string; role: string }[];
   const team = rawMembers.map((m, i) => ({
     ...m,
-    photo: TEAM_PHOTOS[i] ?? TEAM_PHOTOS[0],
+    photo: TEAM_PHOTOS[i]?.desktop ?? TEAM_PHOTOS[0].desktop,
+    photoMobile: TEAM_PHOTOS[i]?.mobile ?? TEAM_PHOTOS[0].mobile,
   }));
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -149,12 +163,13 @@ export function OurTeamSection({
           className="flex w-full gap-[24px] overflow-x-auto overflow-y-hidden px-4 pb-4 scroll-smooth min-[768px]:px-8 min-[1440px]:px-[60px] md:pb-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {team.map((member) => (
+          {team.map((member, i) => (
             <TeamCard
-              key={member.photo}
+              key={i}
               name={member.name}
               role={member.role}
               photo={member.photo}
+              photoMobile={member.photoMobile}
             />
           ))}
         </div>
