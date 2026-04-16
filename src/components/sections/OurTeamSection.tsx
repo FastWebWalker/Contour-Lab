@@ -121,7 +121,9 @@ export function OurTeamSection({
           whileInView="visible"
           viewport={sectionViewport({ amount: 0.3 })}
         >
-          <Title as="h2">{t("title")}</Title>
+          <Title as="h2" className="min-[1024px]:text-[32px] min-[1024px]:leading-[32px]">
+            {t("title")}
+          </Title>
 
           <SliderNavButtons
             canGoPrev={canGoPrev}
