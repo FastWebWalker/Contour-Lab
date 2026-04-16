@@ -16,9 +16,9 @@ import {
 const GAP_PX = 24;
 
 const TESTIMONIAL_AVATARS = [
-  "/ourTeam/1305dad7f27e9190b33821e2cdc3d5e7d86dc645.jpg",
-  "/ourTeam/1879ab55150dbe6bb5f3b324c17efc7655ea858c.jpg",
-  "/ourTeam/c9bd719131852d95e6b674a244d2f79fe7b3ae9f.jpg",
+  "/ourClients/anatolyi.png",
+  "/ourClients/Natalia.jpg",
+  "/ourClients/Ivan.jpeg",
 ] as const;
 
 /** Розміри крапок пагінації зліва направо: 14 → 12 → 9 px */
