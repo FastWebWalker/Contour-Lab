@@ -32,8 +32,8 @@ export const galleryPage = {
 };
 
 export const vacanciesPage = {
-  titleBefore: "Приєднуйся",
-  titleAccent: "до нас!",
+  titleBefore: "Join our",
+  titleAccent: "team!",
   subtitle:
     "Перегляньте актуальні вакансії на нашому сайті та надішліть своє резюме! Можливо, це ваш шанс!",
 };

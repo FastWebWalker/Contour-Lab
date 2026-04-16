@@ -35,11 +35,9 @@ function TeamCard({ name, role, photo, photoMobile }: { name: string; role: stri
   return (
     <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
       <div className="flex h-[669px] flex-[1_0_0] flex-col items-start min-[1024px]:gap-6 self-stretch">
-        <h3
-          className="text-[28px] font-normal leading-normal text-[var(--Black,#141414)] font-['Gilroy-Medium','Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:text-[32px] min-[768px]:leading-[32px] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
-        >
+        <Title as="h3" variant="h3">
           {name}
-        </h3>
+        </Title>
         <p
           className="text-[16px] font-normal leading-normal text-[var(--color-grey-hard,#555)] [font-family:var(--font-inter),Inter,sans-serif] min-[768px]:text-[24px] min-[768px]:text-[rgba(20,20,20,0.85)] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
         >

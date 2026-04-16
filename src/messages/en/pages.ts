@@ -32,8 +32,8 @@ export const galleryPage = {
 };
 
 export const vacanciesPage = {
-  titleBefore: "Join",
-  titleAccent: "us!",
+  titleBefore: "Join our",
+  titleAccent: "team!",
   subtitle:
     "Browse open positions on our site and send your CV — this could be your chance!",
 };
