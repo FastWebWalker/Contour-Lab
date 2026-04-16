@@ -202,7 +202,7 @@ export function Hero({
                               style={{ fontFamily: "var(--font-inter)" }}
                             >
                               {btn.label}
-                              <ArrowRightIcon className="shrink-0" size={22} />
+                              <ArrowRightIcon className="shrink-0" size={36} />
                             </button>
                           </motion.div>
                         ) : (
@@ -229,7 +229,7 @@ export function Hero({
                               style={{ fontFamily: "var(--font-inter)" }}
                             >
                               {btn.label}
-                              <ArrowRightIcon className="shrink-0" size={22} />
+                              <ArrowRightIcon className="shrink-0" size={36} />
                             </Link>
                           </motion.div>
                         )

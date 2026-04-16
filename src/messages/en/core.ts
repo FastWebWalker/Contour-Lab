@@ -5,9 +5,9 @@ export const meta = {
 };
 
 export const nav = {
-  home: "Home",
+  home: "General",
   services: "Services",
-  vacancies: "Careers",
+  vacancies: "Vacancies",
   contacts: "Contacts",
   gallery: "Gallery",
   blog: "Blog",
