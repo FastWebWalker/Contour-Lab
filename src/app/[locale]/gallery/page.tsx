@@ -14,7 +14,7 @@ export default async function GalleryPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "galleryPage" });
   const manifest = readGalleryManifest();
-  console.log(manifest);
+
 
   const galleryHeroTitle = (
     <>
