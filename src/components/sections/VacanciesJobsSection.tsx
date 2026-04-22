@@ -64,7 +64,7 @@ export function VacanciesJobsSection({
               ease: MOTION_EASE,
             }}
           >
-            <JobCard {...job} onApplyClick={scrollToApplyForm} />
+            <JobCard {...job} onApplyClick={scrollToApplyForm} rotateImage={i === 0} />
           </motion.div>
         ))}
       </div>

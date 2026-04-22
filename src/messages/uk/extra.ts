@@ -149,7 +149,7 @@ export const vacanciesJobs = {
   jobs: [
     {
       title: "Кераміст",
-      dateText: "Сер 29, 2025",
+      dateText: "Сер 29, 2026",
       salaryText: "$1000–1500 в місяць",
       locationType: "Офіс",
       description:
@@ -164,7 +164,7 @@ export const vacanciesJobs = {
     },
     {
       title: "CAD Дизайнер",
-      dateText: "Сер 29, 2025",
+      dateText: "Сер 29, 2026",
       salaryText: "$1000–1500 в місяць",
       locationType: "Офіс/Віддалено",
       description:
@@ -186,7 +186,7 @@ export const jobCard = {
 
 export const jobSection = {
   title: "Кераміст",
-  dateText: "Сер 29, 2025",
+  dateText: "Сер 29, 2026",
   salaryText: "$1000–1500 в місяць",
   locationType: "Офіс",
   description:

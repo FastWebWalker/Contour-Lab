@@ -48,6 +48,7 @@ export function HomePageContent() {
         titleContent={homeHeroTitle}
         subtitle={t("subtitle")}
         heroImage={homeHeroImage}
+        isGeneralPage
         showButtons
         buttons={homeHeroButtons}
         showStats

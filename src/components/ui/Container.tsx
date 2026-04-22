@@ -14,7 +14,6 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
           /* єдиний відступ: mobile 16px, tablet 32px, desktop 80px */
           "px-4",
           "min-[768px]:px-8",
-          "min-[1024px]:px-[80px]",
           "min-[1440px]:px-[80px]",
           className,
         ]

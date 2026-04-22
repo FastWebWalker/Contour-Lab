@@ -1,7 +1,7 @@
 import type { SocialLink } from "../sections/Hero";
 
 export const homeHeroImage =
-  "/hero/" + encodeURIComponent("ChatGPT Image 16 вер. 2025 р., 14_28_11 2.png");
+  "/hero/7b7fbb3ad26234ca858aa8faaca96040a8017e3f.png";
 
 export const homeHeroSocialLinks: SocialLink[] = [
   { href: "mailto:info@contour-lab.com", src: "/hero/mail.svg", label: "Email" },

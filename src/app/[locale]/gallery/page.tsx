@@ -30,6 +30,7 @@ export default async function GalleryPage({
         titleContent={galleryHeroTitle}
         subtitle={t("subtitle")}
         heroImage={galleryHeroImage}
+        heroImageContainerClassName="lg:-bottom-[30px]"
         showButtons={false}
         showStats={false}
         showSocialLinks={false}
