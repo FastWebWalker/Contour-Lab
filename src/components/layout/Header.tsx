@@ -157,7 +157,7 @@ export function Header() {
             <div className="absolute inset-0 flex flex-col overflow-hidden">
               {/* Left logo: mobile 117×207, tablet+ 179.831×415. Mobile позиція: left-[…] top-[…]; tablet+: md:left-[-3%] md:top-1/2 */}
               <div
-                className="absolute pointer-events-none flex items-center justify-center -translate-y-1/2 w-[117.001px] h-[207px] md:w-[179.831px] md:h-[415px] left-[-3%] top-1/2 md:left-[-3%] md:top-1/2"
+                className="absolute pointer-events-none flex items-center justify-center -translate-y-1/2 w-[117.001px] h-[207px] min-[500px]:w-[179.831px] min-[500px]:h-[415px] left-[-3%] top-[16%] min-[500px]:left-[-3%] min-[500px]:top-[46%]"
               >
                 <Image
                   src="/hero/LogoMenu.svg"
@@ -170,7 +170,7 @@ export function Header() {
               </div>
               {/* Right logo: mobile 145×58, tablet+ 204×204. Mobile позиція: left-[…] top-[…]; tablet+: md:left-[80%] md:top-[70%] */}
               <div
-                className="absolute pointer-events-none w-[145px] h-[58px] md:w-[204px] md:h-[204px] left-[80%] top-[70%] md:left-[80%] md:top-[70%]"
+                className="absolute pointer-events-none w-[145px] h-[58px] min-[500px]:w-[204px] min-[500px]:h-[204px] left-[70%] top-[74%] min-[500px]:left-[80%] min-[500px]:top-[74%]"
               >
                 <Image
                   src="/hero/Group.svg"
