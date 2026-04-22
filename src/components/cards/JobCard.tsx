@@ -31,6 +31,7 @@ export interface JobCardProps {
   imageSrc: string;
   className?: string;
   onApplyClick?: () => void;
+  rotateImage?: boolean;
 }
 
 export function JobCard({
@@ -44,6 +45,7 @@ export function JobCard({
   imageSrc,
   className = "",
   onApplyClick,
+  rotateImage = false,
 }: JobCardProps) {
   return (
     <CardWrapper
@@ -129,7 +131,7 @@ export function JobCard({
           src={imageSrc}
           alt=""
           fill
-          className="object-cover"
+          className={["object-cover", rotateImage ? "rotate-270" : ""].filter(Boolean).join(" ")}
           sizes="(max-width: 1280px) 100vw, 40vw"
         />
       </div>
