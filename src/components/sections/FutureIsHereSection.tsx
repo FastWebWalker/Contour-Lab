@@ -50,7 +50,7 @@ export function FutureIsHereSection({
         <div className="flex flex-col gap-[24px] min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-12">
           {/* Left block */}
           <motion.div
-            className="flex min-w-0 w-full flex-1 flex-col items-stretch gap-6 min-[1024px]:min-w-0 min-[1024px]:basis-0"
+            className="flex min-w-0 w-full flex-1 flex-col items-stretch justify-center gap-2 min-[768px]:gap-4 min-[1024px]:gap-6 min-[1024px]:min-w-0 min-[1024px]:basis-0"
             initial={reduced ? "visible" : "hidden"}
             whileInView="visible"
             viewport={sectionViewport()}
@@ -89,7 +89,7 @@ export function FutureIsHereSection({
           </motion.div>
 
           {/* Right block: сіра рамка одразу, фото з'являється окремо при скролі */}
-          <div className="flex w-full min-w-0 justify-center min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink">
+          <div className="flex w-full min-w-0 justify-center mt-2 min-[768px]:mt-4 min-[1024px]:mt-0 min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink">
             <div className="flex w-full max-w-full flex-col items-center justify-center rounded-[30px] bg-[#F6F6F6] pt-[63.138px]">
               <motion.div
                 className="relative w-full aspect-[381/272] overflow-hidden"

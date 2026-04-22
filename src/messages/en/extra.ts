@@ -35,8 +35,8 @@ export const futureIsHere = {
 };
 
 export const precisionQuality = {
-  aria: "Precision and quality control",
-  title: "Precision and quality control",
+  aria: "Accuracy and quality control",
+  title: "Accuracy and quality control",
   p1:
     "We trust the precision of our work because we check every case under a microscope: fit and contact for any type of restoration.",
   p2:
