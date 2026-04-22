@@ -141,7 +141,7 @@ export function CVFormSection({
                 style={inputStyle}
               />
 
-              <div className="flex flex-row items-center gap-2 md:flex-row-reverse md:gap-4">
+              <div className="flex flex-col items-start gap-3 md:flex-row-reverse md:items-center md:gap-4">
                 <input
                   id="cv-file-input"
                   type="file"
