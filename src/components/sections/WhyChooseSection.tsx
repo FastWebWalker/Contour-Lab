@@ -110,7 +110,7 @@ export function WhyChooseSection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-10", className].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-10", className, "relative z-30"].filter(Boolean).join(" ")}
       {...props}
     >
       <Container
