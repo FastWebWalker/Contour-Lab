@@ -10,11 +10,10 @@ export const whyChoose = {
   aria: "Why choose CONTOUR",
   title: "Why choose CONTOUR?",
   missionLabel: "Our mission",
-  missionBefore: "We care for many patients throughout",
-  missionStrong1: "their entire",
-  missionMiddle:
-    "life. We provide advice, recommendations, consultations and",
-  missionStrong2: "support",
+  missionBefore: "We treat many patients throughout their",
+  missionStrong1: "lives.",
+  missionMiddle: "We advise, recommend, consult and",
+  missionStrong2: "help",
   ceo: "—CEO, Serhiy Hrybovskyi",
   cards: [
     "Experience with complex cases",
