@@ -1,7 +1,7 @@
 export const meta = {
   title: "Contour Lab",
   description:
-    "Contour Lab digital dental laboratory — dental products, CAD/CAM, precision and quality control.",
+    "Contour Lab digital dental laboratory — dental products, CAD/CAM, accuracy and quality control.",
 };
 
 export const nav = {

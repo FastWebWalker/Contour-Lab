@@ -10,11 +10,10 @@ export const whyChoose = {
   aria: "Why choose CONTOUR",
   title: "Why choose CONTOUR?",
   missionLabel: "Our mission",
-  missionBefore: "We care for many patients throughout",
-  missionStrong1: "their entire",
-  missionMiddle:
-    "life. We provide advice, recommendations, consultations and",
-  missionStrong2: "support",
+  missionBefore: "We treat many patients throughout their",
+  missionStrong1: "lives.",
+  missionMiddle: "We advise, recommend, consult and",
+  missionStrong2: "help",
   ceo: "—CEO, Serhiy Hrybovskyi",
   cards: [
     "Experience with complex cases",
@@ -36,8 +35,8 @@ export const futureIsHere = {
 };
 
 export const precisionQuality = {
-  aria: "Precision and quality control",
-  title: "Precision and quality control",
+  aria: "Accuracy and quality control",
+  title: "Accuracy and quality control",
   p1:
     "We trust the precision of our work because we check every case under a microscope: fit and contact for any type of restoration.",
   p2:
@@ -76,7 +75,7 @@ export const ourTeam = {
   title: "Our team",
   members: [
     { name: "Mariia Bondar", role: "Company CEO" },
-    { name: "Iryna Dziubenko", role: "Senior ceramist" },
+    { name: "Iryna Dzyubenko", role: "Senior ceramist" },
     { name: "Kate Mykytiuk", role: "Middle CAD Designer" },
     { name: "Volodymyr Lozynskyi", role: "Senior Ceramist" },
     { name: "Mariyan Mykytiuk", role: "Removable prosthesis technician" },

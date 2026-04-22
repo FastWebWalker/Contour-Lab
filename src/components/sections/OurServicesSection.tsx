@@ -123,7 +123,7 @@ export function OurServicesSection({
 
       {/* Слайдер без контейнера: від лівого margin до кінця екрану справа */}
       <motion.div
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-visible"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={sectionViewport({ amount: 0.1 })}

@@ -50,7 +50,7 @@ export function PrecisionQualitySection({
       <Container>
         <div className="flex flex-col gap-4 min-[768px]:gap-8 min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-[50px]">
           <motion.div
-            className="order-1 flex w-full min-w-0 flex-col items-start gap-6 min-[1024px]:order-2 min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink"
+            className="order-1 flex w-full min-w-0 flex-col items-start justify-center gap-2 min-[768px]:gap-4 min-[1024px]:gap-6 min-[1024px]:order-2 min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink"
             initial={reduced ? "visible" : "hidden"}
             whileInView="visible"
             viewport={sectionViewport()}
@@ -74,7 +74,7 @@ export function PrecisionQualitySection({
           </motion.div>
 
           <motion.div
-            className="order-2 flex w-full min-h-[280px] min-w-0 flex-col items-start justify-end gap-2.5 overflow-hidden rounded-[30px] bg-[lightgray] p-8 aspect-[635/507] min-[1024px]:order-1 min-[1024px]:min-h-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink"
+            className="order-2 flex w-full min-h-[280px] min-w-0 flex-col items-start justify-end gap-2.5 overflow-hidden rounded-[30px] bg-[lightgray] p-8 aspect-[635/507] mt-2 min-[768px]:mt-4 min-[1024px]:mt-0 min-[1024px]:order-1 min-[1024px]:min-h-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink"
             style={{
               backgroundImage: `url(${HERO_IMAGE})`,
               backgroundRepeat: "no-repeat",
