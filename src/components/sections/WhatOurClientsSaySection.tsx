@@ -40,7 +40,7 @@ function TestimonialCard({
   return (
     <motion.article
       variants={fadeUpCardVariants(reduced)}
-      className="flex w-[calc((100vw-80px)/1.3)] max-w-full shrink-0 flex-col items-start gap-2.5 self-stretch rounded-[30px] bg-[#F2F2F2] py-8 px-4 md:w-[calc((100vw-112px)/1.3)] min-[1440px]:w-[calc((100vw-168px)/2.7)]"
+      className="flex w-[calc((100vw-80px)/1.3)] max-w-full shrink-0 flex-col items-start gap-2.5 self-stretch rounded-[30px] bg-[#F2F2F2] py-8 px-4 md:w-[calc((100vw-112px)/1.3)] lg:w-[calc((100vw-112px)/2.7)] min-[1440px]:w-[calc((100vw-168px)/2.7)]"
     >
       <div className="flex w-full flex-col items-start gap-6 self-stretch">
         <div className="flex w-full items-start gap-4">
