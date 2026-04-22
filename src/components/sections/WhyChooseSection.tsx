@@ -110,11 +110,11 @@ export function WhyChooseSection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-10", className, "relative z-30"].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-10", className, "relative z-0"].filter(Boolean).join(" ")}
       {...props}
     >
       <Container
-        className="grid grid-cols-1 items-start gap-6 md:gap-8 min-[1080px]:grid-cols-[minmax(0,1fr)_515px] min-[1080px]:gap-10 min-[1220px]:grid-cols-[minmax(0,1fr)_572px] min-[1440px]:grid-cols-[minmax(0,1fr)_635px]"
+        className="relative z-10 grid grid-cols-1 items-start gap-6 md:gap-8 min-[1080px]:grid-cols-[minmax(0,1fr)_515px] min-[1080px]:gap-10 min-[1220px]:grid-cols-[minmax(0,1fr)_572px] min-[1440px]:grid-cols-[minmax(0,1fr)_635px]"
       >
         {/* Лівий блок: контент */}
         <motion.div
