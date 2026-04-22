@@ -55,6 +55,8 @@ export interface HeroProps {
   onOutlineCtaClick?: () => void;
   /** Apply general page hero image sizing on mobile */
   isGeneralPage?: boolean;
+  /** Additional classes for hero image container positioning/sizing */
+  heroImageContainerClassName?: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -74,6 +76,7 @@ export function Hero({
   onPrimaryCtaClick,
   onOutlineCtaClick,
   isGeneralPage = false,
+  heroImageContainerClassName = "",
 }: HeroProps) {
   const reduced = useReducedMotion() ?? false;
 
@@ -92,11 +95,18 @@ export function Hero({
 
         {/* 3D dental image — right bottom; mobile full-width, tablet 640×580, desktop 1100×800 */}
         <motion.div
-          className={`absolute right-0 ${isGeneralPage ? "-bottom-[20px]" : "-bottom-[50px]"} md:-bottom-[10px] ${
+          className={[
+            "absolute right-0",
+            isGeneralPage ? "-bottom-[20px]" : "-bottom-[50px]",
+            "md:-bottom-[10px]",
             isGeneralPage
               ? "w-[296px] h-[327px] aspect-[86/95] lg:w-[720px] lg:h-[540px] xl:w-[980px] xl:h-[720px]"
-              : "w-[110%] h-[70%] lg:w-[800px] lg:h-[600px] xl:w-[1100px] xl:h-[800px]"
-          } md:w-[640px] md:h-[580px] z-10 pointer-events-none select-none`}
+              : "w-[110%] h-[70%] lg:w-[800px] lg:h-[600px] xl:w-[1100px] xl:h-[800px]",
+            "md:w-[640px] md:h-[580px] z-10 pointer-events-none select-none",
+            heroImageContainerClassName,
+          ]
+            .filter(Boolean)
+            .join(" ")}
           style={
             isGeneralPage
               ? {

@@ -27,6 +27,7 @@ export default async function ContactsPage({
         titleContent={contactsHeroTitle}
         subtitle={t("subtitle")}
         heroImage={contactsHeroImage}
+        heroImageContainerClassName="lg:-bottom-[30px]"
         showButtons={false}
         showStats={false}
         showSocialLinks
