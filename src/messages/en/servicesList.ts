@@ -24,7 +24,7 @@ export const servicesList = {
         "Individual ART work",
         "Zirconia with ceramic layering",
       ],
-      image: "/ourServices/6f9df25b7aa784775d92e31ea80b8421d7db98e4.png",
+      image: "/ourServices/ad8374d49bed8a3a749198f55a6d011f30cba89f.png",
     },
     {
       title: "CAD modelling and 3D printing",
@@ -47,7 +47,7 @@ export const servicesList = {
         "Pressing",
         "Laser sintering",
       ],
-      image: "/ourServices/ad8374d49bed8a3a749198f55a6d011f30cba89f.png",
+      image: "/ourServices/6f9df25b7aa784775d92e31ea80b8421d7db98e4.png",
     },
   ],
 };
