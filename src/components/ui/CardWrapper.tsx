@@ -23,7 +23,7 @@ export const CardWrapper = React.forwardRef<HTMLElement, CardWrapperProps>(
   function CardWrapper(
     {
       as: Component = "div",
-      paddingClassName = "p-8",
+      paddingClassName = "p-4 md:p-8",
       widthClassName = "w-[424px] max-w-full shrink-0",
       className = "",
       children,

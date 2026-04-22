@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import { CardWrapper } from "../ui/CardWrapper";
-import { Container } from "../ui/Container";
 import { SliderNavButtons } from "../ui/SliderNavButtons";
 import { Title } from "../ui/Title";
 import {
@@ -22,10 +21,10 @@ const CARD_STEP = CARD_WIDTH + GAP;
 const TEAM_PHOTOS = [
   { desktop: "/ourTeam/Maria.jpg", mobile: "/ourTeam/Maria_mobile.jpeg" },
   { desktop: "/ourTeam/Iryna.jpg", mobile: "/ourTeam/Iryna.jpg" },
-  { desktop: "/ourTeam/Katerina.jpg", mobile: "/ourTeam/Kateruna_mobile.jpeg" },
+  { desktop: "/ourTeam/Katerina.jpg", mobile: "/ourTeam/Katerina_mobile.jpeg" },
   { desktop: "/ourTeam/Volodymir.jpg", mobile: "/ourTeam/Volodymir_mobile.jpeg" },
-  { desktop: "/ourTeam/1 (38) 1.png", mobile: "/ourTeam/1 (38) 1.png" },
-  { desktop: "/ourTeam/1 (9) 1.png", mobile: "/ourTeam/1 (9) 1.png" },
+  { desktop: "/ourTeam/Mariyan.png", mobile: "/ourTeam/Mariyan_mobile.jpeg" },
+  { desktop: "/ourTeam/Vitaliy.png", mobile: "/ourTeam/Vitaliy.png" },
 ] as const;
 
 const socialLinks = [
@@ -35,17 +34,20 @@ const socialLinks = [
 
 function TeamCard({ name, role, photo, photoMobile }: { name: string; role: string; photo: string; photoMobile: string }) {
   return (
-    <CardWrapper as="article" widthClassName="w-[424px] shrink-0 max-w-full">
-      <div className="flex h-[669px] flex-[1_0_0] flex-col items-start min-[1024px]:gap-6 self-stretch">
-        <Title as="h3" variant="h3">
+    <CardWrapper as="article" widthClassName="w-[228px] min-[768px]:w-[424px] shrink-0 max-w-full">
+      <div className="flex min-[768px]:h-[669px] flex-[1_0_0] flex-col items-start gap-1 md:gap-2 self-stretch">
+        <Title as="h3" variant="h3" className="!text-[20px] !font-medium min-[768px]:!text-[32px]">
           {name}
         </Title>
         <p
-          className="text-[16px] font-normal leading-normal text-[var(--color-grey-hard,#555)] [font-family:var(--font-inter),Inter,sans-serif] min-[768px]:text-[24px] min-[768px]:text-[rgba(20,20,20,0.85)] min-[768px]:font-['Gilroy',ui-sans-serif,system-ui,sans-serif]"
+          className="!text-[18px] font-normal leading-normal text-[var(--color-grey-hard,#555)] font-['Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:!text-[24px] min-[768px]:text-[rgba(20,20,20,0.85)]"
         >
-          {role}
+          <span className="md:hidden">
+            {role.replace(/Removable\s+|знімного\s+/i, "").replace(/^./, (c) => c.toUpperCase())}
+          </span>
+          <span className="hidden md:inline">{role}</span>
         </p>
-        <div className="flex gap-2.5 max-[1024px]:my-4">
+        <div className="flex gap-2.5 my-2 md:my-4">
           {socialLinks.map(({ href, src, label }) => (
             <a
               key={label}
@@ -59,7 +61,7 @@ function TeamCard({ name, role, photo, photoMobile }: { name: string; role: stri
             </a>
           ))}
         </div>
-        <div className="relative self-stretch shrink-0 w-full h-[252.819px] aspect-[69/89] min-[768px]:h-[500px] min-[768px]:aspect-auto rounded-[16px] overflow-hidden bg-[lightgray]">
+        <div className="relative self-stretch shrink-0 w-full h-[252px] aspect-[69/89] min-[768px]:h-[500px] min-[768px]:aspect-auto rounded-[16px] overflow-hidden bg-[lightgray]">
           {/* Desktop image */}
           <div className="hidden md:block absolute inset-0">
             <Image
@@ -127,7 +129,7 @@ export function OurTeamSection({
     >
       <div className="flex flex-col gap-8">
         <motion.div
-          className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch px-4 min-[768px]:px-8 min-[1440px]:px-[60px] sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]"
+          className="mb-[16px] flex w-full min-w-0 flex-col gap-6 self-stretch px-4 min-[768px]:px-8 min-[1440px]:px-[80px] sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mb-[32px] lg:mb-[40px]"
           variants={fadeUpVariants(reduced)}
           initial="hidden"
           whileInView="visible"
