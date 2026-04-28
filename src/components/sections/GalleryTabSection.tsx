@@ -30,6 +30,8 @@ const tabTextStyle: React.CSSProperties = {
   fontFamily: "var(--font-inter), Inter, sans-serif",
 };
 
+const MOBILE_PREVIEW_LIMIT = 10;
+
 export interface GalleryTabSectionProps {
   manifest: GalleryManifest;
 }
@@ -39,21 +41,40 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
   const reduced = useReducedMotion() ?? false;
   const [active, setActive] = React.useState<GalleryTabId>("all");
   const [selectedIdx, setSelectedIdx] = React.useState<number | null>(null);
+  const [isMobile, setIsMobile] = React.useState<boolean>(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 767px)").matches
+      : false
+  );
+  const [expandedTabs, setExpandedTabs] = React.useState<
+    Partial<Record<GalleryTabId, boolean>>
+  >({});
 
   const images = React.useMemo(
     () => getImagesForTab(manifest, active),
     [manifest, active]
   );
+  const isExpanded = expandedTabs[active] ?? false;
+  const shouldLimitForCurrentViewport = isMobile && !isExpanded;
+  const visibleImages = React.useMemo(
+    () =>
+      shouldLimitForCurrentViewport
+        ? images.slice(0, MOBILE_PREVIEW_LIMIT)
+        : images,
+    [images, shouldLimitForCurrentViewport]
+  );
+  const shouldShowViewAll =
+    isMobile && images.length > MOBILE_PREVIEW_LIMIT && !isExpanded;
 
   const openLightbox = (idx: number) => setSelectedIdx(idx);
   const closeLightbox = () => setSelectedIdx(null);
   const nextImage = () => {
     if (selectedIdx === null) return;
-    setSelectedIdx((selectedIdx + 1) % images.length);
+    setSelectedIdx((selectedIdx + 1) % visibleImages.length);
   };
   const prevImage = () => {
     if (selectedIdx === null) return;
-    setSelectedIdx((selectedIdx - 1 + images.length) % images.length);
+    setSelectedIdx((selectedIdx - 1 + visibleImages.length) % visibleImages.length);
   };
 
   // Lock scroll when lightbox is open
@@ -78,7 +99,18 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedIdx, images.length]);
+  }, [selectedIdx, visibleImages.length]);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
   return (
     <section
@@ -139,7 +171,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
               ease: MOTION_EASE,
             }}
           >
-            {images.map((src, index) => (
+            {visibleImages.map((src, index) => (
               <motion.figure
                 key={`${active}-${index}-${src}`}
                 onClick={() => openLightbox(index)}
@@ -163,6 +195,22 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
             ))}
           </motion.div>
         </AnimatePresence>
+        {shouldShowViewAll && (
+          <div className="mt-6 flex justify-center md:hidden">
+            <button
+              type="button"
+              onClick={() =>
+                setExpandedTabs((prev) => ({ ...prev, [active]: true }))
+              }
+              className="inline-flex h-[74px] w-full items-center justify-center rounded-[52px] border border-[var(--color-red-main)] px-8 text-[20px] leading-normal text-[var(--color-red-main)]"
+              style={{
+                fontFamily: "var(--font-inter)",
+              }}
+            >
+              {t("viewAll")}
+            </button>
+          </div>
+        )}
 
         {/* Lightbox Overlay */}
         <AnimatePresence>
@@ -175,7 +223,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
               onClick={closeLightbox}
             >
               <motion.div
-                key={images[selectedIdx]}
+                key={visibleImages[selectedIdx]}
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -185,7 +233,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
               >
                 <div className="relative h-[85vh] w-full overflow-hidden rounded-lg">
                   <Image
-                    src={images[selectedIdx]}
+                    src={visibleImages[selectedIdx]}
                     alt=""
                     fill
                     className="object-contain"
@@ -224,7 +272,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
 
                 {/* Counter */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pb-4 text-white/50 font-['Inter'] text-sm">
-                  {selectedIdx + 1} / {images.length}
+                  {selectedIdx + 1} / {visibleImages.length}
                 </div>
               </motion.div>
             </motion.div>

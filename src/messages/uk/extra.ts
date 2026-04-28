@@ -219,6 +219,7 @@ export const blogPost = {
 export const galleryTab = {
   sectionAria: "Галерея робіт за категоріями",
   tabsAria: "Категорії галереї",
+  viewAll: "View All",
   tabs: {
     all: "Всі Фото",
     veneers: "Вініри",
