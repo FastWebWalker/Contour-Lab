@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { ArrowRightIcon } from "../icons/ArrowRight";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
@@ -23,7 +24,7 @@ const TAB_MSG_KEY: Record<GalleryTabId, "tabs.all" | "tabs.veneers" | "tabs.brid
 };
 
 const tabBaseClass =
-  "inline-flex h-[54px] shrink-0 items-center justify-center gap-2.5 rounded-[30px] px-4 py-3 text-[20px] font-normal leading-normal not-italic transition-all duration-200";
+  "inline-flex h-[54px] shrink-0 items-center justify-center gap-2.5 rounded-[30px] px-4 py-3 text-[20px] font-normal leading-normal not-italic transition-all duration-200 cursor-pointer";
 
 const tabTextStyle: React.CSSProperties = {
   color: "var(--Black, #141414)",
@@ -171,7 +172,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 transition-colors"
+              className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 p-4 transition-colors"
               onClick={closeLightbox}
             >
               <motion.div
@@ -194,32 +195,34 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
                   />
                 </div>
 
-                {/* Lightbox Controls */}
+                {/* Close button */}
                 <button
                   type="button"
                   onClick={closeLightbox}
-                  className="absolute top-0 right-0 p-4 text-white hover:text-white/70 transition-colors"
+                  className="absolute top-4 right-4 flex h-[48px] w-[48px] items-center justify-center rounded-full border border-white/30 bg-black/40 backdrop-blur-sm text-white transition-all hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
                   aria-label="Close"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
 
+                {/* Prev arrow */}
                 <button
                   type="button"
                   onClick={prevImage}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 p-4 text-white hover:text-white/70 transition-colors hidden md:block"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/30 bg-black/40 backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
                   aria-label="Previous"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  <ArrowRightIcon className="rotate-180 text-white" size={32} />
                 </button>
 
+                {/* Next arrow */}
                 <button
                   type="button"
                   onClick={nextImage}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 p-4 text-white hover:text-white/70 transition-colors hidden md:block"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/30 bg-black/40 backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
                   aria-label="Next"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  <ArrowRightIcon className="text-white" size={32} />
                 </button>
 
                 {/* Counter */}
