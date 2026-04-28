@@ -7,7 +7,9 @@ export interface BlogPost {
     content: string;
 }
 
-export const BLOG_POSTS: BlogPost[] = [
+export type BlogLocale = "uk" | "en";
+
+export const BLOG_POSTS_UK: BlogPost[] = [
     {
         id: 1,
         title: "Натхнення для дітей зі Smile Energy Group",
@@ -118,3 +120,100 @@ export const BLOG_POSTS: BlogPost[] = [
         `,
     },
 ];
+
+export const BLOG_POSTS_EN: BlogPost[] = [
+    {
+        id: 1,
+        title: "Inspiration for Children with Smile Energy Group",
+        description:
+            "How we turn dental visits into a positive experience. Social initiatives and care for a healthier future for children.",
+        image: "/blogSection/a29dac667cdbc3ae81cc046832a688ae7efe4469.png",
+        href: "/blog/1",
+        content: `
+            <p>We are happy to share great news: Smile Energy Group became a partner of the "Save Questeria" camp organized by students of the Ukrainian Catholic University for children from a care home.</p>
+            <p>The project is designed to support children, help them develop practical skills, and discover their own path with confidence.</p>
+            <p>Over three days, participants joined activities focused on financial literacy, creativity, health, and first aid. Each day combined learning with interactive teamwork.</p>
+            <p>At Smile Energy Group, we believe initiatives like this are essential. They help children feel seen, supported, and empowered to grow.</p>
+            <p>We are proud to contribute to youth development, because children are our future.</p>
+        `,
+    },
+    {
+        id: 2,
+        title: "CAD/CAM: How Digital Technologies Transform Smiles",
+        description:
+            "Switch from manual modeling to high-precision digital workflows. A look at modern tools for clinics and labs.",
+        image: "/blogSection/9f044ae8a901d8b238c5d8a7b2f6eed5b971329a.png",
+        href: "/blog/2",
+        content: `
+            <p>Modern dental technology is rapidly moving into digital workflows. CAD/CAM (Computer-Aided Design / Computer-Aided Manufacturing) enables highly precise and predictable restorations.</p>
+            <p>Instead of traditional impressions, intraoral scanners create a detailed 3D model of the patient's dentition. A technician designs a crown, veneer, or bridge digitally, and milling equipment produces it from zirconia or ceramic.</p>
+            <p>Digital protocols reduce human error, improve communication between doctor and laboratory, and shorten treatment timelines.</p>
+            <p>Key advantages include precise fit, faster production, stable material quality, and predictable esthetics.</p>
+            <p>CAD/CAM is the modern standard for laboratories focused on durable, functional, and natural-looking results.</p>
+        `,
+    },
+    {
+        id: 3,
+        title: "Digital Workflow: Why Analog Methods Will Disappear in 5-10 Years",
+        description:
+            "Learn how digital dentistry speeds treatment and improves fit, predictability, and communication.",
+        image: "/blogSection/124712ea29f5db0b4d0128959f6f63d64d9d8627.jpg",
+        href: "/blog/3",
+        content: `
+            <p>Dentistry is quickly becoming digital. What used to be innovation is now turning into the new baseline.</p>
+            <p>From intraoral scanning to milling and 3D printing, digital workflows are replacing analog impressions, plaster models, and manual modeling.</p>
+            <p>The reasons are clear: better accuracy, higher speed, and more predictable outcomes.</p>
+            <p>Digital files are easier to transfer and preserve, which improves collaboration between clinics and labs while reducing remakes.</p>
+            <p>Patients also expect faster, more comfortable treatment. In the coming years, analog methods will likely remain only in niche or backup scenarios.</p>
+        `,
+    },
+    {
+        id: 4,
+        title: "Why Choose Zirconia Instead of Metal-Ceramic",
+        description:
+            "A practical comparison of esthetics, durability, and biocompatibility in modern prosthetics.",
+        image: "/blogSection/607cafae74dde3fa8921f38515225041e4619746.jpg",
+        href: "/blog/4",
+        content: `
+            <p>Zirconia is one of today's most advanced restorative materials, and more clinicians are choosing it over metal-ceramic solutions.</p>
+            <p>Because zirconia has no metal substructure, it avoids dark gingival margins and provides a more natural light transmission in the smile zone.</p>
+            <p>It is also strong, durable, and biocompatible, making it suitable for both single crowns and bridges.</p>
+            <p>Zirconia keeps color stability over time and does not oxidize, which supports long-term esthetic outcomes.</p>
+            <p>Combined with CAD/CAM production, zirconia delivers accurate fit, reliable function, and consistent quality.</p>
+        `,
+    },
+    {
+        id: 5,
+        title: "Top 5 Materials Used by a Modern Dental Laboratory",
+        description:
+            "From glass-ceramics to composites: materials that support natural esthetics and long-term function.",
+        image: "/blogSection/a09fe16c369229f1c819664e0d93976c56fb644c.jpg",
+        href: "/blog/5",
+        content: `
+            <p>Modern dental laboratories work with a range of materials to achieve esthetic, durable, and clinically reliable restorations.</p>
+            <p>Zirconia is a top choice for strength and natural appearance. Metal-ceramic remains a dependable option for load-bearing cases.</p>
+            <p>Pressed ceramics are often selected when translucency and smile-zone esthetics are critical.</p>
+            <p>Composites are useful for temporary or small restorations due to fast processing and easy adjustment.</p>
+            <p>PMMA is widely used for temporary prosthetics, mock-ups, and trial designs before final fabrication.</p>
+        `,
+    },
+    {
+        id: 6,
+        title: "Why Doctor-Lab Collaboration Is Critically Important",
+        description:
+            "How strong communication between clinic and laboratory reduces errors and improves final outcomes.",
+        image: "/blogSection/0a1296d8b962b29022950cd04446a9a73ee1e261.jpg",
+        href: "/blog/6",
+        content: `
+            <p>Precision in dentistry is essential. Restorations must fit accurately to avoid discomfort, occlusal issues, and unnecessary corrections.</p>
+            <p>This is where doctor-lab collaboration becomes a key success factor.</p>
+            <p>When clinicians share high-quality scans, photos, and case notes, technicians can design restorations tailored to each patient.</p>
+            <p>With CAD/CAM workflows, even small inaccuracies early in the process can lead to remakes, so continuous communication is vital.</p>
+            <p>A coordinated workflow delivers better fit, esthetics, and predictability for both the clinician and the patient.</p>
+        `,
+    },
+];
+
+export function getBlogPostsByLocale(locale: string): BlogPost[] {
+    return locale === "en" ? BLOG_POSTS_EN : BLOG_POSTS_UK;
+}

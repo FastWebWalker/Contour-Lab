@@ -6,7 +6,7 @@ import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 import { BlogCardsSection } from "@/components/sections/BlogCardsSection";
 
-const blogHeroImage = "/hero/image 151.png";
+const blogHeroImage = "/hero/photo hero other.png";
 
 export default function BlogPage() {
   const t = useTranslations("blogPage");

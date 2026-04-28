@@ -1,7 +1,7 @@
 import type { SocialLink } from "../sections/Hero";
 
 export const homeHeroImage =
-  "/hero/7b7fbb3ad26234ca858aa8faaca96040a8017e3f.png";
+  "/hero/photo hero home.png";
 
 export const homeHeroSocialLinks: SocialLink[] = [
   { href: "mailto:info@contour-lab.com", src: "/hero/mail.svg", label: "Email" },

@@ -19,6 +19,11 @@ const NAV_LINKS = [
   { href: "/gallery", key: "gallery" as const },
 ] as const;
 
+const MOBILE_NAV_LINKS = [
+  ...NAV_LINKS,
+  { href: "/blog", key: "blog" as const },
+] as const;
+
 const SCROLL_THRESHOLD = 1;
 
 const LG_BREAKPOINT = 1024;
@@ -190,14 +195,14 @@ export function Header() {
                     <LanguageSelector />
                   </div>
                   <nav className="flex flex-col gap-4 items-center">
-                    {NAV_LINKS.map(({ href, key }) => {
+                    {MOBILE_NAV_LINKS.map(({ href, key }) => {
                       const active = !href.includes("#") && pathname === href;
                       return (
                         <NavLink
                           key={href}
                           href={href}
                           className={[
-                            "w-full text-center min-h-11 py-3 px-5 text-[15px] border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5]",
+                            "w-full text-center min-h-14 py-4 px-6 text-[18px] md:min-h-12 md:py-3 md:px-5 md:text-[16px] border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5]",
                             active ? "!ring-2 !ring-[var(--color-red-main)]/30" : "",
                           ]
                             .filter(Boolean)
@@ -210,10 +215,14 @@ export function Header() {
                     })}
                   </nav>
                   <div className="flex justify-center">
-                    <OutlineLightButton size="md" onClick={() => {
-                      closeMenu();
-                      setTimeout(scrollToContact, 350);
-                    }}>
+                    <OutlineLightButton
+                      size="md"
+                      className="h-14 min-w-[240px] text-[18px] md:h-12 md:min-w-[200px] md:text-[16px]"
+                      onClick={() => {
+                        closeMenu();
+                        setTimeout(scrollToContact, 350);
+                      }}
+                    >
                       {tCommon("contact")}
                     </OutlineLightButton>
                   </div>

@@ -218,6 +218,7 @@ export const blogPost = {
 export const galleryTab = {
   sectionAria: "Work gallery by category",
   tabsAria: "Gallery categories",
+  viewAll: "View All",
   tabs: {
     all: "All photos",
     veneers: "Veneers",

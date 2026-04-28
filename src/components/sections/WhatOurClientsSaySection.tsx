@@ -40,21 +40,25 @@ function TestimonialCard({
   return (
     <motion.article
       variants={fadeUpCardVariants(reduced)}
-      className="flex w-[calc((100vw-80px)/1.3)] max-w-full shrink-0 flex-col items-start gap-2.5 self-stretch rounded-[30px] bg-[#F2F2F2] py-8 px-4 md:w-[calc((100vw-112px)/1.3)] lg:w-[calc((100vw-112px)/2.7)] min-[1440px]:w-[calc((100vw-168px)/2.7)]"
+      className="flex min-h-[323px] w-[calc((100vw-80px)/1.35)] max-w-full shrink-0 flex-col items-start gap-2.5 self-stretch rounded-[30px] bg-[#F2F2F2] px-4 py-4 md:min-h-0 md:w-[calc((100vw-112px)/1.3)] lg:w-[calc((100vw-112px)/2.7)] min-[1440px]:w-[calc((100vw-168px)/2.7)]"
     >
-      <div className="flex w-full flex-col items-start gap-6 self-stretch">
+      <div className="flex w-full flex-col items-start gap-4 self-stretch min-[768px]:gap-6">
         <div className="flex w-full items-start gap-4">
-          <div className="relative h-[63px] w-[63px] shrink-0 overflow-hidden rounded-full bg-[lightgray]">
+          <div className="relative h-[46px] w-[46px] shrink-0 overflow-hidden rounded-full bg-[lightgray] min-[768px]:h-[63px] min-[768px]:w-[63px]">
             <Image
               src={avatar}
               alt=""
               fill
               className="object-cover"
-              sizes="63px"
+              sizes="(max-width: 767px) 46px, 63px"
             />
           </div>
           <div className="flex min-w-0 flex-1 flex-col items-start gap-0.5">
-            <Title as="h3" variant="h3">
+            <Title
+              as="h3"
+              variant="h3"
+              className="!text-[20px] !leading-[1.2] min-[768px]:!text-[32px]"
+            >
               {name}
             </Title>
             <p
@@ -69,7 +73,7 @@ function TestimonialCard({
           </div>
         </div>
         <p
-          className="text-[20px] font-normal leading-normal text-[var(--Black,#141414)]"
+          className="text-[16px] font-normal leading-[1.35] text-[var(--Black,#141414)] min-[768px]:text-[20px] min-[768px]:leading-normal"
           style={{
             fontFamily: "var(--font-inter), Inter, sans-serif",
           }}
