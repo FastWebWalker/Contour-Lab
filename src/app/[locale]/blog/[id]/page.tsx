@@ -6,7 +6,7 @@ import { useParams, notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { BLOG_POSTS } from "@/components/data/blogData";
+import { getBlogPostsByLocale } from "@/components/data/blogData";
 import { BlogCardsSection } from "@/components/sections/BlogCardsSection";
 import {
   fadeUpVariants,
@@ -21,7 +21,8 @@ export default function BlogPostPage() {
   const t = useTranslations("blogPost");
   const reduced = useReducedMotion() ?? false;
   const id = Number(params.id);
-  const post = BLOG_POSTS.find((p) => p.id === id);
+  const posts = getBlogPostsByLocale(params.locale);
+  const post = posts.find((p) => p.id === id);
   const [activeSection, setActiveSection] = React.useState("article");
   const [showToast, setShowToast] = React.useState(false);
 
@@ -36,6 +37,14 @@ export default function BlogPostPage() {
     navigator.clipboard.writeText(window.location.href);
     setShowToast(true);
   };
+  const scrollToSection = React.useCallback((sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    const headerOffset = window.innerWidth >= 1024 ? 120 : 88;
+    const targetTop =
+      section.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
+  }, []);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -160,7 +169,11 @@ export default function BlogPostPage() {
               transition={sectionTransition({ reduced, duration: motionConfig.duration.fast, delay: 0.3 })}
             >
               <nav className="flex flex-col gap-3 w-fit">
-                <a href="#article" className="flex items-center gap-3 group">
+                <button
+                  type="button"
+                  onClick={() => scrollToSection("article")}
+                  className="flex items-center gap-3 group text-left"
+                >
                   <Image
                     src={activeSection === "article" ? "/icons/blog/indicator-active.svg" : "/icons/blog/indicator-inactive.svg"}
                     alt=""
@@ -173,8 +186,12 @@ export default function BlogPostPage() {
                   >
                     {t("navArticle")}
                   </span>
-                </a>
-                <a href="#share-area" className="flex items-center gap-3 group">
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection("share-area")}
+                  className="flex items-center gap-3 group text-left"
+                >
                   <Image
                     src={activeSection === "share-area" ? "/icons/blog/indicator-active.svg" : "/icons/blog/indicator-inactive.svg"}
                     alt=""
@@ -187,8 +204,12 @@ export default function BlogPostPage() {
                   >
                     {t("navShare")}
                   </span>
-                </a>
-                <a href="#other-articles" className="flex items-center gap-3 group">
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection("other-articles")}
+                  className="flex items-center gap-3 group text-left"
+                >
                   <Image
                     src={activeSection === "other-articles" ? "/icons/blog/indicator-active.svg" : "/icons/blog/indicator-inactive.svg"}
                     alt=""
@@ -201,7 +222,7 @@ export default function BlogPostPage() {
                   >
                     {t("navOther")}
                   </span>
-                </a>
+                </button>
               </nav>
             </motion.aside>
           </div>
@@ -209,7 +230,7 @@ export default function BlogPostPage() {
       </section>
 
       {/* Other articles — heading fades up on scroll */}
-      <section id="other-articles" className="bg-white py-12 md:py-20 border-t border-gray-100 mt-10">
+      <section id="other-articles" className="mt-4 border-t border-gray-100 bg-white py-4 md:mt-10 md:py-20">
         <Container>
           <motion.div
             className="mb-10"

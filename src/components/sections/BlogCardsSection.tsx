@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { Title } from "../ui/Title";
 import { PrimaryButton } from "../ui/Button";
 import { Link } from "@/i18n/navigation";
-import { BLOG_POSTS, type BlogPost } from "../data/blogData";
+import { getBlogPostsByLocale, type BlogPost } from "../data/blogData";
 import {
     sectionViewport,
     MOTION_EASE,
@@ -85,9 +85,10 @@ export interface BlogCardsSectionProps {
 
 export function BlogCardsSection({ limit, excludeId, isGridOnly }: BlogCardsSectionProps) {
     const t = useTranslations("blogCards");
+    const locale = useLocale();
     const reduced = useReducedMotion() ?? false;
     const readMoreLabel = t("readMore");
-    let posts = BLOG_POSTS;
+    let posts = getBlogPostsByLocale(locale);
 
     if (excludeId !== undefined) {
         posts = posts.filter(p => p.id !== excludeId);
