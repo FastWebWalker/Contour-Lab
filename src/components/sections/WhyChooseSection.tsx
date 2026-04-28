@@ -110,7 +110,7 @@ export function WhyChooseSection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-10", className, "relative z-0"].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-10", className, "relative z-30"].filter(Boolean).join(" ")}
       {...props}
     >
       <Container
@@ -133,43 +133,43 @@ export function WhyChooseSection({
 
           <motion.div variants={titleBlockVariants}>
             <CardWrapper paddingClassName="py-5 px-4" widthClassName="w-full min-w-0">
-            <span
-              className="self-stretch text-sm font-normal capitalize leading-normal"
-              style={{
-                color: "rgba(0, 0, 0, 0.75)",
-                fontFamily: "var(--font-inter), Inter, sans-serif",
-              }}
-            >
-              {t("missionLabel")}
-            </span>
-            <p
-              className="self-stretch font-normal text-[var(--color-black)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
-              style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
-            >
-              {t("missionBefore")}{" "}
-              <strong
-                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
+              <span
+                className="self-stretch text-sm font-normal capitalize leading-normal"
+                style={{
+                  color: "rgba(0, 0, 0, 0.75)",
+                  fontFamily: "var(--font-inter), Inter, sans-serif",
+                }}
+              >
+                {t("missionLabel")}
+              </span>
+              <p
+                className="self-stretch font-normal text-[var(--color-black)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
                 style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
               >
-                {t("missionStrong1")}
-              </strong>{" "}
-              {t("missionMiddle")}{" "}
-              <strong
-                className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
-                style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
+                {t("missionBefore")}{" "}
+                <strong
+                  className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
+                  style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
+                >
+                  {t("missionStrong1")}
+                </strong>{" "}
+                {t("missionMiddle")}{" "}
+                <strong
+                  className="font-normal text-[var(--color-red-main)] text-[24px] leading-normal min-[768px]:text-[32px] min-[768px]:leading-[32px]"
+                  style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
+                >
+                  {t("missionStrong2")}
+                </strong>
+                .
+              </p>
+              <p
+                className="self-stretch text-right text-base font-light leading-normal text-[var(--color-black)]"
+                style={{
+                  fontFamily: "var(--font-inter), Inter, sans-serif",
+                }}
               >
-                {t("missionStrong2")}
-              </strong>
-              .
-            </p>
-            <p
-              className="self-stretch text-right text-base font-light leading-normal text-[var(--color-black)]"
-              style={{
-                fontFamily: "var(--font-inter), Inter, sans-serif",
-              }}
-            >
-              {t("ceo")}
-            </p>
+                {t("ceo")}
+              </p>
             </CardWrapper>
           </motion.div>
 

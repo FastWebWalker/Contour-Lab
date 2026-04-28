@@ -98,7 +98,8 @@ export function OurServicesSection({
   return (
     <section
       aria-label={t("titleHeading")}
-      className={["py-8 md:py-12 lg:py-16", className, "relative z-20 isolate overflow-x-hidden overflow-y-auto"].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-16", className, "relative z-20 isolate"].filter(Boolean).join(" ")}
+      style={{ overflowX: "clip" }}
       {...props}
     >
        <Image
