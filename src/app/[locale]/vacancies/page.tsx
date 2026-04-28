@@ -27,7 +27,7 @@ export default async function VacanciesPage({
         titleContent={vacanciesHeroTitle}
         subtitle={t("subtitle")}
         heroImage={vacanciesHeroImage}
-        heroImageContainerClassName="md:translate-x-4 md:translate-y-4 lg:translate-x-20 lg:translate-y-20"
+        heroImageContainerClassName="translate-x-8 md:translate-x-4 md:translate-y-4 lg:translate-x-20 lg:translate-y-20"
         showSocialLinks
         socialLinks={homeHeroSocialLinks}
       />
