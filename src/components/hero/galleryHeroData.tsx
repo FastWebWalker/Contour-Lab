@@ -13,4 +13,4 @@ export const galleryHeroSubtitle =
 
 /** Та сама 3D-графіка, що на сторінці послуг */
 export const galleryHeroImage =
-  "/hero/" + encodeURIComponent("image 151.png");
+  "/hero/" + encodeURIComponent("photo hero other.png");

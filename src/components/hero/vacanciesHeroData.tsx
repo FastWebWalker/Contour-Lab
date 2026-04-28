@@ -1,4 +1,4 @@
-import { homeHeroImage } from "./homeHeroData";
+const vacanciesSharedHeroImage = "/hero/photo hero other 2.png";
 
 /** Сторінка «Вакансії»: заголовок + підзаголовок для Hero */
 export const vacanciesHeroTitle = (
@@ -11,4 +11,4 @@ export const vacanciesHeroTitle = (
 export const vacanciesHeroSubtitle =
   "Перегляньте актуальні вакансії на нашому сайті та надішліть своє резюме! Можливо, це ваш шанс!";
 
-export const vacanciesHeroImage = homeHeroImage;
+export const vacanciesHeroImage = vacanciesSharedHeroImage;

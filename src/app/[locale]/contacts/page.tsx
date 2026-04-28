@@ -4,7 +4,7 @@ import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 import { ContactsInfoGridSection } from "@/components/sections/ContactsInfoGridSection";
 import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 
-const contactsHeroImage = "/hero/image 151.png";
+const contactsHeroImage = "/hero/photo hero other.png";
 
 export default async function ContactsPage({
   params,
