@@ -43,7 +43,7 @@ export function FutureIsHereSection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-16", className, "relative z-20"].filter(Boolean).join(" ")}
       {...props}
     >
       <Container>

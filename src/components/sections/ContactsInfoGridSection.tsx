@@ -53,7 +53,7 @@ export function ContactsInfoGridSection({
       {...props}
     >
       <div className="mx-auto w-full px-4 pb-10 pt-12 min-[768px]:px-8 min-[1440px]:px-[60px] min-[1440px]:pb-[60px] min-[1440px]:pt-[80px]">
-        <div className="grid grid-cols-1 gap-y-[80px] min-[768px]:grid-cols-2 min-[768px]:gap-[80px] min-[1440px]:grid-cols-[repeat(4,auto)] min-[1440px]:justify-between min-[1440px]:gap-y-[80px] min-[1440px]:gap-x-0">
+        <div className="grid grid-cols-1 gap-y-[32px] min-[768px]:grid-cols-2 min-[768px]:gap-[80px] min-[1440px]:grid-cols-[repeat(4,auto)] min-[1440px]:justify-between min-[1440px]:gap-y-[80px] min-[1440px]:gap-x-0">
           {/* Колонка 1: адреса та пошта */}
           <motion.div
             className="flex min-w-0 flex-col gap-6"
