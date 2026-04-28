@@ -88,7 +88,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
       <Container>
         {/* Tabs — fade up on scroll */}
         <motion.div
-          className="mb-8 flex min-[1024px]:mb-10 flex-nowrap items-center justify-center gap-2.5 overflow-x-auto pb-px scrollbar-hide min-[480px]:gap-6 min-[1024px]:gap-[44px]"
+          className="mb-8 flex min-[1024px]:mb-10 flex-nowrap items-center justify-center gap-2.5 overflow-x-auto pb-px scrollbar-hide min-[480px]:gap-6 min-[1024px]:gap-[24px]"
           role="tablist"
           aria-label={t("tabsAria")}
           variants={fadeUpVariants(reduced)}
