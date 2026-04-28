@@ -54,12 +54,10 @@ export function OurGallerySection({
         >
           {/* Left: image block */}
           <motion.div
-            className="order-4 w-full aspect-[665/499] rounded-[24px] md:order-none md:rounded-[30px] md:basis-[56%]"
+            className="order-4 w-full aspect-[665/499] rounded-[24px] bg-cover bg-center md:order-none md:rounded-[30px] md:basis-[56%] lg:bg-[position:-114.537px_-154.12px] lg:bg-[length:164.863%_146.276%]"
             style={{
               backgroundImage: `url(${GALLERY_IMAGE})`,
               backgroundRepeat: "no-repeat",
-              backgroundPosition: "-114.537px -154.12px",
-              backgroundSize: "164.863% 146.276%",
               backgroundColor: "lightgray",
             }}
             initial={reduced ? false : { opacity: 0, x: -22, scale: 0.98 }}

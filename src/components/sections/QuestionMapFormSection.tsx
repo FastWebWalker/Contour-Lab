@@ -77,7 +77,7 @@ export function QuestionMapFormSection({
         >
           {/* Left: на desktop текст (title + опис) max 549px; форма на всю ширину колонки */}
           <motion.div variants={fadeUpVariants(reduced)} className="relative flex w-full min-w-0 flex-1 flex-col">
-            <div className="flex w-full flex-col gap-6 min-[1201px]:max-w-[549px]">
+            <div className="flex w-full flex-col gap-2 md:gap-6 min-[1201px]:max-w-[549px]">
               <Title as="h2">{t("title")}</Title>
               <Description className="w-full max-w-none">{t("description")}</Description>
             </div>

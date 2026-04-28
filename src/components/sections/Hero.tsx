@@ -53,6 +53,10 @@ export interface HeroProps {
   onPrimaryCtaClick?: () => void;
   /** Клік по outline CTA (наприклад, завантажити прайс) */
   onOutlineCtaClick?: () => void;
+  /** Apply general page hero image sizing on mobile */
+  isGeneralPage?: boolean;
+  /** Additional classes for hero image container positioning/sizing */
+  heroImageContainerClassName?: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -71,6 +75,8 @@ export function Hero({
   socialLinks = [],
   onPrimaryCtaClick,
   onOutlineCtaClick,
+  isGeneralPage = false,
+  heroImageContainerClassName = "",
 }: HeroProps) {
   const reduced = useReducedMotion() ?? false;
 
@@ -83,13 +89,33 @@ export function Hero({
   return (
     <div className="relative m-5">
       <section
-        className="relative h-auto min-h-0 pb-8 md:pb-0 md:min-h-[90vh] flex flex-col pt-[32px] md:pt-[40px] lg:pt-[146px] rounded-[24px] md:rounded-[30px] lg:rounded-[50px] overflow-hidden"
+        className="relative h-auto min-h-[80vh] pb-8 md:pb-0 md:min-h-[90vh] flex flex-col pt-[32px] md:pt-[40px] lg:pt-[146px] rounded-[24px] md:rounded-[30px] lg:rounded-[50px] overflow-hidden"
         style={{ backgroundColor: "var(--color-hero-bg)" }}
       >
 
         {/* 3D dental image — right bottom; mobile full-width, tablet 640×580, desktop 1100×800 */}
         <motion.div
-          className="absolute right-0 -bottom-[50px] md:-bottom-[10px] w-[110%] h-[70%] md:w-[640px] md:h-[580px] lg:w-[800px] lg:h-[600px] xl:w-[1100px] xl:h-[800px] z-10 pointer-events-none select-none"
+          className={[
+            "absolute right-0",
+            isGeneralPage ? "-bottom-[20px]" : "-bottom-[50px]",
+            "md:-bottom-[10px]",
+            isGeneralPage
+              ? "w-[296px] h-[327px] aspect-[86/95] lg:w-[720px] lg:h-[540px] xl:w-[980px] xl:h-[720px]"
+              : "w-[110%] h-[70%] lg:w-[800px] lg:h-[600px] xl:w-[1100px] xl:h-[800px]",
+            "md:w-[640px] md:h-[580px] z-10 pointer-events-none select-none",
+            heroImageContainerClassName,
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          style={
+            isGeneralPage
+              ? {
+                  background: `url(${heroImage}) -55.457px -53.595px / 166.545% 125.026% no-repeat`,
+                  backgroundColor: "transparent",
+                  filter: "brightness(1.2) contrast(0.8)",
+                }
+              : undefined
+          }
           aria-hidden
           initial={
             reduced
@@ -107,14 +133,16 @@ export function Hero({
             delay: motionConfig.delay.heroImage,
           })}
         >
-          <Image
-            src={heroImage}
-            alt=""
-            fill
-            className="object-contain object-right object-bottom mix-blend-lighten opacity-95 translate-y-[58px] md:translate-y-[20px]"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
-            priority
-          />
+          {!isGeneralPage && (
+            <Image
+              src={heroImage}
+              alt=""
+              fill
+              className="object-contain object-right object-bottom mix-blend-lighten opacity-95 translate-y-[58px] md:translate-y-[20px]"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
+              priority
+            />
+          )}
         </motion.div>
 
         {/* Content */}
