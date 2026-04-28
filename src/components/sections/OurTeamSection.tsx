@@ -14,10 +14,6 @@ import {
   MOTION_EASE,
 } from "@/lib/motion";
 
-const CARD_WIDTH = 424;
-const GAP = 24;
-const CARD_STEP = CARD_WIDTH + GAP;
-
 const TEAM_PHOTOS = [
   { desktop: "/ourTeam/Maria.jpg", mobile: "/ourTeam/Maria_mobile.jpeg" },
   { desktop: "/ourTeam/Iryna.jpg", mobile: "/ourTeam/Iryna.jpg" },
@@ -108,6 +104,7 @@ export function OurTeamSection({
   }));
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [cardStep, setCardStep] = React.useState(0);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const canGoPrev = activeIndex > 0;
   const canGoNext = activeIndex < team.length - 1;
@@ -115,8 +112,26 @@ export function OurTeamSection({
   React.useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollTo({ left: activeIndex * CARD_STEP, behavior: "smooth" });
-  }, [activeIndex]);
+
+    const updateStep = () => {
+      const firstCard = el.firstElementChild as HTMLElement | null;
+      if (!firstCard) return;
+      const styles = window.getComputedStyle(el);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap || "0") || 0;
+      setCardStep(firstCard.offsetWidth + gap);
+    };
+
+    updateStep();
+    window.addEventListener("resize", updateStep);
+    return () => window.removeEventListener("resize", updateStep);
+  }, [team.length]);
+
+  React.useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    if (cardStep <= 0) return;
+    el.scrollTo({ left: activeIndex * cardStep, behavior: "smooth" });
+  }, [activeIndex, cardStep]);
 
   const goPrev = () => setActiveIndex((i) => Math.max(0, i - 1));
   const goNext = () => setActiveIndex((i) => Math.min(team.length - 1, i + 1));
