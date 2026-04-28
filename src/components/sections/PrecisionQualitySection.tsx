@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -44,9 +45,17 @@ export function PrecisionQualitySection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-16", className, "relative isolate"].filter(Boolean).join(" ")}
       {...props}
     >
+      <Image
+        src="/logo-big.svg"
+        alt=""
+        width={534}
+        height={960}
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[280px] md:h-[700px] md:w-[390px] lg:h-[960px] lg:w-[534px] opacity-100"
+      />
       <Container>
         <div className="flex flex-col gap-4 min-[768px]:gap-8 min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-[50px]">
           <motion.div
