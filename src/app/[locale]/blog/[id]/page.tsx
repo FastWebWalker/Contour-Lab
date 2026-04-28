@@ -127,7 +127,7 @@ export default function BlogPostPage() {
 
                 <div className="flex flex-col gap-6">
                   <h1
-                    className="text-[28px] font-medium leading-tight text-[#141414] md:text-[32px]"
+                    className="text-[25px] font-medium leading-tight text-[#141414] md:text-[32px]"
                     style={{ fontFamily: "Gilroy, ui-sans-serif, system-ui, sans-serif" }}
                   >
                     {post.title}

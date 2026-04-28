@@ -46,7 +46,7 @@ function BlogCard({
                     <Title
                         as="h3"
                         variant="h3"
-                        className="line-clamp-3 min-h-[34px] lg:min-h-[102px]"
+                        className="line-clamp-3 min-h-[34px] !text-[27px] !leading-[1.15] min-[768px]:!text-[27px] min-[1024px]:!text-[30px] lg:min-h-[102px]"
                     >
                         {title}
                     </Title>
