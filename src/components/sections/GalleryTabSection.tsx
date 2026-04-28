@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { useTranslations } from "next-intl";
@@ -24,7 +25,7 @@ const TAB_MSG_KEY: Record<GalleryTabId, "tabs.all" | "tabs.veneers" | "tabs.brid
 };
 
 const tabBaseClass =
-  "inline-flex h-[54px] shrink-0 items-center justify-center gap-2.5 rounded-[30px] px-4 py-3 text-[20px] font-normal leading-normal not-italic transition-all duration-200 cursor-pointer";
+  "inline-flex h-[54px] shrink-0 items-center justify-center gap-[10px] rounded-[30px] px-[16px] py-[12px] text-[20px] font-normal leading-normal not-italic whitespace-nowrap transition-all duration-200 cursor-pointer";
 
 const tabTextStyle: React.CSSProperties = {
   color: "var(--Black, #141414)",
@@ -84,44 +85,49 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
   return (
     <section
       aria-label={t("sectionAria")}
-      className="w-full bg-transparent pt-16 pb-4 min-[1024px]:pt-20"
+      className="w-full bg-white relative z-10 pt-6 pb-4 min-[1024px]:pt-20"
     >
       <Container>
         {/* Tabs — fade up on scroll */}
         <motion.div
-          className="mb-8 flex min-[1024px]:mb-10 flex-nowrap items-center justify-center gap-2.5 overflow-x-auto pb-px scrollbar-hide min-[480px]:gap-6 min-[1024px]:gap-[24px]"
-          role="tablist"
-          aria-label={t("tabsAria")}
+          className="mb-8 min-[1024px]:mb-10 overflow-x-auto lg:overflow-x-visible scrollbar-hide -mx-4 min-[768px]:-mx-8 min-[1440px]:-mx-[80px] lg:mx-0"
           variants={fadeUpVariants(reduced)}
           initial="hidden"
           whileInView="visible"
           viewport={sectionViewport({ amount: 0.5 })}
         >
-          {manifest.tabs.map(({ id }) => {
-            const isActive = active === id;
-            const label = t(TAB_MSG_KEY[id]);
-            return (
-              <button
-                key={id}
-                type="button"
-                role="tab"
-                id={`gallery-tab-${id}`}
-                aria-selected={isActive}
-                aria-controls="gallery-grid-panel"
-                tabIndex={isActive ? 0 : -1}
-                onClick={() => setActive(id)}
-                className={[
-                  tabBaseClass,
-                  isActive
-                    ? "border border-[var(--color-red-main)] bg-white shadow-[0_2px_12px_rgba(185,4,15,0.1)]"
-                    : "border border-[#D8D8D8] bg-white hover:border-[var(--color-grey)] hover:bg-[var(--color-light-grey)]/80",
-                ].join(" ")}
-                style={tabTextStyle}
-              >
-                {label}
-              </button>
-            );
-          })}
+          <div
+            className="flex flex-nowrap items-center justify-start min-[1024px]:justify-center gap-[10px] min-[480px]:gap-[16px] min-[1024px]:gap-[24px] pl-4 min-[768px]:pl-8 min-[1440px]:pl-[80px] lg:pl-0 py-1 after:content-[''] after:min-w-[16px] after:min-h-[1px] after:shrink-0 min-[768px]:after:min-w-[32px] min-[1440px]:after:min-w-[80px] lg:after:min-w-0"
+            role="tablist"
+            aria-label={t("tabsAria")}
+          >
+            {manifest.tabs.map(({ id }) => {
+              const isActive = active === id;
+              const label = t(TAB_MSG_KEY[id]);
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  id={`gallery-tab-${id}`}
+                  aria-selected={isActive}
+                  aria-controls="gallery-grid-panel"
+                  tabIndex={isActive ? 0 : -1}
+                  onClick={() => setActive(id)}
+                  className={[
+                    tabBaseClass,
+                    isActive
+                      ? "border-[1px] border-[#B9040F] bg-white shadow-[0_2px_12px_rgba(185,4,15,0.1)]"
+                      : "border-[1px] border-[#D8D8D8] bg-white hover:border-[var(--color-grey)] hover:bg-[var(--color-light-grey)]/80",
+                  ].join(" ")}
+                  style={tabTextStyle}
+                >
+                  {label}
+                </button>
+              );
+            })}
+
+          </div>
         </motion.div>
 
         {/* Grid — AnimatePresence for tab switch, cascade fade-up per image */}
@@ -165,7 +171,8 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Lightbox Overlay */}
+        {/* Lightbox Overlay — rendered via Portal to escape stacking context */}
+        {typeof document !== "undefined" && createPortal(
         <AnimatePresence>
           {selectedIdx !== null && (
             <motion.div
@@ -182,9 +189,11 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="relative flex h-full w-full max-w-7xl items-center justify-center"
-                onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative h-[85vh] w-full overflow-hidden rounded-lg">
+                <div
+                  className="relative h-[85vh] w-full overflow-hidden rounded-lg"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <Image
                     src={images[selectedIdx]}
                     alt=""
@@ -198,7 +207,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
                 {/* Close button */}
                 <button
                   type="button"
-                  onClick={closeLightbox}
+                  onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
                   className="absolute top-4 right-4 flex h-[48px] w-[48px] items-center justify-center rounded-full border border-white/30 bg-black/40 backdrop-blur-sm text-white transition-all hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
                   aria-label="Close"
                 >
@@ -208,7 +217,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
                 {/* Prev arrow */}
                 <button
                   type="button"
-                  onClick={prevImage}
+                  onClick={(e) => { e.stopPropagation(); prevImage(); }}
                   className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/30 bg-black/40 backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
                   aria-label="Previous"
                 >
@@ -218,7 +227,7 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
                 {/* Next arrow */}
                 <button
                   type="button"
-                  onClick={nextImage}
+                  onClick={(e) => { e.stopPropagation(); nextImage(); }}
                   className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/30 bg-black/40 backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
                   aria-label="Next"
                 >
@@ -232,7 +241,9 @@ export function GalleryTabSection({ manifest }: GalleryTabSectionProps) {
               </motion.div>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+        )}
       </Container>
     </section>
   );
