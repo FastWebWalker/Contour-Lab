@@ -43,9 +43,19 @@ export function FutureIsHereSection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-16", className, "relative z-20"].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-16", className, "relative z-20 isolate"].filter(Boolean).join(" ")}
+      style={{ overflowX: "clip" }}
       {...props}
     >
+      {/* Logo background — tablet only, right-aligned like OurServicesSection */}
+      <Image
+        src="/logo-big.svg"
+        alt=""
+        width={436}
+        height={960}
+        aria-hidden
+        className="pointer-events-none absolute right-[-87.538px] top-[-300px] -z-10 h-[727px] w-[404.538px] hidden md:block lg:hidden"
+      />
       <Container>
         <div className="flex flex-col gap-[24px] min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-12">
           {/* Left block */}

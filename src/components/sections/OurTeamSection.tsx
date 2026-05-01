@@ -139,7 +139,7 @@ export function OurTeamSection({
   return (
     <section
       aria-label={t("aria")}
-      className={["py-8 md:py-12 lg:py-16", className].filter(Boolean).join(" ")}
+      className={["py-8 md:py-12 lg:py-16", className, "relative z-30"].filter(Boolean).join(" ")}
       {...props}
     >
       <div className="flex flex-col gap-8">
