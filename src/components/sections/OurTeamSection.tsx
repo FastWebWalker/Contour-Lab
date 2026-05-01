@@ -30,7 +30,7 @@ const socialLinks = [
 
 function TeamCard({ name, role, photo, photoMobile }: { name: string; role: string; photo: string; photoMobile: string }) {
   return (
-    <CardWrapper as="article" widthClassName="w-[228px] min-[768px]:w-[424px] shrink-0 max-w-full">
+    <CardWrapper as="article" widthClassName="w-[260px] min-[768px]:w-[424px] shrink-0 max-w-full">
       <div className="flex min-[768px]:h-[669px] flex-[1_0_0] flex-col items-start gap-1 md:gap-2 self-stretch">
         <Title as="h3" variant="h3" className="!text-[20px] !font-medium min-[768px]:!text-[32px]">
           {name}
