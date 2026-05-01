@@ -9,7 +9,7 @@ import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 import { WhatOurClientsSaySection } from "@/components/sections/WhatOurClientsSaySection";
 import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 
-const servicesHeroImage = "/hero/image 151.png";
+const servicesHeroImage = "/hero/photo hero other.png";
 
 export default function ServicesPage() {
   const t = useTranslations("servicesPage");
@@ -27,6 +27,7 @@ export default function ServicesPage() {
         titleContent={servicesHeroTitle}
         subtitle={t("subtitle")}
         heroImage={servicesHeroImage}
+        heroImageContainerClassName="-bottom-[82px] md:-bottom-[32px]"
         showButtons={false}
         showStats={false}
         showSocialLinks={true}

@@ -4,7 +4,7 @@ import { GalleryTabSection } from "@/components/sections/GalleryTabSection";
 import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 import { readGalleryManifest } from "@/lib/galleryManifest";
 
-const galleryHeroImage = "/hero/" + encodeURIComponent("image 151.png");
+const galleryHeroImage = "/hero/" + encodeURIComponent("photo hero other.png");
 
 export default async function GalleryPage({
   params,

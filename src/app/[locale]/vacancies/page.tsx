@@ -4,7 +4,7 @@ import { CVFormSection } from "@/components/CVFormSection";
 import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 import { VacanciesJobsSection } from "@/components/sections/VacanciesJobsSection";
 import { Hero } from "@/components/sections/Hero";
-import { homeHeroImage } from "@/components/hero/homeHeroData";
+const vacanciesHeroImage = "/hero/photo hero other 2.png";
 
 export default async function VacanciesPage({
   params,
@@ -26,7 +26,8 @@ export default async function VacanciesPage({
       <Hero
         titleContent={vacanciesHeroTitle}
         subtitle={t("subtitle")}
-        heroImage={homeHeroImage}
+        heroImage={vacanciesHeroImage}
+        heroImageContainerClassName="translate-x-8 md:translate-x-4 md:translate-y-4 lg:translate-x-20 lg:translate-y-20"
         showSocialLinks
         socialLinks={homeHeroSocialLinks}
       />

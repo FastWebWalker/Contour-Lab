@@ -205,8 +205,8 @@ export const blogCards = {
 };
 
 export const blogPost = {
-  share: "Share",
-  copyLink: "Copy Link",
+  share: "Поширити",
+  copyLink: "Скопіювати посилання",
   shareText: "Поширити",
   copyText: "Скопіювати",
   navArticle: "Стаття",
@@ -219,6 +219,7 @@ export const blogPost = {
 export const galleryTab = {
   sectionAria: "Галерея робіт за категоріями",
   tabsAria: "Категорії галереї",
+  viewAll: "Переглянути всі",
   tabs: {
     all: "Всі Фото",
     veneers: "Вініри",

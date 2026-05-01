@@ -110,9 +110,9 @@ export function Hero({
           style={
             isGeneralPage
               ? {
-                  background: `url(${heroImage}) -55.457px -53.595px / 166.545% 125.026% no-repeat`,
+                  background: `url("${heroImage}") -55.457px -53.595px / 166.545% 125.026% no-repeat`,
                   backgroundColor: "transparent",
-                  filter: "brightness(1.2) contrast(0.8)",
+               
                 }
               : undefined
           }
