@@ -75,6 +75,10 @@ body {
   font-family: "Gilroy", ui-sans-serif, system-ui, sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Infinite carousel: move by one set width so loop is seamless */
 @keyframes icons-carousel {
   from {
