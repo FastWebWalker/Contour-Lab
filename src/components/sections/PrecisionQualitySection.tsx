@@ -54,7 +54,7 @@ export function PrecisionQualitySection({
         width={534}
         height={960}
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[280px] md:h-[700px] md:w-[390px] lg:h-[960px] lg:w-[534px] opacity-100"
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[280px] md:hidden lg:block lg:h-[960px] lg:w-[534px] opacity-100"
       />
       <Container>
         <div className="flex flex-col gap-4 min-[768px]:gap-8 min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-[50px]">
