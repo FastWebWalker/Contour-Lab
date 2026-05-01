@@ -102,14 +102,14 @@ export function OurServicesSection({
       style={{ overflowX: "clip" }}
       {...props}
     >
-       <Image
-          src="/logo-big.svg"
-          alt=""
-          width={436}
-          height={960}
-          aria-hidden
-          className="pointer-events-none absolute right-[-44.577px] top-0 -z-10 h-[303.71px] w-[179.577px] md:right-[-87.538px] md:top-0 md:bottom-auto md:h-[727px] md:w-[404.538px] lg:left-[-98px] lg:top-0 lg:right-auto lg:bottom-auto lg:h-[959.658px] lg:w-[534px] lg:-translate-y-[30%]"
-        />
+      <Image
+        src="/logo-big.svg"
+        alt=""
+        width={436}
+        height={960}
+        aria-hidden
+        className="pointer-events-none absolute right-[-44.577px] top-0 -z-10 h-[303.71px] w-[179.577px] md:right-[-87.538px] md:top-0 md:bottom-auto md:h-[727px] md:w-[404.538px] lg:left-[-98px] lg:top-0 lg:right-auto lg:bottom-auto lg:h-[959.658px] lg:w-[534px] lg:-translate-y-[30%]"
+      />
       <Container className="relative z-10 flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
         <motion.div
           className="flex w-full min-w-0 flex-col gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between sm:gap-6"
