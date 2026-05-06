@@ -34,7 +34,7 @@ export default function ServicesPage() {
         socialLinks={homeHeroSocialLinks}
       />
       <IconsSection />
-      <ServicesListSection />
+      <ServicesListSection showLogoBg={false} />
       <AdvantagesSection />
       <WhatOurClientsSaySection />
       <QuestionMapFormSection />
