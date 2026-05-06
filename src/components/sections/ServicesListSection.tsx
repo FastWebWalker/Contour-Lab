@@ -124,7 +124,7 @@ function ServiceCard({
     );
 }
 
-export function ServicesListSection() {
+export function ServicesListSection({ showLogoBg = true }: { showLogoBg?: boolean }) {
     const t = useTranslations("servicesList");
     const reduced = useReducedMotion() ?? false;
     const services = t.raw("services") as {
@@ -138,6 +138,7 @@ export function ServicesListSection() {
             aria-label={t("titleHeading")}
             className="relative z-20 isolate overflow-x-hidden overflow-y-auto py-8 md:py-12 lg:py-16"
         >
+            {showLogoBg && (
             <Image
                 src="/logo-big.svg"
                 alt=""
@@ -146,6 +147,7 @@ export function ServicesListSection() {
                 aria-hidden
                 className="pointer-events-none absolute right-[-44.577px] top-0 -z-10 h-[303.71px] w-[179.577px] md:right-[-87.538px] md:top-0 md:bottom-auto md:h-[727px] md:w-[404.538px] lg:left-[-98px] lg:top-0 lg:right-auto lg:bottom-auto lg:h-[959.658px] lg:w-[534px] lg:-translate-y-[30%]"
             />
+            )}
             <Container className="relative z-10 flex flex-col gap-6 md:gap-8 md:mb-[40px] mb-[32px]">
                 <motion.div
                     className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 items-start"

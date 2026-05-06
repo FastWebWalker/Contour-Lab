@@ -27,14 +27,14 @@ export default function ServicesPage() {
         titleContent={servicesHeroTitle}
         subtitle={t("subtitle")}
         heroImage={servicesHeroImage}
-        heroImageContainerClassName="-bottom-[82px] md:-bottom-[32px]"
+        heroImageContainerClassName="lg:-bottom-[32px]"
         showButtons={false}
         showStats={false}
         showSocialLinks={true}
         socialLinks={homeHeroSocialLinks}
       />
       <IconsSection />
-      <ServicesListSection />
+      <ServicesListSection showLogoBg={false} />
       <AdvantagesSection />
       <WhatOurClientsSaySection />
       <QuestionMapFormSection />
