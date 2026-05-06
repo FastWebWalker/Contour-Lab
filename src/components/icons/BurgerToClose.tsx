@@ -21,15 +21,18 @@ export function BurgerToCloseIcon({
   const mid = { x1: 9.16797, y1: 22, x2: 34.8346, y2: 22 };
   const bot = { x1: 9.16797, y1: 31.1667, x2: 23.8346, y2: 31.1667 };
 
-  // X: центри ліній у (22,22), потім rotate + scale
-  const topCenterX = (top.x1 + top.x2) / 2;
-  const topCenterY = top.y1;
-  const botCenterX = (bot.x1 + bot.x2) / 2;
-  const botCenterY = bot.y1;
-  const topTx = center - topCenterX;
-  const topTy = center - topCenterY;
-  const botTx = center - botCenterX;
-  const botTy = center - botCenterY;
+  // For the X: each line's geometric center
+  const topMidX = (top.x1 + top.x2) / 2;
+  const topMidY = (top.y1 + top.y2) / 2;
+  const botMidX = (bot.x1 + bot.x2) / 2;
+  const botMidY = (bot.y1 + bot.y2) / 2;
+
+  // Translate each line so its center lands on (22, 22)
+  const topTx = center - topMidX;
+  const topTy = center - topMidY;
+  const botTx = center - botMidX;
+  const botTy = center - botMidY;
+
   const openScale = 1.35;
 
   return (
@@ -48,19 +51,21 @@ export function BurgerToCloseIcon({
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Top line → diagonal of X (scale для більшого хреста) */}
+        {/* Top line → diagonal of X */}
         <line
           x1={top.x1}
           y1={top.y1}
           x2={top.x2}
           y2={top.y2}
           style={{
-            transformOrigin: `${center}px ${center}px`,
-            transform: open ? `translate(${topTx}px, ${topTy}px) rotate(45deg) scale(${openScale})` : "none",
+            transformOrigin: `${topMidX}px ${topMidY}px`,
+            transform: open
+              ? `translate(${topTx}px, ${topTy}px) rotate(45deg) scale(${openScale})`
+              : "none",
             transition: "transform 0.3s ease-out",
           }}
         />
-        {/* Middle → fade out and hide when open (avoids stray segment) */}
+        {/* Middle → fade out */}
         <line
           x1={mid.x1}
           y1={mid.y1}
@@ -72,15 +77,17 @@ export function BurgerToCloseIcon({
             transition: "opacity 0.2s ease-out",
           }}
         />
-        {/* Bottom line → second diagonal of X (scale для більшого хреста) */}
+        {/* Bottom line → second diagonal of X */}
         <line
           x1={bot.x1}
           y1={bot.y1}
           x2={bot.x2}
           y2={bot.y2}
           style={{
-            transformOrigin: `${center}px ${center}px`,
-            transform: open ? `translate(${botTx}px, ${botTy}px) rotate(-45deg) scale(${openScale})` : "none",
+            transformOrigin: `${botMidX}px ${botMidY}px`,
+            transform: open
+              ? `translate(${botTx}px, ${botTy}px) rotate(-45deg) scale(${openScale})`
+              : "none",
             transition: "transform 0.3s ease-out",
           }}
         />

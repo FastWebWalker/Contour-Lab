@@ -57,7 +57,7 @@ export function Footer() {
                 />
               </Link>
               <p
-                className="text-2xl leading-normal font-normal max-w-xs"
+                className="text-[18px] md:text-[24px] leading-normal font-normal max-w-xs md:max-w-none"
                 style={{
                   color: "white",
                   fontFamily: "var(--font-sans)",
@@ -87,7 +87,7 @@ export function Footer() {
             <motion.div variants={fadeUpVariants(reduced)} className="flex items-center">
               <div className="flex gap-3">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/contour.laboratory"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-white bg-transparent hover:bg-white/10 transition-colors"
@@ -96,7 +96,7 @@ export function Footer() {
                   <FacebookIcon size={18} />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/contour_lab/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-white bg-transparent hover:bg-white/10 transition-colors"
@@ -110,7 +110,7 @@ export function Footer() {
             {/* Row 2, Col 2: CTA text + button */}
             <motion.div variants={fadeUpVariants(reduced)} className="flex flex-col gap-5 lg:items-end">
               <p
-                className="text-2xl leading-normal font-normal max-w-2xl lg:text-right"
+                className="text-[16px] md:text-[20px] lg:text-[24px] leading-normal font-normal max-w-2xl lg:text-right"
                 style={{
                   color: "white",
                   fontFamily: "var(--font-sans)",
@@ -118,7 +118,19 @@ export function Footer() {
               >
                 {tFooter("ctaText")}
               </p>
-              <SecondaryButton size="md">{tFooter("contact")}</SecondaryButton>
+              <SecondaryButton
+                size="md"
+                onClick={() => {
+                  const el = document.getElementById("contact-form");
+                  if (el) {
+                    const yOffset = -50;
+                    const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                  }
+                }}
+              >
+                {tFooter("contact")}
+              </SecondaryButton>
             </motion.div>
           </motion.div>
         </Container>

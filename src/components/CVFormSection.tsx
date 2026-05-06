@@ -172,26 +172,46 @@ export function CVFormSection({
                 style={inputStyle}
               />
 
-              <div className="flex flex-col items-start gap-3 md:flex-row-reverse md:items-center md:gap-4">
-                <input
-                  id="cv-file-input"
-                  type="file"
-                  name="cv"
-                  accept=".pdf,.doc,.docx,application/pdf"
-                  className="sr-only"
-                  onChange={(e) => {
-                    const f = e.target.files?.[0];
-                    setCvFile(f ?? null);
-                  }}
-                />
-                <label
-                  htmlFor="cv-file-input"
-                  className={`${fileUploadLabelClass} shrink-0`}
-                >
-                  {t("upload")}
-                </label>
+              <div className="flex flex-col gap-3 md:gap-4">
+                {/* Upload button + attached file */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <input
+                    id="cv-file-input"
+                    type="file"
+                    name="cv"
+                    accept=".pdf,.doc,.docx,application/pdf"
+                    className="sr-only"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      setCvFile(f ?? null);
+                    }}
+                  />
+                  <label
+                    htmlFor="cv-file-input"
+                    className={`${fileUploadLabelClass} shrink-0`}
+                  >
+                    {t("upload")}
+                  </label>
+                  {cvFile && (
+                    <span className="inline-flex items-center gap-1.5 text-[16px] font-normal text-[#141414]"
+                      style={{ fontFamily: "var(--font-inter), Inter, sans-serif" }}
+                    >
+                      {cvFile.name}
+                      <button
+                        type="button"
+                        onClick={() => setCvFile(null)}
+                        className="ml-0.5 text-[#141414]/60 hover:text-[#141414] transition-colors cursor-pointer"
+                        aria-label="Remove file"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  )}
+                </div>
+
+                {/* Resume hint */}
                 <p
-                  className="min-w-0 text-[20px] font-normal leading-normal not-italic md:text-[24px] md:flex-1"
+                  className="min-w-0 text-[20px] font-normal leading-normal not-italic md:text-[24px]"
                   style={{
                     color: "var(--Black, #141414)",
                     fontFamily:
@@ -199,11 +219,6 @@ export function CVFormSection({
                   }}
                 >
                   {t("resumeHint")}
-                  {cvFile ? (
-                    <span className="ml-2" style={{ color: "inherit" }}>
-                      ({cvFile.name})
-                    </span>
-                  ) : null}
                 </p>
               </div>
 
