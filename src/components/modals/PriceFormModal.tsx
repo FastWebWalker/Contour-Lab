@@ -13,10 +13,18 @@ import {
 const labelStyle: React.CSSProperties = {
   color: "rgba(25, 25, 25, 0.9)",
   fontFamily: "var(--font-inter), Inter, sans-serif",
-  fontSize: "20px",
+  fontSize: "16px",
   fontWeight: 400,
   lineHeight: "normal",
 };
+
+const labelStyleDesktop: React.CSSProperties = {
+  ...labelStyle,
+};
+
+/** Compact input class for the modal — smaller padding on mobile */
+const modalInputClass =
+  "flex w-full min-w-0 flex-1 items-center gap-2.5 rounded-[40px] border border-[#D0D0D0] bg-white px-3 py-2.5 text-[14px] font-normal leading-normal outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(20,20,20,0.45)] focus:border-[var(--color-red-main)] focus:ring-1 focus:ring-[var(--color-red-main)] min-[768px]:px-4 min-[768px]:py-3 min-[768px]:text-[16px] min-[1024px]:px-5 min-[1024px]:py-[22px] min-[1024px]:text-[20px]";
 
 type RadioValue = "consult" | "coop" | "contact";
 
@@ -119,7 +127,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
           </svg>
         </button>
 
-        <div className="relative flex min-h-0 flex-1 flex-col overflow-visible">
+        <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
           <div
             className="pointer-events-none absolute inset-0 z-0 overflow-visible"
             aria-hidden
@@ -129,14 +137,14 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
               alt=""
               width={222}
               height={637}
-              className="absolute bottom-[7px] left-0 hidden h-auto w-[222px] select-none min-[1024px]:block"
+              className="absolute bottom-[7px] left-0 h-auto w-[120px] min-[768px]:w-[180px] min-[1024px]:w-[222px] select-none"
             />
             <Image
               src="/form/Group.svg"
               alt=""
               width={260}
               height={135}
-              className="absolute hidden h-auto w-[260px] select-none min-[1024px]:block"
+              className="absolute h-auto w-[140px] min-[768px]:w-[200px] min-[1024px]:w-[260px] select-none hidden min-[768px]:block"
               style={{
                 right: "0px",
                 bottom: "85.481px",
@@ -144,124 +152,130 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
             />
           </div>
 
-          <div className="relative z-[1] flex min-h-0 flex-1 flex-col items-center overflow-y-auto px-5 py-10 pb-16 min-[768px]:px-10 min-[768px]:py-12">
+          <div
+            className="relative z-[1] flex min-h-0 flex-1 flex-col items-center justify-center overflow-y-auto"
+            style={{ padding: 'clamp(16px, 3vh, 48px) clamp(16px, 3vw, 40px) clamp(16px, 4vh, 64px)' }}
+          >
             <div className="mx-auto w-full max-w-[480px]">
               <form
                 onSubmit={handleSubmit}
-                className="flex w-full flex-col gap-6"
+                className="flex w-full flex-col"
+                style={{ gap: 'clamp(14px, 2vh, 24px)' }}
               >
-            <h2
-              id="price-modal-title"
-              className="text-[36px] font-normal leading-normal"
-              style={{
-                color: "var(--Black, #141414)",
-                fontFamily:
-                  "Gilroy-Medium, Gilroy, var(--font-sans), ui-sans-serif, system-ui, sans-serif",
-              }}
-            >
-              {t("title")}
-            </h2>
+                <h2
+                  id="price-modal-title"
+                  className="font-normal leading-tight"
+                  style={{
+                    fontSize: 'clamp(24px, 4vh, 36px)',
+                    color: "var(--Black, #141414)",
+                    fontFamily:
+                      "Gilroy-Medium, Gilroy, var(--font-sans), ui-sans-serif, system-ui, sans-serif",
+                  }}
+                >
+                  {t("title")}
+                </h2>
 
-            <p style={labelStyle}>{t("subtitle")}</p>
+                <p style={labelStyle}>{t("subtitle")}</p>
 
-            <div className="flex w-full min-w-0 flex-col gap-4 min-[480px]:flex-row min-[480px]:gap-4">
-              <input
-                type="text"
-                name="firstName"
-                autoComplete="given-name"
-                placeholder={t("firstName")}
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className={FORM_INPUT_CLASSNAME}
-                style={FORM_INPUT_STYLE}
-              />
-              <input
-                type="text"
-                name="lastName"
-                autoComplete="family-name"
-                placeholder={t("lastName")}
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className={FORM_INPUT_CLASSNAME}
-                style={FORM_INPUT_STYLE}
-              />
-            </div>
+                <div className="flex w-full min-w-0 flex-col gap-4 min-[480px]:flex-row min-[480px]:gap-4">
+                  <input
+                    type="text"
+                    name="firstName"
+                    autoComplete="given-name"
+                    placeholder={t("firstName")}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className={modalInputClass}
+                    style={FORM_INPUT_STYLE}
+                  />
+                  <input
+                    type="text"
+                    name="lastName"
+                    autoComplete="family-name"
+                    placeholder={t("lastName")}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className={modalInputClass}
+                    style={FORM_INPUT_STYLE}
+                  />
+                </div>
 
-            <input
-              type="tel"
-              name="phone"
-              autoComplete="tel"
-              placeholder={t("phone")}
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className={FORM_INPUT_CLASSNAME}
-              style={FORM_INPUT_STYLE}
-            />
+                <input
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  placeholder={t("phone")}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className={modalInputClass}
+                  style={FORM_INPUT_STYLE}
+                />
 
-            <div className="flex flex-col gap-3">
-              <span style={labelStyle}>{t("methodLabel")}</span>
-              <select
-                name="method"
-                value={method}
-                onChange={(e) => setMethod(e.target.value)}
-                className={`${FORM_INPUT_CLASSNAME} appearance-none bg-white pr-10`}
-                style={{
-                  ...FORM_INPUT_STYLE,
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23555' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "right 1rem center",
-                  backgroundSize: "1.25rem",
-                }}
-              >
-                <option value="telegram">{t("methodTelegram")}</option>
-                <option value="viber">{t("methodViber")}</option>
-                <option value="email">{t("methodEmail")}</option>
-              </select>
-            </div>
-
-            <div
-              className="flex flex-col gap-4"
-              role="radiogroup"
-              aria-label={t("reasonGroup")}
-            >
-              {radioOptions.map(({ value, label }) => {
-                const active = reason === value;
-                return (
-                  <div
-                    key={value}
-                    className="flex items-center gap-2 self-stretch min-[400px]:gap-2"
+                <div className="flex flex-col gap-3">
+                  <span style={labelStyle}>{t("methodLabel")}</span>
+                  <select
+                    name="method"
+                    value={method}
+                    onChange={(e) => setMethod(e.target.value)}
+                    className={`${modalInputClass} appearance-none bg-white pr-10`}
+                    style={{
+                      ...FORM_INPUT_STYLE,
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23555' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "right 1rem center",
+                      backgroundSize: "1.25rem",
+                    }}
                   >
-                    <button
-                      type="button"
-                      role="radio"
-                      aria-checked={active}
-                      onClick={() => setReason(value)}
-                      className={[
-                        "flex shrink-0 items-center justify-center rounded-[17.5px] transition-colors",
-                        active
-                          ? "h-[35px] w-[35px] gap-2.5 bg-[var(--color-red-purple)] p-[5px]"
-                          : "h-[35px] w-[35px] border-[0.5px] border-[var(--color-grey-hard)] bg-[var(--color-white)]",
-                      ].join(" ")}
-                    >
-                      {active ? <RadioCheckIcon /> : null}
-                    </button>
-                    <span
-                      className="text-left text-[18px] min-[400px]:text-[20px]"
-                      style={labelStyle}
-                    >
-                      {label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+                    <option value="telegram">{t("methodTelegram")}</option>
+                    <option value="viber">{t("methodViber")}</option>
+                    <option value="email">{t("methodEmail")}</option>
+                  </select>
+                </div>
 
-            <div className="pt-2">
-              <PrimaryButton type="submit" size="lg" fullWidth>
-                {t("submit")}
-              </PrimaryButton>
-            </div>
-            </form>
+                <div
+                  className="flex flex-col"
+                  style={{ gap: 'clamp(6px, 1vh, 16px)' }}
+                  role="radiogroup"
+                  aria-label={t("reasonGroup")}
+                >
+                  {radioOptions.map(({ value, label }) => {
+                    const active = reason === value;
+                    return (
+                      <div
+                        key={value}
+                        className="flex items-center gap-2 self-stretch min-[400px]:gap-2"
+                      >
+                        <button
+                          type="button"
+                          role="radio"
+                          aria-checked={active}
+                          onClick={() => setReason(value)}
+                          className={[
+                            "flex shrink-0 items-center justify-center rounded-full transition-colors",
+                            active
+                              ? "h-[28px] w-[28px] min-[768px]:h-[35px] min-[768px]:w-[35px] gap-2.5 bg-[var(--color-red-purple)] p-[4px] min-[768px]:p-[5px]"
+                              : "h-[28px] w-[28px] min-[768px]:h-[35px] min-[768px]:w-[35px] border-[0.5px] border-[var(--color-grey-hard)] bg-[var(--color-white)]",
+                          ].join(" ")}
+                        >
+                          {active ? <RadioCheckIcon /> : null}
+                        </button>
+                        <span
+                          className="text-left text-[16px] min-[1024px]:text-[20px]"
+                          style={labelStyle}
+                        >
+                          {label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div style={{ paddingTop: 'clamp(4px, 0.5vh, 8px)' }}>
+                  <PrimaryButton type="submit" size="lg" fullWidth>
+                    {t("submit")}
+                  </PrimaryButton>
+                </div>
+              </form>
             </div>
           </div>
         </div>
