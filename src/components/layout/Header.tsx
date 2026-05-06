@@ -39,7 +39,11 @@ export function Header() {
 
   const scrollToContact = useCallback(() => {
     const el = document.getElementById("contact-form");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const yOffset = -20;
+      const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   }, []);
 
   useEffect(() => {
@@ -57,10 +61,24 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (menuOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+      if (scrollY) window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
     };
   }, [menuOpen]);
 
@@ -143,12 +161,13 @@ export function Header() {
           className="fixed inset-0 z-[80] overflow-hidden"
           style={{ pointerEvents: menuOpen ? "auto" : "none" }}
         >
-          {/* Sliding container: 100%×100%, top -100% when closed, top 0 when open */}
+          {/* Sliding container: 100dvh to respect browser chrome on real devices */}
           <div
-            className="absolute left-0 w-full h-full flex flex-col transition-[top] duration-300 ease-out z-10"
+            className="absolute left-0 w-full flex flex-col transition-[top] duration-300 ease-out z-10"
             style={{
-              top: menuOpen ? 0 : "-100%",
-              backgroundColor: "#F8F8F8",
+              height: '100dvh',
+              top: menuOpen ? 0 : '-100%',
+              backgroundColor: '#F8F8F8',
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -162,7 +181,7 @@ export function Header() {
             <div className="absolute inset-0 flex flex-col overflow-hidden">
               {/* Left logo: mobile 117×207, tablet+ 179.831×415. Mobile позиція: left-[…] top-[…]; tablet+: md:left-[-3%] md:top-1/2 */}
               <div
-                className="absolute pointer-events-none flex items-center justify-center -translate-y-1/2 w-[140px] h-[248px] min-[500px]:w-[216px] min-[500px]:h-[498px] left-[-3%] top-[16%] min-[500px]:left-[-3%] min-[500px]:top-[46%]"
+                className="absolute pointer-events-none flex items-center justify-center -translate-y-1/2 w-[140px] h-[248px] min-[500px]:w-[216px] min-[500px]:h-[498px] left-[-6%] top-[18%] min-[500px]:left-[-3%] min-[500px]:top-[46%]"
               >
                 <Image
                   src="/hero/LogoMenu.svg"
@@ -187,14 +206,17 @@ export function Header() {
                 />
               </div>
 
-              {/* Контейнер для контенту меню: 40px відступ зверху щоб не заходив під хрестик */}
-              <Container className="relative flex flex-1 flex-col items-center justify-center min-h-0 overflow-hidden pt-6 pb-8 mt-10">
-                {/* LanguageSelector, nav, button — max 89% висоти, по центру, space-between між блоками */}
-                <div className="flex flex-col justify-between items-center w-full h-[89%] max-h-[89%] min-h-0">
-                  <div className="flex justify-center">
+              {/* Контейнер для контенту меню — uses clamp with dvh for adaptive spacing */}
+              <Container
+                className="relative flex flex-1 flex-col items-center justify-center min-h-0 overflow-hidden"
+                style={{ paddingTop: 'clamp(16px, 2dvh, 24px)', paddingBottom: 'clamp(24px, 5dvh, 48px)', marginTop: 'clamp(40px, 7dvh, 56px)' }}
+              >
+                {/* LanguageSelector, nav, button — adaptive to viewport */}
+                <div className="flex flex-col justify-between items-center w-full flex-1 min-h-0" style={{ gap: 'clamp(8px, 2dvh, 20px)' }}>
+                  <div className="flex justify-center shrink-0">
                     <LanguageSelector />
                   </div>
-                  <nav className="flex flex-col gap-4 items-center">
+                  <nav className="flex flex-col items-center overflow-y-auto min-h-0 flex-1 justify-center w-full" style={{ gap: 'clamp(8px, 1.5dvh, 16px)' }}>
                     {MOBILE_NAV_LINKS.map(({ href, key }) => {
                       const active = !href.includes("#") && pathname === href;
                       return (
@@ -202,11 +224,12 @@ export function Header() {
                           key={href}
                           href={href}
                           className={[
-                            "w-full text-center min-h-14 py-4 px-6 text-[18px] md:min-h-12 md:py-3 md:px-5 md:text-[16px] border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5]",
-                            active ? "!ring-2 !ring-[var(--color-red-main)]/30" : "",
+                            "text-center border-[#d9d9d9] bg-[#ebebeb] hover:border-[#d0d0d0] hover:bg-[#e5e5e5] shrink-0",
+                            active ? "!border-[#B9040F]" : "",
                           ]
                             .filter(Boolean)
                             .join(" ")}
+                          style={{ padding: 'clamp(8px, 1.2dvh, 16px) clamp(16px, 3dvh, 24px)', fontSize: 'clamp(14px, 2dvh, 18px)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                           onClick={closeMenu}
                         >
                           {tNav(key)}
@@ -214,10 +237,11 @@ export function Header() {
                       );
                     })}
                   </nav>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center shrink-0 mb-10">
                     <OutlineLightButton
                       size="md"
-                      className="h-14 min-w-[240px] text-[18px] md:h-12 md:min-w-[200px] md:text-[16px]"
+                      className="min-w-[200px]"
+                      style={{ height: 'clamp(40px, 6dvh, 56px)', fontSize: 'clamp(14px, 2dvh, 18px)' }}
                       onClick={() => {
                         closeMenu();
                         setTimeout(scrollToContact, 350);

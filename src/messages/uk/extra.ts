@@ -181,7 +181,7 @@ export const vacanciesJobs = {
 };
 
 export const jobCard = {
-  apply: "Податися на вакансію",
+  apply: "Відгукнутись на вакансію",
 };
 
 export const jobSection = {

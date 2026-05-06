@@ -36,7 +36,7 @@ export const cvForm = {
   lastName: "Last name",
   email: "Email",
   phone: "Phone",
-  upload: "Upload CV",
+  upload: "Download CV",
   resumeHint: "Please attach your resume!",
   submit: "Send message",
 };
