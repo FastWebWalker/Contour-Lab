@@ -11,9 +11,9 @@ import { Title } from "./ui/Title";
 import { FormCardDotsDecoration } from "./FormCardDotsDecoration";
 import {
   fadeUpVariants,
-  staggerContainerVariants,
   sectionViewport,
 } from "@/lib/motion";
+import { FormSuccessModal } from "@/components/modals/FormSuccessModal";
 
 /** Як у QuestionMapFormSection */
 const inputClassName =
@@ -55,16 +55,47 @@ export function CVFormSection({
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [cvFile, setCvFile] = React.useState<File | null>(null);
+  const [successOpen, setSuccessOpen] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await onSubmitForm?.({
+    const payload = {
       firstName,
       lastName,
       email,
       phone,
       cvFile,
+    };
+
+    if (onSubmitForm) {
+      await onSubmitForm(payload);
+      return;
+    }
+
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        formType: "CV form",
+        subject: "Contour Lab: CV submission",
+        replyTo: email || undefined,
+        fields: [
+          { label: "First name", value: firstName },
+          { label: "Last name", value: lastName },
+          { label: "Email", value: email },
+          { label: "Phone", value: phone },
+          { label: "CV file", value: cvFile?.name ?? "No file attached" },
+        ],
+      }),
     });
+
+    if (!response.ok) return;
+    setSuccessOpen(true);
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    setCvFile(null);
   };
 
   return (
@@ -205,6 +236,10 @@ export function CVFormSection({
         </CardWrapper>
         {children}
       </div>
+      <FormSuccessModal
+        open={successOpen}
+        onClose={() => setSuccessOpen(false)}
+      />
     </section>
   );
 }
