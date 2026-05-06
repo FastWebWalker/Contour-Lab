@@ -59,11 +59,11 @@ export function FormSuccessModal({ open, onClose }: FormSuccessModalProps) {
         </button>
 
         <Image
-          src="/Group 1.png"
+          src="/Group 1.svg"
           alt=""
           width={125}
           height={351}
-          className="absolute left-0 top-0 h-full w-auto object-cover opacity-20"
+          className="absolute bottom-[-130px] left-0 h-[72%] w-auto object-contain min-[400px]:bottom-[-60px] min-[768px]:top-0 min-[768px]:bottom-auto min-[768px]:h-full min-[768px]:object-cover"
         />
 
         <div className="flex h-full items-center justify-center px-8 text-center">
