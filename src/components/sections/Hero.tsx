@@ -98,24 +98,17 @@ export function Hero({
           className={[
             "absolute right-0",
             isGeneralPage ? "-bottom-[20px]" : "-bottom-[50px]",
-            "md:-bottom-[10px]",
+            "md:-bottom-[10px] lg:-bottom-[18px]",
             isGeneralPage
-              ? "w-[296px] h-[327px] aspect-[86/95] lg:w-[720px] lg:h-[540px] xl:w-[980px] xl:h-[720px]"
+              ? "w-[700px] h-[450px] left-[-50px] min-[480px]:w-[600px] min-[480px]:h-[430px] min-[480px]:left-[200px] md:w-[920px] md:h-[700px] md:left-[200px] lg:w-[1064px] lg:h-[630px] lg:left-[280px] xl:w-[1112px] xl:h-[680px] xl:left-[40%]"
               : "w-[110%] h-[70%] lg:w-[800px] lg:h-[600px] xl:w-[1100px] xl:h-[800px]",
-            "md:w-[640px] md:h-[580px] z-10 pointer-events-none select-none",
+            !isGeneralPage && "md:w-[640px] md:h-[580px]",
+            "z-10 pointer-events-none select-none",
             heroImageContainerClassName,
           ]
             .filter(Boolean)
             .join(" ")}
-          style={
-            isGeneralPage
-              ? {
-                  background: `url("${heroImage}") -55.457px -53.595px / 166.545% 125.026% no-repeat`,
-                  backgroundColor: "transparent",
-               
-                }
-              : undefined
-          }
+          style={undefined}
           aria-hidden
           initial={
             reduced
@@ -133,16 +126,19 @@ export function Hero({
             delay: motionConfig.delay.heroImage,
           })}
         >
-          {!isGeneralPage && (
-            <Image
-              src={heroImage}
-              alt=""
-              fill
-              className="object-contain object-right object-bottom mix-blend-lighten opacity-95 translate-y-[58px] md:translate-y-[20px]"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
-              priority
-            />
-          )}
+          <Image
+            src={heroImage}
+            alt=""
+            fill
+            className={[
+              "object-contain object-right object-bottom mix-blend-lighten opacity-95",
+              isGeneralPage
+                ? "translate-y-[20px] md:translate-y-[10px]"
+                : "translate-y-[58px] md:translate-y-[20px]",
+            ].join(" ")}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
+            priority
+          />
         </motion.div>
 
         {/* Content */}
