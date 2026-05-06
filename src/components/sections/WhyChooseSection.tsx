@@ -188,7 +188,7 @@ export function WhyChooseSection({
                   <CardWrapper
                     paddingClassName="py-5 px-4"
                     widthClassName="w-full min-w-0"
-                    className="min-[1080px]:h-full min-[1080px]:flex-1"
+                    className="h-[144.2px] md:h-auto min-[1080px]:h-full min-[1080px]:flex-1"
                   >
                     <Image
                       src={icon}

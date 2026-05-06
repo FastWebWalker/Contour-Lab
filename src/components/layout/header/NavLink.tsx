@@ -1,15 +1,17 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
 
 export interface NavLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+  style?: CSSProperties;
   onClick?: () => void;
 }
 
-export function NavLink({ href, children, className = "", onClick }: NavLinkProps) {
+export function NavLink({ href, children, className = "", style, onClick }: NavLinkProps) {
   return (
     <Link
       href={href}
@@ -18,6 +20,7 @@ export function NavLink({ href, children, className = "", onClick }: NavLinkProp
       style={{
         color: "var(--color-black)",
         fontFamily: "var(--font-inter)",
+        ...style,
       }}
     >
       {children}

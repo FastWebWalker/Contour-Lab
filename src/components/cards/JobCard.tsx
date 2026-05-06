@@ -131,7 +131,7 @@ export function JobCard({
           src={imageSrc}
           alt=""
           fill
-          className={["object-cover", rotateImage ? "rotate-270" : ""].filter(Boolean).join(" ")}
+          className="object-cover"
           sizes="(max-width: 1280px) 100vw, 40vw"
         />
       </div>
