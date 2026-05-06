@@ -233,7 +233,7 @@ export function Header() {
                       );
                     })}
                   </nav>
-                  <div className="flex justify-center shrink-0">
+                  <div className="flex justify-center shrink-0 mb-10">
                     <OutlineLightButton
                       size="md"
                       className="min-w-[200px]"
