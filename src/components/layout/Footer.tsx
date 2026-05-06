@@ -118,7 +118,19 @@ export function Footer() {
               >
                 {tFooter("ctaText")}
               </p>
-              <SecondaryButton size="md">{tFooter("contact")}</SecondaryButton>
+              <SecondaryButton
+                size="md"
+                onClick={() => {
+                  const el = document.getElementById("contact-form");
+                  if (el) {
+                    const yOffset = -50;
+                    const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                  }
+                }}
+              >
+                {tFooter("contact")}
+              </SecondaryButton>
             </motion.div>
           </motion.div>
         </Container>

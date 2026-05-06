@@ -39,7 +39,11 @@ export function Header() {
 
   const scrollToContact = useCallback(() => {
     const el = document.getElementById("contact-form");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const yOffset = -20;
+      const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   }, []);
 
   useEffect(() => {
