@@ -9,6 +9,7 @@ import {
   FORM_INPUT_CLASSNAME,
   FORM_INPUT_STYLE,
 } from "@/components/form/formInputStyles";
+import { FormSuccessModal } from "@/components/modals/FormSuccessModal";
 
 const labelStyle: React.CSSProperties = {
   color: "rgba(25, 25, 25, 0.9)",
@@ -60,6 +61,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
   const [phone, setPhone] = React.useState("");
   const [method, setMethod] = React.useState("telegram");
   const [reason, setReason] = React.useState<RadioValue>("coop");
+  const [successOpen, setSuccessOpen] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
@@ -83,26 +85,51 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        formType: "Price modal form",
+        subject: "Contour Lab: Price request",
+        fields: [
+          { label: "First name", value: firstName },
+          { label: "Last name", value: lastName },
+          { label: "Phone", value: phone },
+          { label: "Preferred contact method", value: method },
+          { label: "Reason", value: reason },
+        ],
+      }),
+    });
+    if (!response.ok) return;
+    setSuccessOpen(true);
+    setFirstName("");
+    setLastName("");
+    setPhone("");
+    setMethod("telegram");
+    setReason("coop");
     onClose();
   };
 
-  if (!mounted || !open) return null;
+  if (!mounted) return null;
 
-  return createPortal(
-    <div
-      role="presentation"
-      className="fixed inset-0 z-[10050] flex items-center justify-center bg-black/45 p-4"
-      onClick={onClose}
-    >
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="price-modal-title"
-        className="relative flex h-[90vh] w-[90vw] max-h-[90vh] flex-col overflow-hidden rounded-[30px] bg-white shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
+  return (
+    <>
+      {open
+        ? createPortal(
+            <div
+              role="presentation"
+              className="fixed inset-0 z-[10050] flex items-center justify-center bg-black/45 p-4"
+              onClick={onClose}
+            >
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="price-modal-title"
+                className="relative flex h-[90vh] w-[90vw] max-h-[90vh] flex-col overflow-hidden rounded-[30px] bg-white shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
         <button
           type="button"
           onClick={onClose}
@@ -265,8 +292,15 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
             </div>
           </div>
         </div>
-      </div>
-    </div>,
-    document.body
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
+      <FormSuccessModal
+        open={successOpen}
+        onClose={() => setSuccessOpen(false)}
+      />
+    </>
   );
 }

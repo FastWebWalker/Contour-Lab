@@ -18,6 +18,7 @@ import {
   staggerContainerVariants,
   sectionViewport,
 } from "@/lib/motion";
+import { FormSuccessModal } from "@/components/modals/FormSuccessModal";
 
 /** Статичний фон карти (≤1200px); додайте файл `public/questionMap/map-bg.png`, якщо хочете використовувати заглушку */
 const MAP_BG_PATH = "";
@@ -48,16 +49,47 @@ export function QuestionMapFormSection({
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [successOpen, setSuccessOpen] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await onSubmitForm?.({
+    const payload = {
       firstName,
       lastName,
       email,
       phone,
       message,
+    };
+
+    if (onSubmitForm) {
+      await onSubmitForm(payload);
+      return;
+    }
+
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        formType: "Question map form",
+        subject: "Contour Lab: Contact question",
+        replyTo: email || undefined,
+        fields: [
+          { label: "First name", value: firstName },
+          { label: "Last name", value: lastName },
+          { label: "Email", value: email },
+          { label: "Phone", value: phone },
+          { label: "Message", value: message },
+        ],
+      }),
     });
+
+    if (!response.ok) return;
+    setSuccessOpen(true);
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
   };
 
   return (
@@ -170,6 +202,10 @@ export function QuestionMapFormSection({
         </motion.div>
         {children}
       </div>
+      <FormSuccessModal
+        open={successOpen}
+        onClose={() => setSuccessOpen(false)}
+      />
     </section>
   );
 }

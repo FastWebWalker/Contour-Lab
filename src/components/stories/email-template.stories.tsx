@@ -9,9 +9,13 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    firstName: {
+    title: {
       control: "text",
-      description: "Ім'я одержувача в привітанні",
+      description: "Заголовок листа",
+    },
+    fields: {
+      control: "object",
+      description: "Поля форми для рендеру в листі",
     },
   },
 } satisfies Meta<typeof EmailTemplate>;
@@ -21,12 +25,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    firstName: "User",
+    title: "Contour Lab: New form submission",
+    fields: [
+      { label: "First name", value: "User" },
+      { label: "Email", value: "user@example.com" },
+      { label: "Message", value: "Hello from Storybook" },
+    ],
   },
 };
 
 export const WithCustomName: Story = {
   args: {
-    firstName: "Dmytro",
+    title: "Contour Lab: CV submission",
+    fields: [
+      { label: "First name", value: "Dmytro" },
+      { label: "Last name", value: "Skorohodov" },
+      { label: "CV file", value: "cv-dmytro.pdf" },
+    ],
   },
 };
