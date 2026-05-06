@@ -87,7 +87,7 @@ export function Footer() {
             <motion.div variants={fadeUpVariants(reduced)} className="flex items-center">
               <div className="flex gap-3">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/contour.laboratory"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-white bg-transparent hover:bg-white/10 transition-colors"
@@ -96,7 +96,7 @@ export function Footer() {
                   <FacebookIcon size={18} />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/contour_lab/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-white bg-transparent hover:bg-white/10 transition-colors"

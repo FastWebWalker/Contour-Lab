@@ -29,11 +29,11 @@ const socialIconPillClass =
   "box-border flex h-12 w-12 shrink-0 items-center justify-center gap-[10px] rounded-[30px] border-[0.5px] border-[#939393] p-3 outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[var(--color-red-main)] focus-visible:ring-offset-2";
 
 const CONTACT_SOCIAL_LINKS: { href: string; src: string; label: string }[] = [
-  { href: "https://facebook.com", src: "/contacts/icons/Facebook.svg", label: "Facebook" },
-  { href: "https://instagram.com", src: "/contacts/icons/Instagram.svg", label: "Instagram" },
-  { href: "https://wa.me/380985894109", src: "/contacts/icons/WhatsApp.svg", label: "WhatsApp" },
-  { href: "https://t.me/", src: "/contacts/icons/Telegram.svg", label: "Telegram" },
-  { href: "viber://chat?number=380633556550", src: "/contacts/icons/Viber.svg", label: "Viber" },
+  { href: "https://www.facebook.com/contour.laboratory", src: "/contacts/icons/Facebook.svg", label: "Facebook" },
+  { href: "https://www.instagram.com/contour_lab/", src: "/contacts/icons/Instagram.svg", label: "Instagram" },
+  { href: "https://wa.me/380633556550", src: "/contacts/icons/WhatsApp.svg", label: "WhatsApp" },
+  { href: "https://t.me/Labcontour", src: "/contacts/icons/Telegram.svg", label: "Telegram" },
+  { href: "viber://chat?number=%2B380633556550", src: "/contacts/icons/Viber.svg", label: "Viber" },
 ];
 
 export function ContactsInfoGridSection({
