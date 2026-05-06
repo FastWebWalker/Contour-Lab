@@ -57,7 +57,7 @@ export function Footer() {
                 />
               </Link>
               <p
-                className="text-2xl leading-normal font-normal max-w-xs"
+                className="text-[18px] md:text-[24px] leading-normal font-normal max-w-xs md:max-w-none"
                 style={{
                   color: "white",
                   fontFamily: "var(--font-sans)",
@@ -110,7 +110,7 @@ export function Footer() {
             {/* Row 2, Col 2: CTA text + button */}
             <motion.div variants={fadeUpVariants(reduced)} className="flex flex-col gap-5 lg:items-end">
               <p
-                className="text-2xl leading-normal font-normal max-w-2xl lg:text-right"
+                className="text-[16px] md:text-[20px] lg:text-[24px] leading-normal font-normal max-w-2xl lg:text-right"
                 style={{
                   color: "white",
                   fontFamily: "var(--font-sans)",
