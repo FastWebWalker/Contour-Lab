@@ -70,13 +70,13 @@ export function FutureIsHereSection({
               <Title as="h2">{t("title")}</Title>
             </motion.div>
             <motion.div variants={lineVariants}>
-              <Description className="w-full min-[1024px]:max-w-[624px]">
+              <Description className="w-full min-[1024px]:max-w-[624px] min-[1920px]:max-w-[760px]">
                 {t("description")}
               </Description>
             </motion.div>
 
             <motion.div
-              className="flex w-full min-[1024px]:max-w-[624px] flex-col gap-2.5 rounded-[30px] p-0"
+              className="flex w-full min-[1024px]:max-w-[624px] min-[1920px]:max-w-[760px] flex-col gap-2.5 rounded-[30px] p-0"
               variants={gridVariants}
             >
               <div className="flex w-full flex-col items-stretch gap-[10px] self-stretch">
@@ -100,9 +100,9 @@ export function FutureIsHereSection({
 
           {/* Right block: сіра рамка одразу, фото з'являється окремо при скролі */}
           <div className="flex w-full min-w-0 justify-center mt-2 min-[768px]:mt-4 min-[1024px]:mt-0 min-[1024px]:min-w-0 min-[1024px]:flex-1 min-[1024px]:basis-0 min-[1024px]:shrink">
-            <div className="flex w-full max-w-full flex-col items-center justify-center rounded-[30px] bg-[#F6F6F6] pt-[63.138px]">
+            <div className="flex w-full max-w-full flex-col items-center justify-center rounded-[30px] bg-[#F6F6F6] pt-[63.138px] min-[1024px]:justify-end min-[1024px]:pt-0">
               <motion.div
-                className="relative w-full aspect-[381/272] overflow-hidden"
+                className="relative w-full aspect-[381/272] overflow-hidden min-[1024px]:h-full min-[1024px]:aspect-auto"
                 initial={reduced ? false : { opacity: 0, scale: 1.05 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={sectionViewport()}
@@ -115,7 +115,7 @@ export function FutureIsHereSection({
                   src={FUTURE_IMAGE}
                   alt=""
                   fill
-                  className="object-cover object-center"
+                  className="object-contain object-bottom scale-[1.03]"
                   sizes="(max-width: 1023px) 100vw, (max-width: 1920px) 45vw, 900px"
                 />
               </motion.div>
