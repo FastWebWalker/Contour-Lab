@@ -63,12 +63,12 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: getSafeFromAddress(),
       to: recipients.length > 0 ? recipients : ["delivered@resend.dev"],
-      subject: body.subject ?? "New form submission",
+      subject: body.subject ?? "Contour Lab: Нова заявка з сайту",
       replyTo: body.replyTo,
       react: EmailTemplate({
         title: body.formType
-          ? `Contour Lab: ${body.formType} submission`
-          : "Contour Lab: New form submission",
+          ? `Contour Lab: ${body.formType}`
+          : "Contour Lab: Нова заявка з сайту",
         fields:
           body.fields?.map((field) => ({
             label: field.label,

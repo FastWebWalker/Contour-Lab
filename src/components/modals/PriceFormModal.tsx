@@ -70,6 +70,16 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
   const [method, setMethod] = React.useState("telegram");
   const [reason, setReason] = React.useState<RadioValue>("coop");
   const [successOpen, setSuccessOpen] = React.useState(false);
+  const methodLabelMap: Record<string, string> = {
+    telegram: "Telegram",
+    viber: "Viber",
+    email: "Email",
+  };
+  const reasonLabelMap: Record<RadioValue, string> = {
+    consult: t("reasonConsult"),
+    coop: t("reasonCoop"),
+    contact: t("reasonContact"),
+  };
 
   React.useEffect(() => {
     setMounted(true);
@@ -99,14 +109,14 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        formType: "Price modal form",
-        subject: "Contour Lab: Price request",
+        formType: "Модальне вікно прайсу",
+        subject: "Contour Lab: Запит на прайс",
         fields: [
-          { label: "First name", value: firstName },
-          { label: "Last name", value: lastName },
-          { label: "Phone", value: phone },
-          { label: "Preferred contact method", value: method },
-          { label: "Reason", value: reason },
+          { label: "Ім'я", value: firstName },
+          { label: "Прізвище", value: lastName },
+          { label: "Телефон", value: phone },
+          { label: "Зручний спосіб зв'язку", value: methodLabelMap[method] ?? method },
+          { label: "Причина звернення", value: reasonLabelMap[reason] },
         ],
       }),
     });
