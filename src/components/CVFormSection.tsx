@@ -72,21 +72,30 @@ export function CVFormSection({
       return;
     }
 
-    const response = await fetch("/api/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    const fields = [
+      { label: "First name", value: firstName },
+      { label: "Last name", value: lastName },
+      { label: "Email", value: email },
+      { label: "Phone", value: phone },
+      { label: "CV file", value: cvFile?.name ?? "No file attached" },
+    ];
+    const formData = new FormData();
+    formData.append(
+      "payload",
+      JSON.stringify({
         formType: "CV form",
         subject: "Contour Lab: CV submission",
         replyTo: email || undefined,
-        fields: [
-          { label: "First name", value: firstName },
-          { label: "Last name", value: lastName },
-          { label: "Email", value: email },
-          { label: "Phone", value: phone },
-          { label: "CV file", value: cvFile?.name ?? "No file attached" },
-        ],
-      }),
+        fields,
+      })
+    );
+    if (cvFile) {
+      formData.append("cvFile", cvFile);
+    }
+
+    const response = await fetch("/api/send", {
+      method: "POST",
+      body: formData,
     });
 
     if (!response.ok) return;
