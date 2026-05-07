@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { PrimaryButton } from "../ui/Button";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { HeroText } from "../hero/HeroText";
+import { ContactWidget } from "../contact/ContactWidget";
 import { heroTransition, motionConfig } from "@/lib/motion";
 
 /* ------------------------------------------------------------------ */
@@ -261,41 +262,74 @@ export function Hero({
                     </div>
                   )}
                 </div>
-                {showSocialLinks && socialLinks.length > 0 && (
-                  <div className="flex flex-row gap-2.5 shrink-0 md:flex-col lg:flex-col">
-                    {socialLinks.map(({ href, src, label }, i) => (
-                      <motion.a
-                        key={label}
-                        href={href}
-                        target={href.startsWith("http") ? "_blank" : undefined}
-                        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="flex w-12 h-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] p-3 transition-opacity hover:opacity-90"
-                        aria-label={label}
-                        initial={
-                          reduced
-                            ? false
-                            : { opacity: 0, y: motionConfig.offset.heroSocial }
-                        }
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={heroTransition({
-                          reduced,
-                          duration: motionConfig.duration.micro,
-                          delay:
-                            motionConfig.delay.heroSocial +
-                            i * motionConfig.stagger.heroSocial,
-                        })}
-                      >
-                        <Image src={src} alt="" width={24} height={24} className="shrink-0" />
-                      </motion.a>
-                    ))}
+                <div className="flex shrink-0 items-end">
+                  {showSocialLinks && socialLinks.length > 0 && (
+                    <div className="flex flex-row gap-2.5 md:flex-col lg:hidden">
+                      {socialLinks.slice(1).map(({ href, src, label }, i) => (
+                        <motion.a
+                          key={label}
+                          href={href}
+                          target={href.startsWith("http") ? "_blank" : undefined}
+                          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="flex w-12 h-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] p-3 transition-opacity hover:opacity-90"
+                          aria-label={label}
+                          initial={
+                            reduced
+                              ? false
+                              : { opacity: 0, y: motionConfig.offset.heroSocial }
+                          }
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={heroTransition({
+                            reduced,
+                            duration: motionConfig.duration.micro,
+                            delay:
+                              motionConfig.delay.heroSocial +
+                              i * motionConfig.stagger.heroSocial,
+                          })}
+                        >
+                          <Image src={src} alt="" width={24} height={24} className="shrink-0" />
+                        </motion.a>
+                      ))}
+                    </div>
+                  )}
+                  <div className="hidden lg:flex flex-col items-end gap-2.5">
+                    <ContactWidget variant="inline" />
+                    {showSocialLinks &&
+                      socialLinks.slice(1).map(({ href, src, label }, i) => (
+                        <motion.a
+                          key={label}
+                          href={href}
+                          target={href.startsWith("http") ? "_blank" : undefined}
+                          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="flex w-12 h-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] p-3 transition-opacity hover:opacity-90"
+                          aria-label={label}
+                          initial={
+                            reduced
+                              ? false
+                              : { opacity: 0, y: motionConfig.offset.heroSocial }
+                          }
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={heroTransition({
+                            reduced,
+                            duration: motionConfig.duration.micro,
+                            delay:
+                              motionConfig.delay.heroSocial +
+                              (i + 1) * motionConfig.stagger.heroSocial,
+                          })}
+                        >
+                          <Image src={src} alt="" width={24} height={24} className="shrink-0" />
+                        </motion.a>
+                      ))}
                   </div>
-                )}
+                </div>
               </div>
               {/* Spacer so content doesn't collide with image on large screens */}
               <div className="hidden lg:block flex-1 min-w-[4%]" />
 
             </div>
           </div>
+
+          <ContactWidget variant="fixed" />
 
           {/* Statistics - притиснуто до низу секції */}
           {showStats && stats.length > 0 && (
