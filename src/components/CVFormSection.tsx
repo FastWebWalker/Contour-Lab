@@ -73,18 +73,18 @@ export function CVFormSection({
     }
 
     const fields = [
-      { label: "First name", value: firstName },
-      { label: "Last name", value: lastName },
+      { label: "Ім'я", value: firstName },
+      { label: "Прізвище", value: lastName },
       { label: "Email", value: email },
-      { label: "Phone", value: phone },
-      { label: "CV file", value: cvFile?.name ?? "No file attached" },
+      { label: "Телефон", value: phone },
+      { label: "Файл CV", value: cvFile?.name ?? "Файл не додано" },
     ];
     const formData = new FormData();
     formData.append(
       "payload",
       JSON.stringify({
-        formType: "CV form",
-        subject: "Contour Lab: CV submission",
+        formType: "Форма CV",
+        subject: "Contour Lab: Нова заявка з CV",
         replyTo: email || undefined,
         fields,
       })

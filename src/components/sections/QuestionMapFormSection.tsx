@@ -70,15 +70,15 @@ export function QuestionMapFormSection({
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        formType: "Question map form",
-        subject: "Contour Lab: Contact question",
+        formType: "Форма запиту (контакти)",
+        subject: "Contour Lab: Новий запит з контактної форми",
         replyTo: email || undefined,
         fields: [
-          { label: "First name", value: firstName },
-          { label: "Last name", value: lastName },
+          { label: "Ім'я", value: firstName },
+          { label: "Прізвище", value: lastName },
           { label: "Email", value: email },
-          { label: "Phone", value: phone },
-          { label: "Message", value: message },
+          { label: "Телефон", value: phone },
+          { label: "Повідомлення", value: message },
         ],
       }),
     });
