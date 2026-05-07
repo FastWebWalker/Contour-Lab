@@ -72,21 +72,30 @@ export function CVFormSection({
       return;
     }
 
+    const fields = [
+      { label: "Ім'я", value: firstName },
+      { label: "Прізвище", value: lastName },
+      { label: "Email", value: email },
+      { label: "Телефон", value: phone },
+      { label: "Файл CV", value: cvFile?.name ?? "Файл не додано" },
+    ];
+    const formData = new FormData();
+    formData.append(
+      "payload",
+      JSON.stringify({
+        formType: "Форма CV",
+        subject: "Contour Lab: Нова заявка з CV",
+        replyTo: email || undefined,
+        fields,
+      })
+    );
+    if (cvFile) {
+      formData.append("cvFile", cvFile);
+    }
+
     const response = await fetch("/api/send", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        formType: "CV form",
-        subject: "Contour Lab: CV submission",
-        replyTo: email || undefined,
-        fields: [
-          { label: "First name", value: firstName },
-          { label: "Last name", value: lastName },
-          { label: "Email", value: email },
-          { label: "Phone", value: phone },
-          { label: "CV file", value: cvFile?.name ?? "No file attached" },
-        ],
-      }),
+      body: formData,
     });
 
     if (!response.ok) return;

@@ -1,6 +1,7 @@
 import { EmailTemplate } from "@/components/email/email-template";
 import { getResend } from "@/lib/resend";
 import { NextResponse } from "next/server";
+import { Buffer } from "node:buffer";
 
 type SendFormPayload = {
   formType?: string;
@@ -27,7 +28,33 @@ function getSafeFromAddress() {
 export async function POST(request: Request) {
   try {
     const resend = getResend();
-    const body = (await request.json()) as SendFormPayload;
+    const contentType = request.headers.get("content-type") ?? "";
+    let body: SendFormPayload;
+    let cvAttachment:
+      | {
+          filename: string;
+          content: Buffer;
+          contentType?: string;
+        }
+      | undefined;
+
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await request.formData();
+      const payloadRaw = formData.get("payload");
+      body = payloadRaw ? (JSON.parse(String(payloadRaw)) as SendFormPayload) : {};
+
+      const cvFile = formData.get("cvFile");
+      if (cvFile instanceof File && cvFile.size > 0) {
+        cvAttachment = {
+          filename: cvFile.name || "cv.pdf",
+          content: Buffer.from(await cvFile.arrayBuffer()),
+          contentType: cvFile.type || "application/pdf",
+        };
+      }
+    } else {
+      body = (await request.json()) as SendFormPayload;
+    }
+
     const recipients =
       process.env.RESEND_TO_EMAIL?.split(",")
         .map((email) => email.trim())
@@ -36,18 +63,19 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: getSafeFromAddress(),
       to: recipients.length > 0 ? recipients : ["delivered@resend.dev"],
-      subject: body.subject ?? "New form submission",
+      subject: body.subject ?? "Contour Lab: Нова заявка з сайту",
       replyTo: body.replyTo,
       react: EmailTemplate({
         title: body.formType
-          ? `Contour Lab: ${body.formType} submission`
-          : "Contour Lab: New form submission",
+          ? `Contour Lab: ${body.formType}`
+          : "Contour Lab: Нова заявка з сайту",
         fields:
           body.fields?.map((field) => ({
             label: field.label,
             value: String(field.value ?? ""),
           })) ?? [],
       }),
+      attachments: cvAttachment ? [cvAttachment] : undefined,
     });
 
     if (error) {

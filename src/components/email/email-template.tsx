@@ -8,7 +8,10 @@ interface EmailTemplateProps {
 export function EmailTemplate({ title, fields }: EmailTemplateProps) {
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>Сповіщення з сайту Contour Lab</h1>
+      <p>
+        <strong>{title}</strong>
+      </p>
       <ul>
         {fields.map((field) => (
           <li key={field.label}>
