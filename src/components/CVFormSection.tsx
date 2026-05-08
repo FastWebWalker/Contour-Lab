@@ -11,9 +11,9 @@ import { Title } from "./ui/Title";
 import { FormCardDotsDecoration } from "./FormCardDotsDecoration";
 import {
   fadeUpVariants,
-  staggerContainerVariants,
   sectionViewport,
 } from "@/lib/motion";
+import { FormSuccessModal } from "@/components/modals/FormSuccessModal";
 
 /** Як у QuestionMapFormSection */
 const inputClassName =
@@ -55,16 +55,56 @@ export function CVFormSection({
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [cvFile, setCvFile] = React.useState<File | null>(null);
+  const [successOpen, setSuccessOpen] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await onSubmitForm?.({
+    const payload = {
       firstName,
       lastName,
       email,
       phone,
       cvFile,
+    };
+
+    if (onSubmitForm) {
+      await onSubmitForm(payload);
+      return;
+    }
+
+    const fields = [
+      { label: "Ім'я", value: firstName },
+      { label: "Прізвище", value: lastName },
+      { label: "Email", value: email },
+      { label: "Телефон", value: phone },
+      { label: "Файл CV", value: cvFile?.name ?? "Файл не додано" },
+    ];
+    const formData = new FormData();
+    formData.append(
+      "payload",
+      JSON.stringify({
+        formType: "Форма CV",
+        subject: "Contour Lab: Нова заявка з CV",
+        replyTo: email || undefined,
+        fields,
+      })
+    );
+    if (cvFile) {
+      formData.append("cvFile", cvFile);
+    }
+
+    const response = await fetch("/api/send", {
+      method: "POST",
+      body: formData,
     });
+
+    if (!response.ok) return;
+    setSuccessOpen(true);
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    setCvFile(null);
   };
 
   return (
@@ -220,6 +260,10 @@ export function CVFormSection({
         </CardWrapper>
         {children}
       </div>
+      <FormSuccessModal
+        open={successOpen}
+        onClose={() => setSuccessOpen(false)}
+      />
     </section>
   );
 }
