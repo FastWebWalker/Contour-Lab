@@ -23,12 +23,55 @@ const TEAM_PHOTOS = [
   { desktop: "/ourTeam/Vitaliy.png", mobile: "/ourTeam/Vitaliy.png" },
 ] as const;
 
-const socialLinks = [
-  { href: "https://facebook.com", src: "/hero/Social Icons.svg", label: "Facebook" },
-  { href: "https://instagram.com", src: "/hero/Social Icons2.svg", label: "Instagram" },
-];
+const TEAM_SOCIAL_LINKS = [
+  {
+    facebook: "https://www.facebook.com/share/1D5D4bibiu/?mibextid=wwXIfr",
+    instagram: "https://www.instagram.com/marussyabondar/",
+  },
+  {
+    facebook: "https://www.facebook.com/irina.dzubenko.625868",
+    instagram: "https://www.instagram.com/irynka321/",
+  },
+  {
+    instagram: "https://www.instagram.com/kate__mikityuk/",
+  },
+  {
+    facebook: "https://www.facebook.com/share/18KgvyojKE/?mibextid=wwXIfr",
+    instagram: "https://www.instagram.com/volodymyr_lozinsky/",
+  },
+  {
+    facebook: "https://www.facebook.com/share/1HispuGw34/?mibextid=wwXIfr",
+  },
+  {
+    instagram: "https://www.instagram.com/vitaliiykotuk/",
+  },
+] as const;
 
-function TeamCard({ name, role, photo, photoMobile }: { name: string; role: string; photo: string; photoMobile: string }) {
+const SOCIAL_META = [
+  { key: "facebook", src: "/hero/Social Icons.svg", label: "Facebook" },
+  { key: "instagram", src: "/hero/Social Icons2.svg", label: "Instagram" },
+] as const;
+
+type TeamSocialLinks = Partial<Record<(typeof SOCIAL_META)[number]["key"], string>>;
+
+function TeamCard({
+  name,
+  role,
+  photo,
+  photoMobile,
+  socialLinks,
+}: {
+  name: string;
+  role: string;
+  photo: string;
+  photoMobile: string;
+  socialLinks: TeamSocialLinks;
+}) {
+  const links = SOCIAL_META.flatMap(({ key, src, label }) => {
+    const href = socialLinks[key];
+    return href ? [{ href, src, label }] : [];
+  });
+
   return (
     <CardWrapper as="article" widthClassName="w-[260px] min-[768px]:w-[424px] shrink-0 max-w-full">
       <div className="flex min-[768px]:h-[669px] flex-[1_0_0] flex-col items-start gap-1 md:gap-2 self-stretch">
@@ -44,14 +87,14 @@ function TeamCard({ name, role, photo, photoMobile }: { name: string; role: stri
           <span className="hidden md:inline">{role}</span>
         </p>
         <div className="flex gap-2.5 my-2 md:my-4">
-          {socialLinks.map(({ href, src, label }) => (
+          {links.map(({ href, src, label }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] bg-white p-3 transition-opacity hover:opacity-90"
-              aria-label={label}
+              aria-label={`${name} ${label}`}
             >
               <Image src={src} alt="" width={24} height={24} className="shrink-0" />
             </a>
@@ -101,6 +144,7 @@ export function OurTeamSection({
     ...m,
     photo: TEAM_PHOTOS[i]?.desktop ?? TEAM_PHOTOS[0].desktop,
     photoMobile: TEAM_PHOTOS[i]?.mobile ?? TEAM_PHOTOS[0].mobile,
+    socialLinks: TEAM_SOCIAL_LINKS[i] ?? {},
   }));
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -187,6 +231,7 @@ export function OurTeamSection({
               role={member.role}
               photo={member.photo}
               photoMobile={member.photoMobile}
+              socialLinks={member.socialLinks}
             />
           ))}
         </div>
