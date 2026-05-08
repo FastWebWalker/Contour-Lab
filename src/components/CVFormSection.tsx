@@ -17,7 +17,7 @@ import { FormSuccessModal } from "@/components/modals/FormSuccessModal";
 
 /** Як у QuestionMapFormSection */
 const inputClassName =
-  "flex w-full min-w-0 flex-1 items-center gap-2.5 rounded-[40px] border border-[#D0D0D0] bg-white p-4 text-[16px] font-normal leading-normal outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(20,20,20,0.45)] focus:border-[var(--color-red-main)] focus:ring-1 focus:ring-[var(--color-red-main)] md:px-5 md:py-[22px] md:text-[20px]";
+  "flex h-[51px] min-h-[51px] w-full min-w-0 shrink-0 items-center gap-2.5 rounded-[40px] border border-[#D0D0D0] bg-white px-4 py-0 text-[16px] font-normal leading-normal outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(20,20,20,0.45)] focus:border-[var(--color-red-main)] focus:ring-1 focus:ring-[var(--color-red-main)] md:h-[56px] md:min-h-[56px] md:px-5 md:py-0 md:text-[20px]";
 
 const inputStyle: React.CSSProperties = {
   color: "rgba(20, 20, 20, 0.85)",
@@ -146,7 +146,7 @@ export function CVFormSection({
                   placeholder={t("firstName")}
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className={inputClassName}
+                  className={`${inputClassName} min-[480px]:flex-1`}
                   style={inputStyle}
                 />
                 <input
@@ -156,7 +156,7 @@ export function CVFormSection({
                   placeholder={t("lastName")}
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className={inputClassName}
+                  className={`${inputClassName} min-[480px]:flex-1`}
                   style={inputStyle}
                 />
               </div>

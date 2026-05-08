@@ -25,7 +25,10 @@ const labelStyleDesktop: React.CSSProperties = {
 
 /** Compact input class for the modal — smaller padding on mobile */
 const modalInputClass =
-  "flex w-full min-w-0 flex-1 items-center gap-2.5 rounded-[40px] border border-[#D0D0D0] bg-white px-3 py-2.5 text-[14px] font-normal leading-normal outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(20,20,20,0.45)] focus:border-[var(--color-red-main)] focus:ring-1 focus:ring-[var(--color-red-main)] min-[768px]:px-4 min-[768px]:py-3 min-[768px]:text-[16px] min-[1024px]:px-5 min-[1024px]:py-[22px] min-[1024px]:text-[20px]";
+  "flex w-full min-w-0 flex-1 items-center gap-2.5 rounded-[40px] border border-[#D0D0D0] bg-white px-3 py-2.5 text-[14px] font-normal leading-normal outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(20,20,20,0.45)] focus:border-[var(--color-red-main)] focus:ring-1 focus:ring-[var(--color-red-main)] min-[768px]:h-[56px] min-[768px]:px-4 min-[768px]:py-0 min-[768px]:text-[16px] min-[1024px]:px-5 min-[1024px]:text-[20px]";
+
+const modalFullRowInputClass =
+  `${modalInputClass} min-[768px]:!h-[56px] min-[768px]:!min-h-[56px] min-[768px]:!flex-none`;
 
 type RadioValue = "consult" | "coop" | "contact";
 
@@ -244,7 +247,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
                   placeholder={t("phone")}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className={modalInputClass}
+                  className={modalFullRowInputClass}
                   style={FORM_INPUT_STYLE}
                 />
 
@@ -254,7 +257,7 @@ export function PriceFormModal({ open, onClose }: PriceFormModalProps) {
                     name="method"
                     value={method}
                     onChange={(e) => setMethod(e.target.value)}
-                    className={`${modalInputClass} appearance-none bg-white pr-10`}
+                    className={`${modalFullRowInputClass} appearance-none bg-white pr-10`}
                     style={{
                       ...FORM_INPUT_STYLE,
                       backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23555' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,

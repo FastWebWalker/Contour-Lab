@@ -15,18 +15,17 @@ import {
 } from "@/lib/motion";
 
 function BlogCard({
-  title,
-  description,
-  image,
-  href,
-  readMoreLabel,
+    title,
+    description,
+    image,
+    href,
+    readMoreLabel,
 }: BlogPost & { readMoreLabel: string }) {
     return (
         <article
             className="flex flex-col items-start gap-2.5 rounded-[30px] p-4 transition-shadow hover:shadow-md"
             style={{
                 background: "var(--Grey-Light, #F6F6F6)",
-                minHeight: "570px",
             }}
         >
             {/* Image Container */}
@@ -41,7 +40,7 @@ function BlogCard({
             </div>
 
             {/* Content Area */}
-            <div className="flex flex-1 flex-col justify-between gap-4 self-stretch pt-2">
+            <div className="flex flex-1 flex-col gap-4 self-stretch pt-2 lg:justify-between">
                 <div className="flex flex-col gap-3">
                     <Title
                         as="h3"
@@ -51,7 +50,7 @@ function BlogCard({
                         {title}
                     </Title>
                     <p
-                        className="line-clamp-4 text-[18px] font-normal leading-normal min-[768px]:text-[20px]"
+                        className="line-clamp-4 text-[18px] font-normal leading-normal min-[768px]:text-[20px] lg:min-h-[120px]"
                         style={{
                             color: "var(--Grey-Hard, #555)",
                             fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",

@@ -90,7 +90,7 @@ export function Hero({
   return (
     <div className="relative m-5">
       <section
-        className="relative h-auto min-h-[80vh] pb-8 md:pb-0 md:min-h-[90vh] flex flex-col pt-[32px] md:pt-[40px] lg:pt-[146px] rounded-[24px] md:rounded-[30px] lg:rounded-[50px] overflow-hidden"
+        className="relative h-auto min-h-[65vh] pb-8 md:pb-0 md:min-h-[90vh] flex flex-col pt-[32px] md:pt-[40px] lg:pt-[146px] rounded-[24px] md:rounded-[30px] lg:rounded-[50px] overflow-hidden"
         style={{ backgroundColor: "var(--color-hero-bg)" }}
       >
 
@@ -134,8 +134,8 @@ export function Hero({
             className={[
               "object-contain object-right object-bottom mix-blend-lighten opacity-95",
               isGeneralPage
-                ? "translate-y-[20px] md:translate-y-[10px]"
-                : "translate-y-[58px] md:translate-y-[20px]",
+                ? "translate-x-[5%] translate-y-[calc(20px-10%)] md:translate-x-0 md:translate-y-[10px]"
+                : "translate-x-[5%] translate-y-[calc(58px-10%)] md:translate-x-0 md:translate-y-[20px]",
             ].join(" ")}
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
             priority
