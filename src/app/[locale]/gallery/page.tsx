@@ -20,7 +20,7 @@ export default async function GalleryPage({
     <>
       {t("titleLine1")}
       <br />
-      <span style={{ color: "var(--color-red-main)" }}>{t("titleLine2")}</span>
+      <span style={{ color: "var(--color-red-main)" }}>{t("titleAccent")}</span>
     </>
   );
 

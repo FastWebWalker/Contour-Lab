@@ -126,7 +126,7 @@ export const BLOG_POSTS_EN: BlogPost[] = [
         id: 1,
         title: "Inspiration for Children with Smile Energy Group",
         description:
-            "How we turn dental visits into a positive experience. Social initiatives and care for a healthier future for children.",
+            "How we turn dentist visits into a celebration. Social initiatives and care for the healthy future of our little patients.",
         image: "/blogSection/a29dac667cdbc3ae81cc046832a688ae7efe4469.png",
         href: "/blog/1",
         content: `

@@ -21,21 +21,21 @@ export const blogPage = {
   titleBefore: "Our",
   titleAccent: "Blog",
   subtitle:
-    "Catch up on the latest company news through our blog and newsletter!",
+    "Find out about the latest news about our company by reading our blog and newsletter!",
 };
 
 export const galleryPage = {
-  titleLine1: "Our work",
-  titleLine2: "gallery",
+  titleLine1: "Our gallery",
+  titleAccent: "of Works",
   subtitle:
-    "See our professionalism and attention to detail in our portfolio of work!",
+    "See for yourself our professionalism and accuracy by viewing photos of our work!",
 };
 
 export const vacanciesPage = {
   titleBefore: "Join our",
   titleAccent: "team!",
   subtitle:
-    "Browse open positions on our site and send your CV — this could be your chance!",
+    "View current vacancies on our website and send your resume! Maybe this is your chance!",
 };
 
 export const contactsPage = {
