@@ -133,6 +133,7 @@ export function Header() {
             <LanguageSelector transparent={!scrolled} />
             <OutlineLightButton
               size="sm"
+              className="h-[54px] lg:text-[18px]"
               onClick={scrollToContact}
             >
               {tCommon("contact")}
@@ -241,7 +242,7 @@ export function Header() {
                     <OutlineLightButton
                       size="md"
                       className="min-w-[200px]"
-                      style={{ height: 'clamp(40px, 6dvh, 56px)', fontSize: 'clamp(14px, 2dvh, 18px)' }}
+                      style={{ height: '54px', fontSize: 'clamp(14px, 2dvh, 18px)' }}
                       onClick={() => {
                         closeMenu();
                         setTimeout(scrollToContact, 350);
