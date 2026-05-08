@@ -26,7 +26,7 @@ export const blogPage = {
 
 export const galleryPage = {
   titleLine1: "Наша галерея",
-  titleLine2: "робіт",
+  titleAccent: "робіт",
   subtitle:
     "Переконайтеся в нашому професіоналізмі та акуратності, переглянувши фотографії наших робіт!",
 };
