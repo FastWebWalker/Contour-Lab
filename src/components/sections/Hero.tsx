@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { PrimaryButton } from "../ui/Button";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { HeroText } from "../hero/HeroText";
+import { ContactWidget } from "../contact/ContactWidget";
 import { heroTransition, motionConfig } from "@/lib/motion";
 
 /* ------------------------------------------------------------------ */
@@ -98,24 +99,17 @@ export function Hero({
           className={[
             "absolute right-0",
             isGeneralPage ? "-bottom-[20px]" : "-bottom-[50px]",
-            "md:-bottom-[10px]",
+            "md:-bottom-[10px] lg:-bottom-[18px]",
             isGeneralPage
-              ? "w-[296px] h-[327px] aspect-[86/95] lg:w-[720px] lg:h-[540px] xl:w-[980px] xl:h-[720px]"
+              ? "w-[700px] h-[450px] left-[-50px] min-[480px]:w-[600px] min-[480px]:h-[430px] min-[480px]:left-[200px] md:w-[920px] md:h-[700px] md:left-[200px] lg:w-[1064px] lg:h-[630px] lg:left-[280px] xl:w-[1112px] xl:h-[680px] xl:left-[40%]"
               : "w-[110%] h-[70%] lg:w-[800px] lg:h-[600px] xl:w-[1100px] xl:h-[800px]",
-            "md:w-[640px] md:h-[580px] z-10 pointer-events-none select-none",
+            !isGeneralPage && "md:w-[640px] md:h-[580px]",
+            "z-10 pointer-events-none select-none",
             heroImageContainerClassName,
           ]
             .filter(Boolean)
             .join(" ")}
-          style={
-            isGeneralPage
-              ? {
-                  background: `url("${heroImage}") -55.457px -53.595px / 166.545% 125.026% no-repeat`,
-                  backgroundColor: "transparent",
-               
-                }
-              : undefined
-          }
+          style={undefined}
           aria-hidden
           initial={
             reduced
@@ -133,16 +127,19 @@ export function Hero({
             delay: motionConfig.delay.heroImage,
           })}
         >
-          {!isGeneralPage && (
-            <Image
-              src={heroImage}
-              alt=""
-              fill
-              className="object-contain object-right object-bottom mix-blend-lighten opacity-95 translate-y-[58px] md:translate-y-[20px]"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
-              priority
-            />
-          )}
+          <Image
+            src={heroImage}
+            alt=""
+            fill
+            className={[
+              "object-contain object-right object-bottom mix-blend-lighten opacity-95",
+              isGeneralPage
+                ? "translate-y-[20px] md:translate-y-[10px]"
+                : "translate-y-[58px] md:translate-y-[20px]",
+            ].join(" ")}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 640px, 1100px"
+            priority
+          />
         </motion.div>
 
         {/* Content */}
@@ -265,41 +262,74 @@ export function Hero({
                     </div>
                   )}
                 </div>
-                {showSocialLinks && socialLinks.length > 0 && (
-                  <div className="flex flex-row gap-2.5 shrink-0 md:flex-col lg:flex-col">
-                    {socialLinks.map(({ href, src, label }, i) => (
-                      <motion.a
-                        key={label}
-                        href={href}
-                        target={href.startsWith("http") ? "_blank" : undefined}
-                        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="flex w-12 h-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] p-3 transition-opacity hover:opacity-90"
-                        aria-label={label}
-                        initial={
-                          reduced
-                            ? false
-                            : { opacity: 0, y: motionConfig.offset.heroSocial }
-                        }
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={heroTransition({
-                          reduced,
-                          duration: motionConfig.duration.micro,
-                          delay:
-                            motionConfig.delay.heroSocial +
-                            i * motionConfig.stagger.heroSocial,
-                        })}
-                      >
-                        <Image src={src} alt="" width={24} height={24} className="shrink-0" />
-                      </motion.a>
-                    ))}
+                <div className="flex shrink-0 items-end">
+                  {showSocialLinks && socialLinks.length > 0 && (
+                    <div className="flex flex-row gap-2.5 md:flex-col lg:hidden">
+                      {socialLinks.slice(1).map(({ href, src, label }, i) => (
+                        <motion.a
+                          key={label}
+                          href={href}
+                          target={href.startsWith("http") ? "_blank" : undefined}
+                          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="flex w-12 h-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] p-3 transition-opacity hover:opacity-90"
+                          aria-label={label}
+                          initial={
+                            reduced
+                              ? false
+                              : { opacity: 0, y: motionConfig.offset.heroSocial }
+                          }
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={heroTransition({
+                            reduced,
+                            duration: motionConfig.duration.micro,
+                            delay:
+                              motionConfig.delay.heroSocial +
+                              i * motionConfig.stagger.heroSocial,
+                          })}
+                        >
+                          <Image src={src} alt="" width={24} height={24} className="shrink-0" />
+                        </motion.a>
+                      ))}
+                    </div>
+                  )}
+                  <div className="hidden lg:flex flex-col items-end gap-2.5">
+                    <ContactWidget variant="inline" />
+                    {showSocialLinks &&
+                      socialLinks.slice(1).map(({ href, src, label }, i) => (
+                        <motion.a
+                          key={label}
+                          href={href}
+                          target={href.startsWith("http") ? "_blank" : undefined}
+                          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="flex w-12 h-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] p-3 transition-opacity hover:opacity-90"
+                          aria-label={label}
+                          initial={
+                            reduced
+                              ? false
+                              : { opacity: 0, y: motionConfig.offset.heroSocial }
+                          }
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={heroTransition({
+                            reduced,
+                            duration: motionConfig.duration.micro,
+                            delay:
+                              motionConfig.delay.heroSocial +
+                              (i + 1) * motionConfig.stagger.heroSocial,
+                          })}
+                        >
+                          <Image src={src} alt="" width={24} height={24} className="shrink-0" />
+                        </motion.a>
+                      ))}
                   </div>
-                )}
+                </div>
               </div>
               {/* Spacer so content doesn't collide with image on large screens */}
               <div className="hidden lg:block flex-1 min-w-[4%]" />
 
             </div>
           </div>
+
+          <ContactWidget variant="fixed" />
 
           {/* Statistics - притиснуто до низу секції */}
           {showStats && stats.length > 0 && (

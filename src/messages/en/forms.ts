@@ -40,3 +40,10 @@ export const cvForm = {
   resumeHint: "Please attach your resume!",
   submit: "Send message",
 };
+
+export const formSuccessModal = {
+  ariaLabel: "Form submission success message",
+  close: "Close",
+  line1: "Thank you for your inquiry!",
+  line2: "We will definitely contact you soon!",
+};
