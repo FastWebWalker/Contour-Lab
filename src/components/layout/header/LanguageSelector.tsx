@@ -17,6 +17,8 @@ export function LanguageSelector({ transparent }: LanguageSelectorProps) {
   const router = useRouter();
   const pathname = usePathname();
 
+  console.log(locale);
+
   const target: AppLocale = locale === "uk" ? "en" : "uk";
   const label = locale === "uk" ? "EN" : "UA";
 
