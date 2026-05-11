@@ -19,7 +19,7 @@ export const whyChoose = {
     "Experience with complex cases",
     "3-year warranty on work",
     "Error detection in the workflow",
-    "We work across Ukraine and the EU",
+    "We work across Ukraine and worldwide",
   ],
 };
 
