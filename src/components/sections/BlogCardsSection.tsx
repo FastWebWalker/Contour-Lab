@@ -29,15 +29,19 @@ function BlogCard({
             }}
         >
             {/* Image Container */}
-            <div className="relative aspect-[380/236] w-full overflow-hidden rounded-[20px]">
+            <Link
+                href={href}
+                className="relative block aspect-[380/236] w-full overflow-hidden rounded-[20px]"
+                aria-label={title}
+            >
                 <Image
                     src={image}
                     alt={title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 hover:scale-[1.02]"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-            </div>
+            </Link>
 
             {/* Content Area */}
             <div className="flex flex-1 flex-col gap-4 self-stretch pt-2 lg:justify-between">
