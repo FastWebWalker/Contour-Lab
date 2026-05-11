@@ -136,7 +136,7 @@ export default function BlogPostPage() {
                   </h1>
 
                   <div
-                    className="prose prose-lg max-w-none text-[16px] leading-[1.6] text-[#555] md:text-[18px]"
+                    className="prose prose-lg max-w-none text-[16px] leading-[1.6] text-[#555] md:text-[18px] [&_p]:mb-6 [&_p:last-child]:mb-0 [&_ul]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1.5 [&_li:last-child]:mb-0 [&_a]:font-medium [&_a]:text-[#2563eb] [&_a]:no-underline hover:[&_a]:text-[#1d4ed8] focus-visible:[&_a]:outline-none"
                     style={{ fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif" }}
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
@@ -267,4 +267,3 @@ export default function BlogPostPage() {
     </main>
   );
 }
-

@@ -194,13 +194,35 @@ export function Hero({
                                 i * motionConfig.stagger.heroButton,
                             })}
                           >
-                            <PrimaryButton
-                              type="button"
-                              size="lg"
-                              onClick={onPrimaryCtaClick}
-                            >
-                              {btn.label}
-                            </PrimaryButton>
+                            {onPrimaryCtaClick ? (
+                              <PrimaryButton
+                                type="button"
+                                size="lg"
+                                onClick={onPrimaryCtaClick}
+                              >
+                                {btn.label}
+                              </PrimaryButton>
+                            ) : btn.href.startsWith("http") ? (
+                              <a
+                                href={btn.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex h-14 min-w-[220px] items-center justify-center gap-[4px] rounded-full bg-[var(--color-red-main)] px-[24px] text-[17px] font-medium text-white shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-all duration-200 hover:bg-[var(--color-red-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2"
+                                style={{ fontFamily: "var(--font-inter)" }}
+                              >
+                                <span className="tracking-[0.01em]">{btn.label}</span>
+                                <ArrowRightIcon className="shrink-0" size={36} />
+                              </a>
+                            ) : (
+                              <Link
+                                href={btn.href}
+                                className="inline-flex h-14 min-w-[220px] items-center justify-center gap-[4px] rounded-full bg-[var(--color-red-main)] px-[24px] text-[17px] font-medium text-white shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-all duration-200 hover:bg-[var(--color-red-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2"
+                                style={{ fontFamily: "var(--font-inter)" }}
+                              >
+                                <span className="tracking-[0.01em]">{btn.label}</span>
+                                <ArrowRightIcon className="shrink-0" size={36} />
+                              </Link>
+                            )}
                           </motion.div>
                         ) : onOutlineCtaClick ? (
                           <motion.div
