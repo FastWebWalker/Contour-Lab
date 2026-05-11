@@ -11,6 +11,7 @@ import {
   fadeUpCardVariants,
   fadeUpVariants,
   heroTransition,
+  MOTION_EASE,
   motionConfig,
   staggerContainerVariants,
   staggerGridVariants,
@@ -29,15 +30,35 @@ const CARD_ICONS = [
 
 export function WhyChooseImageBlock() {
   const reduced = useReducedMotion() ?? false;
+  const [galleryImages, setGalleryImages] = React.useState({
+    main: MAIN_IMAGE_SRC,
+    thumbnails: [...SMALL_IMAGES_SRC],
+  });
+  const [swapCount, setSwapCount] = React.useState(0);
+
+  const swapImage = (index: number) => {
+    setGalleryImages((current) => {
+      const next = [...current.thumbnails];
+      const selectedThumbnail = next[index];
+      next[index] = current.main;
+      return {
+        main: selectedThumbnail,
+        thumbnails: next,
+      };
+    });
+    setSwapCount((count) => count + 1);
+  };
 
   return (
     <motion.div
-      className="mx-auto flex shrink-0 justify-end gap-2.5 rounded-[30px] p-8 w-full max-w-full aspect-[635/774] md:w-[635px] md:h-[774px] md:aspect-auto min-[1080px]:mx-0 min-[1080px]:w-[515px] min-[1080px]:h-[626px] min-[1220px]:w-[572px] min-[1220px]:h-[696px] min-[1440px]:w-[635px] min-[1440px]:h-[774px]"
+      className="relative mx-auto flex shrink-0 justify-end gap-2.5 rounded-[30px] p-8 w-full max-w-full aspect-[635/774] md:w-[635px] md:h-[774px] md:aspect-auto min-[1080px]:mx-0 min-[1080px]:w-[515px] min-[1080px]:h-[626px] min-[1220px]:w-[572px] min-[1220px]:h-[696px] min-[1440px]:w-[635px] min-[1440px]:h-[774px]"
       style={{
-        backgroundImage: `url(${MAIN_IMAGE_SRC})`,
+        backgroundImage: `url(${galleryImages.main})`,
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "0px -64.192px",
-        backgroundSize: "100.316% 126.085%",
+        backgroundPosition:
+          galleryImages.main === MAIN_IMAGE_SRC ? "0px -64.192px" : "center",
+        backgroundSize:
+          galleryImages.main === MAIN_IMAGE_SRC ? "100.316% 126.085%" : "cover",
         backgroundColor: "lightgray",
       }}
       initial={reduced ? false : { opacity: 0, scale: 0.98 }}
@@ -51,15 +72,27 @@ export function WhyChooseImageBlock() {
         duration: motionConfig.duration.slower,
       })}
     >
-      <div className="flex flex-col items-start gap-2.5">
-        {SMALL_IMAGES_SRC.map((src, i) => (
-          <motion.div
-            key={src}
-            className="relative h-[61px] w-[59px] shrink-0 overflow-hidden rounded-[15px] md:rounded-[30px] border border-[var(--color-grey)]/30 bg-[#e5e5e5] min-[768px]:h-[107px] min-[768px]:w-[102.603px]"
+      <motion.div
+        key={`${galleryImages.main}-${swapCount}`}
+        className="pointer-events-none absolute inset-0 rounded-[30px] bg-white/10"
+        initial={reduced ? false : { opacity: 0.45, scale: 1.02 }}
+        animate={{ opacity: 0, scale: 1 }}
+        transition={{ duration: reduced ? 0 : 0.42, ease: MOTION_EASE }}
+        aria-hidden
+      />
+      <div className="relative z-10 flex flex-col items-start gap-2.5">
+        {galleryImages.thumbnails.map((src, i) => (
+          <motion.button
+            key={`${src}-${i}`}
+            type="button"
+            onClick={() => swapImage(i)}
+            className="relative h-[61px] w-[59px] shrink-0 overflow-hidden rounded-[15px] bg-[#e5e5e5] shadow-[0_6px_18px_rgba(20,20,20,0.14)] transition-shadow hover:shadow-[0_10px_28px_rgba(20,20,20,0.2)] focus:outline-none focus:ring-2 focus:ring-[var(--color-red-main)] focus:ring-offset-2 md:rounded-[30px] min-[768px]:h-[107px] min-[768px]:w-[102.603px]"
             style={{ aspectRatio: "59/61" }}
             initial={
               reduced ? false : { opacity: 0, x: motionConfig.offset.thumbX }
             }
+            whileHover={reduced ? undefined : { scale: 1.04, y: -2 }}
+            whileTap={reduced ? undefined : { scale: 0.97 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{
               once: motionConfig.viewport.once,
@@ -71,6 +104,7 @@ export function WhyChooseImageBlock() {
               delay:
                 reduced ? 0 : motionConfig.delay.thumbBase + i * motionConfig.stagger.thumb,
             })}
+            aria-label={`Show image ${i + 1}`}
           >
             <Image
               src={src}
@@ -79,7 +113,7 @@ export function WhyChooseImageBlock() {
               className="object-cover object-center"
               sizes="(max-width: 767px) 59px, 102.603px"
             />
-          </motion.div>
+          </motion.button>
         ))}
       </div>
     </motion.div>

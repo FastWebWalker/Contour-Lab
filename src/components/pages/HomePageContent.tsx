@@ -33,7 +33,7 @@ export function HomePageContent() {
   );
 
   const homeHeroButtons = [
-    { label: t("order"), href: "#order", variant: "primary" as const },
+    { label: t("order"), href: "https://www.contour-order-form.com/", variant: "primary" as const },
     { label: t("price"), href: "#price", variant: "outline" as const },
   ];
 
@@ -55,7 +55,6 @@ export function HomePageContent() {
         stats={homeHeroStats}
         showSocialLinks
         socialLinks={homeHeroSocialLinks}
-        onPrimaryCtaClick={openPriceModal}
         onOutlineCtaClick={openPriceModal}
       />
       <IconsSection />
