@@ -15,33 +15,78 @@ import {
 } from "@/lib/motion";
 
 const TEAM_PHOTOS = [
+  // 1. Natalia Danyliv
+  { desktop: "/ourTeam/natalia_danyliv.jpg", mobile: "/ourTeam/natalia_danyliv.jpg" },
+  // 2. Maria Bondar
   { desktop: "/ourTeam/Maria.jpg", mobile: "/ourTeam/Maria_mobile.jpeg" },
+  // 3. Oksana Fedun
+  { desktop: "/ourTeam/Oksana_fedun.jpg", mobile: "/ourTeam/Oksana_fedun.jpg" },
+  // 4. Iryna Dzyubenko
   { desktop: "/ourTeam/Iryna.jpg", mobile: "/ourTeam/Iryna.jpg" },
-  { desktop: "/ourTeam/Katerina.jpg", mobile: "/ourTeam/Katerina_mobile.jpeg" },
+  // 5. Sofia Pastushchak
+  { desktop: "/ourTeam/Sofia_pastushchack.jpg", mobile: "/ourTeam/Sofia_pastushchack.jpg" },
+  // 6. Katerina Mykytiuk (no mobile version)
+  { desktop: "/ourTeam/Katerina.jpg", mobile: "/ourTeam/Katerina.jpg" },
+  // 7. Volodymyr Lozynskyi
   { desktop: "/ourTeam/Volodymir.jpg", mobile: "/ourTeam/Volodymir_mobile.jpeg" },
+  // 8. Yaroslav Sniadetskiy
+  { desktop: "/ourTeam/Yaroslav.jpg", mobile: "/ourTeam/Yaroslav.jpg" },
+  // 9. Anton Davydenko
+  { desktop: "/ourTeam/Anton.jpg", mobile: "/ourTeam/Anton.jpg" },
+  // 10. Mariyan Mykytiuk
   { desktop: "/ourTeam/Mariyan.png", mobile: "/ourTeam/Mariyan_mobile.jpeg" },
+  // 11. Vitaliy Kotyk
   { desktop: "/ourTeam/Vitaliy.png", mobile: "/ourTeam/Vitaliy.png" },
 ] as const;
 
 const TEAM_SOCIAL_LINKS = [
+  // 1. Natalia Danyliv
+  {
+    facebook: "https://www.facebook.com/share/1HwCUyc14X/?mibextid=wwXIfr",
+    instagram: "https://www.instagram.com/nataliyadanyliv?igsh=MjZzeG1oejB3OHI3",
+  },
+  // 2. Maria Bondar
   {
     facebook: "https://www.facebook.com/share/1D5D4bibiu/?mibextid=wwXIfr",
     instagram: "https://www.instagram.com/marussyabondar/",
   },
+  // 3. Oksana Fedun
+  {
+    facebook: "https://www.facebook.com/share/1DjkYQiSWb/?mibextid=wwXIfr",
+    instagram: "https://www.instagram.com/oksankafedyn25?igsh=MXYwZzcyejl2ZGU1bg==",
+  },
+  // 4. Iryna Dzyubenko
   {
     facebook: "https://www.facebook.com/irina.dzubenko.625868",
     instagram: "https://www.instagram.com/irynka321/",
   },
+  // 5. Sofia Pastushchak
+  {
+    facebook: "https://www.facebook.com/share/1Cj2ddYG1v/?mibextid=wwXIfr",
+    instagram: "https://www.instagram.com/uraghan.katrin?igsh=MWp0MnV0NmIyajIzdQ==",
+  },
+  // 6. Katerina Mykytiuk
   {
     instagram: "https://www.instagram.com/kate__mikityuk/",
   },
+  // 7. Volodymyr Lozynskyi
   {
     facebook: "https://www.facebook.com/share/18KgvyojKE/?mibextid=wwXIfr",
     instagram: "https://www.instagram.com/volodymyr_lozinsky/",
   },
+  // 8. Yaroslav Sniadetskiy
+  {
+    instagram: "https://www.instagram.com/yaroslav_sniadetskyi?igsh=MTN6Y3M0bzRlNzN6Zg==",
+  },
+  // 9. Anton Davydenko
+  {
+    instagram: "https://www.instagram.com/anton_davydenko_dt?igsh=MTRldG82NnQ5Nno5Mw==",
+  },
+  // 10. Mariyan Mykytiuk
   {
     facebook: "https://www.facebook.com/share/1HispuGw34/?mibextid=wwXIfr",
   },
+  // 11. Vitaliy Kotyk
   {
     instagram: "https://www.instagram.com/vitaliiykotuk/",
   },
