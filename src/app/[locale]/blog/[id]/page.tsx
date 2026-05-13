@@ -26,7 +26,6 @@ export default function BlogPostPage() {
   const [activeSection, setActiveSection] = React.useState("article");
   const [showToast, setShowToast] = React.useState(false);
 
-  console.log(post);
 
   React.useEffect(() => {
     if (showToast) {
