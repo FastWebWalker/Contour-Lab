@@ -28,7 +28,7 @@ const TEAM_PHOTOS = [
   // 6. Katerina Mykytiuk (no mobile version)
   { desktop: "/ourTeam/Katerina.jpg", mobile: "/ourTeam/Katerina.jpg" },
   // 7. Volodymyr Lozynskyi
-  { desktop: "/ourTeam/Volodymir.jpg", mobile: "/ourTeam/Volodymir_mobile.jpeg" },
+  { desktop: "/ourTeam/Volodymir.jpg", mobile: "/ourTeam/Volodymir.jpg" },
   // 8. Yaroslav Sniadetskiy
   { desktop: "/ourTeam/Yaroslav.jpg", mobile: "/ourTeam/Yaroslav.jpg" },
   // 9. Anton Davydenko

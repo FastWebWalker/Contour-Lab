@@ -75,7 +75,7 @@ export const ourTeam = {
   title: "Our team",
   members: [
     { name: "Natalia Danyliv", role: "Head of the laboratory" },
-    { name: "Mariia Bondar", role: "Company CEO" },
+    { name: "Mariia Bondar", role: "Chief Operating Officer" },
     { name: "Oksana Fedun", role: "Chief Administrator" },
     { name: "Iryna Dzyubenko", role: "Ceramist" },
     { name: "Sofia Pastushchak", role: "Ceramist" },
