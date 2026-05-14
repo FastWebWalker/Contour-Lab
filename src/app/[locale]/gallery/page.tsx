@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { GalleryTabSection } from "@/components/sections/GalleryTabSection";
 import { QuestionMapFormSection } from "@/components/sections/QuestionMapFormSection";
 import { readGalleryManifest } from "@/lib/galleryManifest";
+import { homeHeroSocialLinks } from "@/components/hero/homeHeroData";
 
 const galleryHeroImage = "/hero/" + encodeURIComponent("photo hero other.png");
 
@@ -33,7 +34,8 @@ export default async function GalleryPage({
         heroImageContainerClassName="lg:-bottom-[30px]"
         showButtons={false}
         showStats={false}
-        showSocialLinks={false}
+        showSocialLinks={true}
+        socialLinks={homeHeroSocialLinks}
       />
       <main id="content" className="w-full pb-16 md:pb-20">
         <GalleryTabSection manifest={manifest} />
