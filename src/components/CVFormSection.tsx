@@ -239,20 +239,20 @@ export function CVFormSection({
             </form>
           </motion.div>
 
-          {/* Right: зображення; на desktop ширина/пропорції адаптуються до в’юпорта */}
+          {/* Right: зображення */}
           <motion.div
             variants={fadeUpVariants(reduced)}
             initial="hidden"
             whileInView="visible"
             viewport={sectionViewport({ amount: 0.2 })}
-            className="relative h-[clamp(220px,50vw,640px)] w-full min-w-0 shrink-0 overflow-hidden rounded-[30px] bg-[lightgray] min-[1024px]:h-auto min-[1024px]:max-h-[640px] min-[1024px]:w-[min(480px,42vw)] min-[1024px]:min-w-[min(260px,32vw)] min-[1024px]:max-w-[min(480px,48%)] min-[1024px]:shrink min-[1024px]:aspect-[4/5]"
+            className="relative h-[clamp(220px,50vw,640px)] w-full min-w-0 shrink-0 overflow-hidden rounded-[30px] bg-[lightgray] min-[1024px]:h-[588px] min-[1024px]:w-[clamp(320px,40vw,576px)]"
           >
             <Image
               src={CV_IMAGE_PATH}
               alt=""
               fill
-              className="object-cover"
-              sizes="(max-width: 1023px) 100vw, (max-width: 1440px) 42vw, 480px"
+              className="object-cover object-left"
+              sizes="(max-width: 1023px) 100vw, (max-width: 1440px) 40vw, 576px"
             />
           </motion.div>
 
