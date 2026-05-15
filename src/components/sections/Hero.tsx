@@ -58,6 +58,8 @@ export interface HeroProps {
   isGeneralPage?: boolean;
   /** Additional classes for hero image container positioning/sizing */
   heroImageContainerClassName?: string;
+  /** Additional classes for the desktop social links column */
+  socialLinksClassName?: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -78,6 +80,7 @@ export function Hero({
   onOutlineCtaClick,
   isGeneralPage = false,
   heroImageContainerClassName = "",
+  socialLinksClassName = "",
 }: HeroProps) {
   const reduced = useReducedMotion() ?? false;
 
@@ -314,7 +317,14 @@ export function Hero({
                       ))}
                     </div>
                   )}
-                  <div className="hidden lg:flex flex-col items-end gap-2.5">
+                  <div
+                    className={[
+                      "hidden lg:flex flex-col items-end gap-2.5",
+                      socialLinksClassName,
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
                     <ContactWidget variant="inline" />
                     {showSocialLinks &&
                       socialLinks.slice(1).map(({ href, src, label }, i) => (

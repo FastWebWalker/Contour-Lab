@@ -32,6 +32,7 @@ export default async function ContactsPage({
         showStats={false}
         showSocialLinks
         socialLinks={homeHeroSocialLinks}
+        socialLinksClassName="lg:-mt-[calc(clamp(40px,6.25vw+20px,110px)*0.91)]"
       />
       <main id="content" className="w-full">
         <ContactsInfoGridSection />
