@@ -16,27 +16,35 @@ import {
 
 const TEAM_PHOTOS = [
   // 1. Natalia Danyliv
-  { desktop: "/ourTeam/natalia_danyliv.jpg", mobile: "/ourTeam/natalia_danyliv.jpg" },
+  { desktop: "/ourTeam/natalia_danyliv.png", mobile: "/ourTeam/natalia_danyliv.png" },
   // 2. Maria Bondar
-  { desktop: "/ourTeam/Maria.jpg", mobile: "/ourTeam/Maria_mobile.jpeg" },
+  { desktop: "/ourTeam/Maria_new.png", mobile: "/ourTeam/Maria_new.png" },
   // 3. Oksana Fedun
-  { desktop: "/ourTeam/Oksana_fedun.jpg", mobile: "/ourTeam/Oksana_fedun.jpg" },
+  { desktop: "/ourTeam/Oksana_fedun_new.png", mobile: "/ourTeam/Oksana_fedun_new.png" },
   // 4. Iryna Dzyubenko
-  { desktop: "/ourTeam/Iryna.jpg", mobile: "/ourTeam/Iryna.jpg" },
+  { desktop: "/ourTeam/Iryna_new.png", mobile: "/ourTeam/Iryna_new.png" },
   // 5. Sofia Pastushchak
-  { desktop: "/ourTeam/Sofia_pastushchack.jpg", mobile: "/ourTeam/Sofia_pastushchack.jpg" },
-  // 6. Katerina Mykytiuk (no mobile version)
-  { desktop: "/ourTeam/Katerina.jpg", mobile: "/ourTeam/Katerina.jpg" },
-  // 7. Volodymyr Lozynskyi
-  { desktop: "/ourTeam/Volodymir.jpg", mobile: "/ourTeam/Volodymir.jpg" },
-  // 8. Yaroslav Sniadetskiy
-  { desktop: "/ourTeam/Yaroslav.jpg", mobile: "/ourTeam/Yaroslav.jpg" },
-  // 9. Anton Davydenko
-  { desktop: "/ourTeam/Anton.jpg", mobile: "/ourTeam/Anton.jpg" },
-  // 10. Mariyan Mykytiuk
-  { desktop: "/ourTeam/Mariyan.png", mobile: "/ourTeam/Mariyan_mobile.jpeg" },
-  // 11. Vitaliy Kotyk
-  { desktop: "/ourTeam/Vitaliy.png", mobile: "/ourTeam/Vitaliy.png" },
+  { desktop: "/ourTeam/Sofia_pastushchack_new.png", mobile: "/ourTeam/Sofia_pastushchack_new.png" },
+  // 6. Maria Kovalchuk
+  { desktop: "/ourTeam/Maria_kovalchuk.png", mobile: "/ourTeam/Maria_kovalchuk.png" },
+  // 7. Kate Mykytiuk
+  { desktop: "/ourTeam/Kate_mykytiuk.png", mobile: "/ourTeam/Kate_mykytiuk.png" },
+  // 8. Volodymyr Lozynskyi
+  { desktop: "/ourTeam/Volodymir_lozynskyi.png", mobile: "/ourTeam/Volodymir_lozynskyi.png" },
+  // 9. Anna Shushereba
+  { desktop: "/ourTeam/Anna_shushereba.png", mobile: "/ourTeam/Anna_shushereba.png" },
+  // 10. Yaroslav Sniadetskiy
+  { desktop: "/ourTeam/Yaroslav_sniadetskiy.png", mobile: "/ourTeam/Yaroslav_sniadetskiy.png" },
+  // 11. Anton Davydenko
+  { desktop: "/ourTeam/Anton_davydenko.png", mobile: "/ourTeam/Anton_davydenko.png" },
+  // 12. Liubomyr Haval
+  { desktop: "/ourTeam/Liubomyr_haval.png", mobile: "/ourTeam/Liubomyr_haval.png" },
+  // 13. Mariyan Mykytiuk
+  { desktop: "/ourTeam/Mariyan_mykytiuk.png", mobile: "/ourTeam/Mariyan_mykytiuk.png" },
+  // 14. Vitaliy Leshchynskiy
+  { desktop: "/ourTeam/Vitaliy_leshchynskiy.png", mobile: "/ourTeam/Vitaliy_leshchynskiy.png" },
+  // 15. Vitaliy Kotyk
+  { desktop: "/ourTeam/Vitaliy_kotyk.png", mobile: "/ourTeam/Vitaliy_kotyk.png" },
 ] as const;
 
 const TEAM_SOCIAL_LINKS = [
@@ -65,28 +73,36 @@ const TEAM_SOCIAL_LINKS = [
     facebook: "https://www.facebook.com/share/1Cj2ddYG1v/?mibextid=wwXIfr",
     instagram: "https://www.instagram.com/uraghan.katrin?igsh=MWp0MnV0NmIyajIzdQ==",
   },
-  // 6. Katerina Mykytiuk
+  // 6. Maria Kovalchuk
+  {},
+  // 7. Kate Mykytiuk
   {
     instagram: "https://www.instagram.com/kate__mikityuk/",
   },
-  // 7. Volodymyr Lozynskyi
+  // 8. Volodymyr Lozynskyi
   {
     facebook: "https://www.facebook.com/share/18KgvyojKE/?mibextid=wwXIfr",
     instagram: "https://www.instagram.com/volodymyr_lozinsky/",
   },
-  // 8. Yaroslav Sniadetskiy
+  // 9. Anna Shushereba
+  {},
+  // 10. Yaroslav Sniadetskiy
   {
     instagram: "https://www.instagram.com/yaroslav_sniadetskyi?igsh=MTN6Y3M0bzRlNzN6Zg==",
   },
-  // 9. Anton Davydenko
+  // 11. Anton Davydenko
   {
     instagram: "https://www.instagram.com/anton_davydenko_dt?igsh=MTRldG82NnQ5Nno5Mw==",
   },
-  // 10. Mariyan Mykytiuk
+  // 12. Liubomyr Haval
+  {},
+  // 13. Mariyan Mykytiuk
   {
     facebook: "https://www.facebook.com/share/1HispuGw34/?mibextid=wwXIfr",
   },
-  // 11. Vitaliy Kotyk
+  // 14. Vitaliy Leshchynskiy
+  {},
+  // 15. Vitaliy Kotyk
   {
     instagram: "https://www.instagram.com/vitaliiykotuk/",
   },
@@ -112,10 +128,11 @@ function TeamCard({
   photoMobile: string;
   socialLinks: TeamSocialLinks;
 }) {
-  const links = SOCIAL_META.flatMap(({ key, src, label }) => {
-    const href = socialLinks[key];
-    return href ? [{ href, src, label }] : [];
-  });
+  const links = SOCIAL_META.map(({ key, src, label }) => ({
+    href: socialLinks[key],
+    src,
+    label,
+  }));
 
   return (
     <CardWrapper as="article" widthClassName="w-[260px] min-[768px]:w-[424px] shrink-0 max-w-full">
@@ -127,23 +144,32 @@ function TeamCard({
           className="!text-[18px] font-normal leading-normal text-[var(--color-grey-hard,#555)] font-['Gilroy',ui-sans-serif,system-ui,sans-serif] min-[768px]:!text-[24px] min-[768px]:text-[rgba(20,20,20,0.85)]"
         >
           <span className="md:hidden">
-            {role.replace(/Removable\s+|знімного\s+/i, "").replace(/^./, (c) => c.toUpperCase())}
+            {role.replace(/знімного\s+/i, "").replace(/^./, (c) => c.toUpperCase())}
           </span>
           <span className="hidden md:inline">{role}</span>
         </p>
         <div className="flex gap-2.5 my-2 md:my-4">
-          {links.map(({ href, src, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] bg-white p-3 transition-opacity hover:opacity-90"
-              aria-label={`${name} ${label}`}
-            >
-              <Image src={src} alt="" width={24} height={24} className="shrink-0" />
-            </a>
-          ))}
+          {links.map(({ href, src, label }) =>
+            href ? (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] bg-white p-3 transition-opacity hover:opacity-90"
+                aria-label={`${name} ${label}`}
+              >
+                <Image src={src} alt="" width={24} height={24} className="shrink-0" />
+              </a>
+            ) : (
+              <span
+                key={label}
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[30px] border-[0.5px] border-[var(--color-grey)] bg-white p-3"
+              >
+                <Image src={src} alt="" width={24} height={24} className="shrink-0" />
+              </span>
+            )
+          )}
         </div>
         <div className="relative self-stretch shrink-0 w-full h-[252px] aspect-[69/89] min-[768px]:h-[500px] min-[768px]:aspect-auto rounded-[16px] overflow-hidden bg-[lightgray]">
           {/* Desktop image */}
